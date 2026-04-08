@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&family=Chakra+Petch:wght@300;400;500;600;700&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  /* Cores FUTZADA */
+  --color-brand-green: #10b981;
+  --color-brand-yellow: #f59e0b;
+  --color-bg: #0a0a0b;
+  --color-surface: #111114;
+  --color-surface-2: #18181c;
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-border-active: rgba(16, 185, 129, 0.4);
+  --color-text: #f0f0f0;
+  --color-muted: #6b7280;
+  --color-muted-2: #3f3f46;
+
+  /* Radius consistente */
+  --radius: 10px;
+  --radius-lg: 16px;
+  --radius-sm: 6px;
+
+  /* Tipografia */
+  --font-display: "Russo One", sans-serif;
+  --font-sans: "Chakra Petch", sans-serif;
+
+  /* Spacing */
+  --spacing-section: clamp(60px, 10vw, 120px);
+}
+
+/* Base */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { color-scheme: dark; }
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-muted-2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-brand-green); }
+
+/* Utilitários do design system */
+.font-display { font-family: var(--font-display); }
+.font-sans { font-family: var(--font-sans); }
+
+/* Card base */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--color-border-active);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.08);
+}
+
+.card-interactive {
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.card-interactive:hover {
+  border-color: var(--color-border-active);
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Botão primário */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--color-brand-green);
+  color: #0a0a0b;
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-primary:hover { background: #0ea874; }
+.btn-primary:active { opacity: 0.85; }
+
+/* Botão ghost */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--color-muted);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.btn-ghost:hover {
+  color: var(--color-text);
+  background: rgba(255,255,255,0.05);
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+}
+
+.badge-green {
+  color: var(--color-brand-green);
+  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.badge-yellow {
+  color: var(--color-brand-yellow);
+  border-color: rgba(245, 158, 11, 0.3);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.badge-muted {
+  color: var(--color-muted);
+  border-color: var(--color-border);
+  background: transparent;
+}
+
+/* Input */
+.input {
+  width: 100%;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.input::placeholder { color: var(--color-muted); }
+.input:focus { border-color: var(--color-brand-green); }
+
+/* Linha separadora sutil */
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+}
+
+/* Glow verde sutil para elementos ativos */
+.glow-green {
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+}
+
+/* Texto gradiente marca */
+.text-gradient {
+  background: linear-gradient(90deg, var(--color-brand-green) 0%, var(--color-brand-yellow) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animações */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.4s ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,5147 @@
+[
+  {
+    "player": "Ederson",
+    "nossoBanco": "Manchester City",
+    "sofascore": "Fenerbahçe"
+  },
+  {
+    "player": "Taffarel",
+    "nossoBanco": "Galatasaray",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Dida",
+    "nossoBanco": "New York RB",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Julio Cesar",
+    "nossoBanco": "Flamengo",
+    "sofascore": "Persib Bandung"
+  },
+  {
+    "player": "Weverton",
+    "nossoBanco": "Palmeiras",
+    "sofascore": "Grêmio"
+  },
+  {
+    "player": "Bento",
+    "nossoBanco": "Al-Qadsiah",
+    "sofascore": "Al-Nassr"
+  },
+  {
+    "player": "Renan Lodi",
+    "nossoBanco": "Flamengo",
+    "sofascore": "Atlético Mineiro"
+  },
+  {
+    "player": "Roberto Carlos",
+    "nossoBanco": "Fenerbahce",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Cafu",
+    "nossoBanco": "Milan",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Alex Sandro",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Flamengo"
+  },
+  {
+    "player": "Filipe Luis",
+    "nossoBanco": "Flamengo",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Thiago Silva",
+    "nossoBanco": "Chelsea",
+    "sofascore": "FC Porto"
+  },
+  {
+    "player": "Marquinhos",
+    "nossoBanco": "PSG",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Aldair",
+    "nossoBanco": "Genoa",
+    "sofascore": "Levski Sofia"
+  },
+  {
+    "player": "David Luiz",
+    "nossoBanco": "Flamengo",
+    "sofascore": "Pafos FC"
+  },
+  {
+    "player": "Lucio",
+    "nossoBanco": "Gremio",
+    "sofascore": "Flamengo"
+  },
+  {
+    "player": "Juan",
+    "nossoBanco": "Flamengo",
+    "sofascore": "Zamalek SC"
+  },
+  {
+    "player": "Fred",
+    "nossoBanco": "Fenerbahce",
+    "sofascore": "Fenerbahçe"
+  },
+  {
+    "player": "Dunga",
+    "nossoBanco": "Jubilo Iwata",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Mauro Silva",
+    "nossoBanco": "Racing",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Gilberto Silva",
+    "nossoBanco": "Gremio",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Lucas Paqueta",
+    "nossoBanco": "West Ham",
+    "sofascore": "Flamengo"
+  },
+  {
+    "player": "Ronaldinho",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Kaka",
+    "nossoBanco": "Orlando City",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Rivaldo",
+    "nossoBanco": "Cruzeiro",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Zico",
+    "nossoBanco": "Kashima Antlers",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Socrates",
+    "nossoBanco": "Fiorentina",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Philippe Coutinho",
+    "nossoBanco": "Aston Villa",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Oscar",
+    "nossoBanco": "Shanghai SIPG",
+    "sofascore": "Fulham"
+  },
+  {
+    "player": "Hernanes",
+    "nossoBanco": "Atletico Paranaense",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Neymar Jr.",
+    "nossoBanco": "Al-Hilal",
+    "sofascore": "Carf Asv U10"
+  },
+  {
+    "player": "Vinicius Jr.",
+    "nossoBanco": "Real Madrid",
+    "sofascore": "Boca Jrs EF U12"
+  },
+  {
+    "player": "Antony",
+    "nossoBanco": "Manchester United",
+    "sofascore": "Real Betis"
+  },
+  {
+    "player": "Endrick",
+    "nossoBanco": "Real Madrid",
+    "sofascore": "Olympique Lyonnais"
+  },
+  {
+    "player": "Hulk",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "Atlético Mineiro"
+  },
+  {
+    "player": "Ronaldo Fenomeno",
+    "nossoBanco": "Corinthians",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Romario",
+    "nossoBanco": "Valencia",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Bebeto",
+    "nossoBanco": "Sevilla",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Adriano Imperador",
+    "nossoBanco": "Roma",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Roberto Firmino",
+    "nossoBanco": "Al-Ahli",
+    "sofascore": "Al-Sadd"
+  },
+  {
+    "player": "Pele",
+    "nossoBanco": "New York Cosmos",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Garrincha",
+    "nossoBanco": "Flamengo",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Sergio Aguero",
+    "nossoBanco": "Barcelona",
+    "sofascore": "Independiente O35"
+  },
+  {
+    "player": "Carlos Tevez",
+    "nossoBanco": "Juventus",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Angel Di Maria",
+    "nossoBanco": "Fiorentina",
+    "sofascore": "Rosario Central"
+  },
+  {
+    "player": "Rodrigo De Paul",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Inter Miami CF"
+  },
+  {
+    "player": "Julian Alvarez",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Atlético Madrid"
+  },
+  {
+    "player": "Nahuel Molina",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Atlético Madrid"
+  },
+  {
+    "player": "Antoine Griezmann",
+    "nossoBanco": "Barcelona",
+    "sofascore": "Atlético Madrid"
+  },
+  {
+    "player": "Ousmane Dembele",
+    "nossoBanco": "PSG",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "KANTE",
+    "nossoBanco": "Al-Ittihad",
+    "sofascore": "Fenerbahçe"
+  },
+  {
+    "player": "Paul Pogba",
+    "nossoBanco": "Juventus",
+    "sofascore": "AS Monaco"
+  },
+  {
+    "player": "Karim Benzema",
+    "nossoBanco": "Al-Ittihad",
+    "sofascore": "Al-Hilal"
+  },
+  {
+    "player": "Thierry Henry",
+    "nossoBanco": "New York RB",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Zinedine Zidane",
+    "nossoBanco": "Real Madrid",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Marcel Desailly",
+    "nossoBanco": "Al-Gharafa",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Michel Platini",
+    "nossoBanco": "Juventus",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Patrick Vieira",
+    "nossoBanco": "Manchester City",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Franck Ribery",
+    "nossoBanco": "Salernitana",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Claude Makelele",
+    "nossoBanco": "PSG",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Dani Olmo",
+    "nossoBanco": "RB Leipzig",
+    "sofascore": "FC Barcelona"
+  },
+  {
+    "player": "Alvaro Morata",
+    "nossoBanco": "Milan",
+    "sofascore": "Como"
+  },
+  {
+    "player": "Fabian Ruiz",
+    "nossoBanco": "PSG",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Xavi Hernandez",
+    "nossoBanco": "Al-Sadd",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Andres Iniesta",
+    "nossoBanco": "Vissel Kobe",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Carles Puyol",
+    "nossoBanco": "Barcelona",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Iker Casillas",
+    "nossoBanco": "Porto",
+    "sofascore": "No team"
+  },
+  {
+    "player": "David Villa",
+    "nossoBanco": "Melbourne City",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Fernando Torres",
+    "nossoBanco": "Sagan Tosu",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Sergio Ramos",
+    "nossoBanco": "Sevilla",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Sergio Busquets",
+    "nossoBanco": "Inter Miami",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Jordi Alba",
+    "nossoBanco": "Inter Miami",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Joao Felix",
+    "nossoBanco": "Milan",
+    "sofascore": "Al-Nassr"
+  },
+  {
+    "player": "Joao Cancelo",
+    "nossoBanco": "Al-Hilal",
+    "sofascore": "FC Barcelona"
+  },
+  {
+    "player": "Vitinha",
+    "nossoBanco": "PSG",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Luis Figo",
+    "nossoBanco": "Inter",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Eusebio",
+    "nossoBanco": "Benfica",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Toni Kroos",
+    "nossoBanco": "Real Madrid",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Florian Wirtz",
+    "nossoBanco": "Bayern",
+    "sofascore": "Liverpool"
+  },
+  {
+    "player": "Leroy Sane",
+    "nossoBanco": "Bayern",
+    "sofascore": "Galatasaray"
+  },
+  {
+    "player": "Jerome Boateng",
+    "nossoBanco": "Salernitana",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Bastian Schweinsteiger",
+    "nossoBanco": "Chicago Fire",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Philipp Lahm",
+    "nossoBanco": "Stuttgart",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Thomas Muller",
+    "nossoBanco": "Bayern",
+    "sofascore": "Vancouver Whitecaps"
+  },
+  {
+    "player": "Miroslav Klose",
+    "nossoBanco": "Lazio",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Franz Beckenbauer",
+    "nossoBanco": "Hamburg",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Lothar Matthaus",
+    "nossoBanco": "Rapid Vienna",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Raheem Sterling",
+    "nossoBanco": "Arsenal",
+    "sofascore": "Feyenoord"
+  },
+  {
+    "player": "David Beckham",
+    "nossoBanco": "PSG",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Steven Gerrard",
+    "nossoBanco": "LA Galaxy",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Frank Lampard",
+    "nossoBanco": "New York City",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Wayne Rooney",
+    "nossoBanco": "Derby County",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Paul Scholes",
+    "nossoBanco": "Manchester United",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Ryan Giggs",
+    "nossoBanco": "Manchester United",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Alan Shearer",
+    "nossoBanco": "Newcastle",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Gary Lineker",
+    "nossoBanco": "Nagoya Grampus",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Gianluigi Buffon",
+    "nossoBanco": "PSG",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Francesco Totti",
+    "nossoBanco": "Roma",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Alessandro Del Piero",
+    "nossoBanco": "Sydney FC",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Andrea Pirlo",
+    "nossoBanco": "New York City",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Fabio Cannavaro",
+    "nossoBanco": "Real Madrid",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Marco Verratti",
+    "nossoBanco": "Al-Arabi",
+    "sofascore": "Al Duhail"
+  },
+  {
+    "player": "Gianluigi Donnarumma",
+    "nossoBanco": "PSG",
+    "sofascore": "Manchester City"
+  },
+  {
+    "player": "Filippo Inzaghi",
+    "nossoBanco": "Milan",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Paolo Maldini",
+    "nossoBanco": "Milan",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Alessandro Nesta",
+    "nossoBanco": "AC Monza",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Roberto Baggio",
+    "nossoBanco": "Brescia",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Marco Materazzi",
+    "nossoBanco": "Inter",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Kevin De Bruyne",
+    "nossoBanco": "Manchester City",
+    "sofascore": "Napoli"
+  },
+  {
+    "player": "Arjen Robben",
+    "nossoBanco": "Bayern",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Ruud van Nistelrooy",
+    "nossoBanco": "Hamburg",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Wesley Sneijder",
+    "nossoBanco": "Galatasaray",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Dennis Bergkamp",
+    "nossoBanco": "Arsenal",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Johan Cruyff",
+    "nossoBanco": "Feyenoord",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Marco van Basten",
+    "nossoBanco": "Milan",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Ruud Gullit",
+    "nossoBanco": "Chelsea",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Frank Rijkaard",
+    "nossoBanco": "Ajax",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Eden Hazard",
+    "nossoBanco": "Real Madrid",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Vincent Kompany",
+    "nossoBanco": "Anderlecht",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Luka Modric",
+    "nossoBanco": "Real Madrid",
+    "sofascore": "Milan"
+  },
+  {
+    "player": "Didier Drogba",
+    "nossoBanco": "Montreal",
+    "sofascore": "No team"
+  },
+  {
+    "player": "ETOO",
+    "nossoBanco": "Everton",
+    "sofascore": "Divernex"
+  },
+  {
+    "player": "George Weah",
+    "nossoBanco": "Marseille",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Zlatan Ibrahimovic",
+    "nossoBanco": "LA Galaxy",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Luis Suarez",
+    "nossoBanco": "River Plate",
+    "sofascore": "Inter Miami CF"
+  },
+  {
+    "player": "Diego Forlan",
+    "nossoBanco": "Inter",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Hidetoshi Nakata",
+    "nossoBanco": "Bolton",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Shinji Kagawa",
+    "nossoBanco": "PAOK",
+    "sofascore": "Cerezo Osaka"
+  },
+  {
+    "player": "Zlatan Ibrahimovic",
+    "nossoBanco": "PSG",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Marcos Rocha",
+    "nossoBanco": "Palmeiras",
+    "sofascore": "Grêmio"
+  },
+  {
+    "player": "Anibal Moreno",
+    "nossoBanco": "Palmeiras",
+    "sofascore": "River Plate"
+  },
+  {
+    "player": "Ze Rafael",
+    "nossoBanco": "Palmeiras",
+    "sofascore": "Santos"
+  },
+  {
+    "player": "Raphael Veiga",
+    "nossoBanco": "Palmeiras",
+    "sofascore": "Club América"
+  },
+  {
+    "player": "Dudu",
+    "nossoBanco": "Palmeiras",
+    "sofascore": "Atlético Mineiro"
+  },
+  {
+    "player": "Rony",
+    "nossoBanco": "Palmeiras",
+    "sofascore": "Santos"
+  },
+  {
+    "player": "Flaco Lopez",
+    "nossoBanco": "Palmeiras",
+    "sofascore": "Sud América"
+  },
+  {
+    "player": "Richard Rios",
+    "nossoBanco": "Palmeiras",
+    "sofascore": "Benfica"
+  },
+  {
+    "player": "Estevao",
+    "nossoBanco": "Palmeiras",
+    "sofascore": "Chelsea"
+  },
+  {
+    "player": "Mayke",
+    "nossoBanco": "Palmeiras",
+    "sofascore": "Santos"
+  },
+  {
+    "player": "Rafael",
+    "nossoBanco": "Sao Paulo",
+    "sofascore": "Milan"
+  },
+  {
+    "player": "Rafinha",
+    "nossoBanco": "Sao Paulo",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Arboleda",
+    "nossoBanco": "Sao Paulo",
+    "sofascore": "São Paulo"
+  },
+  {
+    "player": "Alan Franco",
+    "nossoBanco": "Sao Paulo",
+    "sofascore": "Atlético Mineiro"
+  },
+  {
+    "player": "Welington",
+    "nossoBanco": "Sao Paulo",
+    "sofascore": "Southampton"
+  },
+  {
+    "player": "Pablo Maia",
+    "nossoBanco": "Sao Paulo",
+    "sofascore": "São Paulo"
+  },
+  {
+    "player": "Alisson",
+    "nossoBanco": "Sao Paulo",
+    "sofascore": "Liverpool"
+  },
+  {
+    "player": "Lucas Moura",
+    "nossoBanco": "Tottenham",
+    "sofascore": "São Paulo"
+  },
+  {
+    "player": "Luciano",
+    "nossoBanco": "Sao Paulo",
+    "sofascore": "São Paulo"
+  },
+  {
+    "player": "Calleri",
+    "nossoBanco": "Sao Paulo",
+    "sofascore": "São Paulo"
+  },
+  {
+    "player": "Ferreira",
+    "nossoBanco": "Sao Paulo",
+    "sofascore": "Shakhtar Donetsk"
+  },
+  {
+    "player": "Luiz Gustavo",
+    "nossoBanco": "Sao Paulo",
+    "sofascore": "Athletico"
+  },
+  {
+    "player": "Wellington Rato",
+    "nossoBanco": "Sao Paulo",
+    "sofascore": "Goiás"
+  },
+  {
+    "player": "Bobadilla",
+    "nossoBanco": "Sao Paulo",
+    "sofascore": "São Paulo"
+  },
+  {
+    "player": "Igor Vinicius",
+    "nossoBanco": "Sao Paulo",
+    "sofascore": "Santos"
+  },
+  {
+    "player": "Thiago Santos",
+    "nossoBanco": "Fluminense",
+    "sofascore": "Coritiba"
+  },
+  {
+    "player": "Felipe Melo",
+    "nossoBanco": "Fluminense",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Diogo Barbosa",
+    "nossoBanco": "Fluminense",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Martinelli",
+    "nossoBanco": "Fluminense",
+    "sofascore": "Arsenal"
+  },
+  {
+    "player": "Jhon Arias",
+    "nossoBanco": "Fluminense",
+    "sofascore": "Palmeiras"
+  },
+  {
+    "player": "Keno",
+    "nossoBanco": "Fluminense",
+    "sofascore": "Coritiba"
+  },
+  {
+    "player": "Renato Augusto",
+    "nossoBanco": "Fluminense",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Lima",
+    "nossoBanco": "Fluminense",
+    "sofascore": "Alianza Lima"
+  },
+  {
+    "player": "Marquinhos",
+    "nossoBanco": "Fluminense",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Kaua Elias",
+    "nossoBanco": "Fluminense",
+    "sofascore": "Shakhtar Donetsk"
+  },
+  {
+    "player": "Fabricio Bruno",
+    "nossoBanco": "Flamengo",
+    "sofascore": "Cruzeiro"
+  },
+  {
+    "player": "Gerson",
+    "nossoBanco": "Flamengo",
+    "sofascore": "Cruzeiro"
+  },
+  {
+    "player": "Pedro",
+    "nossoBanco": "Flamengo",
+    "sofascore": "Chelsea"
+  },
+  {
+    "player": "Vina",
+    "nossoBanco": "Flamengo",
+    "sofascore": "River Plate"
+  },
+  {
+    "player": "Marcos Felipe",
+    "nossoBanco": "Bahia",
+    "sofascore": "Eyüpspor"
+  },
+  {
+    "player": "Santiago Arias",
+    "nossoBanco": "Bahia",
+    "sofascore": "CA Independiente"
+  },
+  {
+    "player": "Cauly",
+    "nossoBanco": "Bahia",
+    "sofascore": "São Paulo"
+  },
+  {
+    "player": "Thaciano",
+    "nossoBanco": "Bahia",
+    "sofascore": "Santos"
+  },
+  {
+    "player": "Biel",
+    "nossoBanco": "Bahia",
+    "sofascore": "Al-Taawoun"
+  },
+  {
+    "player": "Gilberto",
+    "nossoBanco": "Bahia",
+    "sofascore": "Club Tijuana"
+  },
+  {
+    "player": "Victor Cuesta",
+    "nossoBanco": "Bahia",
+    "sofascore": "Platense"
+  },
+  {
+    "player": "Thiago Heleno",
+    "nossoBanco": "Athletico Paranaense",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Fernandinho",
+    "nossoBanco": "Athletico Paranaense",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Erick",
+    "nossoBanco": "Athletico Paranaense",
+    "sofascore": "Flamengo"
+  },
+  {
+    "player": "Pablo",
+    "nossoBanco": "Athletico Paranaense",
+    "sofascore": "FC Barcelona"
+  },
+  {
+    "player": "Canobbio",
+    "nossoBanco": "Athletico Paranaense",
+    "sofascore": "Fluminense"
+  },
+  {
+    "player": "Cuello",
+    "nossoBanco": "Athletico Paranaense",
+    "sofascore": "Atlético Mineiro"
+  },
+  {
+    "player": "Madson",
+    "nossoBanco": "Athletico Paranaense",
+    "sofascore": "Sport Recife"
+  },
+  {
+    "player": "Kaique Rocha",
+    "nossoBanco": "Athletico Paranaense",
+    "sofascore": "Casa Pia"
+  },
+  {
+    "player": "Christian",
+    "nossoBanco": "Athletico Paranaense",
+    "sofascore": "Milan"
+  },
+  {
+    "player": "Mastriani",
+    "nossoBanco": "Athletico Paranaense",
+    "sofascore": "América Mineiro"
+  },
+  {
+    "player": "Gamarra",
+    "nossoBanco": "Athletico Paranaense",
+    "sofascore": "Olimpia"
+  },
+  {
+    "player": "Thiago Andrade",
+    "nossoBanco": "Athletico Paranaense",
+    "sofascore": "Cerezo Osaka"
+  },
+  {
+    "player": "Robson",
+    "nossoBanco": "Coritiba",
+    "sofascore": "Grêmio Novorizontino"
+  },
+  {
+    "player": "Matheus Frizzo",
+    "nossoBanco": "Coritiba",
+    "sofascore": "Suwon FC"
+  },
+  {
+    "player": "Natanael",
+    "nossoBanco": "Coritiba",
+    "sofascore": "Atlético Mineiro"
+  },
+  {
+    "player": "Marcelo Benevenuto",
+    "nossoBanco": "Coritiba",
+    "sofascore": "Sport Recife"
+  },
+  {
+    "player": "Figueiredo",
+    "nossoBanco": "Coritiba",
+    "sofascore": "Palmeiras"
+  },
+  {
+    "player": "Rodrigo Gelado",
+    "nossoBanco": "Coritiba",
+    "sofascore": "Athletic Club"
+  },
+  {
+    "player": "Eberth",
+    "nossoBanco": "Coritiba",
+    "sofascore": "UD Santarém"
+  },
+  {
+    "player": "Brandao",
+    "nossoBanco": "Coritiba",
+    "sofascore": "Ponte Preta"
+  },
+  {
+    "player": "Thalisson",
+    "nossoBanco": "Coritiba",
+    "sofascore": "Remo"
+  },
+  {
+    "player": "Benassi",
+    "nossoBanco": "Coritiba",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Everson",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "Atlético Mineiro"
+  },
+  {
+    "player": "Guilherme Arana",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "Fluminense"
+  },
+  {
+    "player": "Jemerson",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "São Bernardo"
+  },
+  {
+    "player": "Mauricio Lemos",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "Peñarol"
+  },
+  {
+    "player": "Bruno Fuchs",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "Palmeiras"
+  },
+  {
+    "player": "Saravia",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "Valencia"
+  },
+  {
+    "player": "Rodrigo Battaglia",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "Boca Juniors"
+  },
+  {
+    "player": "Otavio",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "Al-Qadsiah"
+  },
+  {
+    "player": "Zaracho",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "Racing Club"
+  },
+  {
+    "player": "Igor Gomes",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "Atlético Mineiro"
+  },
+  {
+    "player": "Gustavo Scarpa",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "Atlético Mineiro"
+  },
+  {
+    "player": "Paulinho",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "Palmeiras"
+  },
+  {
+    "player": "Eduardo Vargas",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "Universidad de Chile"
+  },
+  {
+    "player": "Alan Kardec",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "Juventude"
+  },
+  {
+    "player": "Alisson",
+    "nossoBanco": "Atletico Mineiro",
+    "sofascore": "Liverpool"
+  },
+  {
+    "player": "Cleiton",
+    "nossoBanco": "RB Bragantino",
+    "sofascore": "VfL Wolfsburg"
+  },
+  {
+    "player": "Luan Candido",
+    "nossoBanco": "RB Bragantino",
+    "sofascore": "Vitória"
+  },
+  {
+    "player": "Juninho Capixaba",
+    "nossoBanco": "RB Bragantino",
+    "sofascore": "Red Bull Bragantino"
+  },
+  {
+    "player": "Eduardo Sasha",
+    "nossoBanco": "RB Bragantino",
+    "sofascore": "Red Bull Bragantino"
+  },
+  {
+    "player": "Helinho",
+    "nossoBanco": "RB Bragantino",
+    "sofascore": "CD Toluca"
+  },
+  {
+    "player": "Lucas Evangelista",
+    "nossoBanco": "RB Bragantino",
+    "sofascore": "Palmeiras"
+  },
+  {
+    "player": "Jadsom",
+    "nossoBanco": "RB Bragantino",
+    "sofascore": "Al-Wahda FC"
+  },
+  {
+    "player": "Matheus Fernandes",
+    "nossoBanco": "RB Bragantino",
+    "sofascore": "Red Bull Bragantino"
+  },
+  {
+    "player": "Thiago Borbas",
+    "nossoBanco": "RB Bragantino",
+    "sofascore": "Real Oviedo"
+  },
+  {
+    "player": "Henry Mosquera",
+    "nossoBanco": "RB Bragantino",
+    "sofascore": "Red Bull Bragantino"
+  },
+  {
+    "player": "Eric Ramires",
+    "nossoBanco": "RB Bragantino",
+    "sofascore": "Red Bull Bragantino"
+  },
+  {
+    "player": "Eduardo Santos",
+    "nossoBanco": "RB Bragantino",
+    "sofascore": "Red Bull Bragantino"
+  },
+  {
+    "player": "Pedro Henrique",
+    "nossoBanco": "RB Bragantino",
+    "sofascore": "Ceará"
+  },
+  {
+    "player": "Hurtado",
+    "nossoBanco": "RB Bragantino",
+    "sofascore": "NPS Volos"
+  },
+  {
+    "player": "Talisson",
+    "nossoBanco": "RB Bragantino",
+    "sofascore": "FC Rapid București"
+  },
+  {
+    "player": "John",
+    "nossoBanco": "Botafogo",
+    "sofascore": "Manchester City"
+  },
+  {
+    "player": "Marlon Freitas",
+    "nossoBanco": "Botafogo",
+    "sofascore": "Palmeiras"
+  },
+  {
+    "player": "Gregore",
+    "nossoBanco": "Botafogo",
+    "sofascore": "Al-Rayyan"
+  },
+  {
+    "player": "Tche Tche",
+    "nossoBanco": "Botafogo",
+    "sofascore": "Vasco da Gama"
+  },
+  {
+    "player": "Eduardo",
+    "nossoBanco": "Botafogo",
+    "sofascore": "Real Madrid"
+  },
+  {
+    "player": "Jefferson Savarino",
+    "nossoBanco": "Botafogo",
+    "sofascore": "Fluminense"
+  },
+  {
+    "player": "Tiquinho Soares",
+    "nossoBanco": "Botafogo",
+    "sofascore": "Mirassol"
+  },
+  {
+    "player": "Junior Santos",
+    "nossoBanco": "Botafogo",
+    "sofascore": "Santos"
+  },
+  {
+    "player": "Luiz Henrique",
+    "nossoBanco": "Botafogo",
+    "sofascore": "Zenit St. Petersburg"
+  },
+  {
+    "player": "Marchesin",
+    "nossoBanco": "Gremio",
+    "sofascore": "Boca Juniors"
+  },
+  {
+    "player": "Joao Pedro",
+    "nossoBanco": "Gremio",
+    "sofascore": "Chelsea"
+  },
+  {
+    "player": "Kannemann",
+    "nossoBanco": "Gremio",
+    "sofascore": "Grêmio"
+  },
+  {
+    "player": "Geromel",
+    "nossoBanco": "Gremio",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Reinaldo",
+    "nossoBanco": "Gremio",
+    "sofascore": "Mirassol"
+  },
+  {
+    "player": "Villasanti",
+    "nossoBanco": "Gremio",
+    "sofascore": "Grêmio"
+  },
+  {
+    "player": "Pepe",
+    "nossoBanco": "Gremio",
+    "sofascore": "Villarreal"
+  },
+  {
+    "player": "Cristaldo",
+    "nossoBanco": "Gremio",
+    "sofascore": "CA Talleres"
+  },
+  {
+    "player": "Monsalve",
+    "nossoBanco": "Gremio",
+    "sofascore": "Grêmio"
+  },
+  {
+    "player": "Soteldo",
+    "nossoBanco": "Gremio",
+    "sofascore": "Fluminense"
+  },
+  {
+    "player": "Diego Costa",
+    "nossoBanco": "Gremio",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Braithwaite",
+    "nossoBanco": "Gremio",
+    "sofascore": "Grêmio"
+  },
+  {
+    "player": "Edenilson",
+    "nossoBanco": "Gremio",
+    "sofascore": "Botafogo"
+  },
+  {
+    "player": "Rodrigo Ely",
+    "nossoBanco": "Gremio",
+    "sofascore": "Almería"
+  },
+  {
+    "player": "Aravena",
+    "nossoBanco": "Gremio",
+    "sofascore": "Portland Timbers"
+  },
+  {
+    "player": "Joao Victor",
+    "nossoBanco": "Vasco",
+    "sofascore": "Flamengo"
+  },
+  {
+    "player": "Maicon",
+    "nossoBanco": "Vasco",
+    "sofascore": "Coritiba"
+  },
+  {
+    "player": "Dimitri Payet",
+    "nossoBanco": "Vasco",
+    "sofascore": "No team"
+  },
+  {
+    "player": "David",
+    "nossoBanco": "Vasco",
+    "sofascore": "Real Madrid"
+  },
+  {
+    "player": "Pablo Vegetti",
+    "nossoBanco": "Vasco",
+    "sofascore": "Cerro Porteño"
+  },
+  {
+    "player": "Rayan",
+    "nossoBanco": "Vasco",
+    "sofascore": "Manchester City"
+  },
+  {
+    "player": "Sforza",
+    "nossoBanco": "Vasco",
+    "sofascore": "CA Talleres"
+  },
+  {
+    "player": "Emerson Rodriguez",
+    "nossoBanco": "Vasco",
+    "sofascore": "Botev Plovdiv"
+  },
+  {
+    "player": "Vitao",
+    "nossoBanco": "Internacional",
+    "sofascore": "Flamengo"
+  },
+  {
+    "player": "Fernando",
+    "nossoBanco": "Internacional",
+    "sofascore": "River Plate"
+  },
+  {
+    "player": "Bruno Henrique",
+    "nossoBanco": "Internacional",
+    "sofascore": "Flamengo"
+  },
+  {
+    "player": "Wesley",
+    "nossoBanco": "Internacional",
+    "sofascore": "Roma"
+  },
+  {
+    "player": "Enner Valencia",
+    "nossoBanco": "Internacional",
+    "sofascore": "CF Pachuca"
+  },
+  {
+    "player": "Wanderson",
+    "nossoBanco": "Internacional",
+    "sofascore": "Cruzeiro"
+  },
+  {
+    "player": "Gabriel Carvalho",
+    "nossoBanco": "Internacional",
+    "sofascore": "Al-Qadsiah"
+  },
+  {
+    "player": "Alario",
+    "nossoBanco": "Internacional",
+    "sofascore": "Estudiantes de La Plata"
+  },
+  {
+    "player": "Lucas Arcanjo",
+    "nossoBanco": "Vitoria",
+    "sofascore": "Vitória"
+  },
+  {
+    "player": "Zeca",
+    "nossoBanco": "Vitoria",
+    "sofascore": "Shandong Taishan"
+  },
+  {
+    "player": "Wagner Leonardo",
+    "nossoBanco": "Vitoria",
+    "sofascore": "Grêmio"
+  },
+  {
+    "player": "Neris",
+    "nossoBanco": "Vitoria",
+    "sofascore": "Vitória"
+  },
+  {
+    "player": "Lucas Esteves",
+    "nossoBanco": "Vitoria",
+    "sofascore": "Atlético San Luis"
+  },
+  {
+    "player": "Luan Santos",
+    "nossoBanco": "Vitoria",
+    "sofascore": "São Paulo"
+  },
+  {
+    "player": "Willian Oliveira",
+    "nossoBanco": "Vitoria",
+    "sofascore": "Coritiba"
+  },
+  {
+    "player": "Matheusinho",
+    "nossoBanco": "Vitoria",
+    "sofascore": "Ceará"
+  },
+  {
+    "player": "Machado",
+    "nossoBanco": "Vitoria",
+    "sofascore": "Botafogo"
+  },
+  {
+    "player": "Osvaldo",
+    "nossoBanco": "Vitoria",
+    "sofascore": "Vitória"
+  },
+  {
+    "player": "Alerrandro",
+    "nossoBanco": "Vitoria",
+    "sofascore": "Internacional"
+  },
+  {
+    "player": "Mosquito",
+    "nossoBanco": "Vitoria",
+    "sofascore": "Songkhla FC"
+  },
+  {
+    "player": "Carlos Eduardo",
+    "nossoBanco": "Vitoria",
+    "sofascore": "Mirassol"
+  },
+  {
+    "player": "Janderson",
+    "nossoBanco": "Vitoria",
+    "sofascore": "Göztepe"
+  },
+  {
+    "player": "Ze Hugo",
+    "nossoBanco": "Vitoria",
+    "sofascore": "Botafogo-SP"
+  },
+  {
+    "player": "Joao Paulo",
+    "nossoBanco": "Santos",
+    "sofascore": "Bahia"
+  },
+  {
+    "player": "Aderlan",
+    "nossoBanco": "Santos",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Gil",
+    "nossoBanco": "Santos",
+    "sofascore": "Girona FC"
+  },
+  {
+    "player": "Jair",
+    "nossoBanco": "Santos",
+    "sofascore": "Nottingham Forest"
+  },
+  {
+    "player": "Pituca",
+    "nossoBanco": "Santos",
+    "sofascore": "V-Varen Nagasaki"
+  },
+  {
+    "player": "Giuliano",
+    "nossoBanco": "Santos",
+    "sofascore": "Atlético Madrid"
+  },
+  {
+    "player": "Otero",
+    "nossoBanco": "Santos",
+    "sofascore": "Criciúma"
+  },
+  {
+    "player": "Guilherme",
+    "nossoBanco": "Santos",
+    "sofascore": "Sporting CP"
+  },
+  {
+    "player": "Julio Furch",
+    "nossoBanco": "Santos",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Pedrinho",
+    "nossoBanco": "Santos",
+    "sofascore": "Shakhtar Donetsk"
+  },
+  {
+    "player": "Willian Bigode",
+    "nossoBanco": "Santos",
+    "sofascore": "América Mineiro"
+  },
+  {
+    "player": "Basso",
+    "nossoBanco": "Santos",
+    "sofascore": "Cuiabá"
+  },
+  {
+    "player": "Fagner",
+    "nossoBanco": "Corinthians",
+    "sofascore": "Cruzeiro"
+  },
+  {
+    "player": "Felix Torres",
+    "nossoBanco": "Corinthians",
+    "sofascore": "Internacional"
+  },
+  {
+    "player": "Caca",
+    "nossoBanco": "Corinthians",
+    "sofascore": "Vitória"
+  },
+  {
+    "player": "Hugo",
+    "nossoBanco": "Corinthians",
+    "sofascore": "Liverpool"
+  },
+  {
+    "player": "Igor Coronado",
+    "nossoBanco": "Corinthians",
+    "sofascore": "Al-Sharjah"
+  },
+  {
+    "player": "Romero",
+    "nossoBanco": "Cruz Azul",
+    "sofascore": "Tottenham Hotspur"
+  },
+  {
+    "player": "Cavichioli",
+    "nossoBanco": "Chapecoense",
+    "sofascore": "CN Marcílio Dias"
+  },
+  {
+    "player": "Marcelinho",
+    "nossoBanco": "Chapecoense",
+    "sofascore": "Al-Dhafra"
+  },
+  {
+    "player": "Mancha",
+    "nossoBanco": "Chapecoense",
+    "sofascore": "Rio Ave"
+  },
+  {
+    "player": "Foguinho",
+    "nossoBanco": "Chapecoense",
+    "sofascore": "São Bernardo"
+  },
+  {
+    "player": "Auremir",
+    "nossoBanco": "Chapecoense",
+    "sofascore": "Náutico"
+  },
+  {
+    "player": "Perotti",
+    "nossoBanco": "Chapecoense",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Marcinho",
+    "nossoBanco": "Chapecoense",
+    "sofascore": "Kawasaki Frontale"
+  },
+  {
+    "player": "Mario Sergio",
+    "nossoBanco": "Chapecoense",
+    "sofascore": "Hokkaido Consadole Sapporo"
+  },
+  {
+    "player": "Mailton",
+    "nossoBanco": "Chapecoense",
+    "sofascore": "Fortaleza"
+  },
+  {
+    "player": "Tarik",
+    "nossoBanco": "Chapecoense",
+    "sofascore": "Sassuolo"
+  },
+  {
+    "player": "Romulo",
+    "nossoBanco": "Chapecoense",
+    "sofascore": "RB Leipzig"
+  },
+  {
+    "player": "Diogo Batista",
+    "nossoBanco": "Remo",
+    "sofascore": "Coritiba U23"
+  },
+  {
+    "player": "Ligger",
+    "nossoBanco": "Remo",
+    "sofascore": "EC Primavera"
+  },
+  {
+    "player": "Bruno Bispo",
+    "nossoBanco": "Remo",
+    "sofascore": "Paysandu SC"
+  },
+  {
+    "player": "Raimar",
+    "nossoBanco": "Remo",
+    "sofascore": "Brusque"
+  },
+  {
+    "player": "Paulinho Curua",
+    "nossoBanco": "Remo",
+    "sofascore": "Thể Công-Viettel FC"
+  },
+  {
+    "player": "Matheus Anjos",
+    "nossoBanco": "Remo",
+    "sofascore": "Caxias"
+  },
+  {
+    "player": "Ytalo",
+    "nossoBanco": "Remo",
+    "sofascore": "Joinville"
+  },
+  {
+    "player": "Ribamar",
+    "nossoBanco": "Remo",
+    "sofascore": "SHB Đà Nẵng"
+  },
+  {
+    "player": "Pedro Vitor",
+    "nossoBanco": "Remo",
+    "sofascore": "São Bernardo"
+  },
+  {
+    "player": "Marco Antonio",
+    "nossoBanco": "Remo",
+    "sofascore": "São Paulo"
+  },
+  {
+    "player": "Ronald",
+    "nossoBanco": "Remo",
+    "sofascore": "Al-Nassr"
+  },
+  {
+    "player": "Guilherme Cachoeira",
+    "nossoBanco": "Remo",
+    "sofascore": "Guarani"
+  },
+  {
+    "player": "William",
+    "nossoBanco": "Cruzeiro",
+    "sofascore": "Arsenal"
+  },
+  {
+    "player": "Ze Ivaldo",
+    "nossoBanco": "Cruzeiro",
+    "sofascore": "Santos"
+  },
+  {
+    "player": "Marlon",
+    "nossoBanco": "Cruzeiro",
+    "sofascore": "Palmeiras"
+  },
+  {
+    "player": "Lucas Romero",
+    "nossoBanco": "Leon",
+    "sofascore": "Cruzeiro"
+  },
+  {
+    "player": "Alvaro Barreal",
+    "nossoBanco": "Cruzeiro",
+    "sofascore": "Santos"
+  },
+  {
+    "player": "Arthur Gomes",
+    "nossoBanco": "Cruzeiro",
+    "sofascore": "Dynamo Moscow"
+  },
+  {
+    "player": "Gabriel Veron",
+    "nossoBanco": "Cruzeiro",
+    "sofascore": "CD Nacional"
+  },
+  {
+    "player": "Juan Dinenno",
+    "nossoBanco": "Cruzeiro",
+    "sofascore": "Deportivo Cali"
+  },
+  {
+    "player": "Lautaro Diaz",
+    "nossoBanco": "Cruzeiro",
+    "sofascore": "Santos"
+  },
+  {
+    "player": "Lucas Ramon",
+    "nossoBanco": "Mirassol",
+    "sofascore": "São Paulo"
+  },
+  {
+    "player": "Joao Victor",
+    "nossoBanco": "Mirassol",
+    "sofascore": "Flamengo"
+  },
+  {
+    "player": "Luiz Otavio",
+    "nossoBanco": "Mirassol",
+    "sofascore": "Ceará"
+  },
+  {
+    "player": "Zeca",
+    "nossoBanco": "Mirassol",
+    "sofascore": "Shandong Taishan"
+  },
+  {
+    "player": "Danielzinho",
+    "nossoBanco": "Mirassol",
+    "sofascore": "São Paulo"
+  },
+  {
+    "player": "Gabriel",
+    "nossoBanco": "Mirassol",
+    "sofascore": "Arsenal"
+  },
+  {
+    "player": "Chico Kim",
+    "nossoBanco": "Mirassol",
+    "sofascore": "Chicago Sky"
+  },
+  {
+    "player": "Dellatorre",
+    "nossoBanco": "Mirassol",
+    "sofascore": "Vila Nova FC"
+  },
+  {
+    "player": "Fernandinho",
+    "nossoBanco": "Mirassol",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Isaque",
+    "nossoBanco": "Mirassol",
+    "sofascore": "Shakhtar Donetsk"
+  },
+  {
+    "player": "Quirino",
+    "nossoBanco": "Mirassol",
+    "sofascore": "Santa Cruz"
+  },
+  {
+    "player": "Iury Castilho",
+    "nossoBanco": "Mirassol",
+    "sofascore": "Sport Recife"
+  },
+  {
+    "player": "Zinchenko",
+    "nossoBanco": "Arsenal",
+    "sofascore": "AFC Ajax"
+  },
+  {
+    "player": "Thomas Partey",
+    "nossoBanco": "Arsenal",
+    "sofascore": "Villarreal"
+  },
+  {
+    "player": "Jacob Ramsey",
+    "nossoBanco": "Aston Villa",
+    "sofascore": "Newcastle United"
+  },
+  {
+    "player": "Jhon Duran",
+    "nossoBanco": "Aston Villa",
+    "sofascore": "Zenit St. Petersburg"
+  },
+  {
+    "player": "Kepa",
+    "nossoBanco": "Bournemouth",
+    "sofascore": "Arsenal"
+  },
+  {
+    "player": "Julian Araujo",
+    "nossoBanco": "Bournemouth",
+    "sofascore": "Celtic"
+  },
+  {
+    "player": "Zabarnyi",
+    "nossoBanco": "Bournemouth",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Kerkez",
+    "nossoBanco": "Bournemouth",
+    "sofascore": "Liverpool"
+  },
+  {
+    "player": "Semenyo",
+    "nossoBanco": "Bournemouth",
+    "sofascore": "Manchester City"
+  },
+  {
+    "player": "Sinisterra",
+    "nossoBanco": "Bournemouth",
+    "sofascore": "Cruzeiro"
+  },
+  {
+    "player": "Dango Ouattara",
+    "nossoBanco": "Bournemouth",
+    "sofascore": "Brentford"
+  },
+  {
+    "player": "Flekken",
+    "nossoBanco": "Brentford",
+    "sofascore": "Bayer 04 Leverkusen"
+  },
+  {
+    "player": "Roerslev",
+    "nossoBanco": "Brentford",
+    "sofascore": "Southampton"
+  },
+  {
+    "player": "Norgaard",
+    "nossoBanco": "Brentford",
+    "sofascore": "Arsenal"
+  },
+  {
+    "player": "Mbeumo",
+    "nossoBanco": "Brentford",
+    "sofascore": "Manchester United"
+  },
+  {
+    "player": "Wissa",
+    "nossoBanco": "Brentford",
+    "sofascore": "Newcastle United"
+  },
+  {
+    "player": "Lewis Dunk",
+    "nossoBanco": "Bristol City",
+    "sofascore": "Brighton & Hove Albion"
+  },
+  {
+    "player": "Estupinan",
+    "nossoBanco": "Brighton",
+    "sofascore": "Milan"
+  },
+  {
+    "player": "Joao Pedro",
+    "nossoBanco": "Brighton",
+    "sofascore": "Chelsea"
+  },
+  {
+    "player": "Adingra",
+    "nossoBanco": "Brighton",
+    "sofascore": "AS Monaco"
+  },
+  {
+    "player": "Evan Ferguson",
+    "nossoBanco": "Brighton",
+    "sofascore": "Roma"
+  },
+  {
+    "player": "Madueke",
+    "nossoBanco": "Chelsea",
+    "sofascore": "Arsenal"
+  },
+  {
+    "player": "Nkunku",
+    "nossoBanco": "Chelsea",
+    "sofascore": "Milan"
+  },
+  {
+    "player": "Nicolas Jackson",
+    "nossoBanco": "Chelsea",
+    "sofascore": "FC Bayern München"
+  },
+  {
+    "player": "Joao Felix",
+    "nossoBanco": "Barcelona",
+    "sofascore": "Al-Nassr"
+  },
+  {
+    "player": "Jadon Sancho",
+    "nossoBanco": "Chelsea",
+    "sofascore": "Aston Villa"
+  },
+  {
+    "player": "Marc Guehi",
+    "nossoBanco": "Crystal Palace",
+    "sofascore": "Manchester City"
+  },
+  {
+    "player": "Trevoh Chalobah",
+    "nossoBanco": "Crystal Palace",
+    "sofascore": "Chelsea"
+  },
+  {
+    "player": "Matt Turner",
+    "nossoBanco": "Crystal Palace",
+    "sofascore": "New England Revolution"
+  },
+  {
+    "player": "Idrissa Gueye",
+    "nossoBanco": "PSG",
+    "sofascore": "Everton"
+  },
+  {
+    "player": "Abdoulaye Doucoure",
+    "nossoBanco": "Everton",
+    "sofascore": "Neom SC"
+  },
+  {
+    "player": "Jack Harrison",
+    "nossoBanco": "Everton",
+    "sofascore": "Fiorentina"
+  },
+  {
+    "player": "Calvert-Lewin",
+    "nossoBanco": "Everton",
+    "sofascore": "Leeds United"
+  },
+  {
+    "player": "Jesper Lindstrom",
+    "nossoBanco": "Everton",
+    "sofascore": "VfL Wolfsburg"
+  },
+  {
+    "player": "Andersen",
+    "nossoBanco": "Crystal Palace",
+    "sofascore": "Fulham"
+  },
+  {
+    "player": "Andreas Pereira",
+    "nossoBanco": "Fulham",
+    "sofascore": "Palmeiras"
+  },
+  {
+    "player": "Adama Traore",
+    "nossoBanco": "Fulham",
+    "sofascore": "West Ham United"
+  },
+  {
+    "player": "Rodrigo Muniz",
+    "nossoBanco": "Middlesbrough",
+    "sofascore": "Fulham"
+  },
+  {
+    "player": "Muric",
+    "nossoBanco": "Ipswich",
+    "sofascore": "Sassuolo"
+  },
+  {
+    "player": "Tuanzebe",
+    "nossoBanco": "Ipswich",
+    "sofascore": "Burnley"
+  },
+  {
+    "player": "Morsy",
+    "nossoBanco": "Ipswich",
+    "sofascore": "Bristol City"
+  },
+  {
+    "player": "Kalvin Phillips",
+    "nossoBanco": "Ipswich",
+    "sofascore": "Sheffield United"
+  },
+  {
+    "player": "Omari Hutchinson",
+    "nossoBanco": "Ipswich",
+    "sofascore": "Nottingham Forest"
+  },
+  {
+    "player": "Szmodics",
+    "nossoBanco": "Ipswich",
+    "sofascore": "Derby County"
+  },
+  {
+    "player": "Liam Delap",
+    "nossoBanco": "Ipswich",
+    "sofascore": "Chelsea"
+  },
+  {
+    "player": "Chiedozie Ogbene",
+    "nossoBanco": "Ipswich",
+    "sofascore": "Sheffield United"
+  },
+  {
+    "player": "Conor Chaplin",
+    "nossoBanco": "Ipswich",
+    "sofascore": "Portsmouth"
+  },
+  {
+    "player": "Hermansen",
+    "nossoBanco": "Leicester",
+    "sofascore": "West Ham United"
+  },
+  {
+    "player": "James Justin",
+    "nossoBanco": "Leicester",
+    "sofascore": "Leeds United"
+  },
+  {
+    "player": "Faes",
+    "nossoBanco": "Leicester",
+    "sofascore": "AS Monaco"
+  },
+  {
+    "player": "Ndidi",
+    "nossoBanco": "Leicester",
+    "sofascore": "Beşiktaş JK"
+  },
+  {
+    "player": "Buonanotte",
+    "nossoBanco": "Leicester",
+    "sofascore": "Leeds United"
+  },
+  {
+    "player": "Jamie Vardy",
+    "nossoBanco": "Leicester",
+    "sofascore": "Cremonese"
+  },
+  {
+    "player": "El Khannouss",
+    "nossoBanco": "Leicester",
+    "sofascore": "VfB Stuttgart"
+  },
+  {
+    "player": "Alexander-Arnold",
+    "nossoBanco": "Liverpool",
+    "sofascore": "Real Madrid"
+  },
+  {
+    "player": "Luis Diaz",
+    "nossoBanco": "Liverpool",
+    "sofascore": "FC Bayern München"
+  },
+  {
+    "player": "Diogo Jota",
+    "nossoBanco": "Liverpool",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Darwin Nunez",
+    "nossoBanco": "Liverpool",
+    "sofascore": "Al-Hilal"
+  },
+  {
+    "player": "Harvey Elliott",
+    "nossoBanco": "Liverpool",
+    "sofascore": "Aston Villa"
+  },
+  {
+    "player": "Ederson",
+    "nossoBanco": "Manchester City",
+    "sofascore": "Fenerbahçe"
+  },
+  {
+    "player": "Kyle Walker",
+    "nossoBanco": "Manchester City",
+    "sofascore": "Burnley"
+  },
+  {
+    "player": "Akanji",
+    "nossoBanco": "Manchester City",
+    "sofascore": "Inter"
+  },
+  {
+    "player": "De Bruyne",
+    "nossoBanco": "Manchester City",
+    "sofascore": "Napoli"
+  },
+  {
+    "player": "Jack Grealish",
+    "nossoBanco": "Manchester City",
+    "sofascore": "Everton"
+  },
+  {
+    "player": "Gundogan",
+    "nossoBanco": "Manchester City",
+    "sofascore": "Galatasaray"
+  },
+  {
+    "player": "Andre Onana",
+    "nossoBanco": "Manchester United",
+    "sofascore": "Trabzonspor"
+  },
+  {
+    "player": "Alejandro Garnacho",
+    "nossoBanco": "Manchester United",
+    "sofascore": "Chelsea"
+  },
+  {
+    "player": "Marcus Rashford",
+    "nossoBanco": "Manchester United",
+    "sofascore": "FC Barcelona"
+  },
+  {
+    "player": "Rasmus Hojlund",
+    "nossoBanco": "Manchester United",
+    "sofascore": "Napoli"
+  },
+  {
+    "player": "Alexander Isak",
+    "nossoBanco": "Newcastle",
+    "sofascore": "Liverpool"
+  },
+  {
+    "player": "Miguel Almiron",
+    "nossoBanco": "Newcastle",
+    "sofascore": "Atlanta United"
+  },
+  {
+    "player": "Alex Moreno",
+    "nossoBanco": "Nottingham Forest",
+    "sofascore": "Girona FC"
+  },
+  {
+    "player": "Dominguez",
+    "nossoBanco": "Nottingham Forest",
+    "sofascore": "GNK Dinamo Zagreb"
+  },
+  {
+    "player": "Anthony Elanga",
+    "nossoBanco": "Nottingham Forest",
+    "sofascore": "Newcastle United"
+  },
+  {
+    "player": "Aaron Ramsdale",
+    "nossoBanco": "Southampton",
+    "sofascore": "Newcastle United"
+  },
+  {
+    "player": "Yukinari Sugawara",
+    "nossoBanco": "Southampton",
+    "sofascore": "SV Werder Bremen"
+  },
+  {
+    "player": "Jan Bednarek",
+    "nossoBanco": "Southampton",
+    "sofascore": "FC Porto"
+  },
+  {
+    "player": "Walker-Peters",
+    "nossoBanco": "Southampton",
+    "sofascore": "West Ham United"
+  },
+  {
+    "player": "Lesley Ugochukwu",
+    "nossoBanco": "Southampton",
+    "sofascore": "Burnley"
+  },
+  {
+    "player": "Mateus Fernandes",
+    "nossoBanco": "Southampton",
+    "sofascore": "West Ham United"
+  },
+  {
+    "player": "Tyler Dibling",
+    "nossoBanco": "Southampton",
+    "sofascore": "Everton"
+  },
+  {
+    "player": "Brereton Diaz",
+    "nossoBanco": "Southampton",
+    "sofascore": "Derby County"
+  },
+  {
+    "player": "Adam Armstrong",
+    "nossoBanco": "Southampton",
+    "sofascore": "Wolverhampton"
+  },
+  {
+    "player": "Joe Aribo",
+    "nossoBanco": "Southampton",
+    "sofascore": "Leicester City"
+  },
+  {
+    "player": "Adam Lallana",
+    "nossoBanco": "Brighton",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Ryan Fraser",
+    "nossoBanco": "Southampton",
+    "sofascore": "Western Sydney Wanderers"
+  },
+  {
+    "player": "Brennan Johnson",
+    "nossoBanco": "Tottenham",
+    "sofascore": "Crystal Palace"
+  },
+  {
+    "player": "Heung-min Son",
+    "nossoBanco": "Tottenham",
+    "sofascore": "Los Angeles FC"
+  },
+  {
+    "player": "Timo Werner",
+    "nossoBanco": "Tottenham",
+    "sofascore": "San Jose Earthquakes"
+  },
+  {
+    "player": "Emerson Palmieri",
+    "nossoBanco": "West Ham",
+    "sofascore": "Olympique de Marseille"
+  },
+  {
+    "player": "Edson Alvarez",
+    "nossoBanco": "West Ham",
+    "sofascore": "Fenerbahçe"
+  },
+  {
+    "player": "Lucas Paqueta",
+    "nossoBanco": "West Ham",
+    "sofascore": "Flamengo"
+  },
+  {
+    "player": "Mohammed Kudus",
+    "nossoBanco": "West Ham",
+    "sofascore": "Tottenham Hotspur"
+  },
+  {
+    "player": "Michail Antonio",
+    "nossoBanco": "West Ham",
+    "sofascore": "Al-Sailiya"
+  },
+  {
+    "player": "Fullkrug",
+    "nossoBanco": "West Ham",
+    "sofascore": "Milan"
+  },
+  {
+    "player": "Guido Rodriguez",
+    "nossoBanco": "West Ham",
+    "sofascore": "Valencia"
+  },
+  {
+    "player": "Danny Ings",
+    "nossoBanco": "West Ham",
+    "sofascore": "Sheffield United"
+  },
+  {
+    "player": "Jose Sa",
+    "nossoBanco": "Wolves",
+    "sofascore": "Wolverhampton"
+  },
+  {
+    "player": "Nelson Semedo",
+    "nossoBanco": "Wolves",
+    "sofascore": "Fenerbahçe"
+  },
+  {
+    "player": "Santiago Bueno",
+    "nossoBanco": "Wolves",
+    "sofascore": "Wolverhampton"
+  },
+  {
+    "player": "Toti Gomes",
+    "nossoBanco": "Wolves",
+    "sofascore": "Wolverhampton"
+  },
+  {
+    "player": "Rayan Ait-Nouri",
+    "nossoBanco": "Wolves",
+    "sofascore": "Manchester City"
+  },
+  {
+    "player": "Andre Trindade",
+    "nossoBanco": "Wolves",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Joao Gomes",
+    "nossoBanco": "Wolves",
+    "sofascore": "Wolverhampton"
+  },
+  {
+    "player": "Mario Lemina",
+    "nossoBanco": "Wolves",
+    "sofascore": "Galatasaray"
+  },
+  {
+    "player": "Matheus Cunha",
+    "nossoBanco": "Wolves",
+    "sofascore": "Manchester United"
+  },
+  {
+    "player": "Strand Larsen",
+    "nossoBanco": "Wolves",
+    "sofascore": "Crystal Palace"
+  },
+  {
+    "player": "Hwang Hee-chan",
+    "nossoBanco": "Wolves",
+    "sofascore": "Wolverhampton"
+  },
+  {
+    "player": "Carlos Forbs",
+    "nossoBanco": "Wolves",
+    "sofascore": "Club Brugge KV"
+  },
+  {
+    "player": "Craig Dawson",
+    "nossoBanco": "Wolves",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Tommy Doyle",
+    "nossoBanco": "Wolves",
+    "sofascore": "Birmingham City"
+  },
+  {
+    "player": "Goncalo Guedes",
+    "nossoBanco": "Villarreal",
+    "sofascore": "Real Sociedad"
+  },
+  {
+    "player": "Luka Modric",
+    "nossoBanco": "Real Madrid",
+    "sofascore": "Milan"
+  },
+  {
+    "player": "Endrick",
+    "nossoBanco": "Real Madrid",
+    "sofascore": "Olympique Lyonnais"
+  },
+  {
+    "player": "Ter Stegen",
+    "nossoBanco": "Barcelona",
+    "sofascore": "Girona FC"
+  },
+  {
+    "player": "Jan Oblak",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Atlético Madrid"
+  },
+  {
+    "player": "Nahuel Molina",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Atlético Madrid"
+  },
+  {
+    "player": "Jose Gimenez",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Atlético Madrid"
+  },
+  {
+    "player": "Le Normand",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Atlético Madrid"
+  },
+  {
+    "player": "Azpilicueta",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Sevilla"
+  },
+  {
+    "player": "Koke",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Atlético Madrid"
+  },
+  {
+    "player": "Rodrigo De Paul",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Inter Miami CF"
+  },
+  {
+    "player": "Marcos Llorente",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Atlético Madrid"
+  },
+  {
+    "player": "Antoine Griezmann",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Atlético Madrid"
+  },
+  {
+    "player": "Julian Alvarez",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Atlético Madrid"
+  },
+  {
+    "player": "Alexander Sorloth",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Atlético Madrid"
+  },
+  {
+    "player": "Angel Correa",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Tigres UANL"
+  },
+  {
+    "player": "Samuel Lino",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Flamengo"
+  },
+  {
+    "player": "Conor Gallagher",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Tottenham Hotspur"
+  },
+  {
+    "player": "Axel Witsel",
+    "nossoBanco": "Atletico Madrid",
+    "sofascore": "Girona FC"
+  },
+  {
+    "player": "Unai Simon",
+    "nossoBanco": "Athletic Bilbao",
+    "sofascore": "Athletic Club"
+  },
+  {
+    "player": "De Marcos",
+    "nossoBanco": "Athletic Bilbao",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Dani Vivian",
+    "nossoBanco": "Athletic Bilbao",
+    "sofascore": "Athletic Club"
+  },
+  {
+    "player": "Yeray Alvarez",
+    "nossoBanco": "Athletic Bilbao",
+    "sofascore": "Athletic Club"
+  },
+  {
+    "player": "Yuri Berchiche",
+    "nossoBanco": "Athletic Bilbao",
+    "sofascore": "Athletic Club"
+  },
+  {
+    "player": "Benat Prados",
+    "nossoBanco": "Athletic Bilbao",
+    "sofascore": "Athletic Club"
+  },
+  {
+    "player": "Oihan Sancet",
+    "nossoBanco": "Athletic Bilbao",
+    "sofascore": "Athletic Club"
+  },
+  {
+    "player": "Inaki Williams",
+    "nossoBanco": "Athletic Bilbao",
+    "sofascore": "Athletic Club"
+  },
+  {
+    "player": "Nico Williams",
+    "nossoBanco": "Athletic Bilbao",
+    "sofascore": "Athletic Club"
+  },
+  {
+    "player": "Gorka Guruzeta",
+    "nossoBanco": "Athletic Bilbao",
+    "sofascore": "Athletic Club"
+  },
+  {
+    "player": "Alvaro Djalo",
+    "nossoBanco": "Athletic Bilbao",
+    "sofascore": "Al-Gharafa"
+  },
+  {
+    "player": "Alex Berenguer",
+    "nossoBanco": "Athletic Bilbao",
+    "sofascore": "Athletic Club"
+  },
+  {
+    "player": "Ander Herrera",
+    "nossoBanco": "PSG",
+    "sofascore": "Boca Juniors"
+  },
+  {
+    "player": "Mikel Vesga",
+    "nossoBanco": "Athletic Bilbao",
+    "sofascore": "Athletic Club"
+  },
+  {
+    "player": "Aitor Paredes",
+    "nossoBanco": "Athletic Bilbao",
+    "sofascore": "Athletic Club"
+  },
+  {
+    "player": "Hamari Traore",
+    "nossoBanco": "Real Sociedad",
+    "sofascore": "Paris FC"
+  },
+  {
+    "player": "Nayef Aguerd",
+    "nossoBanco": "Real Sociedad",
+    "sofascore": "Olympique de Marseille"
+  },
+  {
+    "player": "Martin Zubimendi",
+    "nossoBanco": "Real Sociedad",
+    "sofascore": "Arsenal"
+  },
+  {
+    "player": "Sheraldo Becker",
+    "nossoBanco": "Real Sociedad",
+    "sofascore": "1. FSV Mainz 05"
+  },
+  {
+    "player": "Umar Sadiq",
+    "nossoBanco": "Real Sociedad",
+    "sofascore": "Valencia"
+  },
+  {
+    "player": "Kiko Femenia",
+    "nossoBanco": "Villarreal",
+    "sofascore": "Getafe"
+  },
+  {
+    "player": "Raul Albiol",
+    "nossoBanco": "Villarreal",
+    "sofascore": "Pisa"
+  },
+  {
+    "player": "Alex Baena",
+    "nossoBanco": "Villarreal",
+    "sofascore": "Atlético Madrid"
+  },
+  {
+    "player": "Yeremy Pino",
+    "nossoBanco": "Villarreal",
+    "sofascore": "Crystal Palace"
+  },
+  {
+    "player": "Thierno Barry",
+    "nossoBanco": "Villarreal",
+    "sofascore": "Everton"
+  },
+  {
+    "player": "Gerard Moreno",
+    "nossoBanco": "Espanyol",
+    "sofascore": "Villarreal"
+  },
+  {
+    "player": "Eric Bailly",
+    "nossoBanco": "Besiktas",
+    "sofascore": "Real Oviedo"
+  },
+  {
+    "player": "Rui Silva",
+    "nossoBanco": "Real Betis",
+    "sofascore": "Sporting CP"
+  },
+  {
+    "player": "Hector Bellerin",
+    "nossoBanco": "Sporting",
+    "sofascore": "Real Betis"
+  },
+  {
+    "player": "Romain Perraud",
+    "nossoBanco": "Real Betis",
+    "sofascore": "Lille"
+  },
+  {
+    "player": "Johnny Cardoso",
+    "nossoBanco": "Real Betis",
+    "sofascore": "Atlético Madrid"
+  },
+  {
+    "player": "Giovani Lo Celso",
+    "nossoBanco": "Villarreal",
+    "sofascore": "Real Betis"
+  },
+  {
+    "player": "Vitor Roque",
+    "nossoBanco": "Real Betis",
+    "sofascore": "Palmeiras"
+  },
+  {
+    "player": "Marc Bartra",
+    "nossoBanco": "Trabzonspor",
+    "sofascore": "Real Betis"
+  },
+  {
+    "player": "Mamardashvili",
+    "nossoBanco": "Valencia",
+    "sofascore": "Liverpool"
+  },
+  {
+    "player": "Cristhian Mosquera",
+    "nossoBanco": "Valencia",
+    "sofascore": "Arsenal"
+  },
+  {
+    "player": "Fran Perez",
+    "nossoBanco": "Valencia",
+    "sofascore": "Rayo Vallecano"
+  },
+  {
+    "player": "Hugo Guillamon",
+    "nossoBanco": "Valencia",
+    "sofascore": "HNK Hajduk Split"
+  },
+  {
+    "player": "Sergi Canos",
+    "nossoBanco": "Valencia",
+    "sofascore": "Real Valladolid"
+  },
+  {
+    "player": "Loic Bade",
+    "nossoBanco": "Sevilla",
+    "sofascore": "Bayer 04 Leverkusen"
+  },
+  {
+    "player": "Adria Pedrosa",
+    "nossoBanco": "Sevilla",
+    "sofascore": "Elche"
+  },
+  {
+    "player": "Saul Niguez",
+    "nossoBanco": "Sevilla",
+    "sofascore": "Flamengo"
+  },
+  {
+    "player": "Dodi Lukebakio",
+    "nossoBanco": "Sevilla",
+    "sofascore": "Benfica"
+  },
+  {
+    "player": "Jesus Navas",
+    "nossoBanco": "Sevilla",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Suso",
+    "nossoBanco": "Sevilla",
+    "sofascore": "Cádiz"
+  },
+  {
+    "player": "Sambi Lokonga",
+    "nossoBanco": "Sevilla",
+    "sofascore": "Hamburger SV"
+  },
+  {
+    "player": "Kelechi Iheanacho",
+    "nossoBanco": "Sevilla",
+    "sofascore": "Celtic"
+  },
+  {
+    "player": "Miguel Gutierrez",
+    "nossoBanco": "Girona",
+    "sofascore": "Napoli"
+  },
+  {
+    "player": "Yangel Herrera",
+    "nossoBanco": "Girona",
+    "sofascore": "Real Sociedad"
+  },
+  {
+    "player": "Oriol Romeu",
+    "nossoBanco": "Girona",
+    "sofascore": "Southampton"
+  },
+  {
+    "player": "Arnaut Danjuma",
+    "nossoBanco": "Girona",
+    "sofascore": "Valencia"
+  },
+  {
+    "player": "Yaser Asprilla",
+    "nossoBanco": "Girona",
+    "sofascore": "Galatasaray"
+  },
+  {
+    "player": "Bojan Miovski",
+    "nossoBanco": "Girona",
+    "sofascore": "Rangers"
+  },
+  {
+    "player": "Jesus Areso",
+    "nossoBanco": "Osasuna",
+    "sofascore": "Athletic Club"
+  },
+  {
+    "player": "Juan Cruz",
+    "nossoBanco": "Osasuna",
+    "sofascore": "Leganés"
+  },
+  {
+    "player": "Bryan Zaragoza",
+    "nossoBanco": "Osasuna",
+    "sofascore": "Roma"
+  },
+  {
+    "player": "Ruben Pena",
+    "nossoBanco": "Osasuna",
+    "sofascore": "Leganés"
+  },
+  {
+    "player": "Pablo Ibanez",
+    "nossoBanco": "Osasuna",
+    "sofascore": "Deportivo Alavés"
+  },
+  {
+    "player": "Vicente Guaita",
+    "nossoBanco": "Celta Vigo",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Fran Beltran",
+    "nossoBanco": "Celta Vigo",
+    "sofascore": "Girona FC"
+  },
+  {
+    "player": "Jonathan Bamba",
+    "nossoBanco": "Celta Vigo",
+    "sofascore": "Chicago Fire"
+  },
+  {
+    "player": "Iago Aspas",
+    "nossoBanco": "Sevilla",
+    "sofascore": "Celta Vigo"
+  },
+  {
+    "player": "Borja Iglesias",
+    "nossoBanco": "Bayer Leverkusen",
+    "sofascore": "Celta Vigo"
+  },
+  {
+    "player": "Jailson",
+    "nossoBanco": "Celta Vigo",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Ivan Villar",
+    "nossoBanco": "Leganes",
+    "sofascore": "Celta Vigo"
+  },
+  {
+    "player": "Dominik Greif",
+    "nossoBanco": "Mallorca",
+    "sofascore": "Olympique Lyonnais"
+  },
+  {
+    "player": "Dani Rodriguez",
+    "nossoBanco": "Mallorca",
+    "sofascore": "FC Barcelona"
+  },
+  {
+    "player": "Cyle Larin",
+    "nossoBanco": "Mallorca",
+    "sofascore": "Southampton"
+  },
+  {
+    "player": "Robert Navarro",
+    "nossoBanco": "Mallorca",
+    "sofascore": "Athletic Club"
+  },
+  {
+    "player": "Chiquinho",
+    "nossoBanco": "Mallorca",
+    "sofascore": "Olympiacos FC"
+  },
+  {
+    "player": "Antonio Sivera",
+    "nossoBanco": "Alaves",
+    "sofascore": "Deportivo Alavés"
+  },
+  {
+    "player": "Nahuel Tenaglia",
+    "nossoBanco": "Alaves",
+    "sofascore": "Deportivo Alavés"
+  },
+  {
+    "player": "Abdel Abqar",
+    "nossoBanco": "Alaves",
+    "sofascore": "Getafe"
+  },
+  {
+    "player": "Aleksandar Sedlar",
+    "nossoBanco": "Alaves",
+    "sofascore": "Tractor FC"
+  },
+  {
+    "player": "Manu Sanchez",
+    "nossoBanco": "Alaves",
+    "sofascore": "Levante UD"
+  },
+  {
+    "player": "Antonio Blanco",
+    "nossoBanco": "Alaves",
+    "sofascore": "Deportivo Alavés"
+  },
+  {
+    "player": "Ander Guevara",
+    "nossoBanco": "Alaves",
+    "sofascore": "Deportivo Alavés"
+  },
+  {
+    "player": "Jon Guridi",
+    "nossoBanco": "Alaves",
+    "sofascore": "Deportivo Alavés"
+  },
+  {
+    "player": "Carlos Vicente",
+    "nossoBanco": "Alaves",
+    "sofascore": "Birmingham City"
+  },
+  {
+    "player": "Tomas Conechny",
+    "nossoBanco": "Alaves",
+    "sofascore": "Racing Club"
+  },
+  {
+    "player": "Kike Garcia",
+    "nossoBanco": "Alaves",
+    "sofascore": "Espanyol"
+  },
+  {
+    "player": "Toni Martinez",
+    "nossoBanco": "Alaves",
+    "sofascore": "Deportivo Alavés"
+  },
+  {
+    "player": "Stoichkov",
+    "nossoBanco": "Alaves",
+    "sofascore": "Deportivo La Coruña"
+  },
+  {
+    "player": "Carlos Benavidez",
+    "nossoBanco": "Alaves",
+    "sofascore": "Deportivo Alavés"
+  },
+  {
+    "player": "Hugo Novoa",
+    "nossoBanco": "Alaves",
+    "sofascore": "Mirandés"
+  },
+  {
+    "player": "Jorge De Frutos",
+    "nossoBanco": "Levante",
+    "sofascore": "Rayo Vallecano"
+  },
+  {
+    "player": "Oscar Trejo",
+    "nossoBanco": "Toulouse",
+    "sofascore": "Rayo Vallecano"
+  },
+  {
+    "player": "James Rodriguez",
+    "nossoBanco": "Sao Paulo",
+    "sofascore": "Minnesota United"
+  },
+  {
+    "player": "Omar Alderete",
+    "nossoBanco": "Getafe",
+    "sofascore": "Sunderland"
+  },
+  {
+    "player": "Christantus Uche",
+    "nossoBanco": "Getafe",
+    "sofascore": "Crystal Palace"
+  },
+  {
+    "player": "Alex Sola",
+    "nossoBanco": "Getafe",
+    "sofascore": "Granada"
+  },
+  {
+    "player": "Bertug Yildirim",
+    "nossoBanco": "Getafe",
+    "sofascore": "Başakşehir FK"
+  },
+  {
+    "player": "Carles Perez",
+    "nossoBanco": "Getafe",
+    "sofascore": "Aris Thessaloniki"
+  },
+  {
+    "player": "Carles Alena",
+    "nossoBanco": "Getafe",
+    "sofascore": "Deportivo Alavés"
+  },
+  {
+    "player": "Jasper Cillessen",
+    "nossoBanco": "Las Palmas",
+    "sofascore": "NEC Nijmegen"
+  },
+  {
+    "player": "Scott McKenna",
+    "nossoBanco": "Las Palmas",
+    "sofascore": "GNK Dinamo Zagreb"
+  },
+  {
+    "player": "Alex Munoz",
+    "nossoBanco": "Las Palmas",
+    "sofascore": "Almería"
+  },
+  {
+    "player": "Jose Campana",
+    "nossoBanco": "Las Palmas",
+    "sofascore": "AD Ceuta"
+  },
+  {
+    "player": "Alberto Moleiro",
+    "nossoBanco": "Las Palmas",
+    "sofascore": "Villarreal"
+  },
+  {
+    "player": "Oli McBurnie",
+    "nossoBanco": "Las Palmas",
+    "sofascore": "Hull City"
+  },
+  {
+    "player": "Fabio Silva",
+    "nossoBanco": "Las Palmas",
+    "sofascore": "Borussia Dortmund"
+  },
+  {
+    "player": "Jaime Mata",
+    "nossoBanco": "Las Palmas",
+    "sofascore": "Real Racing Club"
+  },
+  {
+    "player": "Adnan Januzaj",
+    "nossoBanco": "Las Palmas",
+    "sofascore": "Sevilla"
+  },
+  {
+    "player": "Dario Essugo",
+    "nossoBanco": "Las Palmas",
+    "sofascore": "Chelsea"
+  },
+  {
+    "player": "Marko Dmitrovic",
+    "nossoBanco": "Leganes",
+    "sofascore": "Espanyol"
+  },
+  {
+    "player": "Valentin Rosier",
+    "nossoBanco": "Leganes",
+    "sofascore": "Osasuna"
+  },
+  {
+    "player": "Sergio Gonzalez",
+    "nossoBanco": "Leganes",
+    "sofascore": "Al-Riyadh"
+  },
+  {
+    "player": "Matija Nastasic",
+    "nossoBanco": "Leganes",
+    "sofascore": "Al Ula"
+  },
+  {
+    "player": "Javi Hernandez",
+    "nossoBanco": "Cadiz",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Renato Tapia",
+    "nossoBanco": "Leganes",
+    "sofascore": "Al Wasl"
+  },
+  {
+    "player": "Yvan Neyou",
+    "nossoBanco": "Leganes",
+    "sofascore": "Al-Okhdood"
+  },
+  {
+    "player": "Seydouba Cisse",
+    "nossoBanco": "Leganes",
+    "sofascore": "Leganés"
+  },
+  {
+    "player": "Juan Cruz",
+    "nossoBanco": "Leganes",
+    "sofascore": "Leganés"
+  },
+  {
+    "player": "Sebastien Haller",
+    "nossoBanco": "Leganes",
+    "sofascore": "FC Utrecht"
+  },
+  {
+    "player": "Enric Franquesa",
+    "nossoBanco": "Leganes",
+    "sofascore": "Leganés"
+  },
+  {
+    "player": "Dani Raba",
+    "nossoBanco": "Leganes",
+    "sofascore": "Valencia"
+  },
+  {
+    "player": "Darko Brasanac",
+    "nossoBanco": "Osasuna",
+    "sofascore": "Málaga"
+  },
+  {
+    "player": "Roberto Lopez",
+    "nossoBanco": "Leganes",
+    "sofascore": "Leganés"
+  },
+  {
+    "player": "Munir El Haddadi",
+    "nossoBanco": "Leganes",
+    "sofascore": "Esteghlal FC"
+  },
+  {
+    "player": "Karl Hein",
+    "nossoBanco": "Valladolid",
+    "sofascore": "SV Werder Bremen"
+  },
+  {
+    "player": "Luis Perez",
+    "nossoBanco": "Valladolid",
+    "sofascore": "Gaziantep FK"
+  },
+  {
+    "player": "Eray Comert",
+    "nossoBanco": "Valladolid",
+    "sofascore": "Valencia"
+  },
+  {
+    "player": "Javi Sanchez",
+    "nossoBanco": "Valladolid",
+    "sofascore": "FC Arouca"
+  },
+  {
+    "player": "Lucas Rosa",
+    "nossoBanco": "Valladolid",
+    "sofascore": "AFC Ajax"
+  },
+  {
+    "player": "Kike Perez",
+    "nossoBanco": "Rayo Vallecano",
+    "sofascore": "Venezia"
+  },
+  {
+    "player": "Selim Amallah",
+    "nossoBanco": "Valencia",
+    "sofascore": "Khor Fakkan"
+  },
+  {
+    "player": "Mamadou Sylla",
+    "nossoBanco": "Valladolid",
+    "sofascore": "Al-Riyadh"
+  },
+  {
+    "player": "Raul Moro",
+    "nossoBanco": "Valladolid",
+    "sofascore": "Osasuna"
+  },
+  {
+    "player": "Darwin Machis",
+    "nossoBanco": "Valladolid",
+    "sofascore": "América de Cali"
+  },
+  {
+    "player": "Kenedy",
+    "nossoBanco": "Valladolid",
+    "sofascore": "CF Pachuca"
+  },
+  {
+    "player": "Joan Garcia",
+    "nossoBanco": "Espanyol",
+    "sofascore": "FC Barcelona"
+  },
+  {
+    "player": "Marash Kumbulla",
+    "nossoBanco": "Espanyol",
+    "sofascore": "Mallorca"
+  },
+  {
+    "player": "Alex Kral",
+    "nossoBanco": "Espanyol",
+    "sofascore": "1. FC Union Berlin"
+  },
+  {
+    "player": "Jose Gragera",
+    "nossoBanco": "Espanyol",
+    "sofascore": "Deportivo La Coruña"
+  },
+  {
+    "player": "Alvaro Aguado",
+    "nossoBanco": "Espanyol",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Javi Puado",
+    "nossoBanco": "Zaragoza",
+    "sofascore": "Espanyol"
+  },
+  {
+    "player": "Alejo Veliz",
+    "nossoBanco": "Espanyol",
+    "sofascore": "Rosario Central"
+  },
+  {
+    "player": "Walid Cheddira",
+    "nossoBanco": "Espanyol",
+    "sofascore": "Lecce"
+  },
+  {
+    "player": "Alvaro Tejero",
+    "nossoBanco": "Espanyol",
+    "sofascore": "Aris Thessaloniki"
+  },
+  {
+    "player": "Jofre Carreras",
+    "nossoBanco": "Mirandes",
+    "sofascore": "Espanyol"
+  },
+  {
+    "player": "Irvin Cardona",
+    "nossoBanco": "Espanyol",
+    "sofascore": "Saint-Étienne"
+  },
+  {
+    "player": "Benjamin Pavard",
+    "nossoBanco": "Inter",
+    "sofascore": "Olympique de Marseille"
+  },
+  {
+    "player": "Federico Dimarco",
+    "nossoBanco": "Verona",
+    "sofascore": "Inter"
+  },
+  {
+    "player": "Mehdi Taremi",
+    "nossoBanco": "Inter",
+    "sofascore": "Olympiacos FC"
+  },
+  {
+    "player": "Theo Hernandez",
+    "nossoBanco": "AC Milan",
+    "sofascore": "Al-Hilal"
+  },
+  {
+    "player": "Davide Calabria",
+    "nossoBanco": "AC Milan",
+    "sofascore": "Panathinaikos FC"
+  },
+  {
+    "player": "Tijjani Reijnders",
+    "nossoBanco": "AC Milan",
+    "sofascore": "Manchester City"
+  },
+  {
+    "player": "Alvaro Morata",
+    "nossoBanco": "AC Milan",
+    "sofascore": "Como"
+  },
+  {
+    "player": "Samuel Chukwueze",
+    "nossoBanco": "AC Milan",
+    "sofascore": "Fulham"
+  },
+  {
+    "player": "Noah Okafor",
+    "nossoBanco": "AC Milan",
+    "sofascore": "Leeds United"
+  },
+  {
+    "player": "Ismael Bennacer",
+    "nossoBanco": "AC Milan",
+    "sofascore": "GNK Dinamo Zagreb"
+  },
+  {
+    "player": "Malick Thiaw",
+    "nossoBanco": "AC Milan",
+    "sofascore": "Newcastle United"
+  },
+  {
+    "player": "Danilo",
+    "nossoBanco": "Juventus",
+    "sofascore": "Flamengo"
+  },
+  {
+    "player": "Douglas Luiz",
+    "nossoBanco": "Juventus",
+    "sofascore": "Aston Villa"
+  },
+  {
+    "player": "Weston McKennie",
+    "nossoBanco": "Leeds",
+    "sofascore": "Juventus"
+  },
+  {
+    "player": "Nicolo Fagioli",
+    "nossoBanco": "Cremonese",
+    "sofascore": "Fiorentina"
+  },
+  {
+    "player": "Khvicha Kvaratskhelia",
+    "nossoBanco": "Napoli",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Giacomo Raspadori",
+    "nossoBanco": "Napoli",
+    "sofascore": "Atalanta"
+  },
+  {
+    "player": "Lorenzo Pellegrini",
+    "nossoBanco": "Sassuolo",
+    "sofascore": "Roma"
+  },
+  {
+    "player": "Leandro Paredes",
+    "nossoBanco": "Juventus",
+    "sofascore": "Boca Juniors"
+  },
+  {
+    "player": "Mats Hummels",
+    "nossoBanco": "Roma",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Alexis Saelemaekers",
+    "nossoBanco": "Roma",
+    "sofascore": "Milan"
+  },
+  {
+    "player": "Gianluigi Donnarumma",
+    "nossoBanco": "PSG",
+    "sofascore": "Manchester City"
+  },
+  {
+    "player": "Achraf Hakimi",
+    "nossoBanco": "PSG",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Marquinhos",
+    "nossoBanco": "PSG",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Willian Pacho",
+    "nossoBanco": "PSG",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Nuno Mendes",
+    "nossoBanco": "PSG",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Vitinha",
+    "nossoBanco": "PSG",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Joao Neves",
+    "nossoBanco": "PSG",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Fabian Ruiz",
+    "nossoBanco": "PSG",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Warren Zaire-Emery",
+    "nossoBanco": "PSG",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Ousmane Dembele",
+    "nossoBanco": "PSG",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Bradley Barcola",
+    "nossoBanco": "PSG",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Marco Asensio",
+    "nossoBanco": "PSG",
+    "sofascore": "Fenerbahçe"
+  },
+  {
+    "player": "Randal Kolo Muani",
+    "nossoBanco": "PSG",
+    "sofascore": "Tottenham Hotspur"
+  },
+  {
+    "player": "Goncalo Ramos",
+    "nossoBanco": "PSG",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Lee Kang-in",
+    "nossoBanco": "PSG",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Radoslaw Majecki",
+    "nossoBanco": "Monaco",
+    "sofascore": "Stade Brestois"
+  },
+  {
+    "player": "Wilfried Singo",
+    "nossoBanco": "Monaco",
+    "sofascore": "Galatasaray"
+  },
+  {
+    "player": "Mohamed Camara",
+    "nossoBanco": "Monaco",
+    "sofascore": "Al-Sadd"
+  },
+  {
+    "player": "Breel Embolo",
+    "nossoBanco": "Monaco",
+    "sofascore": "Stade Rennais"
+  },
+  {
+    "player": "Eliesse Ben Seghir",
+    "nossoBanco": "Monaco",
+    "sofascore": "Bayer 04 Leverkusen"
+  },
+  {
+    "player": "George Ilenikhena",
+    "nossoBanco": "Monaco",
+    "sofascore": "Al-Ittihad"
+  },
+  {
+    "player": "Michael Murillo",
+    "nossoBanco": "Marseille",
+    "sofascore": "Movilser FC"
+  },
+  {
+    "player": "Lilian Brassier",
+    "nossoBanco": "Marseille",
+    "sofascore": "Stade Rennais"
+  },
+  {
+    "player": "Quentin Merlin",
+    "nossoBanco": "Marseille",
+    "sofascore": "Stade Rennais"
+  },
+  {
+    "player": "Adrien Rabiot",
+    "nossoBanco": "Marseille",
+    "sofascore": "Milan"
+  },
+  {
+    "player": "Amine Harit",
+    "nossoBanco": "Marseille",
+    "sofascore": "Başakşehir FK"
+  },
+  {
+    "player": "Luis Henrique",
+    "nossoBanco": "Marseille",
+    "sofascore": "Inter"
+  },
+  {
+    "player": "Elye Wahi",
+    "nossoBanco": "Marseille",
+    "sofascore": "Nice"
+  },
+  {
+    "player": "Neal Maupay",
+    "nossoBanco": "Marseille",
+    "sofascore": "Sevilla"
+  },
+  {
+    "player": "Jonathan Rowe",
+    "nossoBanco": "Marseille",
+    "sofascore": "Bologna"
+  },
+  {
+    "player": "Valentin Rongier",
+    "nossoBanco": "Marseille",
+    "sofascore": "Stade Rennais"
+  },
+  {
+    "player": "Lucas Chevalier",
+    "nossoBanco": "Lille",
+    "sofascore": "Paris Saint-Germain"
+  },
+  {
+    "player": "Bafode Diakite",
+    "nossoBanco": "Lille",
+    "sofascore": "Bournemouth"
+  },
+  {
+    "player": "Gabriel Gudmundsson",
+    "nossoBanco": "Lille",
+    "sofascore": "Leeds United"
+  },
+  {
+    "player": "Angel Gomes",
+    "nossoBanco": "Lille",
+    "sofascore": "Wolverhampton"
+  },
+  {
+    "player": "Edon Zhegrova",
+    "nossoBanco": "Lille",
+    "sofascore": "Juventus"
+  },
+  {
+    "player": "Remy Cabella",
+    "nossoBanco": "Lille",
+    "sofascore": "Nantes"
+  },
+  {
+    "player": "Jonathan David",
+    "nossoBanco": "Lille",
+    "sofascore": "Juventus"
+  },
+  {
+    "player": "Mohamed Bayo",
+    "nossoBanco": "Lille",
+    "sofascore": "Gaziantep FK"
+  },
+  {
+    "player": "Ismaily",
+    "nossoBanco": "Lille",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Lucas Perri",
+    "nossoBanco": "Lyon",
+    "sofascore": "Leeds United"
+  },
+  {
+    "player": "Duje Caleta-Car",
+    "nossoBanco": "Lyon",
+    "sofascore": "Real Sociedad"
+  },
+  {
+    "player": "Nemanja Matic",
+    "nossoBanco": "Lyon",
+    "sofascore": "Sassuolo"
+  },
+  {
+    "player": "Maxence Caqueret",
+    "nossoBanco": "Lyon",
+    "sofascore": "Como"
+  },
+  {
+    "player": "Rayan Cherki",
+    "nossoBanco": "Lyon",
+    "sofascore": "Manchester City"
+  },
+  {
+    "player": "Said Benrahma",
+    "nossoBanco": "Lyon",
+    "sofascore": "Neom SC"
+  },
+  {
+    "player": "Georges Mikautadze",
+    "nossoBanco": "Lyon",
+    "sofascore": "Villarreal"
+  },
+  {
+    "player": "Alexandre Lacazette",
+    "nossoBanco": "Lyon",
+    "sofascore": "Neom SC"
+  },
+  {
+    "player": "Wilfried Zaha",
+    "nossoBanco": "Lyon",
+    "sofascore": "Charlotte FC"
+  },
+  {
+    "player": "Manuel Neuer",
+    "nossoBanco": "Bayern Munich",
+    "sofascore": "FC Bayern München"
+  },
+  {
+    "player": "Alphonso Davies",
+    "nossoBanco": "Bayern Munich",
+    "sofascore": "FC Bayern München"
+  },
+  {
+    "player": "Dayot Upamecano",
+    "nossoBanco": "Bayern Munich",
+    "sofascore": "FC Bayern München"
+  },
+  {
+    "player": "Kim Min-jae",
+    "nossoBanco": "Bayern Munich",
+    "sofascore": "FC Bayern München"
+  },
+  {
+    "player": "Joshua Kimmich",
+    "nossoBanco": "Bayern Munich",
+    "sofascore": "FC Bayern München"
+  },
+  {
+    "player": "Joao Palhinha",
+    "nossoBanco": "Bayern Munich",
+    "sofascore": "Tottenham Hotspur"
+  },
+  {
+    "player": "Aleksandar Pavlovic",
+    "nossoBanco": "Bayern Munich",
+    "sofascore": "FC Bayern München"
+  },
+  {
+    "player": "Jamal Musiala",
+    "nossoBanco": "Bayern Munich",
+    "sofascore": "FC Bayern München"
+  },
+  {
+    "player": "Leroy Sane",
+    "nossoBanco": "Bayern Munich",
+    "sofascore": "Galatasaray"
+  },
+  {
+    "player": "Serge Gnabry",
+    "nossoBanco": "Bayern Munich",
+    "sofascore": "FC Bayern München"
+  },
+  {
+    "player": "Michael Olise",
+    "nossoBanco": "Bayern Munich",
+    "sofascore": "FC Bayern München"
+  },
+  {
+    "player": "Harry Kane",
+    "nossoBanco": "Bayern Munich",
+    "sofascore": "FC Bayern München"
+  },
+  {
+    "player": "Kingsley Coman",
+    "nossoBanco": "Bayern Munich",
+    "sofascore": "Al-Nassr"
+  },
+  {
+    "player": "Leon Goretzka",
+    "nossoBanco": "Bayern Munich",
+    "sofascore": "FC Bayern München"
+  },
+  {
+    "player": "Raphael Guerreiro",
+    "nossoBanco": "Bayern Munich",
+    "sofascore": "FC Bayern München"
+  },
+  {
+    "player": "Lukas Hradecky",
+    "nossoBanco": "Bayer Leverkusen",
+    "sofascore": "AS Monaco"
+  },
+  {
+    "player": "Jeremie Frimpong",
+    "nossoBanco": "Bayer Leverkusen",
+    "sofascore": "Liverpool"
+  },
+  {
+    "player": "Alejandro Grimaldo",
+    "nossoBanco": "Bayer Leverkusen",
+    "sofascore": "Bayer 04 Leverkusen"
+  },
+  {
+    "player": "Jonathan Tah",
+    "nossoBanco": "Bayer Leverkusen",
+    "sofascore": "FC Bayern München"
+  },
+  {
+    "player": "Edmond Tapsoba",
+    "nossoBanco": "Bayer Leverkusen",
+    "sofascore": "Bayer 04 Leverkusen"
+  },
+  {
+    "player": "Piero Hincapie",
+    "nossoBanco": "Bayer Leverkusen",
+    "sofascore": "Arsenal"
+  },
+  {
+    "player": "Granit Xhaka",
+    "nossoBanco": "Bayer Leverkusen",
+    "sofascore": "Sunderland"
+  },
+  {
+    "player": "Robert Andrich",
+    "nossoBanco": "Bayer Leverkusen",
+    "sofascore": "Bayer 04 Leverkusen"
+  },
+  {
+    "player": "Aleix Garcia",
+    "nossoBanco": "Bayer Leverkusen",
+    "sofascore": "Bayer 04 Leverkusen"
+  },
+  {
+    "player": "Florian Wirtz",
+    "nossoBanco": "Bayer Leverkusen",
+    "sofascore": "Liverpool"
+  },
+  {
+    "player": "Jonas Hofmann",
+    "nossoBanco": "Bayer Leverkusen",
+    "sofascore": "Bayer 04 Leverkusen"
+  },
+  {
+    "player": "Patrik Schick",
+    "nossoBanco": "Bayer Leverkusen",
+    "sofascore": "Bayer 04 Leverkusen"
+  },
+  {
+    "player": "Victor Boniface",
+    "nossoBanco": "Bayer Leverkusen",
+    "sofascore": "SV Werder Bremen"
+  },
+  {
+    "player": "Amine Adli",
+    "nossoBanco": "Bayer Leverkusen",
+    "sofascore": "Bournemouth"
+  },
+  {
+    "player": "Nathan Tella",
+    "nossoBanco": "Bayer Leverkusen",
+    "sofascore": "Bayer 04 Leverkusen"
+  },
+  {
+    "player": "Pascal Gross",
+    "nossoBanco": "Dortmund",
+    "sofascore": "Nürnberg Ice Tigers"
+  },
+  {
+    "player": "Jamie Gittens",
+    "nossoBanco": "Dortmund",
+    "sofascore": "Chelsea"
+  },
+  {
+    "player": "Donyell Malen",
+    "nossoBanco": "Dortmund",
+    "sofascore": "Roma"
+  },
+  {
+    "player": "Gio Reyna",
+    "nossoBanco": "Nottingham Forest",
+    "sofascore": "Borussia M'gladbach"
+  },
+  {
+    "player": "Amadou Haidara",
+    "nossoBanco": "RB Leipzig",
+    "sofascore": "RC Lens"
+  },
+  {
+    "player": "Xavi Simons",
+    "nossoBanco": "RB Leipzig",
+    "sofascore": "Tottenham Hotspur"
+  },
+  {
+    "player": "Lois Openda",
+    "nossoBanco": "RB Leipzig",
+    "sofascore": "Juventus"
+  },
+  {
+    "player": "Benjamin Sesko",
+    "nossoBanco": "RB Leipzig",
+    "sofascore": "Manchester United"
+  },
+  {
+    "player": "Yussuf Poulsen",
+    "nossoBanco": "RB Leipzig",
+    "sofascore": "Hamburger SV"
+  },
+  {
+    "player": "Kevin Kampl",
+    "nossoBanco": "RB Leipzig",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Lutsharel Geertruida",
+    "nossoBanco": "RB Leipzig",
+    "sofascore": "Sunderland"
+  },
+  {
+    "player": "Anthony Rouault",
+    "nossoBanco": "Stuttgart",
+    "sofascore": "Stade Rennais"
+  },
+  {
+    "player": "Enzo Millot",
+    "nossoBanco": "Stuttgart",
+    "sofascore": "Al-Ahli"
+  },
+  {
+    "player": "El Bilal Toure",
+    "nossoBanco": "Stuttgart",
+    "sofascore": "Beşiktaş JK"
+  },
+  {
+    "player": "Fabian Rieder",
+    "nossoBanco": "Stuttgart",
+    "sofascore": "FC Augsburg"
+  },
+  {
+    "player": "Alvaro Carreras",
+    "nossoBanco": "Benfica",
+    "sofascore": "Real Madrid"
+  },
+  {
+    "player": "Florentino Luis",
+    "nossoBanco": "Benfica",
+    "sofascore": "Burnley"
+  },
+  {
+    "player": "Orkun Kokcu",
+    "nossoBanco": "Benfica",
+    "sofascore": "Beşiktaş JK"
+  },
+  {
+    "player": "Angel Di Maria",
+    "nossoBanco": "Benfica",
+    "sofascore": "Rosario Central"
+  },
+  {
+    "player": "Kerem Akturkoglu",
+    "nossoBanco": "Benfica",
+    "sofascore": "Fenerbahçe"
+  },
+  {
+    "player": "Arthur Cabral",
+    "nossoBanco": "Benfica",
+    "sofascore": "Botafogo"
+  },
+  {
+    "player": "Renato Sanches",
+    "nossoBanco": "Benfica",
+    "sofascore": "Panathinaikos FC"
+  },
+  {
+    "player": "Benjamin Rollheiser",
+    "nossoBanco": "Benfica",
+    "sofascore": "Santos"
+  },
+  {
+    "player": "Franco Israel",
+    "nossoBanco": "Sporting",
+    "sofascore": "Torino"
+  },
+  {
+    "player": "Jerry St. Juste",
+    "nossoBanco": "Sporting",
+    "sofascore": "Netherlands U21"
+  },
+  {
+    "player": "Viktor Gyokeres",
+    "nossoBanco": "Sporting",
+    "sofascore": "Arsenal"
+  },
+  {
+    "player": "Marcus Edwards",
+    "nossoBanco": "Sporting",
+    "sofascore": "Burnley"
+  },
+  {
+    "player": "Matheus Reis",
+    "nossoBanco": "Sporting",
+    "sofascore": "CSKA Moscow"
+  },
+  {
+    "player": "Ze Pedro",
+    "nossoBanco": "Porto",
+    "sofascore": "Cagliari"
+  },
+  {
+    "player": "Joao Mario",
+    "nossoBanco": "Porto",
+    "sofascore": "Bologna"
+  },
+  {
+    "player": "Nico Gonzalez",
+    "nossoBanco": "Porto",
+    "sofascore": "Manchester City"
+  },
+  {
+    "player": "Stephen Eustaquio",
+    "nossoBanco": "Porto",
+    "sofascore": "Los Angeles FC"
+  },
+  {
+    "player": "Galeno",
+    "nossoBanco": "Braga",
+    "sofascore": "Al-Ahli"
+  },
+  {
+    "player": "Pepe",
+    "nossoBanco": "Porto",
+    "sofascore": "Villarreal"
+  },
+  {
+    "player": "Danny Namaso",
+    "nossoBanco": "Porto",
+    "sofascore": "Auxerre"
+  },
+  {
+    "player": "Ivan Jaime",
+    "nossoBanco": "Porto",
+    "sofascore": "CF Montréal"
+  },
+  {
+    "player": "Fabio Vieira",
+    "nossoBanco": "Porto",
+    "sofascore": "Hamburger SV"
+  },
+  {
+    "player": "Goncalo Borges",
+    "nossoBanco": "Porto",
+    "sofascore": "Feyenoord"
+  },
+  {
+    "player": "Matheus",
+    "nossoBanco": "Braga",
+    "sofascore": "Manchester United"
+  },
+  {
+    "player": "Adrian Marin",
+    "nossoBanco": "Braga",
+    "sofascore": "Orlando City SC"
+  },
+  {
+    "player": "Bruma",
+    "nossoBanco": "Braga",
+    "sofascore": "Benfica"
+  },
+  {
+    "player": "Roberto Fernandez",
+    "nossoBanco": "Braga",
+    "sofascore": "Espanyol"
+  },
+  {
+    "player": "Ismael Gharbi",
+    "nossoBanco": "Braga",
+    "sofascore": "FC Augsburg"
+  },
+  {
+    "player": "Roger Fernandes",
+    "nossoBanco": "Braga",
+    "sofascore": "Al-Ittihad"
+  },
+  {
+    "player": "Remko Pasveer",
+    "nossoBanco": "Ajax",
+    "sofascore": "Heracles Almelo"
+  },
+  {
+    "player": "Ahmetcan Kaplan",
+    "nossoBanco": "Ajax",
+    "sofascore": "NEC Nijmegen"
+  },
+  {
+    "player": "Devyne Rensch",
+    "nossoBanco": "Ajax",
+    "sofascore": "Roma"
+  },
+  {
+    "player": "Jorrel Hato",
+    "nossoBanco": "Ajax",
+    "sofascore": "Chelsea"
+  },
+  {
+    "player": "Jordan Henderson",
+    "nossoBanco": "Ajax",
+    "sofascore": "Brentford"
+  },
+  {
+    "player": "Kenneth Taylor",
+    "nossoBanco": "Ajax",
+    "sofascore": "Lazio"
+  },
+  {
+    "player": "Brian Brobbey",
+    "nossoBanco": "Ajax",
+    "sofascore": "Sunderland"
+  },
+  {
+    "player": "Chuba Akpom",
+    "nossoBanco": "Ajax",
+    "sofascore": "Ipswich Town"
+  },
+  {
+    "player": "Bertrand Traore",
+    "nossoBanco": "Ajax",
+    "sofascore": "Sunderland"
+  },
+  {
+    "player": "Daniele Rugani",
+    "nossoBanco": "Ajax",
+    "sofascore": "Fiorentina"
+  },
+  {
+    "player": "Matias Kranevitter",
+    "nossoBanco": "River Plate",
+    "sofascore": "Fatih Karagümrük"
+  },
+  {
+    "player": "Santiago Simon",
+    "nossoBanco": "River Plate",
+    "sofascore": "CD Toluca"
+  },
+  {
+    "player": "Manuel Lanzini",
+    "nossoBanco": "River Plate",
+    "sofascore": "Vélez Sarsfield"
+  },
+  {
+    "player": "Nacho Fernandez",
+    "nossoBanco": "River Plate",
+    "sofascore": "Al-Qadsiah"
+  },
+  {
+    "player": "Miguel Borja",
+    "nossoBanco": "River Plate",
+    "sofascore": "Al Wasl"
+  },
+  {
+    "player": "Pablo Solari",
+    "nossoBanco": "River Plate",
+    "sofascore": "FC Spartak Moscow"
+  },
+  {
+    "player": "Franco Mastantuono",
+    "nossoBanco": "River Plate",
+    "sofascore": "Real Madrid"
+  },
+  {
+    "player": "Claudio Echeverri",
+    "nossoBanco": "Manchester City",
+    "sofascore": "Girona FC"
+  },
+  {
+    "player": "Sergio Romero",
+    "nossoBanco": "Boca Juniors",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Marcos Rojo",
+    "nossoBanco": "Boca Juniors",
+    "sofascore": "Racing Club"
+  },
+  {
+    "player": "Cristian Lema",
+    "nossoBanco": "Boca Juniors",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Gary Medel",
+    "nossoBanco": "Boca Juniors",
+    "sofascore": "Universidad Católica"
+  },
+  {
+    "player": "Pol Fernandez",
+    "nossoBanco": "Boca Juniors",
+    "sofascore": "Rosario Central"
+  },
+  {
+    "player": "Cristian Medina",
+    "nossoBanco": "Boca Juniors",
+    "sofascore": "Botafogo"
+  },
+  {
+    "player": "Marcelo Saracchi",
+    "nossoBanco": "Boca Juniors",
+    "sofascore": "Celtic"
+  },
+  {
+    "player": "Gabriel Arias",
+    "nossoBanco": "Racing",
+    "sofascore": "Newell's Old Boys"
+  },
+  {
+    "player": "Facundo Mura",
+    "nossoBanco": "Racing",
+    "sofascore": "Inter Miami CF"
+  },
+  {
+    "player": "Juan Nardoni",
+    "nossoBanco": "Racing",
+    "sofascore": "Grêmio"
+  },
+  {
+    "player": "Agustin Almendra",
+    "nossoBanco": "Racing",
+    "sofascore": "Club Necaxa"
+  },
+  {
+    "player": "Juan F. Quintero",
+    "nossoBanco": "Racing",
+    "sofascore": "River Plate"
+  },
+  {
+    "player": "Maximiliano Salas",
+    "nossoBanco": "Racing",
+    "sofascore": "River Plate"
+  },
+  {
+    "player": "Luciano Vietto",
+    "nossoBanco": "Racing",
+    "sofascore": "San Lorenzo"
+  },
+  {
+    "player": "Federico Vera",
+    "nossoBanco": "Independiente",
+    "sofascore": "Huracán"
+  },
+  {
+    "player": "Damian Perez",
+    "nossoBanco": "Independiente",
+    "sofascore": "Arsenal de Sarandí"
+  },
+  {
+    "player": "Felipe Loyola",
+    "nossoBanco": "Independiente",
+    "sofascore": "Pisa"
+  },
+  {
+    "player": "Santiago Toloza",
+    "nossoBanco": "Independiente",
+    "sofascore": "Defensa y Justicia"
+  },
+  {
+    "player": "Ignacio Maestro Puch",
+    "nossoBanco": "Independiente",
+    "sofascore": "Club Puebla"
+  },
+  {
+    "player": "Alex Luna",
+    "nossoBanco": "Independiente",
+    "sofascore": "Instituto De Córdoba"
+  },
+  {
+    "player": "Nicolas Vallejo",
+    "nossoBanco": "Independiente",
+    "sofascore": "Club León"
+  },
+  {
+    "player": "Adrian Sporle",
+    "nossoBanco": "Independiente",
+    "sofascore": "Club Atlético Belgrano"
+  },
+  {
+    "player": "Gaston Gomez",
+    "nossoBanco": "San Lorenzo",
+    "sofascore": "Guabirá"
+  },
+  {
+    "player": "Gaston Campi",
+    "nossoBanco": "San Lorenzo",
+    "sofascore": "Barracas Central"
+  },
+  {
+    "player": "Gonzalo Lujan",
+    "nossoBanco": "San Lorenzo",
+    "sofascore": "Inter Miami CF"
+  },
+  {
+    "player": "Malcom Braida",
+    "nossoBanco": "San Lorenzo",
+    "sofascore": "Boca Juniors"
+  },
+  {
+    "player": "Elian Irala",
+    "nossoBanco": "San Lorenzo",
+    "sofascore": "Shabab Al-Ahli Dubai"
+  },
+  {
+    "player": "Eric Remedi",
+    "nossoBanco": "San Lorenzo",
+    "sofascore": "Peñarol"
+  },
+  {
+    "player": "Elian Sosa",
+    "nossoBanco": "San Lorenzo",
+    "sofascore": "Anorthosis Famagusta"
+  },
+  {
+    "player": "Iker Muniain",
+    "nossoBanco": "San Lorenzo",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Ivan Leguizamon",
+    "nossoBanco": "San Lorenzo",
+    "sofascore": "Olimpia"
+  },
+  {
+    "player": "Nahuel Barrios",
+    "nossoBanco": "Central Cordoba",
+    "sofascore": "San Lorenzo"
+  },
+  {
+    "player": "Andres Vombergar",
+    "nossoBanco": "San Lorenzo",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Nahuel Bustos",
+    "nossoBanco": "San Lorenzo",
+    "sofascore": "Independiente Santa Fe"
+  },
+  {
+    "player": "Sebastian Blanco",
+    "nossoBanco": "Portland Timbers",
+    "sofascore": "Real Pilar"
+  },
+  {
+    "player": "Matias Mansilla",
+    "nossoBanco": "Estudiantes",
+    "sofascore": "Club Atlético Unión de Santa Fe"
+  },
+  {
+    "player": "Federico Fernandez",
+    "nossoBanco": "Elche",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Luciano Lollo",
+    "nossoBanco": "Estudiantes",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Santiago Ascacibar",
+    "nossoBanco": "Estudiantes",
+    "sofascore": "Boca Juniors"
+  },
+  {
+    "player": "Enzo Perez",
+    "nossoBanco": "River Plate",
+    "sofascore": "Argentinos Juniors"
+  },
+  {
+    "player": "Jose Sosa",
+    "nossoBanco": "Fenerbahce",
+    "sofascore": "Estudiantes de La Plata"
+  },
+  {
+    "player": "Pablo Piatti",
+    "nossoBanco": "Elche",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Guido Carrillo",
+    "nossoBanco": "Henan",
+    "sofascore": "Estudiantes de La Plata"
+  },
+  {
+    "player": "Mauro Mendez",
+    "nossoBanco": "Estudiantes",
+    "sofascore": "Banfield"
+  },
+  {
+    "player": "Alexis Manyoma",
+    "nossoBanco": "Estudiantes",
+    "sofascore": "Colorado Rapids"
+  },
+  {
+    "player": "Bautista Kociubinski",
+    "nossoBanco": "Atletico Tucuman",
+    "sofascore": "Montevideo City Torque"
+  },
+  {
+    "player": "Tomas Marchiori",
+    "nossoBanco": "Velez",
+    "sofascore": "Vélez Sarsfield"
+  },
+  {
+    "player": "Emanuel Mammana",
+    "nossoBanco": "Velez",
+    "sofascore": "Vélez Sarsfield"
+  },
+  {
+    "player": "Valentin Gomez",
+    "nossoBanco": "Velez",
+    "sofascore": "Real Betis"
+  },
+  {
+    "player": "Elias Gomez",
+    "nossoBanco": "Velez",
+    "sofascore": "Vélez Sarsfield"
+  },
+  {
+    "player": "Joaquin Garcia",
+    "nossoBanco": "Velez",
+    "sofascore": "Vélez Sarsfield"
+  },
+  {
+    "player": "Christian Ordonez",
+    "nossoBanco": "Velez",
+    "sofascore": "Parma"
+  },
+  {
+    "player": "Agustin Bouzat",
+    "nossoBanco": "Colo Colo",
+    "sofascore": "Houston Dynamo"
+  },
+  {
+    "player": "Claudio Aquino",
+    "nossoBanco": "Velez",
+    "sofascore": "Colo-Colo"
+  },
+  {
+    "player": "Thiago Fernandez",
+    "nossoBanco": "Velez",
+    "sofascore": "Real Oviedo"
+  },
+  {
+    "player": "Francisco Pizzini",
+    "nossoBanco": "Velez",
+    "sofascore": "Emelec"
+  },
+  {
+    "player": "Braian Romero",
+    "nossoBanco": "Velez",
+    "sofascore": "Vélez Sarsfield"
+  },
+  {
+    "player": "Matias Pellegrini",
+    "nossoBanco": "Velez",
+    "sofascore": "Vélez Sarsfield"
+  },
+  {
+    "player": "Patricio Pernicone",
+    "nossoBanco": "Velez",
+    "sofascore": "Juventud de Las Piedras"
+  },
+  {
+    "player": "Nicolas Garayalde",
+    "nossoBanco": "Gimnasia",
+    "sofascore": "Liverpool UY"
+  },
+  {
+    "player": "Alvaro Montoro",
+    "nossoBanco": "Velez",
+    "sofascore": "Botafogo"
+  },
+  {
+    "player": "Juan Portillo",
+    "nossoBanco": "Talleres",
+    "sofascore": "River Plate"
+  },
+  {
+    "player": "Gaston Benavidez",
+    "nossoBanco": "Talleres",
+    "sofascore": "Athletico"
+  },
+  {
+    "player": "Miguel Navarro",
+    "nossoBanco": "Talleres",
+    "sofascore": "Colorado Rapids"
+  },
+  {
+    "player": "Ruben Botta",
+    "nossoBanco": "Talleres",
+    "sofascore": "Defensa y Justicia"
+  },
+  {
+    "player": "Matias Galarza",
+    "nossoBanco": "Talleres",
+    "sofascore": "Atlanta United"
+  },
+  {
+    "player": "Federico Girotti",
+    "nossoBanco": "Talleres",
+    "sofascore": "Alianza Lima"
+  },
+  {
+    "player": "Cristian Tarragona",
+    "nossoBanco": "Talleres",
+    "sofascore": "Club Atlético Unión de Santa Fe"
+  },
+  {
+    "player": "Alejandro Martinez",
+    "nossoBanco": "Talleres",
+    "sofascore": "Huracán"
+  },
+  {
+    "player": "Ramiro Ruiz Rodriguez",
+    "nossoBanco": "Talleres",
+    "sofascore": "Atlético Tucumán"
+  },
+  {
+    "player": "Jorge Broun",
+    "nossoBanco": "Gimnasia",
+    "sofascore": "Rosario Central"
+  },
+  {
+    "player": "Mauricio Martinez",
+    "nossoBanco": "LDU",
+    "sofascore": "Sarmiento"
+  },
+  {
+    "player": "Ignacio Malcorra",
+    "nossoBanco": "Rosario Central",
+    "sofascore": "CA Independiente"
+  },
+  {
+    "player": "Maximiliano Lovera",
+    "nossoBanco": "Ionikos",
+    "sofascore": "Independiente Santa Fe"
+  },
+  {
+    "player": "Marco Ruben",
+    "nossoBanco": "Athletico Paranaense",
+    "sofascore": "Rosario Central"
+  },
+  {
+    "player": "Agustin Modica",
+    "nossoBanco": "Rosario Central",
+    "sofascore": "Gimnasia y Esgrima Mendoza"
+  },
+  {
+    "player": "Jonathan Gomez",
+    "nossoBanco": "Racing",
+    "sofascore": "Albacete Balompié"
+  },
+  {
+    "player": "Kevin Ortiz",
+    "nossoBanco": "Rosario Central",
+    "sofascore": "Atlético Tucumán"
+  },
+  {
+    "player": "Diego Rodriguez",
+    "nossoBanco": "Argentinos Juniors",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Jonathan Galvan",
+    "nossoBanco": "Argentinos Juniors",
+    "sofascore": "Instituto De Córdoba"
+  },
+  {
+    "player": "Francisco Palacio",
+    "nossoBanco": "Argentinos Juniors",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Roman Vega",
+    "nossoBanco": "Argentinos Juniors",
+    "sofascore": "Zenit St. Petersburg"
+  },
+  {
+    "player": "Thiago Santamaria",
+    "nossoBanco": "Argentinos Juniors",
+    "sofascore": "Sarmiento"
+  },
+  {
+    "player": "Leonardo Heredia",
+    "nossoBanco": "Argentinos Juniors",
+    "sofascore": "Platense"
+  },
+  {
+    "player": "Maximiliano Romero",
+    "nossoBanco": "Argentinos Juniors",
+    "sofascore": "Colo-Colo"
+  },
+  {
+    "player": "Jose Herrera",
+    "nossoBanco": "Argentinos Juniors",
+    "sofascore": "Red Bull Bragantino"
+  },
+  {
+    "player": "Damian Batallini",
+    "nossoBanco": "Argentinos Juniors",
+    "sofascore": "Bolívar"
+  },
+  {
+    "player": "Maximiliano Cardozo",
+    "nossoBanco": "Argentinos Juniors",
+    "sofascore": "Félix Pérez Cardozo"
+  },
+  {
+    "player": "Drake Callender",
+    "nossoBanco": "Inter Miami",
+    "sofascore": "Minnesota United"
+  },
+  {
+    "player": "Tomas Aviles",
+    "nossoBanco": "Inter Miami",
+    "sofascore": "CF Montréal"
+  },
+  {
+    "player": "David Martinez",
+    "nossoBanco": "Inter Miami",
+    "sofascore": "Los Angeles FC"
+  },
+  {
+    "player": "Jordi Alba",
+    "nossoBanco": "Inter Miami",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Marcelo Weigandt",
+    "nossoBanco": "Inter Miami",
+    "sofascore": "Boca Juniors"
+  },
+  {
+    "player": "Sergio Busquets",
+    "nossoBanco": "Inter Miami",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Federico Redondo",
+    "nossoBanco": "Inter Miami",
+    "sofascore": "Elche"
+  },
+  {
+    "player": "Diego Gomez",
+    "nossoBanco": "Inter Miami",
+    "sofascore": "Brighton & Hove Albion"
+  },
+  {
+    "player": "Leonardo Campana",
+    "nossoBanco": "Inter Miami",
+    "sofascore": "New England Revolution"
+  },
+  {
+    "player": "Robert Taylor",
+    "nossoBanco": "Inter Miami",
+    "sofascore": "Austin FC"
+  },
+  {
+    "player": "Matias Rojas",
+    "nossoBanco": "Inter Miami",
+    "sofascore": "Libertad"
+  },
+  {
+    "player": "Facundo Farias",
+    "nossoBanco": "Inter Miami",
+    "sofascore": "Estudiantes de La Plata"
+  },
+  {
+    "player": "Benjamin Cremaschi",
+    "nossoBanco": "Inter Miami",
+    "sofascore": "Parma"
+  },
+  {
+    "player": "John McCarthy",
+    "nossoBanco": "LA Galaxy",
+    "sofascore": "New York Red Bulls"
+  },
+  {
+    "player": "Martin Caceres",
+    "nossoBanco": "LA Galaxy",
+    "sofascore": "Juventud de Las Piedras"
+  },
+  {
+    "player": "Marky Delgado",
+    "nossoBanco": "LA Galaxy",
+    "sofascore": "Los Angeles FC"
+  },
+  {
+    "player": "Gaston Brugman",
+    "nossoBanco": "LA Galaxy",
+    "sofascore": "Pescara"
+  },
+  {
+    "player": "Dejan Joveljic",
+    "nossoBanco": "LA Galaxy",
+    "sofascore": "Sporting Kansas City"
+  },
+  {
+    "player": "Diego Fagundez",
+    "nossoBanco": "LA Galaxy",
+    "sofascore": "New England Revolution"
+  },
+  {
+    "player": "Jalen Neal",
+    "nossoBanco": "LA Galaxy",
+    "sofascore": "CF Montréal"
+  },
+  {
+    "player": "Hugo Lloris",
+    "nossoBanco": "LAFC",
+    "sofascore": "Los Angeles FC"
+  },
+  {
+    "player": "Jesus Murillo",
+    "nossoBanco": "LAFC",
+    "sofascore": "FC Juárez"
+  },
+  {
+    "player": "Aaron Long",
+    "nossoBanco": "LAFC",
+    "sofascore": "Los Angeles FC"
+  },
+  {
+    "player": "Sergi Palencia",
+    "nossoBanco": "LAFC",
+    "sofascore": "Los Angeles FC"
+  },
+  {
+    "player": "Ryan Hollingshead",
+    "nossoBanco": "LAFC",
+    "sofascore": "Los Angeles FC"
+  },
+  {
+    "player": "Ilie Sanchez",
+    "nossoBanco": "LAFC",
+    "sofascore": "Austin FC"
+  },
+  {
+    "player": "Timothy Tillman",
+    "nossoBanco": "LAFC",
+    "sofascore": "Los Angeles FC"
+  },
+  {
+    "player": "Mateusz Bogusz",
+    "nossoBanco": "LAFC",
+    "sofascore": "Houston Dynamo"
+  },
+  {
+    "player": "Denis Bouanga",
+    "nossoBanco": "LAFC",
+    "sofascore": "Los Angeles FC"
+  },
+  {
+    "player": "Cristian Olivera",
+    "nossoBanco": "LAFC",
+    "sofascore": "Bahia"
+  },
+  {
+    "player": "Kei Kamara",
+    "nossoBanco": "LAFC",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Olivier Giroud",
+    "nossoBanco": "LAFC",
+    "sofascore": "Lille"
+  },
+  {
+    "player": "Eduard Atuesta",
+    "nossoBanco": "LAFC",
+    "sofascore": "Orlando City SC"
+  },
+  {
+    "player": "Maxime Chanot",
+    "nossoBanco": "LAFC",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Eddie Segura",
+    "nossoBanco": "LAFC",
+    "sofascore": "Los Angeles FC"
+  },
+  {
+    "player": "Darlington Nagbe",
+    "nossoBanco": "Columbus Crew",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Christian Ramirez",
+    "nossoBanco": "Columbus Crew",
+    "sofascore": "Austin FC"
+  },
+  {
+    "player": "Cucho Hernandez",
+    "nossoBanco": "Columbus Crew",
+    "sofascore": "Real Betis"
+  },
+  {
+    "player": "Aziel Jackson",
+    "nossoBanco": "Columbus Crew",
+    "sofascore": "Jagiellonia Białystok"
+  },
+  {
+    "player": "Alexandru Matan",
+    "nossoBanco": "Columbus Crew",
+    "sofascore": "GFS Panetolikos"
+  },
+  {
+    "player": "Yaw Yeboah",
+    "nossoBanco": "Columbus Crew",
+    "sofascore": "Qingdao Hainiu"
+  },
+  {
+    "player": "Derrick Jones",
+    "nossoBanco": "Columbus Crew",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Joao Paulo",
+    "nossoBanco": "Seattle Sounders",
+    "sofascore": "Bahia"
+  },
+  {
+    "player": "Obed Vargas",
+    "nossoBanco": "Seattle Sounders",
+    "sofascore": "Atlético Madrid"
+  },
+  {
+    "player": "Raul Ruidiaz",
+    "nossoBanco": "Seattle Sounders",
+    "sofascore": "Club Atlético Grau"
+  },
+  {
+    "player": "Georgi Minoungou",
+    "nossoBanco": "Seattle Sounders",
+    "sofascore": "Colorado Rapids"
+  },
+  {
+    "player": "Jon Bell",
+    "nossoBanco": "Seattle Sounders",
+    "sofascore": "Austin FC"
+  },
+  {
+    "player": "Josh Atencio",
+    "nossoBanco": "Seattle Sounders",
+    "sofascore": "Colorado Rapids"
+  },
+  {
+    "player": "Derrick Williams",
+    "nossoBanco": "Atlanta United",
+    "sofascore": "Reading"
+  },
+  {
+    "player": "Brooks Lennon",
+    "nossoBanco": "Atlanta United",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Bartosz Slisz",
+    "nossoBanco": "Atlanta United",
+    "sofascore": "Brøndby IF"
+  },
+  {
+    "player": "Xande Silva",
+    "nossoBanco": "Atlanta United",
+    "sofascore": "Hapoel Tel Aviv"
+  },
+  {
+    "player": "Jamal Thiare",
+    "nossoBanco": "Atlanta United",
+    "sofascore": "Columbus Crew"
+  },
+  {
+    "player": "Daniel Rios",
+    "nossoBanco": "Atlanta United",
+    "sofascore": "CF Montréal"
+  },
+  {
+    "player": "Nick Firmino",
+    "nossoBanco": "Atlanta United",
+    "sofascore": "Lexington SC"
+  },
+  {
+    "player": "Noah Cobb",
+    "nossoBanco": "Atlanta United",
+    "sofascore": "Colorado Rapids"
+  },
+  {
+    "player": "Efrain Morales",
+    "nossoBanco": "Atlanta United",
+    "sofascore": "CF Montréal"
+  },
+  {
+    "player": "Chidozie Awaziem",
+    "nossoBanco": "Cincinnati",
+    "sofascore": "Nantes"
+  },
+  {
+    "player": "DeAndre Yedlin",
+    "nossoBanco": "Cincinnati",
+    "sofascore": "Real Salt Lake"
+  },
+  {
+    "player": "Luca Orellano",
+    "nossoBanco": "Cincinnati",
+    "sofascore": "CF Monterrey"
+  },
+  {
+    "player": "Luciano Acosta",
+    "nossoBanco": "Cincinnati",
+    "sofascore": "Fluminense"
+  },
+  {
+    "player": "Yuya Kubo",
+    "nossoBanco": "Cincinnati",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Kevin Kelsy",
+    "nossoBanco": "Cincinnati",
+    "sofascore": "Portland Timbers"
+  },
+  {
+    "player": "Corey Baird",
+    "nossoBanco": "Cincinnati",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Sergio Santos",
+    "nossoBanco": "Cincinnati",
+    "sofascore": "Atlanta United"
+  },
+  {
+    "player": "Bret Halsey",
+    "nossoBanco": "Cincinnati",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Malik Pinto",
+    "nossoBanco": "Cincinnati",
+    "sofascore": "Brooklyn FC"
+  },
+  {
+    "player": "Birk Risa",
+    "nossoBanco": "New York City FC",
+    "sofascore": "Molde FK"
+  },
+  {
+    "player": "Mitja Ilenic",
+    "nossoBanco": "New York City FC",
+    "sofascore": "Raków Częstochowa"
+  },
+  {
+    "player": "James Sands",
+    "nossoBanco": "New York City FC",
+    "sofascore": "FC St. Pauli"
+  },
+  {
+    "player": "Santiago Rodriguez",
+    "nossoBanco": "New York City FC",
+    "sofascore": "Botafogo"
+  },
+  {
+    "player": "Monsef Bakrar",
+    "nossoBanco": "New York City FC",
+    "sofascore": "GNK Dinamo Zagreb"
+  },
+  {
+    "player": "Julian Fernandez",
+    "nossoBanco": "New York City FC",
+    "sofascore": "Rosario Central"
+  },
+  {
+    "player": "Pedro Gallese",
+    "nossoBanco": "Orlando City",
+    "sofascore": "Deportivo Cali"
+  },
+  {
+    "player": "Rodrigo Schlegel",
+    "nossoBanco": "Orlando City",
+    "sofascore": "Atlas FC"
+  },
+  {
+    "player": "Kyle Smith",
+    "nossoBanco": "Orlando City",
+    "sofascore": "FC Cincinnati"
+  },
+  {
+    "player": "Rafael Santos",
+    "nossoBanco": "Orlando City",
+    "sofascore": "Santos"
+  },
+  {
+    "player": "Cesar Araujo",
+    "nossoBanco": "Orlando City",
+    "sofascore": "Tigres UANL"
+  },
+  {
+    "player": "Facundo Torres",
+    "nossoBanco": "Orlando City",
+    "sofascore": "Austin FC"
+  },
+  {
+    "player": "Ramiro Enrique",
+    "nossoBanco": "Orlando City",
+    "sofascore": "Al-Kholood"
+  },
+  {
+    "player": "Nicolas Lodeiro",
+    "nossoBanco": "Orlando City",
+    "sofascore": "Nacional"
+  },
+  {
+    "player": "Luis Muriel",
+    "nossoBanco": "Orlando City",
+    "sofascore": "Junior Barranquilla"
+  },
+  {
+    "player": "Felipe Martins",
+    "nossoBanco": "Orlando City",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Sean Johnson",
+    "nossoBanco": "Toronto FC",
+    "sofascore": "DC United"
+  },
+  {
+    "player": "Sigurd Rosted",
+    "nossoBanco": "Toronto FC",
+    "sofascore": "Sarpsborg 08"
+  },
+  {
+    "player": "Kevin Gomis",
+    "nossoBanco": "Toronto FC",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Raoul Petretta",
+    "nossoBanco": "Toronto FC",
+    "sofascore": "Darmstadt 98"
+  },
+  {
+    "player": "Richie Laryea",
+    "nossoBanco": "Vancouver Whitecaps",
+    "sofascore": "Toronto FC"
+  },
+  {
+    "player": "Deybi Flores",
+    "nossoBanco": "Toronto FC",
+    "sofascore": "No team"
+  },
+  {
+    "player": "Matty Longstaff",
+    "nossoBanco": "Toronto FC",
+    "sofascore": "CF Montréal"
+  },
+  {
+    "player": "Lorenzo Insigne",
+    "nossoBanco": "Toronto FC",
+    "sofascore": "Pescara"
+  },
+  {
+    "player": "Federico Bernardeschi",
+    "nossoBanco": "Toronto FC",
+    "sofascore": "Bologna"
+  },
+  {
+    "player": "Prince Owusu",
+    "nossoBanco": "Toronto FC",
+    "sofascore": "Medeama SC"
+  },
+  {
+    "player": "Brandon Servania",
+    "nossoBanco": "Toronto FC",
+    "sofascore": "DC United"
+  },
+  {
+    "player": "Yassine Bounou",
+    "nossoBanco": "Al Hilal",
+    "sofascore": "S.S.V. Naturns"
+  },
+  {
+    "player": "Kalidou Koulibaly",
+    "nossoBanco": "Al Hilal",
+    "sofascore": "Al-Hilal"
+  },
+  {
+    "player": "Joao Cancelo",
+    "nossoBanco": "Al Hilal",
+    "sofascore": "FC Barcelona"
+  },
+  {
+    "player": "Renan Lodi",
+    "nossoBanco": "Al Hilal",
+    "sofascore": "Atlético Mineiro"
+  },
+  {
+    "player": "Ruben Neves",
+    "nossoBanco": "Al Hilal",
+    "sofascore": "Al-Hilal"
+  },
+  {
+    "player": "Sergej Milinkovic-Savic",
+    "nossoBanco": "Al Hilal",
+    "sofascore": "Al-Hilal"
+  },
+  {
+    "player": "Nasser Al Dawsari",
+    "nossoBanco": "Al Hilal",
+    "sofascore": "Al-Hilal"
+  },
+  {
+    "player": "Salem Al Dawsari",
+    "nossoBanco": "Villarreal",
+    "sofascore": "Al-Hilal"
+  },
+  {
+    "player": "Malcom",
+    "nossoBanco": "Al Hilal",
+    "sofascore": "Al-Hilal"
+  },
+  {
+    "player": "Aleksandar Mitrovic",
+    "nossoBanco": "Al Hilal",
+    "sofascore": "Al-Rayyan"
+  },
+  {
+    "player": "Neymar Jr",
+    "nossoBanco": "Al Hilal",
+    "sofascore": "Carf Asv U10"
+  },
+  {
+    "player": "Leonardo",
+    "nossoBanco": "Al Hilal",
+    "sofascore": "Al-Hilal"
+  },
+  {
+    "player": "Mohamed Kanno",
+    "nossoBanco": "Al Hilal",
+    "sofascore": "Al-Hilal"
+  },
+  {
+    "player": "Hassan Tambakti",
+    "nossoBanco": "Al Hilal",
+    "sofascore": "Al-Hilal"
+  },
+  {
+    "player": "Bento",
+    "nossoBanco": "Al Nassr",
+    "sofascore": "Al-Nassr"
+  },
+  {
+    "player": "Aymeric Laporte",
+    "nossoBanco": "Al Nassr",
+    "sofascore": "Athletic Club"
+  },
+  {
+    "player": "Mohamed Simakan",
+    "nossoBanco": "Al Nassr",
+    "sofascore": "Al-Nassr"
+  },
+  {
+    "player": "Sultan Al Ghannam",
+    "nossoBanco": "Al Nassr",
+    "sofascore": "Al-Nassr"
+  },
+  {
+    "player": "Nawaf Boushal",
+    "nossoBanco": "Al Nassr",
+    "sofascore": "Al-Nassr"
+  },
+  {
+    "player": "Marcelo Brozovic",
+    "nossoBanco": "Al Nassr",
+    "sofascore": "Al-Nassr"
+  },
+  {
+    "player": "Otavio",
+    "nossoBanco": "Al Nassr",
+    "sofascore": "Al-Qadsiah"
+  },
+  {
+    "player": "Sadio Mane",
+    "nossoBanco": "Al Nassr",
+    "sofascore": "Al-Nassr"
+  },
+  {
+    "player": "Anderson Talisca",
+    "nossoBanco": "Al Nassr",
+    "sofascore": "Fenerbahçe"
+  },
+  {
+    "player": "Cristiano Ronaldo",
+    "nossoBanco": "Al Nassr",
+    "sofascore": "Al-Nassr"
+  },
+  {
+    "player": "Angelo",
+    "nossoBanco": "Al Nassr",
+    "sofascore": "Al-Nassr"
+  },
+  {
+    "player": "Wesley",
+    "nossoBanco": "Al Nassr",
+    "sofascore": "Roma"
+  },
+  {
+    "player": "Ayman Yahya",
+    "nossoBanco": "Al Nassr",
+    "sofascore": "Al-Nassr"
+  },
+  {
+    "player": "Abdulrahman Ghareeb",
+    "nossoBanco": "Al Nassr",
+    "sofascore": "Al-Nassr"
+  },
+  {
+    "player": "Ali Lajami",
+    "nossoBanco": "Al Nassr",
+    "sofascore": "Al-Hilal"
+  },
+  {
+    "player": "Edouard Mendy",
+    "nossoBanco": "Al Ahli",
+    "sofascore": "Al-Ahli"
+  },
+  {
+    "player": "Roger Ibanez",
+    "nossoBanco": "Al Ahli",
+    "sofascore": "Al-Ahli"
+  },
+  {
+    "player": "Merih Demiral",
+    "nossoBanco": "Al Ahli",
+    "sofascore": "Al-Ahli"
+  },
+  {
+    "player": "Ali Majrashi",
+    "nossoBanco": "Al Ahli",
+    "sofascore": "Al-Ahli"
+  },
+  {
+    "player": "Franck Kessie",
+    "nossoBanco": "Al Ahli",
+    "sofascore": "Al-Ahli"
+  },
+  {
+    "player": "Gabri Veiga",
+    "nossoBanco": "Al Ahli",
+    "sofascore": "FC Porto"
+  },
+  {
+    "player": "Riyad Mahrez",
+    "nossoBanco": "Al Ahli",
+    "sofascore": "Al-Ahli"
+  },
+  {
+    "player": "Roberto Firmino",
+    "nossoBanco": "Al Ahli",
+    "sofascore": "Al-Sadd"
+  },
+  {
+    "player": "Ivan Toney",
+    "nossoBanco": "Al Ahli",
+    "sofascore": "Al-Ahli"
+  },
+  {
+    "player": "Firas Al Buraikan",
+    "nossoBanco": "Al Ahli",
+    "sofascore": "Al-Ahli"
+  },
+  {
+    "player": "Ziyad Aljohani",
+    "nossoBanco": "Al Ahli",
+    "sofascore": "Al-Ahli"
+  },
+  {
+    "player": "Ali Al Asmari",
+    "nossoBanco": "Al Ahli",
+    "sofascore": "Al-Shabab"
+  },
+  {
+    "player": "Sumayhan Al Nabit",
+    "nossoBanco": "Al Ahli",
+    "sofascore": "Al-Ahli"
+  },
+  {
+    "player": "Abdullah Al Ammar",
+    "nossoBanco": "Al Ahli",
+    "sofascore": "Al Tai"
+  },
+  {
+    "player": "Predrag Rajkovic",
+    "nossoBanco": "Al Ittihad",
+    "sofascore": "Al-Ittihad"
+  },
+  {
+    "player": "Danilo Pereira",
+    "nossoBanco": "Al Ittihad",
+    "sofascore": "Al-Ittihad"
+  },
+  {
+    "player": "Abdulelah Al Amri",
+    "nossoBanco": "Al Ittihad",
+    "sofascore": "Al-Nassr"
+  },
+  {
+    "player": "Muhannad Al Shanqeeti",
+    "nossoBanco": "Al Ittihad",
+    "sofascore": "Al-Ittihad"
+  },
+  {
+    "player": "Hassan Kadesh",
+    "nossoBanco": "Al Ittihad",
+    "sofascore": "Al-Ittihad"
+  },
+  {
+    "player": "Fabinho",
+    "nossoBanco": "Al Ittihad",
+    "sofascore": "Al-Ittihad"
+  },
+  {
+    "player": "Houssem Aouar",
+    "nossoBanco": "Al Ittihad",
+    "sofascore": "Al-Ittihad"
+  },
+  {
+    "player": "Moussa Diaby",
+    "nossoBanco": "Al Ittihad",
+    "sofascore": "Al-Ittihad"
+  },
+  {
+    "player": "Steven Bergwijn",
+    "nossoBanco": "Al Ittihad",
+    "sofascore": "Al-Ittihad"
+  },
+  {
+    "player": "Karim Benzema",
+    "nossoBanco": "Al Ittihad",
+    "sofascore": "Al-Hilal"
+  },
+  {
+    "player": "Saleh Al Shehri",
+    "nossoBanco": "Al Ittihad",
+    "sofascore": "Al-Ittihad"
+  },
+  {
+    "player": "Faisal Al Ghamdi",
+    "nossoBanco": "Al Ittihad",
+    "sofascore": "Al-Ittihad"
+  },
+  {
+    "player": "Awad Al Nashri",
+    "nossoBanco": "Al Ittihad",
+    "sofascore": "Al-Ittihad"
+  },
+  {
+    "player": "Kim Seung-gyu",
+    "nossoBanco": "Al Shabab",
+    "sofascore": "FC Tokyo"
+  },
+  {
+    "player": "Wesley Hoedt",
+    "nossoBanco": "Al Shabab",
+    "sofascore": "Al-Shabab"
+  },
+  {
+    "player": "Robert Renan",
+    "nossoBanco": "Al Shabab",
+    "sofascore": "Vasco da Gama"
+  },
+  {
+    "player": "Hussain Al Sibyani",
+    "nossoBanco": "Al Shabab",
+    "sofascore": "Al-Shabab"
+  },
+  {
+    "player": "Mohammed Al Thaani",
+    "nossoBanco": "Al Shabab",
+    "sofascore": "Al-Shabab"
+  },
+  {
+    "player": "Cristian Guanca",
+    "nossoBanco": "Al Shabab",
+    "sofascore": "Al Ula"
+  },
+  {
+    "player": "Gustavo Cuellar",
+    "nossoBanco": "Al Shabab",
+    "sofascore": "Deportivo Cali"
+  },
+  {
+    "player": "Giacomo Bonaventura",
+    "nossoBanco": "Al Shabab",
+    "sofascore": "Al-Shabab"
+  },
+  {
+    "player": "Yannick Carrasco",
+    "nossoBanco": "Al Shabab",
+    "sofascore": "Al-Shabab"
+  },
+  {
+    "player": "Daniel Podence",
+    "nossoBanco": "Al Shabab",
+    "sofascore": "Olympiacos FC"
+  },
+  {
+    "player": "Abderrazak Hamdallah",
+    "nossoBanco": "Al Shabab",
+    "sofascore": "Al-Shabab"
+  },
+  {
+    "player": "Musab Al Juwayr",
+    "nossoBanco": "Al Shabab",
+    "sofascore": "Al-Qadsiah"
+  },
+  {
+    "player": "Fahad Al Muwallad",
+    "nossoBanco": "Al Shabab",
+    "sofascore": "Al-Shabab"
+  },
+  {
+    "player": "Nawaf Al Harbi",
+    "nossoBanco": "Al Shabab",
+    "sofascore": "Ohod"
+  }
+]

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+  <!-- Hexágono estilizado (forma de bola de futebol) -->
+  <rect width="40" height="40" rx="10" fill="url(#grad)"/>
+  <!-- Letra F estilizada -->
+  <path d="M11 10h14v4H15v5h9v4h-9v7h-4V10z" fill="white"/>
+  <!-- Ponto de gol / chute -->
+  <circle cx="30" cy="28" r="4" fill="white" opacity="0.9"/>
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+  </defs>
+</svg>
