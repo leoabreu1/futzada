@@ -47,7 +47,9 @@ const GAMES = [
     title: 'Linha do Tempo',
     description: 'Ordene os momentos mais marcantes do futebol na sequência cronológica correta.',
     href: '/games/linha-do-tempo',
-    isAvailable: false,
+    tag: 'DIÁRIO',
+    isNew: true,
+    isAvailable: true,
   },
   {
     title: 'Escudo Quebrado',
@@ -74,7 +76,7 @@ export default function Home() {
       <div style={{ padding: 'clamp(60px, 10vw, 100px) 0 clamp(48px, 8vw, 72px)', textAlign: 'center' }}>
         <div style={{ marginBottom: 16 }}>
           <span className="badge badge-green">
-            <span style={{ marginRight: 5 }}>●</span> 3 JOGOS DISPONÍVEIS
+            <span style={{ marginRight: 5 }}>●</span> 4 JOGOS DISPONÍVEIS
           </span>
         </div>
 

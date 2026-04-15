@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 const NAV = [
   { label: 'Jogos', href: '/' },
   { label: 'Ranking', href: '/ranking' },
+  { label: 'Perfil', href: '/profile' },
 ]
 
 export default function Header() {

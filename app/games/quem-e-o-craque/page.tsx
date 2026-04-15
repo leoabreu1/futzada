@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { getDailyCraque, CRAQUE_PLAYERS } from '@/lib/games/quem-e-o-craque-data'
+import { useGameScore } from '@/lib/hooks/useGameScore'
 
 const MAX_ATTEMPTS = 5
 const PLAYER = getDailyCraque()
@@ -39,7 +40,9 @@ export default function QuemEOCraquePage() {
   const [guesses, setGuesses] = useState<{ name: string; correct: boolean }[]>(saved?.guesses ?? [])
   const [gameOver, setGameOver] = useState<boolean>(saved?.gameOver ?? false)
   const [won, setWon] = useState<boolean>(saved?.won ?? false)
+  const [scoreRegistered, setScoreRegistered] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
+  const { registerGameResult } = useGameScore()
 
   const suggestions = query.length >= 2
     ? CRAQUE_PLAYERS.filter((p) =>
@@ -47,6 +50,13 @@ export default function QuemEOCraquePage() {
         !guesses.some((g) => g.name === p.name)
       ).slice(0, 5)
     : []
+
+  useEffect(() => {
+    if (gameOver && !scoreRegistered) {
+      registerGameResult('quem-e-o-craque', won, attempt)
+      setScoreRegistered(true)
+    }
+  }, [gameOver, scoreRegistered, won, attempt, registerGameResult])
 
   function guess(name: string) {
     const correct = name.toLowerCase() === PLAYER.name.toLowerCase()
@@ -231,6 +241,11 @@ export default function QuemEOCraquePage() {
           <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', marginBottom: 6 }}>
             {won ? `Acertou em ${attempt} tentativa${attempt > 1 ? 's' : ''}!` : 'Não foi dessa vez'}
           </p>
+          {scoreRegistered && (
+            <p style={{ fontSize: '0.78rem', color: 'var(--color-brand-green)', marginBottom: 8 }}>
+              ✓ Pontuação registrada!
+            </p>
+          )}
           <p style={{ fontSize: '0.8rem', color: 'var(--color-muted)' }}>
             {PLAYER.nationality} · {PLAYER.position} · {PLAYER.club}
           </p>
