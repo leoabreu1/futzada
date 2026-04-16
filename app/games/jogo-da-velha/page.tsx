@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { PLAYERS, getDailyGrid, getValidPlayers, type Player } from '@/lib/games/jogo-da-velha-data'
+import { useGameScore } from '@/lib/hooks/useGameScore'
 
 type CellState = { player: Player | null; locked: boolean }
 
@@ -33,10 +34,12 @@ export default function JogoDaVelhaPage() {
   )
   const [guesses, setGuesses] = useState<number>(saved?.guesses ?? MAX_GUESSES)
   const [gameOver, setGameOver] = useState<boolean>(saved?.gameOver ?? false)
+  const [scoreRegistered, setScoreRegistered] = useState(false)
   const [activeCell, setActiveCell] = useState<number | null>(null)
   const [query, setQuery] = useState('')
   const [errorCell, setErrorCell] = useState<number | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const { registerGameResult } = useGameScore()
 
   const score = cells.filter((c) => c.locked).length
 
@@ -52,6 +55,14 @@ export default function JogoDaVelhaPage() {
           !usedPlayerIds.has(p.id)
       ).slice(0, 6)
     : []
+
+  useEffect(() => {
+    if (gameOver && !scoreRegistered) {
+      const allCellsLocked = cells.every((c) => c.locked)
+      registerGameResult('jogo-da-velha', allCellsLocked, MAX_GUESSES - guesses)
+      setScoreRegistered(true)
+    }
+  }, [gameOver, scoreRegistered, cells, guesses, registerGameResult])
 
   function openCell(index: number) {
     if (cells[index].locked || gameOver) return
@@ -295,6 +306,11 @@ export default function JogoDaVelhaPage() {
           <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', marginBottom: 6 }}>
             {score === 9 ? 'Perfeito!' : score >= 7 ? 'Craque!' : score >= 4 ? 'Bom jogo!' : 'Quase lá!'}
           </p>
+          {scoreRegistered && (
+            <p style={{ fontSize: '0.78rem', color: 'var(--color-brand-green)', marginBottom: 8 }}>
+              ✓ Pontuação registrada!
+            </p>
+          )}
           <p style={{ color: 'var(--color-muted)', fontSize: '0.85rem', marginBottom: 16 }}>
             {score}/9 acertos · Novo desafio amanhã
           </p>

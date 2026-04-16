@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { getDailyWord, evaluateGuess, WORD_LIST, type LetterState } from '@/lib/games/wordle-data'
+import { useGameScore } from '@/lib/hooks/useGameScore'
 
 const MAX_GUESSES = 6
 const DAILY_WORD = getDailyWord()
@@ -42,7 +43,9 @@ export default function WordlePage() {
   const [won, setWon] = useState<boolean>(saved?.won ?? false)
   const [shake, setShake] = useState(false)
   const [error, setError] = useState('')
+  const [scoreRegistered, setScoreRegistered] = useState(false)
   const hiddenInputRef = useRef<HTMLInputElement>(null)
+  const { registerGameResult } = useGameScore()
 
   const usedLetters = guesses.reduce<Record<string, LetterState>>((acc, row) => {
     row.letters.forEach((l, i) => {
@@ -89,6 +92,13 @@ export default function WordlePage() {
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
   }, [gameOver, current, submit])
+
+  useEffect(() => {
+    if (gameOver && !scoreRegistered) {
+      registerGameResult('wordle', won, guesses.length)
+      setScoreRegistered(true)
+    }
+  }, [gameOver, scoreRegistered, won, guesses.length, registerGameResult])
 
   function pressKey(key: string) {
     if (gameOver) return
@@ -202,6 +212,11 @@ export default function WordlePage() {
           <p style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', marginBottom: 4 }}>
             {won ? `Acertou em ${guesses.length} tentativa${guesses.length > 1 ? 's' : ''}!` : `Era ${DAILY_WORD}`}
           </p>
+          {scoreRegistered && (
+            <p style={{ fontSize: '0.78rem', color: 'var(--color-brand-green)', marginBottom: 8 }}>
+              ✓ Pontuação registrada!
+            </p>
+          )}
           <p style={{ fontSize: '0.78rem', color: 'var(--color-muted)', marginBottom: 12 }}>Novo desafio amanhã</p>
           <button
             onClick={() => {

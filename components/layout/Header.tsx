@@ -7,6 +7,7 @@ import Logo from '@/components/ui/Logo'
 const NAV = [
   { label: 'Jogos', href: '/' },
   { label: 'Ranking', href: '/ranking' },
+  { label: 'Perfil', href: '/profile' },
 ]
 
 export default function Header() {
