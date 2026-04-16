@@ -1,14 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
-  <!-- Hexágono estilizado (forma de bola de futebol) -->
-  <rect width="40" height="40" rx="10" fill="url(#grad)"/>
-  <!-- Letra F estilizada -->
-  <path d="M11 10h14v4H15v5h9v4h-9v7h-4V10z" fill="white"/>
-  <!-- Ponto de gol / chute -->
-  <circle cx="30" cy="28" r="4" fill="white" opacity="0.9"/>
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+    <linearGradient id="g" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="50%" stop-color="#34d399"/>
       <stop offset="100%" stop-color="#F59E0B"/>
     </linearGradient>
   </defs>
+  <circle cx="20" cy="20" r="19" fill="url(#g)"/>
+  <circle cx="20" cy="20" r="19" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
+  <g opacity="0.2" stroke="#000" stroke-width="0.8" fill="none">
+    <polygon points="20,12 24.7,15.4 23,20.8 17,20.8 15.3,15.4"/>
+    <line x1="20" y1="12" x2="20" y2="4"/>
+    <line x1="24.7" y1="15.4" x2="32" y2="11"/>
+    <line x1="23" y1="20.8" x2="31" y2="25"/>
+    <line x1="17" y1="20.8" x2="9" y2="25"/>
+    <line x1="15.3" y1="15.4" x2="8" y2="11"/>
+  </g>
+  <path d="M14 9 h13 v4.5 h-8.5 v4 h7 v4.5 h-7 v9 h-4.5 z" fill="#060609" opacity="0.9"/>
+  <circle cx="11" cy="10" r="3" fill="rgba(255,255,255,0.15)"/>
 </svg>

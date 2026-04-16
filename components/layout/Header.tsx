@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Logo from '@/components/ui/Logo'
 
 const NAV = [
   { label: 'Jogos', href: '/' },
@@ -16,8 +17,9 @@ export default function Header() {
       position: 'sticky',
       top: 0,
       zIndex: 50,
-      backgroundColor: 'rgba(10,10,11,0.85)',
-      backdropFilter: 'blur(12px)',
+      backgroundColor: 'rgba(6,6,9,0.7)',
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
       borderBottom: '1px solid rgba(255,255,255,0.06)',
     }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
@@ -25,26 +27,16 @@ export default function Header() {
 
           {/* Logo */}
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-            {/* Logo SVG inline — sem Next Image para evitar warning de domínio */}
-            <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="40" height="40" rx="10" fill="url(#logoGrad)"/>
-              <path d="M11 10h14v4H15v5h9v4h-9v7h-4V10z" fill="#0a0a0b"/>
-              <circle cx="30" cy="28" r="4" fill="#0a0a0b" opacity="0.85"/>
-              <defs>
-                <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#10B981"/>
-                  <stop offset="100%" stopColor="#F59E0B"/>
-                </linearGradient>
-              </defs>
-            </svg>
+            <Logo size={34} id="headerLogo" />
             <span style={{
               fontFamily: 'var(--font-display)',
               fontSize: '1.1rem',
               letterSpacing: '0.04em',
-              background: 'linear-gradient(90deg, #10B981 0%, #F59E0B 100%)',
+              background: 'linear-gradient(90deg, #10B981 0%, #34d399 50%, #F59E0B 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
+              filter: 'drop-shadow(0 0 8px rgba(16, 185, 129, 0.3))',
             }}>
               FUTZADA
             </span>
@@ -66,7 +58,7 @@ export default function Header() {
                     color: active ? '#f0f0f0' : '#6b7280',
                     background: active ? 'rgba(255,255,255,0.06)' : 'transparent',
                     textDecoration: 'none',
-                    transition: 'color 0.15s ease, background 0.15s ease',
+                    transition: 'color 0.2s ease, background 0.2s ease',
                   }}
                 >
                   {label}

@@ -23,6 +23,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR">
       <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        {/* Background orbs animados */}
+        <div className="bg-orbs" aria-hidden="true" />
+        <div className="bg-orb-purple" aria-hidden="true" />
+        <div className="bg-noise" aria-hidden="true" />
+
         <Header />
         <main style={{ flex: 1 }}>
           {children}

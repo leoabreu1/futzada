@@ -81,9 +81,10 @@ interface GameCardProps {
   tag?: string
   isNew?: boolean
   isAvailable?: boolean
+  index?: number
 }
 
-export default function GameCard({ title, description, href, tag, isNew = false, isAvailable = true }: GameCardProps) {
+export default function GameCard({ title, description, href, tag, isNew = false, isAvailable = true, index = 0 }: GameCardProps) {
   const icon = getIcon(href)
   const imageSrc = getGameImage(href)
 
@@ -92,15 +93,16 @@ export default function GameCard({ title, description, href, tag, isNew = false,
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
+      position: 'relative',
     }}>
-      {/* Imagem */}
+      {/* Imagem com overlay gradient */}
       <div style={{
         width: '100%',
         aspectRatio: '1 / 1',
-        borderRadius: '8px 8px 0 0',
+        borderRadius: '12px 12px 0 0',
         overflow: 'hidden',
         position: 'relative',
-        background: '#0a0a0a',
+        background: '#08080a',
       }}>
         <Image
           src={imageSrc}
@@ -109,9 +111,21 @@ export default function GameCard({ title, description, href, tag, isNew = false,
           sizes="(max-width: 768px) 100vw, 33vw"
           style={{
             objectFit: 'cover',
-            opacity: isAvailable ? 1 : 0.4,
+            opacity: isAvailable ? 1 : 0.3,
+            transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease',
           }}
+          className={isAvailable ? 'card-image' : ''}
         />
+        {/* Gradient overlay na parte inferior da imagem */}
+        <div style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '50%',
+          background: 'linear-gradient(to top, rgba(6,6,9,0.95) 0%, transparent 100%)',
+          pointerEvents: 'none',
+        }} />
       </div>
 
       {/* Conteúdo */}
@@ -127,11 +141,12 @@ export default function GameCard({ title, description, href, tag, isNew = false,
           <div style={{
             color: isAvailable ? 'var(--color-brand-green)' : 'var(--color-muted-2)',
             flexShrink: 0,
+            filter: isAvailable ? 'drop-shadow(0 0 6px rgba(16, 185, 129, 0.4))' : 'none',
           }}>
             {icon}
           </div>
           <div style={{ display: 'flex', gap: 6 }}>
-            {isNew && <span className="badge badge-yellow">NOVO</span>}
+            {isNew && <span className="badge badge-yellow badge-pulse">NOVO</span>}
             {tag && isAvailable && <span className="badge badge-green">{tag}</span>}
             {!isAvailable && <span className="badge badge-muted">EM BREVE</span>}
           </div>
@@ -162,13 +177,18 @@ export default function GameCard({ title, description, href, tag, isNew = false,
             display: 'flex',
             alignItems: 'center',
             gap: 6,
-            color: 'var(--color-brand-green)',
             fontSize: '0.78rem',
             fontFamily: 'var(--font-display)',
             letterSpacing: '0.04em',
           }}>
-            <span>JOGAR</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+            <span style={{
+              background: 'linear-gradient(90deg, #10b981, #34d399)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}>JOGAR</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round"
+              style={{ filter: 'drop-shadow(0 0 4px rgba(16, 185, 129, 0.5))' }}>
               <path d="m9 18 6-6-6-6"/>
             </svg>
           </div>
@@ -177,17 +197,26 @@ export default function GameCard({ title, description, href, tag, isNew = false,
     </div>
   )
 
+  // Stagger animation delay
+  const delayClass = `delay-${Math.min(index + 1, 9)}`
+
   if (!isAvailable) {
     return (
-      <div className="card" style={{ opacity: 0.45 }}>
-        {inner}
+      <div className={`card animate-fade-up ${delayClass}`} style={{ opacity: 0, animationFillMode: 'forwards' }}>
+        <div style={{ opacity: 0.4 }}>
+          {inner}
+        </div>
       </div>
     )
   }
 
   return (
-    <Link href={href} className="card card-interactive" style={{ display: 'block', textDecoration: 'none' }}>
+    <Link href={href} className={`card card-interactive animate-fade-up ${delayClass}`} style={{ display: 'block', textDecoration: 'none', position: 'relative', opacity: 0, animationFillMode: 'forwards' }}>
       {inner}
+      <style>{`
+        .card-image { transition: transform 0.4s cubic-bezier(0.4,0,0.2,1) !important; }
+        .card-interactive:hover .card-image { transform: scale(1.05); }
+      `}</style>
     </Link>
   )
 }

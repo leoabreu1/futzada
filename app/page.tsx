@@ -71,80 +71,80 @@ export default function Home() {
     <main id="jogos" style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 80px' }}>
 
       {/* Hero */}
-      <div style={{ padding: 'clamp(60px, 10vw, 100px) 0 clamp(48px, 8vw, 72px)', textAlign: 'center' }}>
-        <div style={{ marginBottom: 16 }}>
-          <span className="badge badge-green">
-            <span style={{ marginRight: 5 }}>●</span> 3 JOGOS DISPONÍVEIS
+      <div style={{ padding: 'clamp(70px, 12vw, 120px) 0 clamp(48px, 8vw, 72px)', textAlign: 'center' }}>
+        <div className="animate-fade-up delay-1" style={{ marginBottom: 20, opacity: 0, animationFillMode: 'forwards' }}>
+          <span className="badge badge-green animate-pulse-glow" style={{ fontSize: '0.7rem', padding: '0.25rem 0.8rem' }}>
+            <span style={{ marginRight: 6, fontSize: '0.5rem' }}>&#9679;</span> 3 JOGOS DISPONÍVEIS
           </span>
         </div>
 
-        <h1 style={{
+        <h1 className="animate-fade-up delay-2" style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(2.4rem, 6vw, 4rem)',
+          fontSize: 'clamp(2.6rem, 7vw, 4.5rem)',
           letterSpacing: '-0.03em',
           lineHeight: 1.0,
-          marginBottom: 20,
+          marginBottom: 24,
+          opacity: 0,
+          animationFillMode: 'forwards',
         }}>
-          <span className="text-gradient">Minijogos de Futebol</span>
+          <span className="text-gradient text-glow">Minijogos de Futebol</span>
           <br />
           <span style={{ color: 'var(--color-text)' }}>com Estilo Brasileiro</span>
         </h1>
 
-        <p style={{
-          fontSize: '1rem',
+        <p className="animate-fade-up delay-3" style={{
+          fontSize: '1.05rem',
           color: 'var(--color-muted)',
-          maxWidth: 480,
+          maxWidth: 500,
           margin: '0 auto',
           lineHeight: 1.7,
+          opacity: 0,
+          animationFillMode: 'forwards',
         }}>
           Teste seu conhecimento sobre futebol — brasileirão, europeu e seleções.
-          Novo desafio todo dia.
+          <br />
+          <span style={{ color: 'var(--color-brand-green)' }}>Novo desafio todo dia.</span>
         </p>
       </div>
 
-      {/* Separador */}
-      <hr className="divider" style={{ marginBottom: 40 }} />
+      {/* Separador com glow */}
+      <div className="animate-fade-in delay-4" style={{ opacity: 0, animationFillMode: 'forwards' }}>
+        <hr style={{
+          border: 'none',
+          height: 1,
+          background: 'linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.3), rgba(245, 158, 11, 0.2), transparent)',
+          marginBottom: 40,
+        }} />
+      </div>
 
       {/* Jogos disponíveis */}
       <section style={{ marginBottom: 56 }}>
-        <p style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: '0.7rem',
-          letterSpacing: '0.1em',
-          color: 'var(--color-brand-green)',
-          marginBottom: 16,
-        }}>
+        <p className="section-label section-label-green animate-fade-up delay-4" style={{ opacity: 0, animationFillMode: 'forwards' }}>
           JOGAR AGORA
         </p>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: 12,
+          gap: 16,
         }}>
-          {available.map((game) => (
-            <GameCard key={game.href} {...game} />
+          {available.map((game, i) => (
+            <GameCard key={game.href} {...game} index={i} />
           ))}
         </div>
       </section>
 
       {/* Em breve */}
       <section>
-        <p style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: '0.7rem',
-          letterSpacing: '0.1em',
-          color: 'var(--color-muted-2)',
-          marginBottom: 16,
-        }}>
+        <p className="section-label section-label-muted animate-fade-up delay-5" style={{ opacity: 0, animationFillMode: 'forwards' }}>
           EM BREVE
         </p>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: 12,
+          gap: 16,
         }}>
-          {comingSoon.map((game) => (
-            <GameCard key={game.href} {...game} />
+          {comingSoon.map((game, i) => (
+            <GameCard key={game.href} {...game} index={i + 4} />
           ))}
         </div>
       </section>

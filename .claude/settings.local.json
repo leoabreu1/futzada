@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh --version)",
+      "Bash(winget install:*)",
+      "Bash(scoop install:*)",
+      "Bash(choco install:*)",
+      "Bash(npm -v)",
+      "Bash(npm install:*)",
+      "Bash(chmod 600 ~/.github_token)",
+      "Read(//c/Users/leona/**)",
+      "Bash(curl -s -H 'Authorization: token __TRACKED_VAR__' https://api.github.com/user)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(f'Conectado como: {d[\\\\\"login\\\\\"]}\\\\nNome: {d.get\\(\\\\\"name\\\\\",\\\\\"N/A\\\\\"\\)}\\\\nRepositórios públicos: {d[\\\\\"public_repos\\\\\"]}'\\)\")",
+      "Bash(curl -s -H 'Authorization: token __TRACKED_VAR__' 'https://api.github.com/user/repos?per_page=50&sort=updated')"
+    ]
+  }
+}
