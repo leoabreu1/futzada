@@ -30,6 +30,7 @@ export function useGameScore() {
     // Wordle: 100 - (tentativas * 10)
     // Jogo da Velha: 100 - (tentativas * 5)
     // Quem é o Craque: 100 - (tentativas * 15)
+    // Linha do Tempo: 100 - (tentativas * 20)
 
     let basePoints = 0
     let pointDeduction = 0
@@ -43,6 +44,10 @@ export function useGameScore() {
     } else if (gameType === 'quem-e-o-craque') {
       basePoints = 100
       pointDeduction = 15
+    } else if (gameType === 'linha-do-tempo') {
+      // Linha do Tempo: 100 - (tentativas * 20), mínimo 10 pontos
+      basePoints = 100
+      pointDeduction = 20
     }
 
     const points = won ? Math.max(10, basePoints - attempts * pointDeduction) : 0

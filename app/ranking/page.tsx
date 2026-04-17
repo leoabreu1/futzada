@@ -8,7 +8,7 @@ import type { PlayerRanking } from '@/lib/types/ranking'
 export default function RankingPage() {
   const { getRanking, loaded } = useRankingStorage()
   const [ranking, setRanking] = useState<PlayerRanking[]>([])
-  const [filter, setFilter] = useState<'all' | 'wordle' | 'jogo-da-velha' | 'quem-e-o-craque'>('all')
+  const [filter, setFilter] = useState<'all' | 'wordle' | 'jogo-da-velha' | 'quem-e-o-craque' | 'linha-do-tempo'>('all')
 
   useEffect(() => {
     if (loaded) {
@@ -42,7 +42,7 @@ export default function RankingPage() {
 
       {/* Filtros */}
       <div style={{ display: 'flex', gap: 8, marginBottom: 32, flexWrap: 'wrap' }}>
-        {(['all', 'wordle', 'jogo-da-velha', 'quem-e-o-craque'] as const).map((f) => (
+        {(['all', 'wordle', 'jogo-da-velha', 'quem-e-o-craque', 'linha-do-tempo'] as const).map((f) => (
           <button
             key={f}
             onClick={() => setFilter(f)}
@@ -61,6 +61,7 @@ export default function RankingPage() {
             {f === 'wordle' && '🎯 Wordle'}
             {f === 'jogo-da-velha' && '⚡ Jogo da Velha'}
             {f === 'quem-e-o-craque' && '👁️ Quem é o Craque'}
+            {f === 'linha-do-tempo' && '📅 Linha do Tempo'}
           </button>
         ))}
       </div>
@@ -117,6 +118,11 @@ export default function RankingPage() {
                   {player.gameBreakdown['quem-e-o-craque'] > 0 && (
                     <span style={{ fontSize: '0.7rem', padding: '2px 6px', borderRadius: 'var(--radius-sm)', background: 'rgba(59,130,246,0.2)', color: '#3b82f6' }}>
                       👁️ {player.gameBreakdown['quem-e-o-craque']}
+                    </span>
+                  )}
+                  {player.gameBreakdown['linha-do-tempo'] > 0 && (
+                    <span style={{ fontSize: '0.7rem', padding: '2px 6px', borderRadius: 'var(--radius-sm)', background: 'rgba(168,85,247,0.2)', color: '#a855f7' }}>
+                      📅 {player.gameBreakdown['linha-do-tempo']}
                     </span>
                   )}
                 </div>
