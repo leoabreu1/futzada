@@ -1,71 +1,58 @@
-// Hook para integrar ranking com os games
-// Pode ser usado em qualquer página de jogo para registrar scores
+// Hook para registrar scores nos jogos
+// - Se logado: salva no banco via API
+// - Se não logado: silenciosamente ignora (não aparece no ranking global)
 
-import { useRankingStorage } from '@/lib/hooks/useRankingStorage'
+import { useSession } from 'next-auth/react'
 import { calculateTimelinePoints } from '@/lib/games/linha-do-tempo-data'
 import { calculateConexoesPoints } from '@/lib/games/conexoes-data'
-import { useEffect, useState } from 'react'
+
+type GameType = 'wordle' | 'jogo-da-velha' | 'quem-e-o-craque' | 'linha-do-tempo' | 'conexoes'
+
+function getTodayDate(): string {
+  return new Date().toISOString().split('T')[0] // YYYY-MM-DD
+}
+
+function calcPoints(gameType: GameType, won: boolean, attempts: number): number {
+  if (gameType === 'linha-do-tempo') return calculateTimelinePoints(attempts, won)
+  if (gameType === 'conexoes') return calculateConexoesPoints(attempts, won)
+
+  const config: Record<string, { base: number; deduction: number }> = {
+    wordle:           { base: 100, deduction: 10 },
+    'jogo-da-velha':  { base: 100, deduction: 5 },
+    'quem-e-o-craque':{ base: 100, deduction: 15 },
+  }
+
+  const { base, deduction } = config[gameType]
+  return won ? Math.max(10, base - attempts * deduction) : 0
+}
 
 export function useGameScore() {
-  const { addScore } = useRankingStorage()
-  const [playerId, setPlayerId] = useState<string>('')
-  const [playerName, setPlayerName] = useState<string>('Jogador')
+  const { data: session } = useSession()
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-
-    const savedName = localStorage.getItem('futzada-player-name')
-    if (savedName) setPlayerName(savedName)
-
-    const savedId = localStorage.getItem('futzada-player-id')
-    if (savedId) setPlayerId(savedId)
-  }, [])
-
-  const registerGameResult = (
-    gameType: 'wordle' | 'jogo-da-velha' | 'quem-e-o-craque' | 'linha-do-tempo' | 'conexoes',
+  const registerGameResult = async (
+    gameType: GameType,
     won: boolean,
     attempts: number = 1
   ) => {
-    const id = playerId || localStorage.getItem('futzada-player-id') || ''
-    if (!id) return
+    if (!session?.user?.id) return // não logado, ignora silenciosamente
 
-    // Sistema de pontos:
-    // Wordle: 100 - (tentativas * 10)
-    // Jogo da Velha: 100 - (tentativas * 5)
-    // Quem é o Craque: 100 - (tentativas * 15)
-    // Linha do Tempo: 100 - (tentativas * 20)
+    const points = calcPoints(gameType, won, attempts)
+    const date = getTodayDate()
 
-    let points: number
-
-    if (gameType === 'linha-do-tempo') {
-      points = calculateTimelinePoints(attempts, won)
-    } else if (gameType === 'conexoes') {
-      points = calculateConexoesPoints(attempts, won)
-    } else {
-      let basePoints = 0
-      let pointDeduction = 0
-
-      if (gameType === 'wordle') {
-        basePoints = 100
-        pointDeduction = 10
-      } else if (gameType === 'jogo-da-velha') {
-        basePoints = 100
-        pointDeduction = 5
-      } else if (gameType === 'quem-e-o-craque') {
-        basePoints = 100
-        pointDeduction = 15
-      }
-
-      points = won ? Math.max(10, basePoints - attempts * pointDeduction) : 0
+    try {
+      await fetch('/api/scores', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ gameType, points, attempts, won, date }),
+      })
+    } catch (err) {
+      console.error('Erro ao registrar score:', err)
     }
-
-    return addScore(gameType, points, attempts, playerName, id)
   }
 
   return {
-    playerId,
-    playerName,
-    setPlayerName,
+    isLoggedIn: !!session?.user,
+    user: session?.user ?? null,
     registerGameResult,
   }
 }

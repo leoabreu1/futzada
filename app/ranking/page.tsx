@@ -1,25 +1,46 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
-import { useRankingStorage } from '@/lib/hooks/useRankingStorage'
-import type { PlayerRanking } from '@/lib/types/ranking'
+import { useSession } from 'next-auth/react'
+
+type PlayerRow = {
+  userId: string
+  name: string
+  image: string | null
+  totalPoints: number
+  gamesPlayed: number
+  gameBreakdown: Record<string, number>
+  lastPlayedDate: string
+}
+
+const FILTERS = [
+  { value: 'all', label: 'Todos' },
+  { value: 'wordle', label: '🎯 Wordle' },
+  { value: 'jogo-da-velha', label: '⚡ Jogo da Velha' },
+  { value: 'quem-e-o-craque', label: '👁️ Quem é o Craque' },
+  { value: 'linha-do-tempo', label: '📅 Linha do Tempo' },
+  { value: 'conexoes', label: '🔗 Conexões' },
+] as const
 
 export default function RankingPage() {
-  const { getRanking, loaded } = useRankingStorage()
-  const [ranking, setRanking] = useState<PlayerRanking[]>([])
-  const [filter, setFilter] = useState<'all' | 'wordle' | 'jogo-da-velha' | 'quem-e-o-craque' | 'linha-do-tempo' | 'conexoes'>('all')
+  const { data: session } = useSession()
+  const [ranking, setRanking] = useState<PlayerRow[]>([])
+  const [loading, setLoading] = useState(true)
+  const [filter, setFilter] = useState<string>('all')
 
   useEffect(() => {
-    if (loaded) {
-      setRanking(getRanking())
-    }
-  }, [loaded, getRanking])
+    fetch('/api/ranking')
+      .then(r => r.json())
+      .then(data => setRanking(data.ranking ?? []))
+      .catch(console.error)
+      .finally(() => setLoading(false))
+  }, [])
 
-  const filteredRanking = ranking.filter((player) => {
-    if (filter === 'all') return true
-    return player.gameBreakdown[filter] > 0
-  })
+  const filtered = filter === 'all'
+    ? ranking
+    : ranking.filter(p => (p.gameBreakdown[filter] ?? 0) > 0)
 
   return (
     <div style={{ maxWidth: 1100, margin: '0 auto', padding: '40px 24px 80px' }}>
@@ -30,151 +51,140 @@ export default function RankingPage() {
         Voltar
       </Link>
 
-      {/* Header */}
       <div style={{ marginBottom: 40 }}>
         <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '-0.03em', marginBottom: 8 }}>
           🏆 Ranking Global
         </h1>
         <p style={{ color: 'var(--color-muted)', fontSize: '1rem' }}>
-          Veja os melhores jogadores de Futzada e suas conquistas
+          Scores reais de todos os jogadores — atualizados a cada partida
         </p>
       </div>
 
       {/* Filtros */}
       <div style={{ display: 'flex', gap: 8, marginBottom: 32, flexWrap: 'wrap' }}>
-        {(['all', 'wordle', 'jogo-da-velha', 'quem-e-o-craque', 'linha-do-tempo'] as const).map((f) => (
+        {FILTERS.map(({ value, label }) => (
           <button
-            key={f}
-            onClick={() => setFilter(f)}
+            key={value}
+            onClick={() => setFilter(value)}
             style={{
               padding: '0.5rem 1rem',
               borderRadius: 'var(--radius-sm)',
-              border: `1px solid ${filter === f ? 'rgba(16,185,129,0.5)' : 'var(--color-border)'}`,
-              background: filter === f ? 'rgba(16,185,129,0.1)' : 'var(--color-surface)',
-              color: filter === f ? '#10b981' : 'var(--color-text)',
+              border: `1px solid ${filter === value ? 'rgba(16,185,129,0.5)' : 'var(--color-border)'}`,
+              background: filter === value ? 'rgba(16,185,129,0.1)' : 'var(--color-surface)',
+              color: filter === value ? '#10b981' : 'var(--color-text)',
               fontSize: '0.85rem',
               cursor: 'pointer',
               fontFamily: 'var(--font-sans)',
             }}
           >
-            {f === 'all' && 'Todos'}
-            {f === 'wordle' && '🎯 Wordle'}
-            {f === 'jogo-da-velha' && '⚡ Jogo da Velha'}
-            {f === 'quem-e-o-craque' && '👁️ Quem é o Craque'}
-            {f === 'linha-do-tempo' && '📅 Linha do Tempo'}
+            {label}
           </button>
         ))}
       </div>
 
-      {/* Leaderboard */}
-      {!loaded ? (
-        <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--color-muted)' }}>
+      {/* Lista */}
+      {loading ? (
+        <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--color-muted)' }}>
           Carregando ranking...
         </div>
-      ) : filteredRanking.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--color-muted)' }}>
-          <p>Nenhum score ainda. Comece a jogar! 🎮</p>
+      ) : filtered.length === 0 ? (
+        <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--color-muted)' }}>
+          <p style={{ marginBottom: 12 }}>Nenhum score ainda. Seja o primeiro! 🎮</p>
+          {!session?.user && (
+            <Link href="/login" className="btn-primary" style={{ fontSize: '0.85rem', padding: '0.5rem 1.2rem', display: 'inline-block', marginTop: 8 }}>
+              Entrar para competir
+            </Link>
+          )}
         </div>
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {filteredRanking.slice(0, 20).map((player, index) => (
-            <div
-              key={player.playerId}
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '50px 1fr auto',
-                gap: 16,
-                alignItems: 'center',
-                padding: '16px 20px',
-                borderRadius: 'var(--radius)',
-                background: index === 0 ? 'rgba(16,185,129,0.08)' : index === 1 ? 'rgba(245,158,11,0.08)' : index === 2 ? 'rgba(107,114,128,0.08)' : 'var(--color-surface)',
-                border: index < 3 ? `1px solid rgba(${index === 0 ? '16,185,129' : index === 1 ? '245,158,11' : '107,114,128'},0.3)` : '1px solid var(--color-border)',
-              }}
-            >
-              {/* Posição + Medal */}
-              <div style={{ textAlign: 'center', fontSize: '1.5rem', fontWeight: 'bold', fontFamily: 'var(--font-display)' }}>
-                {index === 0 && '🥇'}
-                {index === 1 && '🥈'}
-                {index === 2 && '🥉'}
-                {index >= 3 && `#${index + 1}`}
-              </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {filtered.map((player, index) => {
+            const isMe = session?.user?.id === player.userId
+            return (
+              <div
+                key={player.userId}
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '50px auto 1fr auto',
+                  gap: 16,
+                  alignItems: 'center',
+                  padding: '14px 20px',
+                  borderRadius: 'var(--radius)',
+                  background: isMe
+                    ? 'rgba(16,185,129,0.06)'
+                    : index === 0 ? 'rgba(16,185,129,0.05)'
+                    : index === 1 ? 'rgba(245,158,11,0.05)'
+                    : index === 2 ? 'rgba(107,114,128,0.05)'
+                    : 'var(--color-surface)',
+                  border: isMe
+                    ? '1px solid rgba(16,185,129,0.4)'
+                    : index < 3
+                    ? `1px solid rgba(${index === 0 ? '16,185,129' : index === 1 ? '245,158,11' : '107,114,128'},0.2)`
+                    : '1px solid var(--color-border)',
+                }}
+              >
+                {/* Posição */}
+                <div style={{ textAlign: 'center', fontSize: index < 3 ? '1.4rem' : '0.95rem', fontWeight: 'bold', fontFamily: 'var(--font-display)', color: 'var(--color-muted)' }}>
+                  {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `#${index + 1}`}
+                </div>
 
-              {/* Jogador + Badges */}
-              <div>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', marginBottom: 4 }}>
-                  {player.playerName}
-                </div>
-                <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 8 }}>
-                  {player.gameBreakdown.wordle > 0 && (
-                    <span style={{ fontSize: '0.7rem', padding: '2px 6px', borderRadius: 'var(--radius-sm)', background: 'rgba(16,185,129,0.2)', color: '#10b981' }}>
-                      🎯 {player.gameBreakdown.wordle}
-                    </span>
-                  )}
-                  {player.gameBreakdown['jogo-da-velha'] > 0 && (
-                    <span style={{ fontSize: '0.7rem', padding: '2px 6px', borderRadius: 'var(--radius-sm)', background: 'rgba(245,158,11,0.2)', color: '#f59e0b' }}>
-                      ⚡ {player.gameBreakdown['jogo-da-velha']}
-                    </span>
-                  )}
-                  {player.gameBreakdown['quem-e-o-craque'] > 0 && (
-                    <span style={{ fontSize: '0.7rem', padding: '2px 6px', borderRadius: 'var(--radius-sm)', background: 'rgba(59,130,246,0.2)', color: '#3b82f6' }}>
-                      👁️ {player.gameBreakdown['quem-e-o-craque']}
-                    </span>
-                  )}
-                  {player.gameBreakdown['linha-do-tempo'] > 0 && (
-                    <span style={{ fontSize: '0.7rem', padding: '2px 6px', borderRadius: 'var(--radius-sm)', background: 'rgba(168,85,247,0.2)', color: '#a855f7' }}>
-                      📅 {player.gameBreakdown['linha-do-tempo']}
-                    </span>
+                {/* Avatar */}
+                <div>
+                  {player.image ? (
+                    <Image src={player.image} alt={player.name} width={36} height={36} style={{ borderRadius: '50%', border: '2px solid rgba(255,255,255,0.1)' }} />
+                  ) : (
+                    <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#10B981,#F59E0B)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 'bold', color: '#0a0a0b' }}>
+                      {player.name[0]?.toUpperCase()}
+                    </div>
                   )}
                 </div>
-                {player.badges.length > 0 && (
-                  <div style={{ display: 'flex', gap: 6 }}>
-                    {player.badges.slice(0, 3).map((badge) => (
-                      <span key={badge.id} title={badge.name} style={{ fontSize: '1rem', cursor: 'help' }}>
-                        {badge.icon}
-                      </span>
-                    ))}
+
+                {/* Nome + breakdown */}
+                <div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '0.95rem', marginBottom: 4 }}>
+                    {player.name}
+                    {isMe && <span style={{ marginLeft: 8, fontSize: '0.7rem', color: '#10b981', background: 'rgba(16,185,129,0.15)', padding: '1px 6px', borderRadius: 4 }}>você</span>}
                   </div>
-                )}
-              </div>
+                  <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+                    {(player.gameBreakdown['wordle'] ?? 0) > 0 && <span style={{ fontSize: '0.68rem', padding: '1px 5px', borderRadius: 3, background: 'rgba(16,185,129,0.15)', color: '#10b981' }}>🎯 {player.gameBreakdown['wordle']}</span>}
+                    {(player.gameBreakdown['jogo-da-velha'] ?? 0) > 0 && <span style={{ fontSize: '0.68rem', padding: '1px 5px', borderRadius: 3, background: 'rgba(245,158,11,0.15)', color: '#f59e0b' }}>⚡ {player.gameBreakdown['jogo-da-velha']}</span>}
+                    {(player.gameBreakdown['quem-e-o-craque'] ?? 0) > 0 && <span style={{ fontSize: '0.68rem', padding: '1px 5px', borderRadius: 3, background: 'rgba(59,130,246,0.15)', color: '#3b82f6' }}>👁️ {player.gameBreakdown['quem-e-o-craque']}</span>}
+                    {(player.gameBreakdown['linha-do-tempo'] ?? 0) > 0 && <span style={{ fontSize: '0.68rem', padding: '1px 5px', borderRadius: 3, background: 'rgba(168,85,247,0.15)', color: '#a855f7' }}>📅 {player.gameBreakdown['linha-do-tempo']}</span>}
+                    {(player.gameBreakdown['conexoes'] ?? 0) > 0 && <span style={{ fontSize: '0.68rem', padding: '1px 5px', borderRadius: 3, background: 'rgba(236,72,153,0.15)', color: '#ec4899' }}>🔗 {player.gameBreakdown['conexoes']}</span>}
+                  </div>
+                </div>
 
-              {/* Pontos */}
-              <div style={{ textAlign: 'right' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: '#10b981', marginBottom: 4 }}>
-                  {player.totalPoints}
-                </div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--color-muted)' }}>
-                  {player.gamesPlayed} {player.gamesPlayed === 1 ? 'jogo' : 'jogos'}
+                {/* Pontos */}
+                <div style={{ textAlign: 'right' }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', color: '#10b981' }}>
+                    {player.totalPoints}
+                  </div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--color-muted)' }}>
+                    {player.gamesPlayed} {player.gamesPlayed === 1 ? 'jogo' : 'jogos'}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       )}
 
-      {/* Stats Gerais */}
+      {/* Stats gerais */}
       {ranking.length > 0 && (
-        <div style={{ marginTop: 56, padding: '32px', borderRadius: 'var(--radius)', background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', marginBottom: 20 }}>
-            📊 Estatísticas Globais
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
+        <div style={{ marginTop: 56, padding: '28px 32px', borderRadius: 'var(--radius)', background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', marginBottom: 20 }}>📊 Estatísticas Globais</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 16 }}>
             <div>
-              <div style={{ fontSize: '0.8rem', color: 'var(--color-muted)', marginBottom: 8 }}>Total de Jogadores</div>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', color: '#10b981' }}>
-                {ranking.length}
-              </div>
+              <div style={{ fontSize: '0.8rem', color: 'var(--color-muted)', marginBottom: 6 }}>Jogadores</div>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', color: '#10b981' }}>{ranking.length}</div>
             </div>
             <div>
-              <div style={{ fontSize: '0.8rem', color: 'var(--color-muted)', marginBottom: 8 }}>Total de Jogos</div>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', color: '#f59e0b' }}>
-                {ranking.reduce((sum, p) => sum + p.gamesPlayed, 0)}
-              </div>
+              <div style={{ fontSize: '0.8rem', color: 'var(--color-muted)', marginBottom: 6 }}>Partidas</div>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', color: '#f59e0b' }}>{ranking.reduce((s, p) => s + p.gamesPlayed, 0)}</div>
             </div>
             <div>
-              <div style={{ fontSize: '0.8rem', color: 'var(--color-muted)', marginBottom: 8 }}>Pontos Totais</div>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', color: '#3b82f6' }}>
-                {ranking.reduce((sum, p) => sum + p.totalPoints, 0)}
-              </div>
+              <div style={{ fontSize: '0.8rem', color: 'var(--color-muted)', marginBottom: 6 }}>Pontos Totais</div>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', color: '#3b82f6' }}>{ranking.reduce((s, p) => s + p.totalPoints, 0)}</div>
             </div>
           </div>
         </div>

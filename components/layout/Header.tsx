@@ -1,17 +1,19 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { useSession, signOut } from 'next-auth/react'
 import Logo from '@/components/ui/Logo'
 
 const NAV = [
   { label: 'Jogos', href: '/' },
   { label: 'Ranking', href: '/ranking' },
-  { label: 'Perfil', href: '/profile' },
 ]
 
 export default function Header() {
   const pathname = usePathname()
+  const { data: session, status } = useSession()
 
   return (
     <header style={{
@@ -68,10 +70,66 @@ export default function Header() {
             })}
           </nav>
 
-          {/* CTA */}
-          <a href="#jogos" className="btn-primary" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}>
-            Jogar Agora
-          </a>
+          {/* Auth area */}
+          {status === 'loading' ? (
+            <div style={{ width: 80, height: 32 }} />
+          ) : session?.user ? (
+            /* Logado */
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <Link href="/profile" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
+                {session.user.image ? (
+                  <Image
+                    src={session.user.image}
+                    alt={session.user.name ?? 'Avatar'}
+                    width={30}
+                    height={30}
+                    style={{ borderRadius: '50%', border: '2px solid rgba(16,185,129,0.4)' }}
+                  />
+                ) : (
+                  <div style={{
+                    width: 30, height: 30, borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #10B981, #F59E0B)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: '0.75rem', fontWeight: 'bold', color: '#0a0a0b',
+                  }}>
+                    {session.user.name?.[0]?.toUpperCase() ?? '?'}
+                  </div>
+                )}
+                <span style={{ fontSize: '0.8rem', color: '#9ca3af', maxWidth: 90, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {session.user.name?.split(' ')[0]}
+                </span>
+              </Link>
+              <button
+                onClick={() => signOut({ callbackUrl: '/' })}
+                style={{
+                  padding: '0.35rem 0.7rem',
+                  borderRadius: 'var(--radius-sm)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: 'transparent',
+                  color: '#6b7280',
+                  fontSize: '0.78rem',
+                  cursor: 'pointer',
+                  transition: 'color 0.2s, border-color 0.2s',
+                  fontFamily: 'var(--font-sans)',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.color = '#ef4444'
+                  e.currentTarget.style.borderColor = 'rgba(239,68,68,0.3)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.color = '#6b7280'
+                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'
+                }}
+              >
+                Sair
+              </button>
+            </div>
+          ) : (
+            /* Não logado */
+            <Link href="/login" className="btn-primary" style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}>
+              Entrar
+            </Link>
+          )}
         </div>
       </div>
     </header>
