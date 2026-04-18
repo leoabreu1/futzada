@@ -16,9 +16,24 @@ export default function ProfilePage() {
   const { data: session, status } = useSession()
   const [myStats, setMyStats] = useState<PlayerRow | null>(null)
   const [myPosition, setMyPosition] = useState<number | null>(null)
+  const [nickname, setNickname] = useState('')
+  const [nickSaved, setNickSaved] = useState(false)
+  const [nickError, setNickError] = useState('')
+  const [nickLoading, setNickLoading] = useState(false)
 
+  // Carrega dados do usuário (nickname atual) e stats do ranking
   useEffect(() => {
     if (!session?.user?.id) return
+
+    // Busca nickname atual
+    fetch('/api/user')
+      .then(r => r.json())
+      .then(data => {
+        if (data.user?.nickname) setNickname(data.user.nickname)
+      })
+      .catch(console.error)
+
+    // Busca posição no ranking
     fetch('/api/ranking')
       .then(r => r.json())
       .then(data => {
@@ -31,6 +46,32 @@ export default function ProfilePage() {
       })
       .catch(console.error)
   }, [session?.user?.id])
+
+  const handleSaveNick = async () => {
+    setNickError('')
+    setNickSaved(false)
+    setNickLoading(true)
+
+    try {
+      const res = await fetch('/api/user', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nickname }),
+      })
+      const data = await res.json()
+
+      if (!res.ok) {
+        setNickError(data.error ?? 'Erro ao salvar')
+      } else {
+        setNickSaved(true)
+        setTimeout(() => setNickSaved(false), 2500)
+      }
+    } catch {
+      setNickError('Erro de conexão')
+    } finally {
+      setNickLoading(false)
+    }
+  }
 
   if (status === 'loading') {
     return (
@@ -54,7 +95,6 @@ export default function ProfilePage() {
       </h1>
 
       {session?.user ? (
-        /* Logado */
         <>
           {/* Card do usuário */}
           <div style={{
@@ -65,29 +105,95 @@ export default function ProfilePage() {
             borderRadius: 'var(--radius)',
             background: 'var(--color-surface)',
             border: '1px solid rgba(16,185,129,0.2)',
-            marginBottom: 24,
+            marginBottom: 28,
           }}>
             {session.user.image ? (
               <Image
                 src={session.user.image}
                 alt={session.user.name ?? 'Avatar'}
-                width={56}
-                height={56}
+                width={52}
+                height={52}
                 style={{ borderRadius: '50%', border: '3px solid rgba(16,185,129,0.4)' }}
               />
             ) : (
-              <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'linear-gradient(135deg,#10B981,#F59E0B)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', fontWeight: 'bold', color: '#0a0a0b' }}>
+              <div style={{ width: 52, height: 52, borderRadius: '50%', background: 'linear-gradient(135deg,#10B981,#F59E0B)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.3rem', fontWeight: 'bold', color: '#0a0a0b' }}>
                 {session.user.name?.[0]?.toUpperCase()}
               </div>
             )}
             <div>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', marginBottom: 2 }}>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', marginBottom: 2 }}>
                 {session.user.name}
               </div>
-              <div style={{ fontSize: '0.8rem', color: 'var(--color-muted)' }}>
+              <div style={{ fontSize: '0.78rem', color: 'var(--color-muted)' }}>
                 {session.user.email}
               </div>
             </div>
+          </div>
+
+          {/* Nick */}
+          <div style={{
+            padding: '20px',
+            borderRadius: 'var(--radius)',
+            background: 'var(--color-surface)',
+            border: '1px solid var(--color-border)',
+            marginBottom: 20,
+          }}>
+            <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: 4 }}>
+              🎮 Nick no ranking
+            </label>
+            <p style={{ fontSize: '0.78rem', color: 'var(--color-muted)', marginBottom: 12 }}>
+              É o nome que aparece publicamente no ranking. Entre 2 e 20 caracteres.
+            </p>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <input
+                type="text"
+                value={nickname}
+                onChange={e => { setNickname(e.target.value); setNickError('') }}
+                placeholder="Seu nick..."
+                maxLength={20}
+                style={{
+                  flex: 1,
+                  padding: '9px 12px',
+                  borderRadius: 'var(--radius-sm)',
+                  border: `1px solid ${nickError ? 'rgba(239,68,68,0.5)' : 'var(--color-border)'}`,
+                  background: 'var(--color-surface-2)',
+                  color: 'var(--color-text)',
+                  fontSize: '0.95rem',
+                  fontFamily: 'var(--font-sans)',
+                  outline: 'none',
+                }}
+              />
+              <button
+                onClick={handleSaveNick}
+                disabled={nickLoading || !nickname.trim()}
+                style={{
+                  padding: '9px 18px',
+                  borderRadius: 'var(--radius-sm)',
+                  border: 'none',
+                  background: nickSaved
+                    ? 'rgba(16,185,129,0.2)'
+                    : 'linear-gradient(90deg,#10B981,#F59E0B)',
+                  color: nickSaved ? '#10b981' : '#0a0a0b',
+                  fontFamily: 'var(--font-display)',
+                  fontWeight: 'bold',
+                  fontSize: '0.85rem',
+                  cursor: nickLoading ? 'wait' : 'pointer',
+                  opacity: !nickname.trim() ? 0.5 : 1,
+                  transition: 'all 0.2s',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {nickSaved ? '✅ Salvo!' : nickLoading ? '...' : 'Salvar nick'}
+              </button>
+            </div>
+            {nickError && (
+              <p style={{ marginTop: 8, fontSize: '0.78rem', color: '#ef4444' }}>
+                ⚠️ {nickError}
+              </p>
+            )}
+            <p style={{ marginTop: 8, fontSize: '0.72rem', color: 'var(--color-muted-2)' }}>
+              {nickname.length}/20 caracteres
+            </p>
           </div>
 
           {/* Stats */}
@@ -95,30 +201,26 @@ export default function ProfilePage() {
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: 12,
-              marginBottom: 24,
+              gap: 10,
+              marginBottom: 20,
             }}>
-              <div style={{ padding: '16px', borderRadius: 'var(--radius)', background: 'var(--color-surface)', border: '1px solid var(--color-border)', textAlign: 'center' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', color: '#10b981' }}>{myStats.totalPoints}</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--color-muted)', marginTop: 4 }}>pontos</div>
-              </div>
-              <div style={{ padding: '16px', borderRadius: 'var(--radius)', background: 'var(--color-surface)', border: '1px solid var(--color-border)', textAlign: 'center' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', color: '#f59e0b' }}>{myStats.gamesPlayed}</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--color-muted)', marginTop: 4 }}>jogos</div>
-              </div>
-              <div style={{ padding: '16px', borderRadius: 'var(--radius)', background: 'var(--color-surface)', border: '1px solid var(--color-border)', textAlign: 'center' }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', color: '#3b82f6' }}>
-                  {myPosition ? `#${myPosition}` : '-'}
+              {[
+                { label: 'pontos', value: myStats.totalPoints, color: '#10b981' },
+                { label: 'jogos', value: myStats.gamesPlayed, color: '#f59e0b' },
+                { label: 'ranking', value: myPosition ? `#${myPosition}` : '-', color: '#3b82f6' },
+              ].map(({ label, value, color }) => (
+                <div key={label} style={{ padding: '14px', borderRadius: 'var(--radius)', background: 'var(--color-surface)', border: '1px solid var(--color-border)', textAlign: 'center' }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', color }}>{value}</div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--color-muted)', marginTop: 4 }}>{label}</div>
                 </div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--color-muted)', marginTop: 4 }}>ranking</div>
-              </div>
+              ))}
             </div>
           )}
 
           {/* Breakdown por jogo */}
           {myStats && (
             <div style={{ padding: '20px', borderRadius: 'var(--radius)', background: 'var(--color-surface)', border: '1px solid var(--color-border)', marginBottom: 24 }}>
-              <div style={{ fontSize: '0.85rem', color: 'var(--color-muted)', marginBottom: 12 }}>Jogos por modalidade</div>
+              <div style={{ fontSize: '0.82rem', color: 'var(--color-muted)', marginBottom: 12 }}>Jogos por modalidade</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {[
                   { key: 'wordle', label: '🎯 Wordle', color: '#10b981' },
@@ -131,7 +233,7 @@ export default function ProfilePage() {
                   return (
                     <div key={key} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <span style={{ fontSize: '0.85rem' }}>{label}</span>
-                      <span style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', color: count > 0 ? color : 'var(--color-muted-2)' }}>
+                      <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.95rem', color: count > 0 ? color : 'var(--color-muted-2)' }}>
                         {count} {count === 1 ? 'jogo' : 'jogos'}
                       </span>
                     </div>
@@ -162,7 +264,6 @@ export default function ProfilePage() {
           </button>
         </>
       ) : (
-        /* Não logado */
         <div style={{ textAlign: 'center', padding: '40px 20px' }}>
           <p style={{ color: 'var(--color-muted)', marginBottom: 24, fontSize: '0.95rem' }}>
             Entre com sua conta Google para salvar seus scores e aparecer no ranking global.

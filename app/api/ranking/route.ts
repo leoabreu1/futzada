@@ -7,7 +7,7 @@ export async function GET() {
     const scores = await prisma.score.findMany({
       include: {
         user: {
-          select: { id: true, name: true, image: true },
+          select: { id: true, name: true, nickname: true, image: true },
         },
       },
       orderBy: { createdAt: 'desc' },
@@ -29,7 +29,7 @@ export async function GET() {
       if (!playerMap.has(user.id)) {
         playerMap.set(user.id, {
           userId: user.id,
-          name: user.name ?? 'Anônimo',
+          name: user.nickname ?? user.name ?? 'Anônimo',
           image: user.image,
           totalPoints: 0,
           gamesPlayed: 0,
