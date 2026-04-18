@@ -4,11 +4,10 @@ import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { getDailyCraque, CRAQUE_PLAYERS } from '@/lib/games/quem-e-o-craque-data'
 import { useGameScore } from '@/lib/hooks/useGameScore'
+import { useGameDailyStorage } from '@/lib/hooks/useGameDailyStorage'
 
 const MAX_ATTEMPTS = 5
 const PLAYER = getDailyCraque()
-const TODAY = new Date().toISOString().split('T')[0]
-const STORAGE_KEY = `futzada-craque-${TODAY}`
 
 const BLUR_LEVELS = [
   'blur(32px) brightness(0.5)',
@@ -19,22 +18,11 @@ const BLUR_LEVELS = [
   'blur(0px) brightness(1)',
 ]
 
-function loadState() {
-  if (typeof window === 'undefined') return null
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY)
-    return saved ? JSON.parse(saved) : null
-  } catch { return null }
-}
-
-function saveState(attempt: number, guesses: { name: string; correct: boolean }[], gameOver: boolean, won: boolean) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ attempt, guesses, gameOver, won }))
-  } catch {}
-}
+type CraqueState = { attempt: number; guesses: { name: string; correct: boolean }[]; gameOver: boolean; won: boolean }
 
 export default function QuemEOCraquePage() {
-  const saved = loadState()
+  const { load, save } = useGameDailyStorage<CraqueState>('craque')
+  const saved = load()
   const [attempt, setAttempt] = useState<number>(saved?.attempt ?? 0)
   const [query, setQuery] = useState('')
   const [guesses, setGuesses] = useState<{ name: string; correct: boolean }[]>(saved?.guesses ?? [])
@@ -70,7 +58,7 @@ export default function QuemEOCraquePage() {
     setAttempt(newAttempt)
     if (newWon) setWon(true)
     if (newGameOver) setGameOver(true)
-    saveState(newAttempt, newGuesses, newGameOver, newWon)
+    save({ attempt: newAttempt, guesses: newGuesses, gameOver: newGameOver, won: newWon })
   }
 
   const filterStyle = gameOver ? BLUR_LEVELS[5] : BLUR_LEVELS[Math.min(attempt, BLUR_LEVELS.length - 2)]

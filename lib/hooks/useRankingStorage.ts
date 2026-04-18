@@ -42,19 +42,18 @@ export function useRankingStorage() {
       date: new Date().toISOString().split('T')[0],
     }
 
-    const updated = [...scores, newScore]
-    setScores(updated)
-
-    if (typeof window !== 'undefined') {
+    setScores(prev => {
+      const updated = [...prev, newScore]
       try {
         localStorage.setItem(SCORES_STORAGE_KEY, JSON.stringify(updated))
       } catch (error) {
         console.error('Erro ao salvar scores:', error)
       }
-    }
+      return updated
+    })
 
     return newScore
-  }, [scores])
+  }, [])
 
   // Obter ranking agregado por jogador
   const getRanking = useCallback((): PlayerRanking[] => {

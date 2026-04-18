@@ -2,6 +2,8 @@
 // Pode ser usado em qualquer página de jogo para registrar scores
 
 import { useRankingStorage } from '@/lib/hooks/useRankingStorage'
+import { calculateTimelinePoints } from '@/lib/games/linha-do-tempo-data'
+import { calculateConexoesPoints } from '@/lib/games/conexoes-data'
 import { useEffect, useState } from 'react'
 
 export function useGameScore() {
@@ -20,11 +22,12 @@ export function useGameScore() {
   }, [])
 
   const registerGameResult = (
-    gameType: 'wordle' | 'jogo-da-velha' | 'quem-e-o-craque' | 'linha-do-tempo',
+    gameType: 'wordle' | 'jogo-da-velha' | 'quem-e-o-craque' | 'linha-do-tempo' | 'conexoes',
     won: boolean,
     attempts: number = 1
   ) => {
-    if (!playerId) return
+    const id = playerId || localStorage.getItem('futzada-player-id') || ''
+    if (!id) return
 
     // Sistema de pontos:
     // Wordle: 100 - (tentativas * 10)
@@ -32,27 +35,31 @@ export function useGameScore() {
     // Quem é o Craque: 100 - (tentativas * 15)
     // Linha do Tempo: 100 - (tentativas * 20)
 
-    let basePoints = 0
-    let pointDeduction = 0
+    let points: number
 
-    if (gameType === 'wordle') {
-      basePoints = 100
-      pointDeduction = 10
-    } else if (gameType === 'jogo-da-velha') {
-      basePoints = 100
-      pointDeduction = 5
-    } else if (gameType === 'quem-e-o-craque') {
-      basePoints = 100
-      pointDeduction = 15
-    } else if (gameType === 'linha-do-tempo') {
-      // Linha do Tempo: 100 - (tentativas * 20), mínimo 10 pontos
-      basePoints = 100
-      pointDeduction = 20
+    if (gameType === 'linha-do-tempo') {
+      points = calculateTimelinePoints(attempts, won)
+    } else if (gameType === 'conexoes') {
+      points = calculateConexoesPoints(attempts, won)
+    } else {
+      let basePoints = 0
+      let pointDeduction = 0
+
+      if (gameType === 'wordle') {
+        basePoints = 100
+        pointDeduction = 10
+      } else if (gameType === 'jogo-da-velha') {
+        basePoints = 100
+        pointDeduction = 5
+      } else if (gameType === 'quem-e-o-craque') {
+        basePoints = 100
+        pointDeduction = 15
+      }
+
+      points = won ? Math.max(10, basePoints - attempts * pointDeduction) : 0
     }
 
-    const points = won ? Math.max(10, basePoints - attempts * pointDeduction) : 0
-
-    return addScore(gameType, points, attempts, playerName, playerId)
+    return addScore(gameType, points, attempts, playerName, id)
   }
 
   return {

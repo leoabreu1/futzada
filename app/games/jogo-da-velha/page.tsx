@@ -1,33 +1,20 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, Fragment } from 'react'
 import Link from 'next/link'
 import { PLAYERS, getDailyGrid, getValidPlayers, type Player } from '@/lib/games/jogo-da-velha-data'
 import { useGameScore } from '@/lib/hooks/useGameScore'
+import { useGameDailyStorage } from '@/lib/hooks/useGameDailyStorage'
 
 type CellState = { player: Player | null; locked: boolean }
+type VelhaState = { cells: CellState[]; guesses: number; gameOver: boolean }
 
-const TODAY = new Date().toISOString().split('T')[0]
-const STORAGE_KEY = `futzada-velha-${TODAY}`
 const MAX_GUESSES = 9
 
-function loadState() {
-  if (typeof window === 'undefined') return null
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY)
-    return saved ? JSON.parse(saved) : null
-  } catch { return null }
-}
-
-function saveState(cells: CellState[], guesses: number, gameOver: boolean) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ cells, guesses, gameOver }))
-  } catch {}
-}
-
 export default function JogoDaVelhaPage() {
+  const { load, save } = useGameDailyStorage<VelhaState>('velha')
   const { rows, cols } = getDailyGrid()
-  const saved = loadState()
+  const saved = load()
 
   const [cells, setCells] = useState<CellState[]>(
     saved?.cells ?? Array(9).fill(null).map(() => ({ player: null, locked: false }))
@@ -94,7 +81,7 @@ export default function JogoDaVelhaPage() {
     setActiveCell(null)
     setQuery('')
     if (newGameOver) setGameOver(true)
-    saveState(newCells, remaining, newGameOver)
+    save({ cells: newCells, guesses: remaining, gameOver: newGameOver })
   }
 
   const activeCat = activeCell !== null
@@ -156,8 +143,8 @@ export default function JogoDaVelhaPage() {
 
         {/* Rows */}
         {rows.map((rowCat, rowIdx) => (
-          <>
-            <div key={rowCat.id} style={{
+          <Fragment key={rowCat.id}>
+            <div style={{
               background: 'var(--color-surface)',
               border: '1px solid var(--color-border)',
               borderRadius: 'var(--radius-sm)',
@@ -231,7 +218,7 @@ export default function JogoDaVelhaPage() {
                 </button>
               )
             })}
-          </>
+          </Fragment>
         ))}
       </div>
 

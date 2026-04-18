@@ -4,13 +4,14 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { getDailyWord, evaluateGuess, WORD_LIST, type LetterState } from '@/lib/games/wordle-data'
 import { useGameScore } from '@/lib/hooks/useGameScore'
+import { useGameDailyStorage } from '@/lib/hooks/useGameDailyStorage'
 
 const MAX_GUESSES = 6
 const DAILY_WORD = getDailyWord()
 const WORD_LENGTH = DAILY_WORD.length
-const STORAGE_KEY = `futzada-wordle-${new Date().toISOString().split('T')[0]}`
 
 type GuessRow = { letters: string[]; states: LetterState[] }
+type WordleState = { guesses: GuessRow[]; gameOver: boolean; won: boolean }
 
 const CELL_STYLE: Record<LetterState, React.CSSProperties> = {
   correct: { background: 'rgba(16,185,129,0.2)', border: '1px solid rgba(16,185,129,0.5)', color: '#10b981' },
@@ -21,22 +22,9 @@ const CELL_STYLE: Record<LetterState, React.CSSProperties> = {
 
 const KEY_ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM']
 
-function loadState() {
-  if (typeof window === 'undefined') return null
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY)
-    return saved ? JSON.parse(saved) : null
-  } catch { return null }
-}
-
-function saveState(guesses: GuessRow[], gameOver: boolean, won: boolean) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ guesses, gameOver, won }))
-  } catch {}
-}
-
 export default function WordlePage() {
-  const saved = loadState()
+  const { load, save } = useGameDailyStorage<WordleState>('wordle')
+  const saved = load()
   const [guesses, setGuesses] = useState<GuessRow[]>(saved?.guesses ?? [])
   const [current, setCurrent] = useState('')
   const [gameOver, setGameOver] = useState<boolean>(saved?.gameOver ?? false)
@@ -78,7 +66,7 @@ export default function WordlePage() {
     setCurrent('')
     if (newWon) setWon(true)
     if (newGameOver) setGameOver(true)
-    saveState(newGuesses, newGameOver, newWon)
+    save({ guesses: newGuesses, gameOver: newGameOver, won: newWon })
   }, [current, guesses])
 
   useEffect(() => {

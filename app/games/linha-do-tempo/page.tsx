@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { useGameScore } from '@/lib/hooks/useGameScore'
+import { useGameDailyStorage } from '@/lib/hooks/useGameDailyStorage'
 import { getDailyTimelineEvents, getCorrectOrder, calculateTimelinePoints, type TimelineEvent } from '@/lib/games/linha-do-tempo-data'
 
 function fisherYates<T>(arr: T[], seed: number): T[] {
@@ -27,6 +28,7 @@ interface SavedState {
 
 export default function LinhaDoTempoPage() {
   const { registerGameResult } = useGameScore()
+  const { load, save, today } = useGameDailyStorage<SavedState>('timeline')
   const [events, setEvents] = useState<TimelineEvent[]>([])
   const [shuffled, setShuffled] = useState<TimelineEvent[]>([])
   const [userOrder, setUserOrder] = useState<TimelineEvent[]>([])
@@ -37,28 +39,22 @@ export default function LinhaDoTempoPage() {
   const [loaded, setLoaded] = useState(false)
   const [shared, setShared] = useState(false)
 
-  const today = typeof window !== 'undefined' ? new Date().toISOString().split('T')[0] : ''
-  const STORAGE_KEY = `futzada-timeline-${today}`
-
   useEffect(() => {
     const dailyEvents = getDailyTimelineEvents()
     const seed = today.split('-').reduce((acc, val) => acc + parseInt(val, 10), 0)
     const shuffledEvents = fisherYates(dailyEvents, seed)
 
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY)
-      if (saved) {
-        const parsed: SavedState = JSON.parse(saved)
-        setEvents(dailyEvents)
-        setShuffled(parsed.shuffled)
-        setUserOrder(parsed.userOrder)
-        setGameState(parsed.gameState)
-        setAttempts(parsed.attempts)
-        if (parsed.gameState !== 'playing') setScoreRegistered(true)
-        setLoaded(true)
-        return
-      }
-    } catch {}
+    const saved = load()
+    if (saved) {
+      setEvents(dailyEvents)
+      setShuffled(saved.shuffled)
+      setUserOrder(saved.userOrder)
+      setGameState(saved.gameState)
+      setAttempts(saved.attempts)
+      if (saved.gameState !== 'playing') setScoreRegistered(true)
+      setLoaded(true)
+      return
+    }
 
     setEvents(dailyEvents)
     setShuffled(shuffledEvents)
@@ -67,20 +63,17 @@ export default function LinhaDoTempoPage() {
 
   useEffect(() => {
     if (!loaded || gameState === 'checking') return
-    try {
-      const state: SavedState = {
-        gameState: gameState as 'playing' | 'won' | 'lost',
-        attempts,
-        userOrder,
-        shuffled,
-      }
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-    } catch {}
+    save({
+      gameState: gameState as 'playing' | 'won' | 'lost',
+      attempts,
+      userOrder,
+      shuffled,
+    })
   }, [gameState, attempts, userOrder, loaded])
 
   useEffect(() => {
-    if (gameState === 'won' && !scoreRegistered) {
-      registerGameResult('linha-do-tempo', true, attempts)
+    if ((gameState === 'won' || gameState === 'lost') && !scoreRegistered) {
+      registerGameResult('linha-do-tempo', gameState === 'won', attempts)
       setScoreRegistered(true)
     }
   }, [gameState, attempts, scoreRegistered, registerGameResult])
@@ -112,8 +105,6 @@ export default function LinhaDoTempoPage() {
       if (allCorrect) {
         setGameState('won')
       } else if (attempts >= 3) {
-        registerGameResult('linha-do-tempo', false, attempts)
-        setScoreRegistered(true)
         setGameState('lost')
       } else {
         setAttempts(prev => prev + 1)

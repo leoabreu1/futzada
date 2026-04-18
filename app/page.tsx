@@ -29,7 +29,9 @@ const GAMES = [
     title: 'Conexões Futebol',
     description: 'Encontre 4 grupos de 4 jogadores com algo em comum. Cuidado com as pegadinhas.',
     href: '/games/conexoes',
-    isAvailable: false,
+    tag: 'DIÁRIO',
+    isNew: true,
+    isAvailable: true,
   },
   {
     title: 'Caminho da Carreira',
@@ -76,7 +78,7 @@ export default function Home() {
       <div style={{ padding: 'clamp(70px, 12vw, 120px) 0 clamp(48px, 8vw, 72px)', textAlign: 'center' }}>
         <div className="animate-fade-up delay-1" style={{ marginBottom: 20, opacity: 0, animationFillMode: 'forwards' }}>
           <span className="badge badge-green animate-pulse-glow" style={{ fontSize: '0.7rem', padding: '0.25rem 0.8rem' }}>
-            <span style={{ marginRight: 6, fontSize: '0.5rem' }}>&#9679;</span> 4 JOGOS DISPONÍVEIS
+            <span style={{ marginRight: 6, fontSize: '0.5rem' }}>&#9679;</span> 5 JOGOS DISPONÍVEIS
           </span>
         </div>
 
