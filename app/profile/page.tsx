@@ -20,6 +20,7 @@ export default function ProfilePage() {
   const [nickSaved, setNickSaved] = useState(false)
   const [nickError, setNickError] = useState('')
   const [nickLoading, setNickLoading] = useState(false)
+  const [daysUntilChange, setDaysUntilChange] = useState<number | null>(null)
 
   // Carrega dados do usuário (nickname atual) e stats do ranking
   useEffect(() => {
@@ -30,6 +31,11 @@ export default function ProfilePage() {
       .then(r => r.json())
       .then(data => {
         if (data.user?.nickname) setNickname(data.user.nickname)
+        if (data.user?.nicknameUpdatedAt && data.user?.nickname) {
+          const msPerDay = 1000 * 60 * 60 * 24
+          const daysSince = (Date.now() - new Date(data.user.nicknameUpdatedAt).getTime()) / msPerDay
+          if (daysSince < 7) setDaysUntilChange(Math.ceil(7 - daysSince))
+        }
       })
       .catch(console.error)
 
@@ -138,11 +144,23 @@ export default function ProfilePage() {
             border: '1px solid var(--color-border)',
             marginBottom: 20,
           }}>
-            <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, marginBottom: 4 }}>
-              🎮 Nick no ranking
-            </label>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
+              <label style={{ fontSize: '0.85rem', fontWeight: 600 }}>🎮 Nick no ranking</label>
+              {daysUntilChange !== null && (
+                <span style={{
+                  fontSize: '0.72rem',
+                  background: 'rgba(245,158,11,0.12)',
+                  color: '#f59e0b',
+                  border: '1px solid rgba(245,158,11,0.3)',
+                  borderRadius: 4,
+                  padding: '2px 8px',
+                }}>
+                  🔒 Troca em {daysUntilChange} dia{daysUntilChange > 1 ? 's' : ''}
+                </span>
+              )}
+            </div>
             <p style={{ fontSize: '0.78rem', color: 'var(--color-muted)', marginBottom: 12 }}>
-              É o nome que aparece publicamente no ranking. Entre 2 e 20 caracteres.
+              Aparece publicamente no ranking · entre 2 e 20 caracteres · 1 troca por semana.
             </p>
             <div style={{ display: 'flex', gap: 8 }}>
               <input
@@ -151,21 +169,23 @@ export default function ProfilePage() {
                 onChange={e => { setNickname(e.target.value); setNickError('') }}
                 placeholder="Seu nick..."
                 maxLength={20}
+                disabled={daysUntilChange !== null}
                 style={{
                   flex: 1,
                   padding: '9px 12px',
                   borderRadius: 'var(--radius-sm)',
                   border: `1px solid ${nickError ? 'rgba(239,68,68,0.5)' : 'var(--color-border)'}`,
-                  background: 'var(--color-surface-2)',
-                  color: 'var(--color-text)',
+                  background: daysUntilChange !== null ? 'var(--color-surface)' : 'var(--color-surface-2)',
+                  color: daysUntilChange !== null ? 'var(--color-muted)' : 'var(--color-text)',
                   fontSize: '0.95rem',
                   fontFamily: 'var(--font-sans)',
                   outline: 'none',
+                  cursor: daysUntilChange !== null ? 'not-allowed' : 'text',
                 }}
               />
               <button
                 onClick={handleSaveNick}
-                disabled={nickLoading || !nickname.trim()}
+                disabled={nickLoading || !nickname.trim() || daysUntilChange !== null}
                 style={{
                   padding: '9px 18px',
                   borderRadius: 'var(--radius-sm)',
@@ -177,8 +197,8 @@ export default function ProfilePage() {
                   fontFamily: 'var(--font-display)',
                   fontWeight: 'bold',
                   fontSize: '0.85rem',
-                  cursor: nickLoading ? 'wait' : 'pointer',
-                  opacity: !nickname.trim() ? 0.5 : 1,
+                  cursor: (nickLoading || daysUntilChange !== null) ? 'not-allowed' : 'pointer',
+                  opacity: (!nickname.trim() || daysUntilChange !== null) ? 0.4 : 1,
                   transition: 'all 0.2s',
                   whiteSpace: 'nowrap',
                 }}
