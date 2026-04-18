@@ -23,15 +23,25 @@ const CELL_STYLE: Record<LetterState, React.CSSProperties> = {
 const KEY_ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM']
 
 export default function WordlePage() {
-  const { load, save } = useGameDailyStorage<WordleState>('wordle')
-  const saved = load()
-  const [guesses, setGuesses] = useState<GuessRow[]>(saved?.guesses ?? [])
+  const { load, save, isReady } = useGameDailyStorage<WordleState>('wordle')
+  const [guesses, setGuesses] = useState<GuessRow[]>([])
   const [current, setCurrent] = useState('')
-  const [gameOver, setGameOver] = useState<boolean>(saved?.gameOver ?? false)
-  const [won, setWon] = useState<boolean>(saved?.won ?? false)
+  const [gameOver, setGameOver] = useState(false)
+  const [won, setWon] = useState(false)
   const [shake, setShake] = useState(false)
   const [error, setError] = useState('')
   const [scoreRegistered, setScoreRegistered] = useState(false)
+
+  // Restaura estado salvo quando o userId estiver resolvido
+  useEffect(() => {
+    if (!isReady) return
+    const saved = load()
+    if (!saved) return
+    setGuesses(saved.guesses)
+    setGameOver(saved.gameOver)
+    setWon(saved.won)
+    if (saved.gameOver) setScoreRegistered(true)
+  }, [isReady]) // eslint-disable-line react-hooks/exhaustive-deps
   const hiddenInputRef = useRef<HTMLInputElement>(null)
   const { registerGameResult } = useGameScore()
 

@@ -12,16 +12,25 @@ type VelhaState = { cells: CellState[]; guesses: number; gameOver: boolean }
 const MAX_GUESSES = 9
 
 export default function JogoDaVelhaPage() {
-  const { load, save } = useGameDailyStorage<VelhaState>('velha')
+  const { load, save, isReady } = useGameDailyStorage<VelhaState>('velha')
   const { rows, cols } = getDailyGrid()
-  const saved = load()
 
   const [cells, setCells] = useState<CellState[]>(
-    saved?.cells ?? Array(9).fill(null).map(() => ({ player: null, locked: false }))
+    Array(9).fill(null).map(() => ({ player: null, locked: false }))
   )
-  const [guesses, setGuesses] = useState<number>(saved?.guesses ?? MAX_GUESSES)
-  const [gameOver, setGameOver] = useState<boolean>(saved?.gameOver ?? false)
+  const [guesses, setGuesses] = useState<number>(MAX_GUESSES)
+  const [gameOver, setGameOver] = useState(false)
   const [scoreRegistered, setScoreRegistered] = useState(false)
+
+  useEffect(() => {
+    if (!isReady) return
+    const saved = load()
+    if (!saved) return
+    setCells(saved.cells)
+    setGuesses(saved.guesses)
+    setGameOver(saved.gameOver)
+    if (saved.gameOver) setScoreRegistered(true)
+  }, [isReady]) // eslint-disable-line react-hooks/exhaustive-deps
   const [activeCell, setActiveCell] = useState<number | null>(null)
   const [query, setQuery] = useState('')
   const [errorCell, setErrorCell] = useState<number | null>(null)

@@ -21,14 +21,24 @@ const BLUR_LEVELS = [
 type CraqueState = { attempt: number; guesses: { name: string; correct: boolean }[]; gameOver: boolean; won: boolean }
 
 export default function QuemEOCraquePage() {
-  const { load, save } = useGameDailyStorage<CraqueState>('craque')
-  const saved = load()
-  const [attempt, setAttempt] = useState<number>(saved?.attempt ?? 0)
+  const { load, save, isReady } = useGameDailyStorage<CraqueState>('craque')
+  const [attempt, setAttempt] = useState(0)
   const [query, setQuery] = useState('')
-  const [guesses, setGuesses] = useState<{ name: string; correct: boolean }[]>(saved?.guesses ?? [])
-  const [gameOver, setGameOver] = useState<boolean>(saved?.gameOver ?? false)
-  const [won, setWon] = useState<boolean>(saved?.won ?? false)
+  const [guesses, setGuesses] = useState<{ name: string; correct: boolean }[]>([])
+  const [gameOver, setGameOver] = useState(false)
+  const [won, setWon] = useState(false)
   const [scoreRegistered, setScoreRegistered] = useState(false)
+
+  useEffect(() => {
+    if (!isReady) return
+    const saved = load()
+    if (!saved) return
+    setAttempt(saved.attempt)
+    setGuesses(saved.guesses)
+    setGameOver(saved.gameOver)
+    setWon(saved.won)
+    if (saved.gameOver) setScoreRegistered(true)
+  }, [isReady]) // eslint-disable-line react-hooks/exhaustive-deps
   const inputRef = useRef<HTMLInputElement>(null)
   const { registerGameResult } = useGameScore()
 

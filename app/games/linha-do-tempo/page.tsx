@@ -28,7 +28,7 @@ interface SavedState {
 
 export default function LinhaDoTempoPage() {
   const { registerGameResult } = useGameScore()
-  const { load, save, today } = useGameDailyStorage<SavedState>('timeline')
+  const { load, save, today, isReady } = useGameDailyStorage<SavedState>('timeline')
   const [events, setEvents] = useState<TimelineEvent[]>([])
   const [shuffled, setShuffled] = useState<TimelineEvent[]>([])
   const [userOrder, setUserOrder] = useState<TimelineEvent[]>([])
@@ -40,6 +40,7 @@ export default function LinhaDoTempoPage() {
   const [shared, setShared] = useState(false)
 
   useEffect(() => {
+    if (!isReady) return
     const dailyEvents = getDailyTimelineEvents()
     const seed = today.split('-').reduce((acc, val) => acc + parseInt(val, 10), 0)
     const shuffledEvents = fisherYates(dailyEvents, seed)
@@ -59,7 +60,7 @@ export default function LinhaDoTempoPage() {
     setEvents(dailyEvents)
     setShuffled(shuffledEvents)
     setLoaded(true)
-  }, [])
+  }, [isReady]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!loaded || gameState === 'checking') return

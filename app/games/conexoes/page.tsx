@@ -38,22 +38,30 @@ function seededShuffle<T>(arr: T[], seed: number): T[] {
 }
 
 export default function ConexoesPage() {
-  const { load, save, today } = useGameDailyStorage<ConexoesState>('conexoes')
+  const { load, save, today, isReady } = useGameDailyStorage<ConexoesState>('conexoes')
   const { registerGameResult } = useGameScore()
   const [scoreRegistered, setScoreRegistered] = useState(false)
 
   const allPlayers = PUZZLE.groups.flatMap((g) => g.players)
   const seed = today.split('-').reduce((acc, n) => acc + parseInt(n), 0)
-  const saved = load()
 
-  const [foundGroups, setFoundGroups] = useState<ConexoesGroup[]>(saved?.foundGroups ?? [])
-  const [errors, setErrors] = useState<number>(saved?.errors ?? 0)
-  const [gameState, setGameState] = useState<'playing' | 'won' | 'lost'>(saved?.gameState ?? 'playing')
-  const [shuffledPlayers, setShuffledPlayers] = useState<string[]>(
-    saved?.shuffledPlayers ?? seededShuffle(allPlayers, seed)
-  )
+  const [foundGroups, setFoundGroups] = useState<ConexoesGroup[]>([])
+  const [errors, setErrors] = useState(0)
+  const [gameState, setGameState] = useState<'playing' | 'won' | 'lost'>('playing')
+  const [shuffledPlayers, setShuffledPlayers] = useState<string[]>(seededShuffle(allPlayers, seed))
   const [selected, setSelected] = useState<string[]>([])
   const [shaking, setShaking] = useState(false)
+
+  useEffect(() => {
+    if (!isReady) return
+    const saved = load()
+    if (!saved) return
+    setFoundGroups(saved.foundGroups)
+    setErrors(saved.errors)
+    setGameState(saved.gameState)
+    setShuffledPlayers(saved.shuffledPlayers)
+    if (saved.gameState !== 'playing') setScoreRegistered(true)
+  }, [isReady]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if ((gameState === 'won' || gameState === 'lost') && !scoreRegistered) {
