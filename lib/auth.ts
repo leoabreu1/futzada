@@ -18,6 +18,8 @@ export const authOptions: NextAuthOptions = {
     session({ session, user }) {
       if (session.user) {
         session.user.id = user.id
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        session.user.nickname = (user as any).nickname ?? null
       }
       return session
     },

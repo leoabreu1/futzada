@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Providers from "@/components/Providers";
+import NicknameGate from "@/components/NicknameGate";
 
 export const metadata: Metadata = {
   title: "FUTZADA - Minijogos de Futebol",
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-BR">
       <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <Providers>
+          <NicknameGate />
           {/* Background orbs animados */}
           <div className="bg-orbs" aria-hidden="true" />
           <div className="bg-orb-purple" aria-hidden="true" />
