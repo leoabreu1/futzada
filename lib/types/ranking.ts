@@ -4,7 +4,7 @@ export type Score = {
   playerId: string
   playerName: string
   playerAvatar?: string
-  gameType: 'wordle' | 'jogo-da-velha' | 'quem-e-o-craque' | 'linha-do-tempo'
+  gameType: 'wordle' | 'jogo-da-velha' | 'quem-e-o-craque' | 'linha-do-tempo' | 'conexoes'
   points: number
   attempts: number
   date: string
@@ -21,6 +21,7 @@ export type PlayerRanking = {
     'jogo-da-velha': number
     'quem-e-o-craque': number
     'linha-do-tempo': number
+    conexoes: number
   }
   badges: Badge[]
   streak: number

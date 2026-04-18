@@ -26,7 +26,7 @@ export function useRankingStorage() {
 
   // Salvar score quando um jogo termina
   const addScore = useCallback((
-    gameType: 'wordle' | 'jogo-da-velha' | 'quem-e-o-craque' | 'linha-do-tempo',
+    gameType: 'wordle' | 'jogo-da-velha' | 'quem-e-o-craque' | 'linha-do-tempo' | 'conexoes',
     points: number,
     attempts: number = 1,
     playerName: string = 'Anônimo',
@@ -72,6 +72,7 @@ export function useRankingStorage() {
             'jogo-da-velha': 0,
             'quem-e-o-craque': 0,
             'linha-do-tempo': 0,
+            conexoes: 0,
           },
           badges: [],
           streak: 0,

@@ -8,7 +8,7 @@ import type { PlayerRanking } from '@/lib/types/ranking'
 export default function RankingPage() {
   const { getRanking, loaded } = useRankingStorage()
   const [ranking, setRanking] = useState<PlayerRanking[]>([])
-  const [filter, setFilter] = useState<'all' | 'wordle' | 'jogo-da-velha' | 'quem-e-o-craque' | 'linha-do-tempo'>('all')
+  const [filter, setFilter] = useState<'all' | 'wordle' | 'jogo-da-velha' | 'quem-e-o-craque' | 'linha-do-tempo' | 'conexoes'>('all')
 
   useEffect(() => {
     if (loaded) {
