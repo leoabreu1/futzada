@@ -72,6 +72,132 @@ const PUZZLES: DailyConexoes[] = [
       { difficulty: 'purple', category: 'Jogaram no Bayer Leverkusen', players: ['Florian Wirtz', 'Lucio', 'Toni Kroos', 'Juan'] },
     ],
   },
+  // Puzzle 7
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Revelados pelo Santos', players: ['Pelé', 'Robinho', 'Neymar Jr.', 'Ganso'] },
+      { difficulty: 'green',  category: 'Jogaram no Sevilla', players: ['Ivan Rakitic', 'Jesus Navas', 'Carlos Bacca', 'Ever Banega'] },
+      { difficulty: 'blue',   category: 'Campeões Copa 1998 com França', players: ['Lilian Thuram', 'Emmanuel Petit', 'Robert Pires', 'Didier Deschamps'] },
+      { difficulty: 'purple', category: 'Jogaram no Porto', players: ['Falcao Garcia', 'Deco', 'Fernando', 'Alex Sandro'] },
+    ],
+  },
+  // Puzzle 8
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Artilheiros históricos da Liga dos Campeões', players: ['Cristiano Ronaldo', 'Lionel Messi', 'Raul', 'Karim Benzema'] },
+      { difficulty: 'green',  category: 'Jogaram no Tottenham', players: ['Harry Kane', 'Gareth Bale', 'Dimitar Berbatov', 'Ledley King'] },
+      { difficulty: 'blue',   category: 'Revelados pelo Corinthians', players: ['Rivaldo', 'Alexandre Pato', 'Socrates', 'Malcom'] },
+      { difficulty: 'purple', category: 'Jogaram no Roma', players: ['Francesco Totti', 'Daniele De Rossi', 'Gabriel Batistuta', 'Radja Nainggolan'] },
+    ],
+  },
+  // Puzzle 9
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Zagueiros ídolos do Brasil', players: ['Lucio', 'Aldair', 'Thiago Silva', 'Juan'] },
+      { difficulty: 'green',  category: 'Jogaram no Olympique de Marselha', players: ['Didier Drogba', 'Samir Nasri', 'Mamadou Niang', 'Andre-Pierre Gignac'] },
+      { difficulty: 'blue',   category: 'Campeões Copa do Mundo 2010 com Espanha', players: ['Carles Puyol', 'Gerard Pique', 'Cesc Fabregas', 'Fernando Torres'] },
+      { difficulty: 'purple', category: 'Jogaram no Benfica', players: ['Eusebio', 'Rui Costa', 'Angel Di Maria', 'Darwin Nunez'] },
+    ],
+  },
+  // Puzzle 10
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Artilheiros históricos da Premier League', players: ['Alan Shearer', 'Wayne Rooney', 'Andrew Cole', 'Frank Lampard'] },
+      { difficulty: 'green',  category: 'Jogaram no São Paulo FC', players: ['Socrates', 'Rai', 'Hernanes', 'Rogerio Ceni'] },
+      { difficulty: 'blue',   category: 'Campeões Copa 2006 com Itália', players: ['Gianluigi Buffon', 'Fabio Cannavaro', 'Andrea Pirlo', 'Francesco Totti'] },
+      { difficulty: 'purple', category: 'Jogaram no Shakhtar Donetsk', players: ['Willian', 'Fernandinho', 'Douglas Costa', 'Fred'] },
+    ],
+  },
+  // Puzzle 11
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Revelados pelo Grêmio', players: ['Ronaldinho Gaucho', 'Lucas Leiva', 'Anderson', 'Ramiro'] },
+      { difficulty: 'green',  category: 'Jogaram no Valencia', players: ['David Villa', 'David Silva', 'Pablo Aimar', 'Gaizka Mendieta'] },
+      { difficulty: 'blue',   category: 'Ícones da Seleção Portuguesa', players: ['Luis Figo', 'Rui Costa', 'Pauleta', 'Eusebio'] },
+      { difficulty: 'purple', category: 'Jogaram no Lazio', players: ['Miroslav Klose', 'Pavel Nedved', 'Alessandro Nesta', 'Ciro Immobile'] },
+    ],
+  },
+  // Puzzle 12
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Goleiros campeões da Copa 2002 com Brasil', players: ['Marcos', 'Dida', 'Rogerio Ceni', 'Taffarel'] },
+      { difficulty: 'green',  category: 'Jogaram no Monaco', players: ['Thierry Henry', 'David Trezeguet', 'Emmanuel Petit', 'Kylian Mbappe'] },
+      { difficulty: 'blue',   category: 'Campeões da Copa América com Argentina', players: ['Lionel Messi', 'Sergio Aguero', 'Carlos Tevez', 'Javier Zanetti'] },
+      { difficulty: 'purple', category: 'Jogaram no Ajax', players: ['Johan Cruyff', 'Edwin van der Sar', 'Patrick Kluivert', 'Clarence Seedorf'] },
+    ],
+  },
+  // Puzzle 13
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Jogaram no Fluminense', players: ['Thiago Silva', 'Fred', 'Deco', 'Ronaldinho Gaucho'] },
+      { difficulty: 'green',  category: 'Jogaram no Celtic', players: ['Henrik Larsson', 'Chris Sutton', 'Neil Lennon', 'John Hartson'] },
+      { difficulty: 'blue',   category: 'Campeões Copa 2014 com Alemanha', players: ['Thomas Muller', 'Manuel Neuer', 'Mesut Ozil', 'Miroslav Klose'] },
+      { difficulty: 'purple', category: 'Jogaram no Zenit São Petersburgo', players: ['Hulk', 'Nicolas Lombaerts', 'Axel Witsel', 'Danny'] },
+    ],
+  },
+  // Puzzle 14
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Maiores artilheiros da história da Copa do Mundo', players: ['Miroslav Klose', 'Ronaldo Fenomeno', 'Gerd Muller', 'Just Fontaine'] },
+      { difficulty: 'green',  category: 'Jogaram no Leicester City', players: ['Jamie Vardy', 'Riyad Mahrez', "N'Golo Kante", 'Kasper Schmeichel'] },
+      { difficulty: 'blue',   category: 'Jogaram na Seleção Holandesa nos anos 90', players: ['Dennis Bergkamp', 'Ruud van Nistelrooy', 'Edgar Davids', 'Clarence Seedorf'] },
+      { difficulty: 'purple', category: 'Jogaram no Galatasaray', players: ['Hakan Sukur', 'Didier Drogba', 'Gheorghe Hagi', 'Nicolas Anelka'] },
+    ],
+  },
+  // Puzzle 15
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Meias históricos brasileiros', players: ['Zico', 'Socrates', 'Rai', 'Juninho Pernambucano'] },
+      { difficulty: 'green',  category: 'Jogaram no Newcastle', players: ['Alan Shearer', 'David Ginola', 'Les Ferdinand', 'Hatem Ben Arfa'] },
+      { difficulty: 'blue',   category: 'Campeões Copa 1998 com Brasil (jogadores chave)', players: ['Ronaldo Fenomeno', 'Rivaldo', 'Leonardo', 'Cafu'] },
+      { difficulty: 'purple', category: 'Jogaram no Inter Miami', players: ['Lionel Messi', 'Sergio Busquets', 'Jordi Alba', 'Luis Suarez'] },
+    ],
+  },
+  // Puzzle 16
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Laterais ícones do futebol mundial', players: ['Cafu', 'Roberto Carlos', 'Philipp Lahm', 'Paolo Maldini'] },
+      { difficulty: 'green',  category: 'Jogaram no Porto (portugueses)', players: ['Deco', 'Fernando Couto', 'Costinha', 'Pedro Mendes'] },
+      { difficulty: 'blue',   category: 'Atacantes da seleção inglesa nos anos 2000', players: ['Michael Owen', 'Emile Heskey', 'Teddy Sheringham', 'Peter Crouch'] },
+      { difficulty: 'purple', category: 'Geração de Ouro da Seleção Belga', players: ['Eden Hazard', 'Kevin De Bruyne', 'Romelu Lukaku', 'Axel Witsel'] },
+    ],
+  },
+  // Puzzle 17
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Jogaram no Cruzeiro', players: ['Ronaldo Fenomeno', 'Alex', 'Edilson', 'Deivid'] },
+      { difficulty: 'green',  category: 'Jogaram no Villarreal', players: ['Diego Forlan', 'Santi Cazorla', 'Juan Roman Riquelme', 'Robert Pires'] },
+      { difficulty: 'blue',   category: 'Campeões da Eurocopa 2020 (2021) com Itália', players: ['Gianluigi Donnarumma', 'Leonardo Bonucci', 'Jorginho', 'Marco Verratti'] },
+      { difficulty: 'purple', category: 'Jogaram no Fenerbahce', players: ['Roberto Carlos', 'Nicolas Anelka', 'Mateja Kezman', 'Pierre van Hooijdonk'] },
+    ],
+  },
+  // Puzzle 18
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Pontas velozes históricos', players: ['Arjen Robben', 'Franck Ribery', 'Gareth Bale', 'Marc Overmars'] },
+      { difficulty: 'green',  category: 'Jogaram no Vasco da Gama', players: ['Romario', 'Edmundo', 'Juninho Pernambucano', 'Mauro Galvao'] },
+      { difficulty: 'blue',   category: 'Jogaram no Manchester City (era Guardiola)', players: ['Raheem Sterling', 'Leroy Sane', 'Gabriel Jesus', 'Sergio Aguero'] },
+      { difficulty: 'purple', category: 'Jogaram no Olympique de Lyon', players: ['Karim Benzema', 'Samuel Umtiti', 'Nabil Fekir', 'Alexandre Lacazette'] },
+    ],
+  },
+  // Puzzle 19
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Atacantes ícones do Botafogo', players: ['Garrincha', 'Jairzinho', 'Tulio Maravilha', 'Loco Abreu'] },
+      { difficulty: 'green',  category: 'Jogaram no Athletic Club de Bilbao', players: ['Fernando Llorente', 'Aritz Aduriz', 'Javi Martinez', 'Iker Muniain'] },
+      { difficulty: 'blue',   category: 'Campeões Copa 2002 com Brasil (meia-atacantes)', players: ['Ronaldinho Gaucho', 'Rivaldo', 'Edilson', 'Kleberson'] },
+      { difficulty: 'purple', category: 'Jogaram no Inter de Milão nos anos 2000', players: ['Ronaldo Fenomeno', 'Hernan Crespo', 'Dejan Stankovic', 'Luis Figo'] },
+    ],
+  },
+  // Puzzle 20
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Lendas do futebol brasileiro (décadas 70-80)', players: ['Pelé', 'Zico', 'Socrates', 'Falcao'] },
+      { difficulty: 'green',  category: 'Jogaram no Feyenoord', players: ['Robin van Persie', 'Dirk Kuyt', 'Giovanni van Bronckhorst', 'Virgil van Dijk'] },
+      { difficulty: 'blue',   category: 'Jogaram no Atlético Mineiro', players: ['Ronaldinho Gaucho', 'Diego Tardelli', 'Bernard', 'Hulk'] },
+      { difficulty: 'purple', category: 'Jogaram na MLS (Major League Soccer)', players: ['David Beckham', 'Thierry Henry', 'Kaka', 'Bastian Schweinsteiger'] },
+    ],
+  },
 ]
 
 const BASE_DATE = new Date('2026-04-16').getTime()
