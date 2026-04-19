@@ -2,6 +2,16 @@
 
 ---
 
+## 2026-04-19 — Conexões: banco de puzzles triplicado (7 → 21)
+
+**O que foi feito:** O jogo Conexões tinha apenas 7 puzzles diferentes, o que significava que após uma semana os desafios começavam a se repetir. Foram adicionados 14 novos puzzles cobrindo times históricos (Santos, Ajax, Roma, Monaco, Celtic, Zenit), seleções campeãs (Itália 2006, Alemanha 2014, Bélgica, Holanda dos anos 90) e lendas do futebol brasileiro (Grêmio, Vasco, Fluminense, Botafogo, Cruzeiro). O banco agora tem 21 puzzles únicos — três semanas de desafios sem repetição.
+
+**Arquivos modificados:** `lib/games/conexoes-data.ts`
+
+**Por que:** Quem joga todo dia merece sempre um desafio novo. Com apenas 7 puzzles, um jogador frequente via o mesmo desafio repetir em menos de duas semanas, o que tira a graça e a sensação de descoberta do jogo.
+
+---
+
 ## 2026-04-17 — Linha do Tempo agora vale pontos e aparece no ranking
 
 **O que foi feito:** Corrigido um bug onde jogadores que venciam o jogo Linha do Tempo recebiam 0 pontos (nenhum) e o jogo sequer aparecia como opção de filtro na página de ranking. Agora o jogo calcula corretamente 100 pontos menos 20 por cada tentativa usada, com mínimo de 10 pontos. O filtro "📅 Linha do Tempo" foi adicionado ao ranking e o badge roxo aparece no card de cada jogador.
