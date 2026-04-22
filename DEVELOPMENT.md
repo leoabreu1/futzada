@@ -1,4 +1,4 @@
-# ✅ FUTZADA - Resumo de Desenvolvimento
+# ✅ FUTLE - Resumo de Desenvolvimento
 
 ## 📊 Status do Projeto
 

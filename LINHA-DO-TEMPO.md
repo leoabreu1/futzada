@@ -1,4 +1,4 @@
-# 🎮 FUTZADA - Game: Linha do Tempo ✅
+# 🎮 FUTLE - Game: Linha do Tempo ✅
 
 ## ✨ O que foi implementado:
 

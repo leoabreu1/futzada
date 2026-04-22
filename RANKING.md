@@ -1,4 +1,4 @@
-# 🏆 Sistema de Ranking - FUTZADA
+# 🏆 Sistema de Ranking - FUTLE
 
 ## ✅ O que foi implementado:
 

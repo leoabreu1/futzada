@@ -33,14 +33,12 @@ function LoginContent() {
         <h1 style={{
           fontFamily: 'var(--font-display)',
           fontSize: '1.6rem',
-          letterSpacing: '-0.02em',
+          letterSpacing: '0.06em',
           marginBottom: 8,
-          background: 'linear-gradient(90deg, #10B981 0%, #F59E0B 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
+          color: '#FACC15',
+          filter: 'drop-shadow(0 0 8px rgba(250, 204, 21, 0.35))',
         }}>
-          FUTZADA
+          FUTLE
         </h1>
 
         <p style={{ color: 'var(--color-muted)', fontSize: '0.9rem', marginBottom: 32 }}>

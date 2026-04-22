@@ -1,4 +1,4 @@
-// Banco de jogadores completo para todos os jogos do FUTZADA
+// Banco de jogadores completo para todos os jogos do FUTLE
 // Cobertura: brasileiros, europeus, lendas, jogadores atuais
 
 export type Player = {

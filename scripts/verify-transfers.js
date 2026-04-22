@@ -50,7 +50,7 @@ async function main() {
                     });
                     
                     console.log(`⚠️ DISCREPÂNCIA ENCONTRADA: ${p.name}`);
-                    console.log(`   > Banco Futzada: ${p.currentClubDB}`);
+                    console.log(`   > Banco Futle: ${p.currentClubDB}`);
                     console.log(`   > Sofascore 2026: ${realCurrentTeam}\n`);
                 }
             }

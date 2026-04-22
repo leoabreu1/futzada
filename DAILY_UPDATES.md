@@ -1,4 +1,4 @@
-# Log de Atualizações Diárias — Futzada
+# Log de Atualizações Diárias — Futle
 
 ---
 

@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* CSS Variables para Tema FUTZADA */
+/* CSS Variables para Tema FUTLE */
 :root {
   --font-inter: "Inter", sans-serif;
   --font-display: "Sora", sans-serif;
@@ -43,7 +43,7 @@ h6 {
   font-weight: 700;
 }
 
-/* Cards com estilo FUTZADA */
+/* Cards com estilo FUTLE */
 .card {
   @apply bg-dark-900 rounded-xl border border-primary-500/10 shadow-lg transition-all duration-300 hover:border-primary-500/30 hover:shadow-xl;
 }
