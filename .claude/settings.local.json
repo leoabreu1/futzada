@@ -41,7 +41,8 @@
       "Bash(npx tsc *)",
       "mcp__c24adf29-8d10-4524-a152-d116db35abca__list_teams",
       "mcp__c24adf29-8d10-4524-a152-d116db35abca__list_projects",
-      "mcp__c24adf29-8d10-4524-a152-d116db35abca__get_project"
+      "mcp__c24adf29-8d10-4524-a152-d116db35abca__get_project",
+      "mcp__c24adf29-8d10-4524-a152-d116db35abca__get_deployment"
     ]
   }
 }
