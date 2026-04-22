@@ -34,6 +34,7 @@ export default function JogoDaVelhaPage() {
   const [activeCell, setActiveCell] = useState<number | null>(null)
   const [query, setQuery] = useState('')
   const [errorCell, setErrorCell] = useState<number | null>(null)
+  const [errorMessage, setErrorMessage] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
   const { registerGameResult } = useGameScore()
 
@@ -80,6 +81,14 @@ export default function JogoDaVelhaPage() {
     if (!isValid) {
       setErrorCell(activeCell)
       setTimeout(() => setErrorCell(null), 800)
+      const matchesRow = rows[row].match(player)
+      const matchesCol = cols[col].match(player)
+      let msg = `${player.name} não é `
+      if (!matchesRow && !matchesCol) msg += `${rows[row].label} nem ${cols[col].label}`
+      else if (!matchesRow) msg += rows[row].label
+      else msg += cols[col].label
+      setErrorMessage(msg)
+      setTimeout(() => setErrorMessage(''), 2500)
     }
 
     const remaining = guesses - 1
@@ -289,6 +298,22 @@ export default function JogoDaVelhaPage() {
         </div>
       )}
 
+      {/* Feedback de resposta errada */}
+      {errorMessage && (
+        <div style={{
+          marginTop: 12,
+          padding: '10px 14px',
+          borderRadius: 'var(--radius-sm)',
+          background: 'rgba(239,68,68,0.07)',
+          border: '1px solid rgba(239,68,68,0.2)',
+          fontSize: '0.82rem',
+          color: 'rgba(239,68,68,0.85)',
+          animation: 'fadeIn 0.2s ease',
+        }}>
+          ✗ {errorMessage}
+        </div>
+      )}
+
       {/* Game Over */}
       {gameOver && (
         <div style={{
@@ -345,6 +370,10 @@ export default function JogoDaVelhaPage() {
           40% { transform: translateX(6px); }
           60% { transform: translateX(-4px); }
           80% { transform: translateX(4px); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(-4px); }
+          to   { opacity: 1; transform: translateY(0); }
         }
       `}</style>
     </div>
