@@ -29,17 +29,8 @@ export default function Header() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 56 }}>
 
           {/* Logo */}
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-            <Logo size={34} />
-            <span style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '1.1rem',
-              letterSpacing: '0.06em',
-              color: '#FACC15',
-              filter: 'drop-shadow(0 0 8px rgba(250, 204, 21, 0.35))',
-            }}>
-              FUTLE
-            </span>
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+            <Logo size={40} />
           </Link>
 
           {/* Nav */}

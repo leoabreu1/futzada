@@ -18,16 +18,8 @@ export default function Footer() {
         flexWrap: 'wrap',
         gap: 12,
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <Logo size={22} />
-          <span style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '0.85rem',
-            letterSpacing: '0.06em',
-            color: '#FACC15',
-          }}>
-            FUTLE
-          </span>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Logo size={28} />
         </div>
 
         <p style={{ fontSize: '0.78rem', color: 'var(--color-muted-2)' }}>
