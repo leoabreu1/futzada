@@ -2,6 +2,16 @@
 
 ---
 
+## 2026-04-22 — Jogo da Velha: feedback explicativo de resposta errada
+
+**O que foi feito:** Quando o jogador escolhe um jogador que não se encaixa na célula do grid, agora aparece uma mensagem vermelha explicando exatamente o motivo do erro — por exemplo "Messi não é Goleiro" ou "Robinho não é Francês nem Premier League". Antes só aparecia um X vermelho sem nenhuma explicação. A mensagem fica visível por 2,5 segundos e desaparece com animação suave.
+
+**Arquivos modificados:** `app/games/jogo-da-velha/page.tsx`
+
+**Por que:** Sem feedback, o jogador errava e ficava sem entender por que — desperdiçava tentativas tentando adivinhar qual categoria o jogador não cumpria. Agora o aprendizado é imediato e o jogo fica mais justo e divertido.
+
+---
+
 ## 2026-04-19 — Conexões: banco de puzzles triplicado (7 → 21)
 
 **O que foi feito:** O jogo Conexões tinha apenas 7 puzzles diferentes, o que significava que após uma semana os desafios começavam a se repetir. Foram adicionados 14 novos puzzles cobrindo times históricos (Santos, Ajax, Roma, Monaco, Celtic, Zenit), seleções campeãs (Itália 2006, Alemanha 2014, Bélgica, Holanda dos anos 90) e lendas do futebol brasileiro (Grêmio, Vasco, Fluminense, Botafogo, Cruzeiro). O banco agora tem 21 puzzles únicos — três semanas de desafios sem repetição.
