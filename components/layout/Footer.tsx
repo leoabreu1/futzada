@@ -19,7 +19,7 @@ export default function Footer() {
         gap: 12,
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <Logo size={22} id="footerLogo" />
+          <Logo size={22} />
           <span style={{
             fontFamily: 'var(--font-display)',
             fontSize: '0.85rem',

@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   description: "Desafio diário de futebol brasileiro. Jogos criativos, competitivos e divertidos.",
   keywords: "futebol, desafio diário, brasil, jogos online, futle",
   icons: {
-    icon: "/logo.svg",
-    shortcut: "/logo.svg",
-    apple: "/logo.svg",
+    icon: "/logo-icon.png",
+    shortcut: "/logo-icon.png",
+    apple: "/logo-icon.png",
   },
   openGraph: {
     title: "FUTLE - Desafio Diário de Futebol Brasileiro",

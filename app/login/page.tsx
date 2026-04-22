@@ -2,7 +2,7 @@
 
 import { signIn } from 'next-auth/react'
 import { useSearchParams } from 'next/navigation'
-import Logo from '@/components/ui/Logo'
+import Image from 'next/image'
 import { Suspense } from 'react'
 
 function LoginContent() {
@@ -26,22 +26,18 @@ function LoginContent() {
         padding: '40px 32px',
         textAlign: 'center',
       }}>
-        <div style={{ marginBottom: 24 }}>
-          <Logo size={48} id="loginLogo" />
+        <div style={{ marginBottom: 24, display: 'flex', justifyContent: 'center' }}>
+          <Image
+            src="/logo.png"
+            alt="Futle — Desafio diário de futebol brasileiro"
+            width={180}
+            height={182}
+            priority
+            style={{ objectFit: 'contain' }}
+          />
         </div>
 
-        <h1 style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: '1.6rem',
-          letterSpacing: '0.06em',
-          marginBottom: 8,
-          color: '#FACC15',
-          filter: 'drop-shadow(0 0 8px rgba(250, 204, 21, 0.35))',
-        }}>
-          FUTLE
-        </h1>
-
-        <p style={{ color: 'var(--color-muted)', fontSize: '0.9rem', marginBottom: 32 }}>
+        <p style={{ color: 'var(--color-muted)', fontSize: '0.9rem', marginBottom: 32, marginTop: 16 }}>
           Entre para competir no ranking global e salvar seus scores entre dispositivos
         </p>
 

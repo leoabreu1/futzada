@@ -30,7 +30,7 @@ export default function Header() {
 
           {/* Logo */}
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-            <Logo size={34} id="headerLogo" />
+            <Logo size={34} />
             <span style={{
               fontFamily: 'var(--font-display)',
               fontSize: '1.1rem',
