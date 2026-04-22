@@ -6,17 +6,17 @@ import Providers from "@/components/Providers";
 import NicknameGate from "@/components/NicknameGate";
 
 export const metadata: Metadata = {
-  title: "FUTZADA - Minijogos de Futebol",
-  description: "Minijogos de futebol com estilo brasileiro. Jogos criativos, competitivos e divertidos.",
-  keywords: "futebol, minijogos, brasil, jogos online",
+  title: "FUTLE - Desafio Diário de Futebol Brasileiro",
+  description: "Desafio diário de futebol brasileiro. Jogos criativos, competitivos e divertidos.",
+  keywords: "futebol, desafio diário, brasil, jogos online, futle",
   icons: {
     icon: "/logo.svg",
     shortcut: "/logo.svg",
     apple: "/logo.svg",
   },
   openGraph: {
-    title: "FUTZADA - Minijogos de Futebol",
-    description: "Minijogos de futebol com estilo brasileiro",
+    title: "FUTLE - Desafio Diário de Futebol Brasileiro",
+    description: "Desafio diário • Futebol brasileiro",
     type: "website",
   },
 };

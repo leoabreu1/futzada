@@ -257,7 +257,7 @@ export default function QuemEOCraquePage() {
                 return '⬛'
               }).join('')
               const result = won ? `${attempt}/${MAX_ATTEMPTS}` : `X/${MAX_ATTEMPTS}`
-              const text = `Futzada Quem é o Craque? ${today}\n${result}\n\n${bars}\n\nfutzada.vercel.app`
+              const text = `Futle Quem é o Craque? ${today}\n${result}\n\n${bars}\n\nfutle.vercel.app`
               if (navigator.share) {
                 navigator.share({ text }).catch(() => {})
               } else {

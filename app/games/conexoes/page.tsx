@@ -307,7 +307,7 @@ export default function ConexoesPage() {
               const result = gameState === 'won'
                 ? `✅ ${errors === 0 ? 'Sem erros!' : `${errors} erro${errors !== 1 ? 's' : ''}`}`
                 : `❌ ${foundGroups.length}/4 grupos`
-              const text = `Futzada Conexões ${today}\n${result}\n\n${rows}\n\nfutzada.vercel.app`
+              const text = `Futle Conexões ${today}\n${result}\n\n${rows}\n\nfutle.vercel.app`
               if (navigator.share) {
                 navigator.share({ text }).catch(() => {})
               } else {

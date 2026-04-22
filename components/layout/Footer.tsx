@@ -23,18 +23,15 @@ export default function Footer() {
           <span style={{
             fontFamily: 'var(--font-display)',
             fontSize: '0.85rem',
-            letterSpacing: '0.04em',
-            background: 'linear-gradient(90deg, #10B981, #34d399, #F59E0B)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
+            letterSpacing: '0.06em',
+            color: '#FACC15',
           }}>
-            FUTZADA
+            FUTLE
           </span>
         </div>
 
         <p style={{ fontSize: '0.78rem', color: 'var(--color-muted-2)' }}>
-          Minijogos de futebol com estilo brasileiro
+          Desafio diário • Futebol brasileiro
         </p>
 
         <p style={{ fontSize: '0.75rem', color: 'var(--color-muted-2)' }}>

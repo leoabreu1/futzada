@@ -3,15 +3,15 @@
 @import "tailwindcss";
 
 @theme {
-  /* Cores FUTZADA */
+  /* Cores FUTLE */
   --color-brand-green: #10b981;
-  --color-brand-yellow: #f59e0b;
+  --color-brand-yellow: #facc15;
   --color-brand-purple: #8b5cf6;
   --color-bg: #060609;
   --color-surface: rgba(255, 255, 255, 0.04);
   --color-surface-2: rgba(255, 255, 255, 0.06);
   --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-active: rgba(16, 185, 129, 0.5);
+  --color-border-active: rgba(250, 204, 21, 0.5);
   --color-text: #f0f0f0;
   --color-muted: #6b7280;
   --color-muted-2: #3f3f46;
@@ -55,7 +55,7 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--color-bg); }
 ::-webkit-scrollbar-thumb { background: var(--color-muted-2); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--color-brand-green); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-brand-yellow); }
 
 /* ═══════════════════════════════════════════════
    BACKGROUND ANIMADO — Gradient Orbs
@@ -82,7 +82,7 @@ h1, h2, h3, h4, h5, h6 {
 .bg-orbs::before {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, #10b981 0%, transparent 70%);
+  background: radial-gradient(circle, #facc15 0%, transparent 70%);
   top: -10%;
   left: -10%;
   animation-delay: 0s;
@@ -147,9 +147,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card:hover {
-  border-color: rgba(16, 185, 129, 0.35);
+  border-color: rgba(250, 204, 21, 0.35);
   box-shadow:
-    0 0 30px rgba(16, 185, 129, 0.1),
+    0 0 30px rgba(250, 204, 21, 0.1),
     0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
@@ -158,10 +158,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card-interactive:hover {
-  border-color: rgba(16, 185, 129, 0.4);
+  border-color: rgba(250, 204, 21, 0.4);
   box-shadow:
-    0 0 40px rgba(16, 185, 129, 0.15),
-    0 0 80px rgba(16, 185, 129, 0.05),
+    0 0 40px rgba(250, 204, 21, 0.15),
+    0 0 80px rgba(250, 204, 21, 0.05),
     0 8px 32px rgba(0, 0, 0, 0.4);
   transform: translateY(-4px);
 }
@@ -172,7 +172,7 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   inset: -1px;
   border-radius: var(--radius);
-  background: linear-gradient(135deg, transparent 40%, rgba(16, 185, 129, 0.3) 50%, transparent 60%);
+  background: linear-gradient(135deg, transparent 40%, rgba(250, 204, 21, 0.3) 50%, transparent 60%);
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: -1;
@@ -191,7 +191,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: linear-gradient(135deg, #10b981 0%, #0ea874 100%);
+  background: linear-gradient(135deg, #facc15 0%, #f59e0b 100%);
   color: #0a0a0b;
   font-family: var(--font-display);
   font-size: 0.875rem;
@@ -202,7 +202,7 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 0 20px rgba(250, 204, 21, 0.2);
   position: relative;
   overflow: hidden;
 }
@@ -217,7 +217,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary:hover {
-  box-shadow: 0 0 30px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 0 30px rgba(250, 204, 21, 0.35);
   transform: translateY(-1px);
 }
 
@@ -313,8 +313,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .input::placeholder { color: var(--color-muted); }
 .input:focus {
-  border-color: var(--color-brand-green);
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+  border-color: var(--color-brand-yellow);
+  box-shadow: 0 0 20px rgba(250, 204, 21, 0.1);
 }
 
 /* ═══════════════════════════════════════════════
@@ -326,13 +326,13 @@ h1, h2, h3, h4, h5, h6 {
   border-top: 1px solid var(--color-border);
 }
 
-.glow-green {
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+.glow-yellow {
+  box-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
 }
 
 /* Texto gradiente marca */
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-brand-green) 0%, #34d399 40%, var(--color-brand-yellow) 100%);
+  background: linear-gradient(135deg, var(--color-brand-yellow) 0%, #f59e0b 50%, #fff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -340,7 +340,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Texto com glow */
 .text-glow {
-  text-shadow: 0 0 30px rgba(16, 185, 129, 0.3), 0 0 60px rgba(16, 185, 129, 0.1);
+  text-shadow: 0 0 30px rgba(250, 204, 21, 0.3), 0 0 60px rgba(250, 204, 21, 0.1);
 }
 
 /* ═══════════════════════════════════════════════
@@ -373,8 +373,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 15px rgba(16, 185, 129, 0.15); }
-  50% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.3); }
+  0%, 100% { box-shadow: 0 0 15px rgba(250, 204, 21, 0.15); }
+  50% { box-shadow: 0 0 30px rgba(250, 204, 21, 0.3); }
 }
 
 .animate-fade-up {
@@ -435,12 +435,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-label-green {
-  color: var(--color-brand-green);
+  color: var(--color-brand-yellow);
 }
 
 .section-label-green::before {
-  background: var(--color-brand-green);
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+  background: var(--color-brand-yellow);
+  box-shadow: 0 0 8px rgba(250, 204, 21, 0.4);
 }
 
 .section-label-muted {

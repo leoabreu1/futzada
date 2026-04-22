@@ -120,8 +120,8 @@ export default function LinhaDoTempoPage() {
     const date = new Date().toLocaleDateString('pt-BR')
     const lines =
       gameState === 'won'
-        ? `⏳ Linha do Tempo — ${date}\nResolvi em ${attempts}/3 tentativa${attempts > 1 ? 's' : ''}!\n\nfutzada.com`
-        : `⏳ Linha do Tempo — ${date}\nNão consegui hoje 😅\n\nfutzada.com`
+        ? `⏳ Futle Linha do Tempo — ${date}\nResolvi em ${attempts}/3 tentativa${attempts > 1 ? 's' : ''}!\n\nfutle.vercel.app`
+        : `⏳ Futle Linha do Tempo — ${date}\nNão consegui hoje 😅\n\nfutle.vercel.app`
 
     if (navigator.share) {
       navigator.share({ text: lines })

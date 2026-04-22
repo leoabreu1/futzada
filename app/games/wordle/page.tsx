@@ -222,7 +222,7 @@ export default function WordlePage() {
               const emoji = (state: LetterState) => state === 'correct' ? '🟩' : state === 'present' ? '🟨' : '⬛'
               const grid = guesses.map(g => g.states.map(emoji).join('')).join('\n')
               const result = won ? `${guesses.length}/${MAX_GUESSES}` : 'X/6'
-              const text = `Futzada Wordle ${today}\n${result}\n\n${grid}\n\nfutzada.vercel.app`
+              const text = `Futle Wordle ${today}\n${result}\n\n${grid}\n\nfutle.vercel.app`
               if (navigator.share) {
                 navigator.share({ text }).catch(() => {})
               } else {

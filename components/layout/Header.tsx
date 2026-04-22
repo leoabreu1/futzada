@@ -34,14 +34,11 @@ export default function Header() {
             <span style={{
               fontFamily: 'var(--font-display)',
               fontSize: '1.1rem',
-              letterSpacing: '0.04em',
-              background: 'linear-gradient(90deg, #10B981 0%, #34d399 50%, #F59E0B 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              filter: 'drop-shadow(0 0 8px rgba(16, 185, 129, 0.3))',
+              letterSpacing: '0.06em',
+              color: '#FACC15',
+              filter: 'drop-shadow(0 0 8px rgba(250, 204, 21, 0.35))',
             }}>
-              FUTZADA
+              FUTLE
             </span>
           </Link>
 
@@ -83,12 +80,12 @@ export default function Header() {
                     alt={session.user.name ?? 'Avatar'}
                     width={30}
                     height={30}
-                    style={{ borderRadius: '50%', border: '2px solid rgba(16,185,129,0.4)' }}
+                    style={{ borderRadius: '50%', border: '2px solid rgba(250,204,21,0.4)' }}
                   />
                 ) : (
                   <div style={{
                     width: 30, height: 30, borderRadius: '50%',
-                    background: 'linear-gradient(135deg, #10B981, #F59E0B)',
+                    background: 'linear-gradient(135deg, #FACC15, #F59E0B)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontSize: '0.75rem', fontWeight: 'bold', color: '#0a0a0b',
                   }}>

@@ -340,7 +340,7 @@ export default function JogoDaVelhaPage() {
               const today = new Date().toISOString().split('T')[0]
               const grid = cells.map((c) => c.locked ? '🟩' : '⬛').join('')
               const gridStr = `${grid.slice(0,3)}\n${grid.slice(3,6)}\n${grid.slice(6,9)}`
-              const text = `Futzada Jogo da Velha ${today}\n${score}/9\n\n${gridStr}\n\nfutzada.vercel.app`
+              const text = `Futle Jogo da Velha ${today}\n${score}/9\n\n${gridStr}\n\nfutle.vercel.app`
               if (navigator.share) {
                 navigator.share({ text }).catch(() => {})
               } else {
