@@ -38,7 +38,10 @@
       "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d.get\\('version'\\)\\); print\\(list\\(d.get\\('exports',{}\\).keys\\(\\)\\)[:20]\\)\")",
       "Bash(npx --yes prisma@7.7.0 --help)",
       "Bash(npx prisma@7.7.0 generate --help)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "mcp__c24adf29-8d10-4524-a152-d116db35abca__list_teams",
+      "mcp__c24adf29-8d10-4524-a152-d116db35abca__list_projects",
+      "mcp__c24adf29-8d10-4524-a152-d116db35abca__get_project"
     ]
   }
 }
