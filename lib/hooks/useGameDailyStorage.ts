@@ -8,7 +8,7 @@ export function useGameDailyStorage<T>(gameName: string) {
 
   // Enquanto a sessão está carregando, userId é indefinido — evita misturar estados
   const userId = status === 'loading' ? null : (session?.user?.id ?? 'guest')
-  const key = userId ? `futzada-${gameName}-${userId}-${today}` : null
+  const key = userId ? `futle-${gameName}-${userId}-${today}` : null
 
   function load(): T | null {
     if (typeof window === 'undefined' || !key) return null

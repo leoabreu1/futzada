@@ -67,7 +67,7 @@ function sleep(ms) {
 
 function httpsGet(url, headers = {}) {
   return new Promise((resolve, reject) => {
-    const req = https.get(url, { headers: { 'User-Agent': 'Futzada/1.0 (educational project)', ...headers } }, (res) => {
+    const req = https.get(url, { headers: { 'User-Agent': 'Futle/1.0 (educational project)', ...headers } }, (res) => {
       if (res.statusCode === 301 || res.statusCode === 302) {
         return httpsGet(res.headers.location, headers).then(resolve).catch(reject)
       }

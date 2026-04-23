@@ -4,7 +4,7 @@ import { useState, useCallback, useEffect } from 'react'
 import type { Score, PlayerRanking, Badge } from '@/lib/types/ranking'
 import { BADGES } from '@/lib/types/ranking'
 
-const SCORES_STORAGE_KEY = 'futzada-scores'
+const SCORES_STORAGE_KEY = 'futle-scores'
 
 export function useRankingStorage() {
   const [scores, setScores] = useState<Score[]>([])
@@ -125,10 +125,10 @@ export function useRankingStorage() {
 function generatePlayerId(): string {
   if (typeof window === 'undefined') return 'server-' + Math.random()
 
-  let playerId = localStorage.getItem('futzada-player-id')
+  let playerId = localStorage.getItem('futle-player-id')
   if (!playerId) {
     playerId = 'player-' + Math.random().toString(36).substr(2, 9)
-    localStorage.setItem('futzada-player-id', playerId)
+    localStorage.setItem('futle-player-id', playerId)
   }
   return playerId
 }

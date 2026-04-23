@@ -1,6 +1,6 @@
-# Resumo Antigravity - Futzada (Para Continuidade no Claude Code)
+# Resumo Antigravity - Futle (Para Continuidade no Claude Code)
 
-Este arquivo documenta as inserções e reestruturações mais recentes realizadas na base de dados de jogadores do projeto **Futzada**. Como o projeto estava com falta de tokens no Claude Code, a responsabilidade de povoar e evoluir o banco de dados temporariamente foi repassada para mim (Antigravity).
+Este arquivo documenta as inserções e reestruturações mais recentes realizadas na base de dados de jogadores do projeto **Futle**. Como o projeto estava com falta de tokens no Claude Code, a responsabilidade de povoar e evoluir o banco de dados temporariamente foi repassada para mim (Antigravity).
 
 ## O que foi feito?
 

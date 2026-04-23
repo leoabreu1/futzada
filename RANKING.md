@@ -63,7 +63,7 @@ export default function WordlePage() {
 ### LocalStorage:
 ```javascript
 // Scores (histórico completo)
-localStorage['futzada-scores'] = JSON.stringify([
+localStorage['futle-scores'] = JSON.stringify([
   {
     id: '1713200123456-0.789',
     playerId: 'player-abc123',
@@ -77,10 +77,10 @@ localStorage['futzada-scores'] = JSON.stringify([
 ])
 
 // Player ID (gerado uma vez)
-localStorage['futzada-player-id'] = 'player-abc123'
+localStorage['futle-player-id'] = 'player-abc123'
 
 // Player Name (configurável)
-localStorage['futzada-player-name'] = 'João Silva'
+localStorage['futle-player-name'] = 'João Silva'
 ```
 
 ## 🚀 Próximos passos (Expansão Futura):
@@ -160,7 +160,7 @@ components/
 ## 🎮 Para testar localmente:
 
 ```bash
-cd ~/futzada
+cd ~/futle
 
 # Instalar deps
 npm install

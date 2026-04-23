@@ -35,7 +35,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)) }
 
 function httpsGet(url, headers = {}) {
   return new Promise((resolve, reject) => {
-    const req = https.get(url, { headers: { 'User-Agent': 'Futzada/1.0', ...headers } }, (res) => {
+    const req = https.get(url, { headers: { 'User-Agent': 'Futle/1.0', ...headers } }, (res) => {
       if (res.statusCode === 301 || res.statusCode === 302) {
         return httpsGet(res.headers.location, headers).then(resolve).catch(reject)
       }

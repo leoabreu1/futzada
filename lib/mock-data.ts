@@ -30,9 +30,9 @@ const mockScores = [
 export function seedMockData() {
   if (typeof window === 'undefined') return
   
-  localStorage.setItem('futzada-scores', JSON.stringify(mockScores))
-  localStorage.setItem('futzada-player-id', 'leo')
-  localStorage.setItem('futzada-player-name', 'Leo Abreu')
+  localStorage.setItem('futle-scores', JSON.stringify(mockScores))
+  localStorage.setItem('futle-player-id', 'leo')
+  localStorage.setItem('futle-player-name', 'Leo Abreu')
   
   console.log('✅ Dados de exemplo carregados!')
   console.log('Acesse http://localhost:3000/ranking para ver o leaderboard')
@@ -40,5 +40,5 @@ export function seedMockData() {
 
 // Export para uso no console
 if (typeof window !== 'undefined') {
-  (window as any).seedFutzadaMockData = seedMockData
+  (window as any).seedFutleMockData = seedMockData
 }

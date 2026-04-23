@@ -26,7 +26,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms))
 
 function get(url, h = {}) {
   return new Promise((resolve, reject) => {
-    const req = https.get(url, { headers: { 'User-Agent': 'Futzada/1.0', ...h } }, res => {
+    const req = https.get(url, { headers: { 'User-Agent': 'Futle/1.0', ...h } }, res => {
       if ([301, 302].includes(res.statusCode)) return get(res.headers.location, h).then(resolve).catch(reject)
       const chunks = []
       res.on('data', c => chunks.push(c))

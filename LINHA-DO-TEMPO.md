@@ -94,7 +94,7 @@ TimelineEvent = {
 ## 🧪 Testes:
 
 ```bash
-cd ~/futzada
+cd ~/futle
 npm run dev
 
 # Abrir navegador:
@@ -125,7 +125,7 @@ Para testar com múltiplos jogadores e scores, execute no console:
 ```javascript
 // Abra DevTools (F12) → Console
 // Cole a função do lib/mock-data.ts
-window.seedFutzadaMockData()
+window.seedFutleMockData()
 ```
 
 ## 🎯 Próximos Games a Implementar:

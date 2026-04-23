@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Futle — Logo</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:   #22C55E;
+      --dark:    #0C0C0C;
+      --surface: #141414;
+      --border:  #1E1E1E;
+      --text:    #F4F4F5;
+      --muted:   #52525B;
+    }
+
+    body {
+      background: var(--dark);
+      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 40px;
+      gap: 80px;
+    }
+
+    /* ── section label ── */
+    .section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── primary lockup ── */
+    .lockup {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .wordmark {
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -0.045em;
+      line-height: 1;
+      color: var(--text);
+    }
+
+    .wordmark em {
+      font-style: normal;
+      color: var(--green);
+    }
+
+    /* ── size scale ── */
+    .scale-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 32px;
+    }
+
+    .scale-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .scale-item span {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── color variants ── */
+    .variants {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .variant-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 40px 48px;
+      border-radius: 16px;
+    }
+
+    .variant-dark  { background: var(--dark); border: 1px solid var(--border); }
+    .variant-green { background: var(--green); }
+    .variant-white { background: #FFFFFF; }
+
+    .variant-card .wm-dark  { color: #0C0C0C; }
+    .variant-card .wm-white { color: #FFFFFF; }
+    .variant-card .wm-white em { color: #FFFFFF; opacity: 0.6; }
+    .variant-card .wm-dark  em { color: #0C0C0C; opacity: 0.45; }
+
+    .sub {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: -4px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      width: 100%;
+      max-width: 640px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       MAIN LOCKUP
+  ═══════════════════════════════════════ -->
+  <div class="section">
+    <div class="label">Logotipo Principal</div>
+    <div class="lockup">
+
+      <!-- ICON: campo de futebol estilizado formando um "F" -->
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Fundo arredondado -->
+        <rect width="56" height="56" rx="14" fill="#141414"/>
+        <rect x="0.5" y="0.5" width="55" height="55" rx="13.5" fill="none" stroke="#1E1E1E"/>
+
+        <!-- Bola: anel externo -->
+        <circle cx="28" cy="28" r="17" stroke="#2A2A2A" stroke-width="1.5"/>
+
+        <!-- Manchas da bola formando padrão de futebol -->
+        <!-- Mancha central (pentágono) — verde -->
+        <polygon
+          points="28,17 34.9,22 32.4,30.3 23.6,30.3 21.1,22"
+          fill="#22C55E"
+        />
+        <!-- Manchas periféricas — escuras com borda sutil -->
+        <polygon
+          points="28,11 31.4,8.8 34.2,11.5 33.1,15.4 28,17 22.9,15.4 21.8,11.5 24.6,8.8"
+          fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8"
+          clip-path="url(#ballClip)"
+        />
+        <polygon
+          points="39.4,19.5 43.8,20.4 44.7,24.8 42,28 38.1,27.3 35.6,23.8 37.2,19.9"
+          fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8"
+          clip-path="url(#ballClip)"
+        />
+        <polygon
+          points="40.8,34.5 42.5,38.5 39.8,41.5 35.8,40.8 34.2,36.5 36.5,32.8 40.5,33.2"
+          fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8"
+          clip-path="url(#ballClip)"
+        />
+        <polygon
+          points="16.2,34.5 15.5,38.5 19.2,41.5 23.2,40.8 24.8,36.5 22.5,32.8 18.5,33.2"
+          fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8"
+          clip-path="url(#ballClip)"
+        />
+        <polygon
+          points="12.6,19.5 8.2,20.4 7.3,24.8 10,28 13.9,27.3 16.4,23.8 14.8,19.9"
+          fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8"
+          clip-path="url(#ballClip)"
+        />
+
+        <!-- Clip da bola -->
+        <defs>
+          <clipPath id="ballClip">
+            <circle cx="28" cy="28" r="17"/>
+          </clipPath>
+        </defs>
+
+        <!-- Bola: anel externo (sobre os patches) -->
+        <circle cx="28" cy="28" r="17" stroke="#2C2C2C" stroke-width="1.5" fill="none"/>
+      </svg>
+
+      <!-- WORDMARK -->
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <div class="wordmark">futz<em>ada</em></div>
+        <div style="font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#52525B;padding-left:2px;">jogos de futebol</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════
+       ÍCONE — ESCALA
+  ═══════════════════════════════════════ -->
+  <div class="section">
+    <div class="label">Escala do Ícone</div>
+    <div class="scale-row">
+
+      <!-- 16px -->
+      <div class="scale-item">
+        <svg width="16" height="16" viewBox="0 0 56 56" fill="none">
+          <rect width="56" height="56" rx="14" fill="#141414"/>
+          <circle cx="28" cy="28" r="17" fill="#1A1A1A"/>
+          <polygon points="28,17 34.9,22 32.4,30.3 23.6,30.3 21.1,22" fill="#22C55E"/>
+          <circle cx="28" cy="28" r="17" stroke="#2C2C2C" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span>16px</span>
+      </div>
+
+      <!-- 24px -->
+      <div class="scale-item">
+        <svg width="24" height="24" viewBox="0 0 56 56" fill="none">
+          <rect width="56" height="56" rx="14" fill="#141414"/>
+          <circle cx="28" cy="28" r="17" fill="#1A1A1A"/>
+          <polygon points="28,17 34.9,22 32.4,30.3 23.6,30.3 21.1,22" fill="#22C55E"/>
+          <circle cx="28" cy="28" r="17" stroke="#2C2C2C" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span>24px</span>
+      </div>
+
+      <!-- 32px -->
+      <div class="scale-item">
+        <svg width="32" height="32" viewBox="0 0 56 56" fill="none">
+          <rect width="56" height="56" rx="14" fill="#141414"/>
+          <circle cx="28" cy="28" r="17" fill="#1A1A1A"/>
+          <polygon points="28,17 34.9,22 32.4,30.3 23.6,30.3 21.1,22" fill="#22C55E"/>
+          <circle cx="28" cy="28" r="17" stroke="#2C2C2C" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span>32px</span>
+      </div>
+
+      <!-- 48px -->
+      <div class="scale-item">
+        <svg width="48" height="48" viewBox="0 0 56 56" fill="none">
+          <rect width="56" height="56" rx="14" fill="#141414"/>
+          <circle cx="28" cy="28" r="17" fill="#1A1A1A"/>
+          <polygon points="28,17 34.9,22 32.4,30.3 23.6,30.3 21.1,22" fill="#22C55E"/>
+          <polygon points="28,11 31.4,8.8 34.2,11.5 33.1,15.4 28,17 22.9,15.4 21.8,11.5 24.6,8.8" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bc2)"/>
+          <defs><clipPath id="bc2"><circle cx="28" cy="28" r="17"/></clipPath></defs>
+          <circle cx="28" cy="28" r="17" stroke="#2C2C2C" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span>48px</span>
+      </div>
+
+      <!-- 64px -->
+      <div class="scale-item">
+        <svg width="64" height="64" viewBox="0 0 56 56" fill="none">
+          <rect width="56" height="56" rx="14" fill="#141414"/>
+          <rect x="0.5" y="0.5" width="55" height="55" rx="13.5" fill="none" stroke="#1E1E1E"/>
+          <circle cx="28" cy="28" r="17" stroke="#2A2A2A" stroke-width="1.5"/>
+          <polygon points="28,17 34.9,22 32.4,30.3 23.6,30.3 21.1,22" fill="#22C55E"/>
+          <polygon points="28,11 31.4,8.8 34.2,11.5 33.1,15.4 28,17 22.9,15.4 21.8,11.5 24.6,8.8" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bc3)"/>
+          <polygon points="39.4,19.5 43.8,20.4 44.7,24.8 42,28 38.1,27.3 35.6,23.8 37.2,19.9" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bc3)"/>
+          <polygon points="40.8,34.5 42.5,38.5 39.8,41.5 35.8,40.8 34.2,36.5 36.5,32.8 40.5,33.2" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bc3)"/>
+          <polygon points="16.2,34.5 15.5,38.5 19.2,41.5 23.2,40.8 24.8,36.5 22.5,32.8 18.5,33.2" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bc3)"/>
+          <polygon points="12.6,19.5 8.2,20.4 7.3,24.8 10,28 13.9,27.3 16.4,23.8 14.8,19.9" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bc3)"/>
+          <defs><clipPath id="bc3"><circle cx="28" cy="28" r="17"/></clipPath></defs>
+          <circle cx="28" cy="28" r="17" stroke="#2C2C2C" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span>64px</span>
+      </div>
+
+      <!-- 128px -->
+      <div class="scale-item">
+        <svg width="128" height="128" viewBox="0 0 56 56" fill="none">
+          <rect width="56" height="56" rx="14" fill="#141414"/>
+          <rect x="0.5" y="0.5" width="55" height="55" rx="13.5" fill="none" stroke="#1E1E1E"/>
+          <circle cx="28" cy="28" r="17" stroke="#2A2A2A" stroke-width="1.5"/>
+          <polygon points="28,17 34.9,22 32.4,30.3 23.6,30.3 21.1,22" fill="#22C55E"/>
+          <polygon points="28,11 31.4,8.8 34.2,11.5 33.1,15.4 28,17 22.9,15.4 21.8,11.5 24.6,8.8" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bc4)"/>
+          <polygon points="39.4,19.5 43.8,20.4 44.7,24.8 42,28 38.1,27.3 35.6,23.8 37.2,19.9" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bc4)"/>
+          <polygon points="40.8,34.5 42.5,38.5 39.8,41.5 35.8,40.8 34.2,36.5 36.5,32.8 40.5,33.2" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bc4)"/>
+          <polygon points="16.2,34.5 15.5,38.5 19.2,41.5 23.2,40.8 24.8,36.5 22.5,32.8 18.5,33.2" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bc4)"/>
+          <polygon points="12.6,19.5 8.2,20.4 7.3,24.8 10,28 13.9,27.3 16.4,23.8 14.8,19.9" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bc4)"/>
+          <defs><clipPath id="bc4"><circle cx="28" cy="28" r="17"/></clipPath></defs>
+          <circle cx="28" cy="28" r="17" stroke="#2C2C2C" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span>128px</span>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════
+       VARIANTES DE COR
+  ═══════════════════════════════════════ -->
+  <div class="section">
+    <div class="label">Variantes de Fundo</div>
+    <div class="variants">
+
+      <!-- Escuro (primário) -->
+      <div class="variant-card variant-dark">
+        <svg width="48" height="48" viewBox="0 0 56 56" fill="none">
+          <rect width="56" height="56" rx="14" fill="#141414"/>
+          <rect x="0.5" y="0.5" width="55" height="55" rx="13.5" fill="none" stroke="#1E1E1E"/>
+          <circle cx="28" cy="28" r="17" stroke="#2A2A2A" stroke-width="1.5"/>
+          <polygon points="28,17 34.9,22 32.4,30.3 23.6,30.3 21.1,22" fill="#22C55E"/>
+          <polygon points="28,11 31.4,8.8 34.2,11.5 33.1,15.4 28,17 22.9,15.4 21.8,11.5 24.6,8.8" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bca)"/>
+          <polygon points="39.4,19.5 43.8,20.4 44.7,24.8 42,28 38.1,27.3 35.6,23.8 37.2,19.9" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bca)"/>
+          <polygon points="40.8,34.5 42.5,38.5 39.8,41.5 35.8,40.8 34.2,36.5 36.5,32.8 40.5,33.2" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bca)"/>
+          <polygon points="16.2,34.5 15.5,38.5 19.2,41.5 23.2,40.8 24.8,36.5 22.5,32.8 18.5,33.2" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bca)"/>
+          <polygon points="12.6,19.5 8.2,20.4 7.3,24.8 10,28 13.9,27.3 16.4,23.8 14.8,19.9" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bca)"/>
+          <defs><clipPath id="bca"><circle cx="28" cy="28" r="17"/></clipPath></defs>
+          <circle cx="28" cy="28" r="17" stroke="#2C2C2C" stroke-width="1.5" fill="none"/>
+        </svg>
+        <div class="wordmark">futz<em>ada</em></div>
+      </div>
+
+      <!-- Verde -->
+      <div class="variant-card variant-green">
+        <svg width="48" height="48" viewBox="0 0 56 56" fill="none">
+          <rect width="56" height="56" rx="14" fill="rgba(0,0,0,0.15)"/>
+          <circle cx="28" cy="28" r="17" fill="rgba(0,0,0,0.1)" stroke="rgba(0,0,0,0.15)" stroke-width="1.5"/>
+          <polygon points="28,17 34.9,22 32.4,30.3 23.6,30.3 21.1,22" fill="rgba(0,0,0,0.7)"/>
+          <polygon points="28,11 31.4,8.8 34.2,11.5 33.1,15.4 28,17 22.9,15.4 21.8,11.5 24.6,8.8" fill="rgba(0,0,0,0.15)" stroke="rgba(0,0,0,0.2)" stroke-width="0.8" clip-path="url(#bcb)"/>
+          <polygon points="39.4,19.5 43.8,20.4 44.7,24.8 42,28 38.1,27.3 35.6,23.8 37.2,19.9" fill="rgba(0,0,0,0.15)" stroke="rgba(0,0,0,0.2)" stroke-width="0.8" clip-path="url(#bcb)"/>
+          <polygon points="40.8,34.5 42.5,38.5 39.8,41.5 35.8,40.8 34.2,36.5 36.5,32.8 40.5,33.2" fill="rgba(0,0,0,0.15)" stroke="rgba(0,0,0,0.2)" stroke-width="0.8" clip-path="url(#bcb)"/>
+          <polygon points="16.2,34.5 15.5,38.5 19.2,41.5 23.2,40.8 24.8,36.5 22.5,32.8 18.5,33.2" fill="rgba(0,0,0,0.15)" stroke="rgba(0,0,0,0.2)" stroke-width="0.8" clip-path="url(#bcb)"/>
+          <polygon points="12.6,19.5 8.2,20.4 7.3,24.8 10,28 13.9,27.3 16.4,23.8 14.8,19.9" fill="rgba(0,0,0,0.15)" stroke="rgba(0,0,0,0.2)" stroke-width="0.8" clip-path="url(#bcb)"/>
+          <defs><clipPath id="bcb"><circle cx="28" cy="28" r="17"/></clipPath></defs>
+          <circle cx="28" cy="28" r="17" stroke="rgba(0,0,0,0.2)" stroke-width="1.5" fill="none"/>
+        </svg>
+        <div class="wordmark wm-dark">futle</div>
+      </div>
+
+      <!-- Branco -->
+      <div class="variant-card variant-white">
+        <svg width="48" height="48" viewBox="0 0 56 56" fill="none">
+          <rect width="56" height="56" rx="14" fill="#F4F4F5"/>
+          <rect x="0.5" y="0.5" width="55" height="55" rx="13.5" fill="none" stroke="#E4E4E7"/>
+          <circle cx="28" cy="28" r="17" stroke="#E4E4E7" stroke-width="1.5"/>
+          <polygon points="28,17 34.9,22 32.4,30.3 23.6,30.3 21.1,22" fill="#22C55E"/>
+          <polygon points="28,11 31.4,8.8 34.2,11.5 33.1,15.4 28,17 22.9,15.4 21.8,11.5 24.6,8.8" fill="#E4E4E7" stroke="#D4D4D8" stroke-width="0.8" clip-path="url(#bcc)"/>
+          <polygon points="39.4,19.5 43.8,20.4 44.7,24.8 42,28 38.1,27.3 35.6,23.8 37.2,19.9" fill="#E4E4E7" stroke="#D4D4D8" stroke-width="0.8" clip-path="url(#bcc)"/>
+          <polygon points="40.8,34.5 42.5,38.5 39.8,41.5 35.8,40.8 34.2,36.5 36.5,32.8 40.5,33.2" fill="#E4E4E7" stroke="#D4D4D8" stroke-width="0.8" clip-path="url(#bcc)"/>
+          <polygon points="16.2,34.5 15.5,38.5 19.2,41.5 23.2,40.8 24.8,36.5 22.5,32.8 18.5,33.2" fill="#E4E4E7" stroke="#D4D4D8" stroke-width="0.8" clip-path="url(#bcc)"/>
+          <polygon points="12.6,19.5 8.2,20.4 7.3,24.8 10,28 13.9,27.3 16.4,23.8 14.8,19.9" fill="#E4E4E7" stroke="#D4D4D8" stroke-width="0.8" clip-path="url(#bcc)"/>
+          <defs><clipPath id="bcc"><circle cx="28" cy="28" r="17"/></clipPath></defs>
+          <circle cx="28" cy="28" r="17" stroke="#D4D4D8" stroke-width="1.5" fill="none"/>
+        </svg>
+        <div class="wordmark" style="color:#18181B;">futz<span style="color:#22C55E;">ada</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════
+       ISOTIPO STANDALONE
+  ═══════════════════════════════════════ -->
+  <div class="section">
+    <div class="label">Isotipo (só ícone)</div>
+    <div style="display:flex;gap:24px;align-items:center;">
+
+      <!-- dark bg -->
+      <div style="padding:28px;background:#141414;border:1px solid #1E1E1E;border-radius:16px;">
+        <svg width="80" height="80" viewBox="0 0 56 56" fill="none">
+          <rect width="56" height="56" rx="14" fill="#141414"/>
+          <rect x="0.5" y="0.5" width="55" height="55" rx="13.5" fill="none" stroke="#1E1E1E"/>
+          <circle cx="28" cy="28" r="17" stroke="#252525" stroke-width="1.5"/>
+          <polygon points="28,17 34.9,22 32.4,30.3 23.6,30.3 21.1,22" fill="#22C55E"/>
+          <polygon points="28,11 31.4,8.8 34.2,11.5 33.1,15.4 28,17 22.9,15.4 21.8,11.5 24.6,8.8" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bcd)"/>
+          <polygon points="39.4,19.5 43.8,20.4 44.7,24.8 42,28 38.1,27.3 35.6,23.8 37.2,19.9" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bcd)"/>
+          <polygon points="40.8,34.5 42.5,38.5 39.8,41.5 35.8,40.8 34.2,36.5 36.5,32.8 40.5,33.2" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bcd)"/>
+          <polygon points="16.2,34.5 15.5,38.5 19.2,41.5 23.2,40.8 24.8,36.5 22.5,32.8 18.5,33.2" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bcd)"/>
+          <polygon points="12.6,19.5 8.2,20.4 7.3,24.8 10,28 13.9,27.3 16.4,23.8 14.8,19.9" fill="#1C1C1C" stroke="#2A2A2A" stroke-width="0.8" clip-path="url(#bcd)"/>
+          <defs><clipPath id="bcd"><circle cx="28" cy="28" r="17"/></clipPath></defs>
+          <circle cx="28" cy="28" r="17" stroke="#2C2C2C" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- green bg -->
+      <div style="padding:28px;background:#22C55E;border-radius:16px;">
+        <svg width="80" height="80" viewBox="0 0 56 56" fill="none">
+          <rect width="56" height="56" rx="14" fill="rgba(0,0,0,0.12)"/>
+          <circle cx="28" cy="28" r="17" fill="rgba(0,0,0,0.08)" stroke="rgba(0,0,0,0.12)" stroke-width="1.5"/>
+          <polygon points="28,17 34.9,22 32.4,30.3 23.6,30.3 21.1,22" fill="rgba(0,0,0,0.7)"/>
+          <circle cx="28" cy="28" r="17" stroke="rgba(0,0,0,0.15)" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- white bg -->
+      <div style="padding:28px;background:#FFFFFF;border-radius:16px;">
+        <svg width="80" height="80" viewBox="0 0 56 56" fill="none">
+          <rect width="56" height="56" rx="14" fill="#F4F4F5"/>
+          <circle cx="28" cy="28" r="17" fill="#EBEBEB" stroke="#DCDCDC" stroke-width="1.5"/>
+          <polygon points="28,17 34.9,22 32.4,30.3 23.6,30.3 21.1,22" fill="#22C55E"/>
+          <polygon points="28,11 31.4,8.8 34.2,11.5 33.1,15.4 28,17 22.9,15.4 21.8,11.5 24.6,8.8" fill="#E0E0E0" stroke="#CECECE" stroke-width="0.8" clip-path="url(#bce)"/>
+          <polygon points="39.4,19.5 43.8,20.4 44.7,24.8 42,28 38.1,27.3 35.6,23.8 37.2,19.9" fill="#E0E0E0" stroke="#CECECE" stroke-width="0.8" clip-path="url(#bce)"/>
+          <polygon points="40.8,34.5 42.5,38.5 39.8,41.5 35.8,40.8 34.2,36.5 36.5,32.8 40.5,33.2" fill="#E0E0E0" stroke="#CECECE" stroke-width="0.8" clip-path="url(#bce)"/>
+          <polygon points="16.2,34.5 15.5,38.5 19.2,41.5 23.2,40.8 24.8,36.5 22.5,32.8 18.5,33.2" fill="#E0E0E0" stroke="#CECECE" stroke-width="0.8" clip-path="url(#bce)"/>
+          <polygon points="12.6,19.5 8.2,20.4 7.3,24.8 10,28 13.9,27.3 16.4,23.8 14.8,19.9" fill="#E0E0E0" stroke="#CECECE" stroke-width="0.8" clip-path="url(#bce)"/>
+          <defs><clipPath id="bce"><circle cx="28" cy="28" r="17"/></clipPath></defs>
+          <circle cx="28" cy="28" r="17" stroke="#DCDCDC" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

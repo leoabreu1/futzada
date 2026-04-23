@@ -67,7 +67,7 @@ model VerificationToken {
   @@map("verification_tokens")
 }
 
-// ─── Futzada models ─────────────────────────────────────────────────────────
+// ─── Futle models ───────────────────────────────────────────────────────────
 
 model Score {
   id        String   @id @default(cuid())

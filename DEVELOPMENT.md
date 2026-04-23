@@ -58,7 +58,7 @@
 ```
 📝 Arquivo: lib/mock-data.ts
 - 5 jogadores fictícios com scores variados
-- Fácil de carregar: window.seedFutzadaMockData()
+- Fácil de carregar: window.seedFutleMockData()
 - Perfeito para testar o ranking
 ```
 
@@ -140,7 +140,7 @@ export default function WordlePage() {
 
 ```javascript
 // Scores (histórico completo)
-localStorage['futzada-scores'] = [
+localStorage['futle-scores'] = [
   {
     id: '1713...',
     playerId: 'player-123',
@@ -154,15 +154,15 @@ localStorage['futzada-scores'] = [
 ]
 
 // Configuração do jogador
-localStorage['futzada-player-id'] = 'player-123'
-localStorage['futzada-player-name'] = 'Leo Abreu'
+localStorage['futle-player-id'] = 'player-123'
+localStorage['futle-player-name'] = 'Leo Abreu'
 ```
 
 ## 🧪 Como Testar:
 
 ### 1. Instalar e rodar:
 ```bash
-cd ~/futzada
+cd ~/futle
 npm install
 npm run dev
 ```
@@ -172,7 +172,7 @@ No console do navegador:
 ```javascript
 // Importar e executar
 fetch('/lib/mock-data.ts').then(r => r.text()).then(eval)
-window.seedFutzadaMockData()
+window.seedFutleMockData()
 ```
 
 Ou editar `/ranking/page.tsx` temporariamente:
