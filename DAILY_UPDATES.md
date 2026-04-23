@@ -1,4 +1,14 @@
-# Log de Atualizações Diárias — Futle
+# Log de Atualizações Diárias — Futzada
+
+---
+
+## 2026-04-23 — Conexões: 3 semanas de puzzles novos (sem repetição)
+
+**O que foi feito:** Adicionados 3 novos puzzles ao jogo Conexões Futebol (puzzles 21, 22 e 23), integrando com os 14 que o repositório já havia recebido hoje. O jogo agora tem 24 puzzles únicos no total — o que significa que os jogadores passarão mais de 3 semanas sem ver o mesmo desafio duas vezes. Antes, quem abrisse o jogo hoje (dia 7 desde o lançamento) veriam o puzzle do dia 1 repetido. As novas categorias incluem temas originais como "Usaram a camisa 10 pela Seleção Brasileira", "Foram jogadores E técnicos do mesmo clube" e "Capitães campeões em Copas do Mundo".
+
+**Arquivos modificados:** `lib/games/conexoes-data.ts`
+
+**Por que:** O desafio diário é o coração do jogo — se ele repete, perde a graça. Agora os jogadores têm conteúdo fresco por mais de 3 semanas, e os novos puzzles têm categorias mais criativas e com pegadinhas mais elaboradas (ex: Ronaldo Fenomeno aparece tanto em "revelados pelo Santos" quanto em "artilheiros da Copa" — é uma armadilha intencional).
 
 ---
 
