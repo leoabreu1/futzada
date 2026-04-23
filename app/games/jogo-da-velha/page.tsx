@@ -150,54 +150,17 @@ export default function JogoDaVelhaPage() {
         <div className="game-stage__main">
           <section className="game-panel">
             <p className="game-panel__eyebrow">Tabuleiro</p>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'minmax(112px, 0.95fr) repeat(3, minmax(0, 1fr))',
-                gap: 8,
-              }}
-            >
+            <div className="velha-grid">
               <div />
               {cols.map((category) => (
-                <div
-                  key={category.id}
-                  style={{
-                    minHeight: 90,
-                    padding: '14px 10px',
-                    borderRadius: 18,
-                    border: '1px solid rgba(154,176,190,0.14)',
-                    background: 'rgba(8,20,29,0.72)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    textAlign: 'center',
-                    color: 'var(--color-muted)',
-                    fontSize: '0.78rem',
-                    lineHeight: 1.45,
-                  }}
-                >
+                <div key={category.id} className="velha-grid__label">
                   {category.label}
                 </div>
               ))}
 
               {rows.map((rowCategory, rowIndex) => (
                 <Fragment key={rowCategory.id}>
-                  <div
-                    style={{
-                      minHeight: 110,
-                      padding: '14px 12px',
-                      borderRadius: 18,
-                      border: '1px solid rgba(154,176,190,0.14)',
-                      background: 'rgba(8,20,29,0.72)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      textAlign: 'center',
-                      color: 'var(--color-muted)',
-                      fontSize: '0.78rem',
-                      lineHeight: 1.45,
-                    }}
-                  >
+                  <div className="velha-grid__label velha-grid__label--row">
                     {rowCategory.label}
                   </div>
 
@@ -211,10 +174,9 @@ export default function JogoDaVelhaPage() {
                       <button
                         key={index}
                         onClick={() => openCell(index)}
+                        className="velha-grid__cell"
                         style={{
                           aspectRatio: '1',
-                          minHeight: 110,
-                          borderRadius: 22,
                           border: `1px solid ${
                             isError
                               ? 'rgba(239,68,68,0.5)'
@@ -232,12 +194,6 @@ export default function JogoDaVelhaPage() {
                                 ? 'rgba(255,194,71,0.08)'
                                 : 'rgba(6,18,28,0.78)',
                           cursor: cell.locked || gameOver ? 'default' : 'pointer',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: 8,
-                          padding: 12,
                           opacity: gameOver && !cell.locked ? 0.35 : 1,
                           animation: isError ? 'shake 0.4s ease' : undefined,
                         }}
@@ -245,14 +201,14 @@ export default function JogoDaVelhaPage() {
                         {cell.locked && cell.player ? (
                           <>
                             <span style={{ fontSize: '1rem', color: 'var(--color-brand-green)' }}>✓</span>
-                            <span style={{ fontSize: '0.82rem', color: 'var(--color-text)', textAlign: 'center', lineHeight: 1.45 }}>
+                            <span className="velha-grid__cell-name" style={{ color: 'var(--color-text)' }}>
                               {cell.player.name}
                             </span>
                           </>
                         ) : cell.player && !cell.locked ? (
                           <>
                             <span style={{ fontSize: '1rem', color: '#f87171' }}>×</span>
-                            <span style={{ fontSize: '0.8rem', color: '#fca5a5', textAlign: 'center', lineHeight: 1.45 }}>
+                            <span className="velha-grid__cell-name" style={{ color: '#fca5a5' }}>
                               {cell.player.name}
                             </span>
                           </>

@@ -737,6 +737,64 @@ main {
   text-align: center;
 }
 
+.velha-grid {
+  display: grid;
+  grid-template-columns: minmax(112px, 0.95fr) repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.velha-grid__label {
+  min-height: 90px;
+  padding: 14px 10px;
+  border-radius: 18px;
+  border: 1px solid rgba(154, 176, 190, 0.14);
+  background: rgba(8, 20, 29, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.velha-grid__label--row {
+  min-height: 110px;
+  padding: 14px 12px;
+}
+
+.velha-grid__cell {
+  min-height: 110px;
+  padding: 12px;
+  border-radius: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.velha-grid__cell-name {
+  font-size: 0.82rem;
+  text-align: center;
+  line-height: 1.45;
+}
+
+.connections-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.connections-grid__tile {
+  min-height: 82px;
+  padding: 12px 8px;
+  border-radius: 18px;
+  text-align: center;
+  line-height: 1.35;
+  font-size: 0.78rem;
+}
+
 .card {
   transition:
     transform 0.28s ease,
@@ -1343,6 +1401,43 @@ main {
 
   .game-stat-grid {
     grid-template-columns: 1fr;
+  }
+
+  .velha-grid {
+    grid-template-columns: minmax(78px, 0.78fr) repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .velha-grid__label {
+    min-height: 76px;
+    padding: 10px 8px;
+    font-size: 0.68rem;
+    line-height: 1.35;
+  }
+
+  .velha-grid__label--row,
+  .velha-grid__cell {
+    min-height: 88px;
+  }
+
+  .velha-grid__cell {
+    padding: 10px;
+    gap: 6px;
+    border-radius: 18px;
+  }
+
+  .velha-grid__cell-name {
+    font-size: 0.68rem;
+    line-height: 1.3;
+  }
+
+  .connections-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .connections-grid__tile {
+    min-height: 74px;
+    font-size: 0.72rem;
   }
 
   .btn-primary,

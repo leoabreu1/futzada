@@ -205,31 +205,19 @@ export default function ConexoesPage() {
           <section className="game-panel">
             <p className="game-panel__eyebrow">Tabuleiro de nomes</p>
             {gameState !== 'lost' && shuffledPlayers.length > 0 ? (
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
-                  gap: 8,
-                  animation: shaking ? 'shake 0.45s ease' : undefined,
-                }}
-              >
+              <div className="connections-grid" style={{ animation: shaking ? 'shake 0.45s ease' : undefined }}>
                 {shuffledPlayers.map((player) => {
                   const isSelected = selected.includes(player)
                   return (
                     <button
                       key={player}
                       onClick={() => toggleSelect(player)}
+                      className="connections-grid__tile"
                       style={{
-                        minHeight: 82,
-                        padding: '12px 8px',
-                        borderRadius: 18,
                         border: `1px solid ${isSelected ? 'rgba(255,194,71,0.45)' : 'rgba(154,176,190,0.16)'}`,
                         background: isSelected ? 'rgba(255,194,71,0.12)' : 'rgba(6,18,28,0.78)',
                         color: isSelected ? 'var(--color-brand-yellow)' : 'var(--color-text)',
-                        textAlign: 'center',
-                        lineHeight: 1.35,
                         cursor: 'pointer',
-                        fontSize: '0.78rem',
                         transition: 'transform 0.14s ease, border-color 0.14s ease, background 0.14s ease',
                         transform: isSelected ? 'translateY(-1px)' : 'translateY(0)',
                       }}
