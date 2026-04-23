@@ -1,79 +1,98 @@
 'use client'
 
+import { Suspense } from 'react'
 import { signIn } from 'next-auth/react'
 import { useSearchParams } from 'next/navigation'
 import Logo from '@/components/ui/Logo'
-import { Suspense } from 'react'
 
 function LoginContent() {
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl') ?? '/'
 
   return (
-    <div style={{
-      minHeight: '80vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '40px 24px',
-    }}>
-      <div style={{
-        width: '100%',
-        maxWidth: 400,
-        background: 'var(--color-surface)',
-        border: '1px solid var(--color-border)',
-        borderRadius: 'var(--radius)',
-        padding: '40px 32px',
-        textAlign: 'center',
-      }}>
-        <div style={{ marginBottom: 24, display: 'flex', justifyContent: 'center' }}>
-          <Logo size={96} />
-        </div>
+    <div className="page-shell">
+      <div className="auth-layout">
+        <section className="surface-panel surface-panel--accent animate-fade-up delay-1" style={{ padding: 32, opacity: 0, animationFillMode: 'forwards' }}>
+          <div className="surface-panel__inner stack">
+            <div>
+              <p className="section-label">Entrar no vestiario</p>
+              <h1 className="page-title" style={{ marginBottom: 14 }}>
+                Salve sua campanha no FUTLE
+              </h1>
+              <p className="lede" style={{ maxWidth: '54ch' }}>
+                Entre com Google para manter sua pontuacao, escolher um nick e aparecer no ranking global em qualquer dispositivo.
+              </p>
+            </div>
 
-        <p style={{ color: 'var(--color-muted)', fontSize: '0.9rem', marginBottom: 32 }}>
-          Entre para competir no ranking global e salvar seus scores entre dispositivos
-        </p>
+            <div className="auth-benefits">
+              <div className="benefit">
+                <span className="benefit-mark">1</span>
+                <div>
+                  <p className="eyebrow" style={{ marginBottom: 6 }}>
+                    Score sincronizado
+                  </p>
+                  <p className="muted">Suas partidas ficam ligadas a um perfil em vez de sumirem no navegador.</p>
+                </div>
+              </div>
+              <div className="benefit">
+                <span className="benefit-mark">2</span>
+                <div>
+                  <p className="eyebrow" style={{ marginBottom: 6 }}>
+                    Ranking publico
+                  </p>
+                  <p className="muted">Mostre seu nick na tabela e acompanhe quem esta dominando a rodada.</p>
+                </div>
+              </div>
+              <div className="benefit">
+                <span className="benefit-mark">3</span>
+                <div>
+                  <p className="eyebrow" style={{ marginBottom: 6 }}>
+                    Continuidade
+                  </p>
+                  <p className="muted">Volte quando quiser sem perder o contexto do seu desempenho.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        <button
-          onClick={() => signIn('google', { callbackUrl })}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 12,
-            width: '100%',
-            padding: '12px 20px',
-            borderRadius: 'var(--radius-sm)',
-            border: '1px solid var(--color-border)',
-            background: 'var(--color-surface-2)',
-            color: 'var(--color-text)',
-            fontSize: '0.95rem',
-            fontFamily: 'var(--font-sans)',
-            cursor: 'pointer',
-            transition: 'background 0.2s, border-color 0.2s',
-          }}
-          onMouseEnter={e => {
-            e.currentTarget.style.background = 'rgba(255,255,255,0.08)'
-            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.background = 'var(--color-surface-2)'
-            e.currentTarget.style.borderColor = 'var(--color-border)'
-          }}
-        >
-          {/* Google icon */}
-          <svg width="20" height="20" viewBox="0 0 24 24">
-            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-          </svg>
-          Entrar com Google
-        </button>
+        <aside className="surface-panel auth-card animate-scale-in delay-2" style={{ opacity: 0, animationFillMode: 'forwards' }}>
+          <div className="surface-panel__inner stack" style={{ textAlign: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <Logo size={84} />
+            </div>
 
-        <p style={{ marginTop: 24, fontSize: '0.78rem', color: 'var(--color-muted-2)' }}>
-          Você pode jogar sem conta, mas seus scores não serão salvos no ranking global.
-        </p>
+            <div>
+              <p className="eyebrow" style={{ justifyContent: 'center', marginBottom: 10 }}>
+                Acesso rapido
+              </p>
+              <h2 className="section-title" style={{ marginBottom: 12 }}>
+                Entre e assuma seu lugar na tabela
+              </h2>
+              <p className="muted" style={{ fontSize: '0.95rem' }}>
+                Voce pode jogar sem conta, mas o ranking global e o historico ficam reservados para quem entra.
+              </p>
+            </div>
+
+            <button
+              onClick={() => signIn('google', { callbackUrl })}
+              className="btn-primary"
+              style={{ width: '100%' }}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+              </svg>
+              Entrar com Google
+            </button>
+
+            <p className="muted-2" style={{ fontSize: '0.82rem', lineHeight: 1.7 }}>
+              O cadastro de nick continua simples e aparece logo depois do login.
+            </p>
+          </div>
+        </aside>
       </div>
     </div>
   )

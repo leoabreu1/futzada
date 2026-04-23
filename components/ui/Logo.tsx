@@ -4,15 +4,28 @@ interface LogoProps {
   size?: number
 }
 
-export default function Logo({ size = 32 }: LogoProps) {
+const LOGO_ASSET = '/branding/futle-logo-transparent.png'
+const LOGO_RATIO = 5.16
+
+export default function Logo({ size = 40 }: LogoProps) {
+  const height = size
+  const width = Math.round(size * LOGO_RATIO)
+
   return (
     <Image
-      src="/logo-icon.png"
+      src={LOGO_ASSET}
       alt="Futle"
-      width={size}
-      height={size}
+      width={width}
+      height={height}
       priority
-      style={{ objectFit: 'contain' }}
+      sizes={`${width}px`}
+      style={{
+        display: 'block',
+        width,
+        height,
+        objectFit: 'contain',
+        flexShrink: 0,
+      }}
     />
   )
 }
