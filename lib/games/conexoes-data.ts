@@ -72,7 +72,7 @@ const PUZZLES: DailyConexoes[] = [
       { difficulty: 'purple', category: 'Jogaram no Bayer Leverkusen', players: ['Florian Wirtz', 'Lucio', 'Toni Kroos', 'Juan'] },
     ],
   },
-  // Puzzle 7
+  // Puzzle 7 — 2026-04-23
   {
     groups: [
       { difficulty: 'yellow', category: 'Revelados pelo Santos', players: ['Pelé', 'Robinho', 'Neymar Jr.', 'Ganso'] },
@@ -81,7 +81,7 @@ const PUZZLES: DailyConexoes[] = [
       { difficulty: 'purple', category: 'Jogaram no Porto', players: ['Falcao Garcia', 'Deco', 'Fernando', 'Alex Sandro'] },
     ],
   },
-  // Puzzle 8
+  // Puzzle 8 — 2026-04-24
   {
     groups: [
       { difficulty: 'yellow', category: 'Artilheiros históricos da Liga dos Campeões', players: ['Cristiano Ronaldo', 'Lionel Messi', 'Raul', 'Karim Benzema'] },
@@ -90,7 +90,7 @@ const PUZZLES: DailyConexoes[] = [
       { difficulty: 'purple', category: 'Jogaram no Roma', players: ['Francesco Totti', 'Daniele De Rossi', 'Gabriel Batistuta', 'Radja Nainggolan'] },
     ],
   },
-  // Puzzle 9
+  // Puzzle 9 — 2026-04-25
   {
     groups: [
       { difficulty: 'yellow', category: 'Zagueiros ídolos do Brasil', players: ['Lucio', 'Aldair', 'Thiago Silva', 'Juan'] },
@@ -99,7 +99,7 @@ const PUZZLES: DailyConexoes[] = [
       { difficulty: 'purple', category: 'Jogaram no Benfica', players: ['Eusebio', 'Rui Costa', 'Angel Di Maria', 'Darwin Nunez'] },
     ],
   },
-  // Puzzle 10
+  // Puzzle 10 — 2026-04-26
   {
     groups: [
       { difficulty: 'yellow', category: 'Artilheiros históricos da Premier League', players: ['Alan Shearer', 'Wayne Rooney', 'Andrew Cole', 'Frank Lampard'] },
@@ -108,7 +108,7 @@ const PUZZLES: DailyConexoes[] = [
       { difficulty: 'purple', category: 'Jogaram no Shakhtar Donetsk', players: ['Willian', 'Fernandinho', 'Douglas Costa', 'Fred'] },
     ],
   },
-  // Puzzle 11
+  // Puzzle 11 — 2026-04-27
   {
     groups: [
       { difficulty: 'yellow', category: 'Revelados pelo Grêmio', players: ['Ronaldinho Gaucho', 'Lucas Leiva', 'Anderson', 'Ramiro'] },
@@ -117,7 +117,7 @@ const PUZZLES: DailyConexoes[] = [
       { difficulty: 'purple', category: 'Jogaram no Lazio', players: ['Miroslav Klose', 'Pavel Nedved', 'Alessandro Nesta', 'Ciro Immobile'] },
     ],
   },
-  // Puzzle 12
+  // Puzzle 12 — 2026-04-28
   {
     groups: [
       { difficulty: 'yellow', category: 'Goleiros campeões da Copa 2002 com Brasil', players: ['Marcos', 'Dida', 'Rogerio Ceni', 'Taffarel'] },
@@ -126,7 +126,7 @@ const PUZZLES: DailyConexoes[] = [
       { difficulty: 'purple', category: 'Jogaram no Ajax', players: ['Johan Cruyff', 'Edwin van der Sar', 'Patrick Kluivert', 'Clarence Seedorf'] },
     ],
   },
-  // Puzzle 13
+  // Puzzle 13 — 2026-04-29
   {
     groups: [
       { difficulty: 'yellow', category: 'Jogaram no Fluminense', players: ['Thiago Silva', 'Fred', 'Deco', 'Ronaldinho Gaucho'] },
@@ -135,7 +135,7 @@ const PUZZLES: DailyConexoes[] = [
       { difficulty: 'purple', category: 'Jogaram no Zenit São Petersburgo', players: ['Hulk', 'Nicolas Lombaerts', 'Axel Witsel', 'Danny'] },
     ],
   },
-  // Puzzle 14
+  // Puzzle 14 — 2026-04-30
   {
     groups: [
       { difficulty: 'yellow', category: 'Maiores artilheiros da história da Copa do Mundo', players: ['Miroslav Klose', 'Ronaldo Fenomeno', 'Gerd Muller', 'Just Fontaine'] },
@@ -144,7 +144,7 @@ const PUZZLES: DailyConexoes[] = [
       { difficulty: 'purple', category: 'Jogaram no Galatasaray', players: ['Hakan Sukur', 'Didier Drogba', 'Gheorghe Hagi', 'Nicolas Anelka'] },
     ],
   },
-  // Puzzle 15
+  // Puzzle 15 — 2026-05-01
   {
     groups: [
       { difficulty: 'yellow', category: 'Meias históricos brasileiros', players: ['Zico', 'Socrates', 'Rai', 'Juninho Pernambucano'] },
@@ -153,7 +153,7 @@ const PUZZLES: DailyConexoes[] = [
       { difficulty: 'purple', category: 'Jogaram no Inter Miami', players: ['Lionel Messi', 'Sergio Busquets', 'Jordi Alba', 'Luis Suarez'] },
     ],
   },
-  // Puzzle 16
+  // Puzzle 16 — 2026-05-02
   {
     groups: [
       { difficulty: 'yellow', category: 'Laterais ícones do futebol mundial', players: ['Cafu', 'Roberto Carlos', 'Philipp Lahm', 'Paolo Maldini'] },
@@ -162,7 +162,7 @@ const PUZZLES: DailyConexoes[] = [
       { difficulty: 'purple', category: 'Geração de Ouro da Seleção Belga', players: ['Eden Hazard', 'Kevin De Bruyne', 'Romelu Lukaku', 'Axel Witsel'] },
     ],
   },
-  // Puzzle 17
+  // Puzzle 17 — 2026-05-03
   {
     groups: [
       { difficulty: 'yellow', category: 'Jogaram no Cruzeiro', players: ['Ronaldo Fenomeno', 'Alex', 'Edilson', 'Deivid'] },
@@ -171,7 +171,7 @@ const PUZZLES: DailyConexoes[] = [
       { difficulty: 'purple', category: 'Jogaram no Fenerbahce', players: ['Roberto Carlos', 'Nicolas Anelka', 'Mateja Kezman', 'Pierre van Hooijdonk'] },
     ],
   },
-  // Puzzle 18
+  // Puzzle 18 — 2026-05-04
   {
     groups: [
       { difficulty: 'yellow', category: 'Pontas velozes históricos', players: ['Arjen Robben', 'Franck Ribery', 'Gareth Bale', 'Marc Overmars'] },
@@ -180,7 +180,7 @@ const PUZZLES: DailyConexoes[] = [
       { difficulty: 'purple', category: 'Jogaram no Olympique de Lyon', players: ['Karim Benzema', 'Samuel Umtiti', 'Nabil Fekir', 'Alexandre Lacazette'] },
     ],
   },
-  // Puzzle 19
+  // Puzzle 19 — 2026-05-05
   {
     groups: [
       { difficulty: 'yellow', category: 'Atacantes ícones do Botafogo', players: ['Garrincha', 'Jairzinho', 'Tulio Maravilha', 'Loco Abreu'] },
@@ -189,13 +189,40 @@ const PUZZLES: DailyConexoes[] = [
       { difficulty: 'purple', category: 'Jogaram no Inter de Milão nos anos 2000', players: ['Ronaldo Fenomeno', 'Hernan Crespo', 'Dejan Stankovic', 'Luis Figo'] },
     ],
   },
-  // Puzzle 20
+  // Puzzle 20 — 2026-05-06
   {
     groups: [
       { difficulty: 'yellow', category: 'Lendas do futebol brasileiro (décadas 70-80)', players: ['Pelé', 'Zico', 'Socrates', 'Falcao'] },
       { difficulty: 'green',  category: 'Jogaram no Feyenoord', players: ['Robin van Persie', 'Dirk Kuyt', 'Giovanni van Bronckhorst', 'Virgil van Dijk'] },
       { difficulty: 'blue',   category: 'Jogaram no Atlético Mineiro', players: ['Ronaldinho Gaucho', 'Diego Tardelli', 'Bernard', 'Hulk'] },
       { difficulty: 'purple', category: 'Jogaram na MLS (Major League Soccer)', players: ['David Beckham', 'Thierry Henry', 'Kaka', 'Bastian Schweinsteiger'] },
+    ],
+  },
+  // Puzzle 21 — 2026-05-07
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Campeões Libertadores 2019 com Flamengo', players: ['Gabigol', 'Bruno Henrique', 'Everton Ribeiro', 'Rodrigo Caio'] },
+      { difficulty: 'green',  category: 'Jogaram no Palmeiras', players: ['Rivaldo', 'Roberto Carlos', 'Ze Roberto', 'Marcos'] },
+      { difficulty: 'blue',   category: 'Copa 2010 — Holanda (finalistas)', players: ['Arjen Robben', 'Robin van Persie', 'Wesley Sneijder', 'Dirk Kuyt'] },
+      { difficulty: 'purple', category: 'Foram jogadores E técnicos do mesmo clube', players: ['Zinedine Zidane', 'Pep Guardiola', 'Frank Lampard', 'Didier Deschamps'] },
+    ],
+  },
+  // Puzzle 22 — 2026-05-08
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Jogaram no Sporting CP', players: ['Cristiano Ronaldo', 'Luis Figo', 'Ricardo Quaresma', 'Nani'] },
+      { difficulty: 'green',  category: 'Campeões Copa 1986 com Argentina', players: ['Diego Maradona', 'Jorge Valdano', 'Oscar Ruggeri', 'Jorge Burruchaga'] },
+      { difficulty: 'blue',   category: 'Campeões Copa 2018 com França', players: ['Kylian Mbappe', 'Antoine Griezmann', "N'Golo Kante", 'Raphael Varane'] },
+      { difficulty: 'purple', category: 'Capitães campeões em Copa do Mundo', players: ['Dunga', 'Diego Maradona', 'Dino Zoff', 'Hugo Lloris'] },
+    ],
+  },
+  // Puzzle 23 — 2026-05-09
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Usaram a camisa 10 pela Seleção Brasileira', players: ['Pelé', 'Zico', 'Ronaldinho', 'Neymar Jr.'] },
+      { difficulty: 'green',  category: 'Ganharam a Bola de Ouro jogando no Real Madrid', players: ['Cristiano Ronaldo', 'Luka Modric', 'Karim Benzema', 'Ronaldo Fenomeno'] },
+      { difficulty: 'blue',   category: 'Maiores artilheiros históricos da LaLiga', players: ['Lionel Messi', 'Cristiano Ronaldo', 'Hugo Sanchez', 'Telmo Zarra'] },
+      { difficulty: 'purple', category: 'Revelados pelo São Paulo FC', players: ['Cafu', 'Raí', 'Zetti', 'Casemiro'] },
     ],
   },
 ]
