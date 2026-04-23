@@ -112,6 +112,7 @@ export default function QuemEOCraquePage() {
 
   return (
     <GamePageShell
+      storageKey="quem-e-o-craque"
       eyebrow="Identidade diaria"
       title="Quem e o Craque?"
       badge={<span className="badge badge-green">Diario</span>}

@@ -191,6 +191,7 @@ export default function WordlePage() {
 
   return (
     <GamePageShell
+      storageKey="wordle"
       eyebrow="Rodada diaria"
       title="Wordle do Futebol"
       badge={<span className="badge badge-green">Diario</span>}

@@ -158,6 +158,7 @@ export default function LinhaDoTempoPage() {
       `}</style>
 
       <GamePageShell
+        storageKey="linha-do-tempo"
         eyebrow="Ordem historica"
         title="Linha do Tempo"
         badge={<span className="badge badge-green">Diario</span>}

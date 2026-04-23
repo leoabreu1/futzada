@@ -152,6 +152,7 @@ export default function ConexoesPage() {
 
   return (
     <GamePageShell
+      storageKey="conexoes"
       eyebrow="Leitura de padroes"
       title="Conexoes Futebol"
       badge={<span className="badge badge-green">Diario</span>}

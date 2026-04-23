@@ -125,6 +125,7 @@ export default function JogoDaVelhaPage() {
 
   return (
     <GamePageShell
+      storageKey="jogo-da-velha"
       eyebrow="Cruzamento diario"
       title="Jogo da Velha Futebol"
       badge={<span className="badge badge-green">Diario</span>}

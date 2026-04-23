@@ -388,8 +388,47 @@ main {
   padding-top: 32px;
 }
 
+.game-shell-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.game-help-toggle {
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(154, 176, 190, 0.18);
+  border-radius: 999px;
+  background: rgba(8, 20, 29, 0.76);
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease;
+}
+
+.game-help-toggle:hover {
+  transform: translateY(-1px);
+  border-color: rgba(108, 255, 147, 0.32);
+  background: rgba(11, 28, 40, 0.92);
+}
+
 .game-hero {
   margin-bottom: 26px;
+}
+
+.game-compact-hero {
+  margin-bottom: 22px;
+}
+
+.game-compact-hero__inner {
+  padding: 18px 22px;
 }
 
 .game-hero__inner {
@@ -1291,6 +1330,10 @@ main {
 
   .game-page-shell {
     width: min(100vw - 20px, 1080px);
+  }
+
+  .game-shell-topbar {
+    align-items: flex-start;
   }
 
   .game-hero__inner,
