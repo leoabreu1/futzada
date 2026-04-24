@@ -2,6 +2,16 @@
 
 ---
 
+## 2026-04-24 — Badge "JOGADO HOJE" nos cards da página inicial
+
+**O que foi feito:** Adicionado um indicador visual verde "✓ JOGADO" nos cards dos jogos da página inicial quando o usuário já completou aquele jogo no dia. O badge aparece automaticamente ao lado de "DIÁRIO" assim que o jogador termina o desafio e volta para a home, sem precisar recarregar. Funciona tanto para usuários logados quanto para visitantes.
+
+**Arquivos modificados:** `components/ui/GameCard.tsx`, `components/ui/PlayedTodayBadge.tsx` (novo)
+
+**Por que:** Sem esse indicador, quem joga mais de um jogo por dia precisa abrir cada card para descobrir se já jogou ou não — o que é frustrante. Agora, ao voltar para a home depois de jogar, o progresso do dia fica visível de relance, incentivando o jogador a completar todos os 5 jogos disponíveis.
+
+---
+
 ## 2026-04-23 — Conexões: 3 semanas de puzzles novos (sem repetição)
 
 **O que foi feito:** Adicionados 3 novos puzzles ao jogo Conexões Futebol (puzzles 21, 22 e 23), integrando com os 14 que o repositório já havia recebido hoje. O jogo agora tem 24 puzzles únicos no total — o que significa que os jogadores passarão mais de 3 semanas sem ver o mesmo desafio duas vezes. Antes, quem abrisse o jogo hoje (dia 7 desde o lançamento) veriam o puzzle do dia 1 repetido. As novas categorias incluem temas originais como "Usaram a camisa 10 pela Seleção Brasileira", "Foram jogadores E técnicos do mesmo clube" e "Capitães campeões em Copas do Mundo".
