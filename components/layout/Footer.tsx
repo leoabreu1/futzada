@@ -3,56 +3,36 @@ import Logo from '@/components/ui/Logo'
 
 export default function Footer() {
   return (
-    <footer
-      style={{
-        borderTop: '1px solid rgba(154, 176, 190, 0.12)',
-        background: 'rgba(5, 13, 20, 0.82)',
-        backdropFilter: 'blur(18px)',
-        WebkitBackdropFilter: 'blur(18px)',
-      }}
-    >
-      <div
-        style={{
-          width: 'min(var(--container-width), calc(100vw - 24px))',
-          margin: '0 auto',
-          padding: '26px 0 30px',
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          gap: 18,
-          alignItems: 'end',
-        }}
-      >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <footer className="site-footer">
+      <div className="site-footer__inner">
+        <div className="site-footer__brand">
           <Logo size={30} />
-          <p style={{ maxWidth: 420, color: 'var(--color-muted)', fontSize: '0.9rem' }}>
-            Minijogos diarios de futebol com cara de arquibancada, ranking vivo e desafios feitos para voltar todo dia.
+          <p className="site-footer__copy">
+            Jogos diarios de futebol para jogar rapido, comparar resultado e voltar no dia seguinte.
           </p>
         </div>
 
-        <div style={{ justifySelf: 'start' }}>
+        <div className="site-footer__nav">
           <div className="eyebrow" style={{ marginBottom: 8 }}>
             Navegue
           </div>
-          <Link href="/" style={{ display: 'block', color: 'var(--color-muted)', fontSize: '0.84rem', textDecoration: 'none' }}>
+          <Link href="/" className="site-footer__link">
             Jogos
           </Link>
-          <Link href="/ranking" style={{ display: 'block', color: 'var(--color-muted)', fontSize: '0.84rem', textDecoration: 'none' }}>
+          <Link href="/ranking" className="site-footer__link">
             Ranking
           </Link>
-          <Link href="/profile" style={{ display: 'block', color: 'var(--color-muted)', fontSize: '0.84rem', textDecoration: 'none' }}>
+          <Link href="/profile" className="site-footer__link">
             Perfil
           </Link>
         </div>
 
-        <div style={{ justifySelf: 'end', textAlign: 'right' }}>
+        <div className="site-footer__season">
           <div className="eyebrow" style={{ marginBottom: 8, justifyContent: 'flex-end' }}>
             Temporada
           </div>
-          <p style={{ color: 'var(--color-brand-green)', fontFamily: 'var(--font-display)', fontSize: '2rem' }}>
-            {new Date().getFullYear()}
-          </p>
-          <p style={{ color: 'var(--color-muted)', fontSize: '0.8rem' }}>Feito para quem vive futebol</p>
+          <p className="site-footer__year">{new Date().getFullYear()}</p>
+          <p className="site-footer__tagline">Feito para quem vive futebol</p>
         </div>
       </div>
     </footer>
