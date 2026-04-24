@@ -84,7 +84,7 @@ export default function JogoDaVelhaPage() {
       setTimeout(() => setErrorCell(null), 800)
       const matchesRow = rows[row].match(player)
       const matchesCol = cols[col].match(player)
-      let message = `${player.name} nao e `
+      let message = `${player.name} não é `
       if (!matchesRow && !matchesCol) message += `${rows[row].label} nem ${cols[col].label}`
       else if (!matchesRow) message += rows[row].label
       else message += cols[col].label
@@ -126,10 +126,10 @@ export default function JogoDaVelhaPage() {
   return (
     <GamePageShell
       storageKey="jogo-da-velha"
-      eyebrow="Cruzamento diario"
+      eyebrow="Cruzamento diário"
       title="Jogo da Velha Futebol"
-      badge={<span className="badge badge-green">Diario</span>}
-      description="Cruze categorias, encontre o nome certo e complete o tabuleiro sem desperdicar tentativas. Cada casa aceita um unico jogador valido."
+      badge={<span className="badge badge-green">Diário</span>}
+      description="Cruze categorias, encontre o nome certo e complete o tabuleiro sem desperdiçar tentativas. Cada casa aceita um único jogador válido."
       meta={['3x3 categorias', 'Sem repetir jogador', `${MAX_GUESSES} tentativas totais`]}
       stats={[
         { label: 'Acertos', value: score, tone: score >= 6 ? 'green' : 'default' },
@@ -137,10 +137,10 @@ export default function JogoDaVelhaPage() {
         { label: 'Casas abertas', value: 9 - score, tone: gameOver && !allCellsLocked ? 'danger' : 'default' },
       ]}
       asideTitle="Como dominar"
-      asideDescription="A leitura agora ficou mais editorial: tabuleiro central, casa ativa destacada e busca sempre pronta para a proxima jogada."
+      asideDescription="A leitura agora ficou mais editorial: tabuleiro central, casa ativa destacada e busca sempre pronta para a próxima jogada."
       asideNotes={[
-        { title: 'Pense por intersecao', text: 'Cada casa precisa atender linha e coluna ao mesmo tempo.' },
-        { title: 'Sem repeticao', text: 'Jogadores usados em casas travadas saem do pool imediatamente.' },
+        { title: 'Pense por interseção', text: 'Cada casa precisa atender linha e coluna ao mesmo tempo.' },
+        { title: 'Sem repetição', text: 'Jogadores usados em casas travadas saem do pool imediatamente.' },
         { title: 'Fez 9', text: 'Tabuleiro completo significa rodada perfeita.' },
       ]}
     >
@@ -153,7 +153,7 @@ export default function JogoDaVelhaPage() {
             <div className="game-primary-split">
               <div>
                 <div className="game-status-banner" style={{ marginBottom: 16 }}>
-                  Toque numa casa para abrir a busca contextual. O tabuleiro continua protagonista, mas a decisao da jogada fica colada nele.
+                  Toque numa casa para abrir a busca contextual. O tabuleiro continua protagonista, mas a decisão da jogada fica colada nele.
                 </div>
 
                 <div className="velha-grid">
@@ -287,7 +287,7 @@ export default function JogoDaVelhaPage() {
               <div className="game-legend-list">
                 <div className="game-legend-item">
                   <span className="game-legend-swatch" style={{ background: 'rgba(108,255,147,0.9)' }} />
-                  Verde significa casa travada com jogador valido.
+                  Verde significa casa travada com jogador válido.
                 </div>
                 <div className="game-legend-item">
                   <span className="game-legend-swatch" style={{ background: 'rgba(255,194,71,0.9)' }} />
@@ -317,7 +317,7 @@ export default function JogoDaVelhaPage() {
                 {score === 9 ? 'Tabuleiro perfeito.' : score >= 7 ? 'Quase impecavel.' : score >= 4 ? 'Boa leitura.' : 'Tem margem para subir.'}
               </h2>
               <p className="game-panel__copy">
-                {score}/9 casas travadas. {scoreRegistered ? 'Pontuacao registrada. ' : ''}A proxima combinacao entra amanha.
+                {score}/9 casas travadas. {scoreRegistered ? 'Pontuação registrada. ' : ''}A próxima combinação entra amanhã.
               </p>
               <div className="game-actions" style={{ marginTop: 18 }}>
                 <button type="button" onClick={shareResult} className="btn-ghost">

@@ -55,12 +55,12 @@ export default function NicknameGate() {
       const data = await response.json()
 
       if (!response.ok) {
-        setError(data.error ?? 'Nao foi possivel salvar o nick.')
+        setError(data.error ?? 'Não foi possível salvar o nick.')
       } else {
         await update({ nickname: trimmed })
       }
     } catch {
-      setError('Erro de conexao. Tente novamente.')
+      setError('Erro de conexão. Tente novamente.')
     } finally {
       setLoading(false)
     }
@@ -133,7 +133,7 @@ export default function NicknameGate() {
                 <p className="muted-2" style={{ fontSize: '0.82rem' }}>
                   De 2 a 20 caracteres. {nickname.length}/20.
                 </p>
-                <span className="badge badge-green">Ranking publico</span>
+                <span className="badge badge-green">Ranking público</span>
               </div>
 
               {error && <p style={{ color: '#FF9F81', fontSize: '0.84rem', fontWeight: 700 }}>{error}</p>}

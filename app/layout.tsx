@@ -6,22 +6,22 @@ import Providers from "@/components/Providers";
 import NicknameGate from "@/components/NicknameGate";
 
 export const metadata: Metadata = {
-  title: "FUTLE | Arcade diario de futebol",
+  title: "FUTLE | Arcade diário de futebol",
   description:
-    "Minijogos diarios de futebol com ranking global, desafios criativos e clima de arquibancada.",
-  keywords: "futebol, jogo diario, ranking, wordle, trivia, futle",
+    "Minijogos diários de futebol com ranking global, desafios criativos e clima de arquibancada.",
+  keywords: "futebol, jogo diário, ranking, wordle, trivia, futle",
   openGraph: {
-    title: "FUTLE | Arcade diario de futebol",
+    title: "FUTLE | Arcade diário de futebol",
     description:
-      "Uma colecao de minijogos diarios de futebol com identidade forte e competicao entre amigos.",
+      "Uma coleção de minijogos diários de futebol com identidade forte e competição entre amigos.",
     type: "website",
     images: ["/branding/futle-logo-transparent.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "FUTLE | Arcade diario de futebol",
+    title: "FUTLE | Arcade diário de futebol",
     description:
-      "Jogue desafios diarios, suba no ranking e prove que voce entende de futebol.",
+      "Jogue desafios diários, suba no ranking e prove que você entende de futebol.",
     images: ["/branding/futle-logo-transparent.png"],
   },
   icons: {

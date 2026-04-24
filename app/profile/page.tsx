@@ -16,9 +16,9 @@ type PlayerRow = {
 const GAME_BREAKDOWN = [
   { key: 'wordle', label: 'Wordle do Futebol', color: '#6CFF93' },
   { key: 'jogo-da-velha', label: 'Jogo da Velha', color: '#FFC247' },
-  { key: 'quem-e-o-craque', label: 'Quem e o Craque', color: '#8BD4FF' },
+  { key: 'quem-e-o-craque', label: 'Quem é o Craque', color: '#8BD4FF' },
   { key: 'linha-do-tempo', label: 'Linha do Tempo', color: '#FF9F81' },
-  { key: 'conexoes', label: 'Conexoes', color: '#E6A8FF' },
+  { key: 'conexoes', label: 'Conexões', color: '#E6A8FF' },
 ]
 
 export default function ProfilePage() {
@@ -83,7 +83,7 @@ export default function ProfilePage() {
     }
 
     if (file.size > 2 * 1024 * 1024) {
-      setAvatarError('A imagem deve ter no maximo 2 MB')
+      setAvatarError('A imagem deve ter no máximo 2 MB')
       return
     }
 
@@ -109,7 +109,7 @@ export default function ProfilePage() {
       await update()
       setTimeout(() => setAvatarSaved(false), 2500)
     } catch {
-      setAvatarError('Erro de conexao')
+      setAvatarError('Erro de conexão')
     } finally {
       setAvatarLoading(false)
     }
@@ -135,7 +135,7 @@ export default function ProfilePage() {
         setTimeout(() => setNickSaved(false), 2500)
       }
     } catch {
-      setNickError('Erro de conexao')
+      setNickError('Erro de conexão')
     } finally {
       setNickLoading(false)
     }
@@ -159,7 +159,7 @@ export default function ProfilePage() {
             <p className="section-label">Perfil bloqueado</p>
             <h1 className="page-title">Entre para abrir sua ficha</h1>
             <p className="muted">
-              O perfil guarda seu nick, sua posicao no ranking e o resumo das partidas jogadas.
+              O perfil guarda seu nick, sua posição no ranking e o resumo das partidas jogadas.
             </p>
             <button onClick={() => signIn('google')} className="btn-primary">
               Entrar com Google
@@ -231,7 +231,7 @@ export default function ProfilePage() {
               </label>
 
               <p className="muted-2" style={{ fontSize: '0.82rem' }}>
-                JPG, PNG ou WebP ate 2 MB.
+                JPG, PNG ou WebP até 2 MB.
               </p>
 
               {avatarSaved && (
@@ -273,10 +273,10 @@ export default function ProfilePage() {
             <div>
               <p className="section-label section-label-muted">Nick competitivo</p>
               <h2 className="section-title" style={{ marginBottom: 12 }}>
-                Ajuste como voce aparece na tabela
+                Ajuste como você aparece na tabela
               </h2>
               <p className="muted">
-                Seu nick e publico no ranking. A alteracao continua limitada a uma vez por semana.
+                Seu nick é público no ranking. A alteração continua limitada a uma vez por semana.
               </p>
             </div>
 
@@ -333,7 +333,7 @@ export default function ProfilePage() {
               <h2 className="section-title" style={{ marginBottom: 10 }}>
                 Seu mapa de jogo
               </h2>
-              <p className="muted">Veja onde sua pontuacao esta mais forte e o quanto voce distribuiu suas partidas.</p>
+              <p className="muted">Veja onde sua pontuação está mais forte e o quanto você distribuiu suas partidas.</p>
             </div>
 
             <div className="stack" style={{ gap: 12 }}>

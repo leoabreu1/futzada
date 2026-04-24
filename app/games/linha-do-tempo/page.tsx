@@ -129,7 +129,7 @@ export default function LinhaDoTempoPage() {
     const text =
       gameState === 'won'
         ? `Futle Linha do Tempo ${date}\nResolvido em ${attempts}/3 tentativa${attempts > 1 ? 's' : ''}\n\nfutle.vercel.app`
-        : `Futle Linha do Tempo ${date}\nNao consegui hoje\n\nfutle.vercel.app`
+        : `Futle Linha do Tempo ${date}\nNão consegui hoje\n\nfutle.vercel.app`
 
     if (navigator.share) {
       navigator.share({ text }).catch(() => {})
@@ -158,22 +158,22 @@ export default function LinhaDoTempoPage() {
 
       <GamePageShell
         storageKey="linha-do-tempo"
-        eyebrow="Ordem historica"
+        eyebrow="Ordem histórica"
         title="Linha do Tempo"
-        badge={<span className="badge badge-green">Diario</span>}
+        badge={<span className="badge badge-green">Diário</span>}
         description="Organize quatro eventos do futebol do mais antigo ao mais recente. O novo layout destaca sua ordem, o banco de eventos e o momento de checagem sem confundir o fluxo."
-        meta={['4 eventos', 'Ate 3 tentativas', 'Clique para ordenar']}
+        meta={['4 eventos', 'Até 3 tentativas', 'Clique para ordenar']}
         stats={[
           { label: 'Tentativa atual', value: loaded ? `${attempts}/3` : '--' },
           { label: 'Eventos no slot', value: loaded ? userOrder.length : '--', tone: loaded && canSubmit ? 'green' : 'default' },
-          { label: 'Pontuacao maxima', value: 120, helper: 'Sem errar a ordem', tone: 'yellow' },
+          { label: 'Pontuação máxima', value: 120, helper: 'Sem errar a ordem', tone: 'yellow' },
         ]}
         asideTitle="Como funciona"
-        asideDescription="Escolha os quatro blocos na ordem que voce acredita ser correta. O painel de validacao mostra na hora o que esta certo e o que ainda precisa de ajuste."
+        asideDescription="Escolha os quatro blocos na ordem que você acredita ser correta. O painel de validação mostra na hora o que está certo e o que ainda precisa de ajuste."
         asideNotes={[
-          { title: 'Toque para montar', text: 'Clique em um evento disponivel para leva-lo para sua ordem.' },
+          { title: 'Toque para montar', text: 'Clique em um evento disponível para levá-lo para sua ordem.' },
           { title: 'Toque para remover', text: 'Enquanto estiver jogando, clique no item da sua ordem para tirar dali.' },
-          { title: 'Tres janelas', text: 'Errou duas vezes? A terceira e a ultima tentativa da rodada.' },
+          { title: 'Três janelas', text: 'Errou duas vezes? A terceira é a última tentativa da rodada.' },
         ]}
       >
         {!loaded ? (
@@ -186,7 +186,7 @@ export default function LinhaDoTempoPage() {
                   <section className="game-panel game-panel--primary">
                     <p className="game-panel__eyebrow">Montagem da ordem</p>
                     <div className="game-status-banner" style={{ marginBottom: 18 }}>
-                      Primeiro monte sua linha com os quatro eventos. Depois confirme. A verificacao colore cada posicao sem esconder o eixo principal do jogo.
+                      Primeiro monte sua linha com os quatro eventos. Depois confirme. A verificação colore cada posição sem esconder o eixo principal do jogo.
                     </div>
 
                     <div className="timeline-columns">
@@ -317,7 +317,7 @@ export default function LinhaDoTempoPage() {
                       <div className="game-legend-list">
                         <div className="game-legend-item">
                           <span className="game-legend-swatch" style={{ background: 'var(--color-brand-green)' }} />
-                          Verde aparece quando a posicao esta correta na checagem.
+                          Verde aparece quando a posição está correta na checagem.
                         </div>
                         <div className="game-legend-item">
                           <span className="game-legend-swatch" style={{ background: '#f87171' }} />
@@ -325,7 +325,7 @@ export default function LinhaDoTempoPage() {
                         </div>
                         <div className="game-legend-item">
                           <span className="game-legend-swatch" style={{ background: 'var(--color-brand-yellow)' }} />
-                          Confirme so quando os quatro slots estiverem completos.
+                          Confirme só quando os quatro slots estiverem completos.
                         </div>
                       </div>
                     </section>
@@ -406,7 +406,7 @@ export default function LinhaDoTempoPage() {
 
                   <div className="game-actions" style={{ marginTop: 18 }}>
                     <div className="game-status-banner game-status-banner--danger" style={{ flex: 1 }}>
-                      Rodada encerrada. {scoreRegistered ? 'Pontuacao registrada. ' : ''}Amanha tem nova sequencia.
+                      Rodada encerrada. {scoreRegistered ? 'Pontuação registrada. ' : ''}Amanhã tem nova sequência.
                     </div>
                     <button type="button" onClick={handleShare} className="btn-ghost">
                       {shared ? 'Copiado' : 'Compartilhar resultado'}

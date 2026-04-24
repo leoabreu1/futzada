@@ -19,9 +19,9 @@ const FILTERS = [
   { value: 'all', label: 'Todos' },
   { value: 'wordle', label: 'Wordle' },
   { value: 'jogo-da-velha', label: 'Jogo da Velha' },
-  { value: 'quem-e-o-craque', label: 'Quem e o Craque' },
+  { value: 'quem-e-o-craque', label: 'Quem é o Craque' },
   { value: 'linha-do-tempo', label: 'Linha do Tempo' },
-  { value: 'conexoes', label: 'Conexoes' },
+  { value: 'conexoes', label: 'Conexões' },
 ] as const
 
 const GAME_BADGES: Array<{ key: string; label: string; color: string }> = [
@@ -29,7 +29,7 @@ const GAME_BADGES: Array<{ key: string; label: string; color: string }> = [
   { key: 'jogo-da-velha', label: 'Velha', color: '#FFC247' },
   { key: 'quem-e-o-craque', label: 'Craque', color: '#8BD4FF' },
   { key: 'linha-do-tempo', label: 'Tempo', color: '#FF9F81' },
-  { key: 'conexoes', label: 'Conexoes', color: '#E6A8FF' },
+  { key: 'conexoes', label: 'Conexões', color: '#E6A8FF' },
 ]
 
 export default function RankingPage() {
@@ -70,7 +70,7 @@ export default function RankingPage() {
                 Ranking global
               </h1>
               <p className="lede" style={{ maxWidth: '52ch' }}>
-                Pontuacao viva, historico por jogo e destaque para quem sustenta performance rodada apos rodada.
+                Pontuação viva, histórico por jogo e destaque para quem sustenta performance rodada após rodada.
               </p>
             </div>
 
@@ -100,12 +100,12 @@ export default function RankingPage() {
         <div className="surface-panel animate-fade-up delay-2" style={{ padding: 28, opacity: 0, animationFillMode: 'forwards' }}>
           <div className="surface-panel__inner stack">
             <div>
-              <p className="section-label section-label-muted">Leitura rapida</p>
+              <p className="section-label section-label-muted">Leitura rápida</p>
               <h2 className="section-title" style={{ marginBottom: 12 }}>
                 Filtre por modalidade
               </h2>
               <p className="muted">
-                Veja quem domina cada formato e descubra se seu melhor jogo tambem rende vantagem no acumulado.
+                Veja quem domina cada formato e descubra se seu melhor jogo também rende vantagem no acumulado.
               </p>
             </div>
 
@@ -131,8 +131,8 @@ export default function RankingPage() {
       ) : filtered.length === 0 ? (
         <div className="surface-panel" style={{ padding: 40, textAlign: 'center' }}>
           <div className="surface-panel__inner stack" style={{ alignItems: 'center' }}>
-            <p className="section-label">Sem pontuacao ainda</p>
-            <h2 className="section-title">Essa tabela ainda esta vazia</h2>
+            <p className="section-label">Sem pontuação ainda</p>
+            <h2 className="section-title">Essa tabela ainda está vazia</h2>
             <p className="muted" style={{ maxWidth: 520 }}>
               Jogue uma rodada para gerar score e abrir disputa no ranking global.
             </p>
@@ -192,7 +192,7 @@ export default function RankingPage() {
                       >
                         {player.name}
                       </span>
-                      {isMe && <span className="badge badge-green">Voce</span>}
+                      {isMe && <span className="badge badge-green">Você</span>}
                     </div>
 
                     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>

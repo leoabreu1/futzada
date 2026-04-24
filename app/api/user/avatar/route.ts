@@ -67,12 +67,12 @@ async function ensureAvatarBucket(supabase: ReturnType<typeof createSupabaseServ
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions)
   if (!session?.user?.id) {
-    return NextResponse.json({ error: 'Nao autenticado' }, { status: 401 })
+    return NextResponse.json({ error: 'Não autenticado' }, { status: 401 })
   }
 
   if (!isSupabaseStorageConfigured()) {
     return NextResponse.json(
-      { error: 'Supabase Storage nao esta configurado no servidor' },
+        { error: 'Supabase Storage não está configurado no servidor' },
       { status: 500 }
     )
   }
@@ -103,7 +103,7 @@ export async function POST(req: NextRequest) {
   const bucketError = await ensureAvatarBucket(supabase)
   if (bucketError) {
     return NextResponse.json(
-      { error: 'Nao foi possivel preparar o bucket de avatars' },
+        { error: 'Não foi possível preparar o bucket de avatars' },
       { status: 500 }
     )
   }
@@ -126,7 +126,7 @@ export async function POST(req: NextRequest) {
 
   if (uploadError) {
     return NextResponse.json(
-      { error: 'Nao foi possivel enviar o avatar' },
+      { error: 'Não foi possível enviar o avatar' },
       { status: 500 }
     )
   }

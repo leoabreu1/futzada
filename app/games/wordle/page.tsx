@@ -112,7 +112,7 @@ export default function WordlePage() {
     }
 
     if (!WORD_LIST.includes(currentWord)) {
-      setError('Jogador nao encontrado na lista.')
+      setError('Jogador não encontrado na lista.')
       setShake(true)
       setTimeout(() => setShake(false), 500)
       setTimeout(() => setError(''), 1800)
@@ -220,21 +220,21 @@ export default function WordlePage() {
   return (
     <GamePageShell
       storageKey="wordle"
-      eyebrow="Rodada diaria"
+      eyebrow="Rodada diária"
       title="Wordle do Futebol"
-      badge={<span className="badge badge-green">Diario</span>}
-      description="Descubra o sobrenome escondido em ate seis tentativas. Cada cor revela o quanto voce esta perto da resposta."
+      badge={<span className="badge badge-green">Diário</span>}
+      description="Descubra o sobrenome escondido em até seis tentativas. Cada cor revela o quanto você está perto da resposta."
       meta={[`${WORD_LENGTH} letras`, `${MAX_GUESSES} tentativas`, 'Sobrenome de jogador']}
       stats={[
         { label: 'Tentativas restantes', value: attemptsLeft, tone: attemptsLeft <= 2 && !gameOver ? 'yellow' : 'green' },
         { label: 'Linhas preenchidas', value: `${guesses.length}/${MAX_GUESSES}` },
         { label: 'Status', value: gameOver ? (won ? 'Acertou' : 'Fechou') : 'Ao vivo', tone: gameOver && !won ? 'danger' : 'default' },
       ]}
-      asideTitle="Leitura rapida"
-      asideDescription="O novo layout deixa o jogo mais claro: tabuleiro no centro, legenda sempre visivel e teclado com feedback forte."
+      asideTitle="Leitura rápida"
+      asideDescription="O novo layout deixa o jogo mais claro: tabuleiro no centro, legenda sempre visível e teclado com feedback forte."
       asideNotes={[
         { title: 'Verde', text: 'Letra no lugar certo e confirmada no nome do jogador.' },
-        { title: 'Amarelo', text: 'Letra existe, mas ainda esta na casa errada.' },
+        { title: 'Amarelo', text: 'Letra existe, mas ainda está na casa errada.' },
         { title: 'Escuro', text: 'Letra fora da resposta de hoje.' },
       ]}
     >
@@ -245,7 +245,7 @@ export default function WordlePage() {
           <section className="game-panel game-panel--primary">
             <p className="game-panel__eyebrow">Tabuleiro</p>
             <div className="game-status-banner" style={{ marginBottom: 18 }}>
-              Clique em qualquer casa da linha ativa para posicionar a letra onde quiser. O envio so libera quando a palavra estiver completa.
+              Clique em qualquer casa da linha ativa para posicionar a letra onde quiser. O envio só libera quando a palavra estiver completa.
             </div>
             <div
               className="game-board-wrap wordle-board"
@@ -361,7 +361,7 @@ export default function WordlePage() {
                 </div>
                 <div className="game-legend-item">
                   <span className="game-legend-swatch" style={{ background: 'rgba(255,194,71,0.82)' }} />
-                  O teclado embaixo fica sempre no campo de visao e acelera a rodada.
+                  O teclado embaixo fica sempre no campo de visão e acelera a rodada.
                 </div>
               </div>
             </section>
@@ -371,7 +371,7 @@ export default function WordlePage() {
               <div className="game-legend-list">
                 <div className="game-legend-item">
                   <span className="game-legend-swatch" style={{ background: '#6cff93' }} />
-                  Verde confirma letra e posicao corretas.
+                  Verde confirma letra e posição corretas.
                 </div>
                 <div className="game-legend-item">
                   <span className="game-legend-swatch" style={{ background: '#ffc247' }} />
@@ -388,8 +388,8 @@ export default function WordlePage() {
                 {won ? `Acertou em ${guesses.length} tentativa${guesses.length > 1 ? 's' : ''}.` : `A resposta era ${DAILY_WORD}.`}
               </h2>
               <p className="game-panel__copy">
-                {scoreRegistered ? 'Pontuacao registrada. ' : ''}
-                O proximo desafio entra amanha com um novo sobrenome.
+                {scoreRegistered ? 'Pontuação registrada. ' : ''}
+                O próximo desafio entra amanhã com um novo sobrenome.
               </p>
               <div className="game-actions" style={{ marginTop: 18 }}>
                 <button onClick={shareResult} className="btn-ghost">

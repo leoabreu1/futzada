@@ -17,7 +17,7 @@ type ConexoesState = {
 
 const DIFF_STYLE: Record<ConexoesGroup['difficulty'], { bg: string; border: string; text: string; label: string }> = {
   yellow: { bg: 'rgba(255,194,71,0.12)', border: 'rgba(255,194,71,0.34)', text: 'var(--color-brand-yellow)', label: 'Mais direta' },
-  green: { bg: 'rgba(108,255,147,0.12)', border: 'rgba(108,255,147,0.28)', text: 'var(--color-brand-green)', label: 'Intermediaria' },
+  green: { bg: 'rgba(108,255,147,0.12)', border: 'rgba(108,255,147,0.28)', text: 'var(--color-brand-green)', label: 'Intermediária' },
   blue: { bg: 'rgba(96,165,250,0.12)', border: 'rgba(96,165,250,0.28)', text: '#93c5fd', label: 'Mais esperta' },
   purple: { bg: 'rgba(196,132,252,0.12)', border: 'rgba(196,132,252,0.28)', text: '#d8b4fe', label: 'Pegadinha final' },
 }
@@ -138,7 +138,7 @@ export default function ConexoesPage() {
           : `${errors} erro${errors !== 1 ? 's' : ''}`
         : `${foundGroups.length}/4 grupos`
 
-    const text = `Futle Conexoes ${today}\n${result}\n\n${rows}\n\nfutle.vercel.app`
+    const text = `Futle Conexões ${today}\n${result}\n\n${rows}\n\nfutle.vercel.app`
 
     if (navigator.share) {
       navigator.share({ text }).catch(() => {})
@@ -154,10 +154,10 @@ export default function ConexoesPage() {
     <GamePageShell
       storageKey="conexoes"
       eyebrow="Leitura de padroes"
-      title="Conexoes Futebol"
-      badge={<span className="badge badge-green">Diario</span>}
-      description="Encontre quatro grupos secretos de jogadores com algo em comum. A nova tela privilegia leitura rapida, blocos encontrados e pressao visual quando voce erra."
-      meta={['4 grupos de 4', 'Ate 4 erros', 'Selecione e confirme']}
+      title="Conexões Futebol"
+      badge={<span className="badge badge-green">Diário</span>}
+      description="Encontre quatro grupos secretos de jogadores com algo em comum. A nova tela privilegia leitura rápida, blocos encontrados e pressão visual quando você erra."
+      meta={['4 grupos de 4', 'Até 4 erros', 'Selecione e confirme']}
       stats={[
         { label: 'Grupos fechados', value: foundGroups.length, tone: foundGroups.length >= 2 ? 'green' : 'default' },
         { label: 'Erros', value: errors, tone: errors >= 3 ? 'danger' : errors > 0 ? 'yellow' : 'default' },
@@ -166,9 +166,9 @@ export default function ConexoesPage() {
       asideTitle="Leitura de dificuldade"
       asideDescription="Cada grupo encontrado sobe para o topo e limpa o tabuleiro. O lado direito explica o grau de risco de cada cor."
       asideNotes={[
-        { title: 'Amarelo', text: 'Grupo mais direto, geralmente com relacao mais obvia.' },
-        { title: 'Azul e roxo', text: 'Entram quando o jogo quer testar repertorio e leitura fina.' },
-        { title: 'Quatro exatos', text: 'So vale confirmar quando tiver exatamente quatro nomes selecionados.' },
+        { title: 'Amarelo', text: 'Grupo mais direto, geralmente com relação mais óbvia.' },
+        { title: 'Azul e roxo', text: 'Entram quando o jogo quer testar repertório e leitura fina.' },
+        { title: 'Quatro exatos', text: 'Só vale confirmar quando tiver exatamente quatro nomes selecionados.' },
       ]}
     >
       <div className="game-stage game-stage--single">
@@ -205,7 +205,7 @@ export default function ConexoesPage() {
           <section className="game-panel game-panel--primary">
             <p className="game-panel__eyebrow">Tabuleiro de nomes</p>
             <div className="game-status-banner" style={{ marginBottom: 18 }}>
-              O tabuleiro precisa mandar na tela: selecione quatro nomes, confira a combinacao e confirme quando a leitura fizer sentido.
+              O tabuleiro precisa mandar na tela: selecione quatro nomes, confira a combinação e confirme quando a leitura fizer sentido.
             </div>
 
             {gameState !== 'lost' && shuffledPlayers.length > 0 ? (
@@ -248,7 +248,7 @@ export default function ConexoesPage() {
 
           <div className="game-support-grid">
             <section className="game-panel game-panel--soft">
-              <p className="game-panel__eyebrow">Pressao da rodada</p>
+              <p className="game-panel__eyebrow">Pressão da rodada</p>
               <div className={`game-status-banner ${remainingLives <= 1 && gameState === 'playing' ? 'game-status-banner--danger' : 'game-status-banner--success'}`}>
                 {remainingLives > 0
                   ? `${remainingLives} margem${remainingLives !== 1 ? 'ens' : ''} antes de revelar tudo.`
@@ -320,8 +320,8 @@ export default function ConexoesPage() {
               </h2>
               <p className="game-panel__copy">
                 {gameState === 'won'
-                  ? `${errors} erro${errors !== 1 ? 's' : ''}. ${scoreRegistered ? 'Pontuacao registrada. ' : ''}A proxima grade chega amanha.`
-                  : `${foundGroups.length}/4 grupos encontrados. ${scoreRegistered ? 'Pontuacao registrada. ' : ''}Volta no proximo desafio.`}
+                  ? `${errors} erro${errors !== 1 ? 's' : ''}. ${scoreRegistered ? 'Pontuação registrada. ' : ''}A próxima grade chega amanhã.`
+                  : `${foundGroups.length}/4 grupos encontrados. ${scoreRegistered ? 'Pontuação registrada. ' : ''}Volta no próximo desafio.`}
               </p>
               <div className="game-actions" style={{ marginTop: 18 }}>
                 <button type="button" onClick={shareResult} className="btn-ghost">

@@ -6,63 +6,63 @@ const GAMES = [
     title: 'Jogo da Velha Futebol',
     description: 'Cruze categorias, ache o nome certo e feche o tabuleiro sem gastar tentativa a toa.',
     href: '/games/jogo-da-velha',
-    tag: 'Diario',
+    tag: 'Diário',
     isNew: false,
     isAvailable: true,
   },
   {
     title: 'Wordle do Futebol',
-    description: 'Descubra o sobrenome do craque em ate 6 palpites e leia as pistas por cor.',
+    description: 'Descubra o sobrenome do craque em até 6 palpites e leia as pistas por cor.',
     href: '/games/wordle',
-    tag: 'Diario',
+    tag: 'Diário',
     isNew: false,
     isAvailable: true,
   },
   {
     title: 'Quem e o Craque?',
-    description: 'A foto comeca escondida. Cada erro revela mais um pouco do jogador do dia.',
+    description: 'A foto começa escondida. Cada erro revela mais um pouco do jogador do dia.',
     href: '/games/quem-e-o-craque',
-    tag: 'Diario',
+    tag: 'Diário',
     isNew: true,
     isAvailable: true,
   },
   {
-    title: 'Conexoes Futebol',
-    description: 'Forme grupos secretos de jogadores e prove que enxerga padroes antes dos outros.',
+    title: 'Conexões Futebol',
+    description: 'Forme grupos secretos de jogadores e prove que enxerga padrões antes dos outros.',
     href: '/games/conexoes',
-    tag: 'Diario',
+    tag: 'Diário',
     isNew: true,
     isAvailable: true,
   },
   {
     title: 'Caminho da Carreira',
-    description: 'Leia a trilha de clubes e tente identificar o nome escondido por tras da jornada.',
+    description: 'Leia a trilha de clubes e tente identificar o nome escondido por trás da jornada.',
     href: '/games/carreira',
     isAvailable: false,
   },
   {
     title: 'Duelo de Stats',
-    description: 'Compare dois nomes, escolha quem domina a estatistica e ganhe no reflexo.',
+    description: 'Compare dois nomes, escolha quem domina a estatística e ganhe no reflexo.',
     href: '/games/duelo',
     isAvailable: false,
   },
   {
     title: 'Linha do Tempo',
-    description: 'Coloque momentos e feitos do futebol na ordem certa antes do cronometro mental apertar.',
+    description: 'Coloque momentos e feitos do futebol na ordem certa antes do cronômetro mental apertar.',
     href: '/games/linha-do-tempo',
-    tag: 'Diario',
+    tag: 'Diário',
     isNew: true,
     isAvailable: true,
   },
   {
     title: 'Escudo Quebrado',
-    description: 'Remonte o simbolo, conecte pistas visuais e tente reconhecer o clube antes do resto.',
+    description: 'Remonte o símbolo, conecte pistas visuais e tente reconhecer o clube antes do resto.',
     href: '/games/escudo',
     isAvailable: false,
   },
   {
     title: 'Camisa Misteriosa',
-    description: 'Sem nome, sem escudo, so tecido, padrao e memoria de torcedor.',
+    description: 'Sem nome, sem escudo, só tecido, padrão e memória de torcedor.',
     href: '/games/camisa',
     isAvailable: false,
   },
@@ -70,16 +70,16 @@ const GAMES = [
 
 const HIGHLIGHTS = [
   {
-    title: 'Desafios diarios',
-    copy: 'Abra a rodada do dia, resolva rapido e veja se voce fecha tudo melhor que ontem.',
+    title: 'Desafios diários',
+    copy: 'Abra a rodada do dia, resolva rápido e veja se você fecha tudo melhor que ontem.',
   },
   {
     title: 'Ranking vivo',
-    copy: 'Entre com seu nick, salve sua pontuacao e acompanhe quem esta na frente hoje.',
+    copy: 'Entre com seu nick, salve sua pontuação e acompanhe quem está na frente hoje.',
   },
   {
     title: 'Cinco modos no ar',
-    copy: 'Wordle, Conexoes, Jogo da Velha, Linha do Tempo e Quem e o Craque ja estao valendo.',
+    copy: 'Wordle, Conexões, Jogo da Velha, Linha do Tempo e Quem é o Craque já estão valendo.',
   },
 ]
 
@@ -96,7 +96,7 @@ export default function Home() {
           </div>
 
           <div className="animate-fade-up delay-2">
-            <p className="eyebrow hero-eyebrow">Arcade diario de futebol</p>
+            <p className="eyebrow hero-eyebrow">Arcade diário de futebol</p>
             <h1 className="display-title hero-display-title text-glow">
               Futebol para
               <br />
@@ -105,7 +105,7 @@ export default function Home() {
           </div>
 
           <p className="lede hero-lede animate-fade-up delay-3">
-            O FUTLE reune jogos diarios de futebol para quem gosta de lembrar nomes, ler pistas e subir no ranking sem perder tempo.
+            O FUTLE reúne jogos diários de futebol para quem gosta de lembrar nomes, ler pistas e subir no ranking sem perder tempo.
           </p>
 
           <div className="hero-actions animate-fade-up delay-4">
@@ -141,7 +141,7 @@ export default function Home() {
                 Escolha um jogo e entre na rodada.
               </h2>
               <p className="muted hero-context-panel__copy">
-                Aqui voce encontra o que esta valendo hoje, acompanha seu desempenho e volta amanha para uma rodada nova.
+                Aqui você encontra o que está valendo hoje, acompanha seu desempenho e volta amanhã para uma rodada nova.
               </p>
             </div>
 
@@ -160,7 +160,7 @@ export default function Home() {
       <section id="jogos" style={{ paddingTop: 18, marginBottom: 54 }}>
         <div className="section-header">
           <div>
-            <p className="section-label">Escalacao titular</p>
+            <p className="section-label">Escalação titular</p>
             <h2 className="section-title" style={{ marginBottom: 10 }}>
               Jogos para entrar agora
             </h2>
@@ -180,7 +180,7 @@ export default function Home() {
           <div className="surface-panel__inner">
             <p className="section-label">Ritmo do produto</p>
             <h3 className="section-title" style={{ marginBottom: 12 }}>
-              Partidas curtas, disputa diaria
+              Partidas curtas, disputa diária
             </h3>
             <p className="muted" style={{ marginBottom: 18 }}>
               Cada jogo foi feito para caber em poucos minutos e ainda deixar vontade de voltar no dia seguinte.
@@ -193,7 +193,7 @@ export default function Home() {
 
         <div className="surface-panel surface-panel--warm animate-fade-up delay-3" style={{ padding: 24, opacity: 0, animationFillMode: 'forwards' }}>
           <div className="surface-panel__inner">
-            <p className="section-label section-label-muted">Competicao</p>
+            <p className="section-label section-label-muted">Competição</p>
             <h3 className="section-title" style={{ marginBottom: 12 }}>
               Seu resultado entra no ranking
             </h3>
@@ -212,9 +212,9 @@ export default function Home() {
           <div>
             <p className="section-label section-label-muted">Banco de reservas</p>
             <h2 className="section-title" style={{ marginBottom: 10 }}>
-              Proximos modos em construcao
+              Próximos modos em construção
             </h2>
-            <p>Mais modos estao chegando para aumentar a rodada sem perder o ritmo do site.</p>
+            <p>Mais modos estão chegando para aumentar a rodada sem perder o ritmo do site.</p>
           </div>
         </div>
 

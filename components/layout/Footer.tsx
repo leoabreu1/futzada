@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="site-footer__brand">
           <Logo size={30} />
           <p className="site-footer__copy">
-            Jogos diarios de futebol para jogar rapido, comparar resultado e voltar no dia seguinte.
+            Jogos diários de futebol para jogar rápido, comparar resultado e voltar no dia seguinte.
           </p>
         </div>
 

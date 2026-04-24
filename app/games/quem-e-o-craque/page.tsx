@@ -94,7 +94,7 @@ export default function QuemEOCraquePage() {
       })
       .join('')
     const result = won ? `${attempt}/${MAX_ATTEMPTS}` : `X/${MAX_ATTEMPTS}`
-    const text = `Futle Quem e o Craque ${today}\n${result}\n\n${bars}\n\nfutle.vercel.app`
+      const text = `Futle Quem é o Craque ${today}\n${result}\n\n${bars}\n\nfutle.vercel.app`
 
     if (navigator.share) {
       navigator.share({ text }).catch(() => {})
@@ -113,22 +113,22 @@ export default function QuemEOCraquePage() {
   return (
     <GamePageShell
       storageKey="quem-e-o-craque"
-      eyebrow="Identidade diaria"
-      title="Quem e o Craque?"
-      badge={<span className="badge badge-green">Diario</span>}
-      description="A foto comeca escondida e abre camada por camada conforme voce erra. A nova tela trata a imagem como protagonista e organiza dicas, palpites e busca em uma sequencia mais clara."
+      eyebrow="Identidade diária"
+      title="Quem é o Craque?"
+      badge={<span className="badge badge-green">Diário</span>}
+      description="A foto começa escondida e abre camada por camada conforme você erra. A nova tela trata a imagem como protagonista e organiza dicas, palpites e busca em uma sequência mais clara."
       meta={['5 tentativas', 'Foto progressiva', 'Busca por nome']}
       stats={[
         { label: 'Tentativas usadas', value: attempt, tone: won ? 'green' : 'default' },
         { label: 'Restantes', value: remainingAttempts, tone: remainingAttempts <= 1 && !gameOver ? 'danger' : 'default' },
-        { label: 'Nivel de revelacao', value: `${Math.min(attempt + 1, MAX_ATTEMPTS)}/${MAX_ATTEMPTS}` },
+        { label: 'Nível de revelação', value: `${Math.min(attempt + 1, MAX_ATTEMPTS)}/${MAX_ATTEMPTS}` },
       ]}
       asideTitle="Como ler"
       asideDescription="Aqui a imagem manda no ritmo. Cada erro revela mais do craque e libera novas pistas no painel lateral."
       asideNotes={[
-        { title: 'Blur progressivo', text: 'A cada tentativa errada a foto ganha definicao.' },
-        { title: 'Busca guiada', text: 'O campo de nome sugere atletas possiveis para acelerar o chute.' },
-        { title: 'Dicas por camada', text: 'As pistas entram no mesmo compasso da revelacao da imagem.' },
+        { title: 'Blur progressivo', text: 'A cada tentativa errada a foto ganha definição.' },
+        { title: 'Busca guiada', text: 'O campo de nome sugere atletas possíveis para acelerar o chute.' },
+        { title: 'Dicas por camada', text: 'As pistas entram no mesmo compasso da revelação da imagem.' },
       ]}
     >
       <div className="game-stage game-stage--single">
@@ -138,7 +138,7 @@ export default function QuemEOCraquePage() {
             <div className="craque-main-grid">
               <div>
                 <div className="game-status-banner" style={{ marginBottom: 16 }}>
-                  A imagem precisa mandar no jogo. As pistas e o campo de busca ficam ao lado para apoiar o chute, nao para competir com ele.
+                  A imagem precisa mandar no jogo. As pistas e o campo de busca ficam ao lado para apoiar o chute, não para competir com ele.
                 </div>
 
                 <div className="craque-reveal">
@@ -322,11 +322,11 @@ export default function QuemEOCraquePage() {
             <section className={`game-panel ${won ? 'game-panel--success' : 'game-panel--danger'}`}>
               <p className="game-panel__eyebrow">Fechamento</p>
               <h2 className="game-panel__title">
-                {won ? `Acertou em ${attempt} tentativa${attempt > 1 ? 's' : ''}.` : 'Hoje nao foi dessa vez.'}
+                {won ? `Acertou em ${attempt} tentativa${attempt > 1 ? 's' : ''}.` : 'Hoje não foi dessa vez.'}
               </h2>
               <p className="game-panel__copy">
-                {scoreRegistered ? 'Pontuacao registrada. ' : ''}
-                {PLAYER.nationality} · {PLAYER.position} · {PLAYER.club}. O proximo craque chega amanha.
+                {scoreRegistered ? 'Pontuação registrada. ' : ''}
+                {PLAYER.nationality} · {PLAYER.position} · {PLAYER.club}. O próximo craque chega amanhã.
               </p>
               <div className="game-actions" style={{ marginTop: 18 }}>
                 <button type="button" onClick={shareResult} className="btn-ghost">

@@ -15,12 +15,12 @@ function LoginContent() {
         <section className="surface-panel surface-panel--accent animate-fade-up delay-1" style={{ padding: 32, opacity: 0, animationFillMode: 'forwards' }}>
           <div className="surface-panel__inner stack">
             <div>
-              <p className="section-label">Entrar no vestiario</p>
+              <p className="section-label">Entrar no vestiário</p>
               <h1 className="page-title" style={{ marginBottom: 14 }}>
                 Salve sua campanha no FUTLE
               </h1>
               <p className="lede" style={{ maxWidth: '54ch' }}>
-                Entre com Google para manter sua pontuacao, escolher um nick e aparecer no ranking global em qualquer dispositivo.
+                Entre com Google para manter sua pontuação, escolher um nick e aparecer no ranking global em qualquer dispositivo.
               </p>
             </div>
 
@@ -38,9 +38,9 @@ function LoginContent() {
                 <span className="benefit-mark">2</span>
                 <div>
                   <p className="eyebrow" style={{ marginBottom: 6 }}>
-                    Ranking publico
+                    Ranking público
                   </p>
-                  <p className="muted">Mostre seu nick na tabela e acompanhe quem esta dominando a rodada.</p>
+                  <p className="muted">Mostre seu nick na tabela e acompanhe quem está dominando a rodada.</p>
                 </div>
               </div>
               <div className="benefit">
@@ -64,13 +64,13 @@ function LoginContent() {
 
             <div>
               <p className="eyebrow" style={{ justifyContent: 'center', marginBottom: 10 }}>
-                Acesso rapido
+                Acesso rápido
               </p>
               <h2 className="section-title" style={{ marginBottom: 12 }}>
                 Entre e assuma seu lugar na tabela
               </h2>
               <p className="muted" style={{ fontSize: '0.95rem' }}>
-                Voce pode jogar sem conta, mas o ranking global e o historico ficam reservados para quem entra.
+                Você pode jogar sem conta, mas o ranking global e o histórico ficam reservados para quem entra.
               </p>
             </div>
 
