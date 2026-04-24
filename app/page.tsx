@@ -128,7 +128,7 @@ export default function Home() {
           </div>
         </div>
 
-        <aside className="surface-panel surface-panel--accent hero-context-panel animate-scale-in delay-3" style={{ opacity: 0, animationFillMode: 'forwards' }}>
+        <aside className="surface-panel surface-panel--accent hero-context-panel hero-context-panel--home animate-scale-in delay-3" style={{ opacity: 0, animationFillMode: 'forwards' }}>
           <div className="surface-panel__inner stack">
             <div>
               <p className="eyebrow hero-context-panel__eyebrow">Jogue com contexto</p>

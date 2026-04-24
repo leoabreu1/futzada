@@ -61,33 +61,33 @@ export default function RankingPage() {
         Voltar para jogos
       </Link>
 
-      <section className="panel-grid" style={{ marginBottom: 32, alignItems: 'stretch' }}>
-        <div className="surface-panel surface-panel--accent animate-fade-up delay-1" style={{ padding: 28, opacity: 0, animationFillMode: 'forwards' }}>
-          <div className="surface-panel__inner stack">
+      <section className="panel-grid ranking-hero-panels" style={{ marginBottom: 24, alignItems: 'stretch' }}>
+        <div className="surface-panel surface-panel--accent ranking-hero-panel animate-fade-up delay-1" style={{ padding: 22, opacity: 0, animationFillMode: 'forwards' }}>
+          <div className="surface-panel__inner stack ranking-hero-panel__inner">
             <div>
               <p className="section-label">Tabela geral</p>
-              <h1 className="page-title" style={{ marginBottom: 14 }}>
+              <h1 className="page-title ranking-hero-panel__title" style={{ marginBottom: 10 }}>
                 Ranking global
               </h1>
-              <p className="lede" style={{ maxWidth: '52ch' }}>
+              <p className="lede ranking-hero-panel__lede" style={{ maxWidth: '44ch' }}>
                 Pontuação viva, histórico por jogo e destaque para quem sustenta performance rodada após rodada.
               </p>
             </div>
 
-            <div className="stats-grid">
-              <div className="stat-card">
+            <div className="stats-grid ranking-hero-panel__stats">
+              <div className="stat-card ranking-hero-panel__stat">
                 <div className="stat-card__value" style={{ color: 'var(--color-brand-green)' }}>
                   {ranking.length}
                 </div>
                 <div className="stat-card__label">Jogadores</div>
               </div>
-              <div className="stat-card">
+              <div className="stat-card ranking-hero-panel__stat">
                 <div className="stat-card__value" style={{ color: 'var(--color-brand-yellow)' }}>
                   {totalGames}
                 </div>
                 <div className="stat-card__label">Partidas</div>
               </div>
-              <div className="stat-card">
+              <div className="stat-card ranking-hero-panel__stat">
                 <div className="stat-card__value" style={{ color: '#8BD4FF' }}>
                   {totalPoints}
                 </div>
@@ -97,19 +97,19 @@ export default function RankingPage() {
           </div>
         </div>
 
-        <div className="surface-panel animate-fade-up delay-2" style={{ padding: 28, opacity: 0, animationFillMode: 'forwards' }}>
-          <div className="surface-panel__inner stack">
+        <div className="surface-panel ranking-hero-panel animate-fade-up delay-2" style={{ padding: 22, opacity: 0, animationFillMode: 'forwards' }}>
+          <div className="surface-panel__inner stack ranking-hero-panel__inner">
             <div>
               <p className="section-label section-label-muted">Leitura rápida</p>
-              <h2 className="section-title" style={{ marginBottom: 12 }}>
+              <h2 className="section-title ranking-hero-panel__section-title" style={{ marginBottom: 10 }}>
                 Filtre por modalidade
               </h2>
-              <p className="muted">
+              <p className="muted ranking-hero-panel__copy">
                 Veja quem domina cada formato e descubra se seu melhor jogo também rende vantagem no acumulado.
               </p>
             </div>
 
-            <div className="pill-row">
+            <div className="pill-row ranking-hero-panel__pills">
               {FILTERS.map(({ value, label }) => (
                 <button
                   key={value}
