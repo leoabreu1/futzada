@@ -689,6 +689,47 @@ main {
   background: rgba(11, 28, 40, 0.92);
 }
 
+.game-help-modal-backdrop {
+  z-index: 9998;
+}
+
+.game-help-modal-wrap {
+  align-items: flex-start;
+  padding-top: 84px;
+  z-index: 9999;
+}
+
+.game-help-modal {
+  width: min(1040px, calc(100vw - 24px));
+  margin: 0 auto;
+}
+
+.game-help-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(154, 176, 190, 0.18);
+  border-radius: 999px;
+  background: rgba(8, 20, 29, 0.82);
+  color: var(--color-text);
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease;
+}
+
+.game-help-modal__close:hover {
+  transform: translateY(-1px);
+  border-color: rgba(108, 255, 147, 0.32);
+  background: rgba(11, 28, 40, 0.94);
+}
+
 .game-hero {
   margin-bottom: 26px;
 }
@@ -1882,6 +1923,10 @@ main {
 
   .game-shell-topbar {
     align-items: flex-start;
+  }
+
+  .game-help-modal-wrap {
+    padding-top: 72px;
   }
 
   .game-hero__inner,

@@ -61,15 +61,14 @@ export default function GamePageShell({
 
     if (!hasSeenIntro) {
       window.localStorage.setItem(key, 'seen')
+      setIsIntroOpen(true)
     }
 
-    setIsIntroOpen(!hasSeenIntro)
     setIsReady(true)
   }, [storageKey])
   /* eslint-enable react-hooks/set-state-in-effect */
 
   function openIntro() {
-    window.localStorage.setItem(`futle:intro:${storageKey}`, 'seen')
     setIsIntroOpen(true)
   }
 
@@ -96,102 +95,116 @@ export default function GamePageShell({
               else openIntro()
             }}
             className="game-help-toggle"
-            aria-label={isIntroOpen ? 'Fechar introducao do jogo' : 'Abrir introducao do jogo'}
-            title={isIntroOpen ? 'Fechar introducao' : 'Abrir introducao'}
+            aria-label={isIntroOpen ? 'Fechar introdução do jogo' : 'Abrir introdução do jogo'}
+            title={isIntroOpen ? 'Fechar introdução' : 'Abrir introdução'}
           >
             ?
           </button>
         ) : null}
       </div>
 
-      {!isReady || !isIntroOpen ? (
-        <section className="surface-panel game-compact-hero">
-          <div className="surface-panel__inner game-compact-hero__inner">
-            <div>
-              <p className="section-label" style={{ marginBottom: 12 }}>
-                {eyebrow}
-              </p>
-              <div className="game-hero__heading">
-                <h1 className="section-title" style={{ marginBottom: 0 }}>
-                  {title}
-                </h1>
-                {badge}
-              </div>
+      <section className="surface-panel game-compact-hero">
+        <div className="surface-panel__inner game-compact-hero__inner">
+          <div>
+            <p className="section-label" style={{ marginBottom: 12 }}>
+              {eyebrow}
+            </p>
+            <div className="game-hero__heading">
+              <h1 className="section-title" style={{ marginBottom: 0 }}>
+                {title}
+              </h1>
+              {badge}
             </div>
           </div>
-        </section>
-      ) : null}
+        </div>
+      </section>
 
       {isReady && isIntroOpen ? (
-        <section className="surface-panel game-hero">
-          <div className="surface-panel__inner game-hero__inner">
-            <div className="game-hero__copy">
-              <div>
-                <p className="section-label" style={{ marginBottom: 14 }}>
-                  {eyebrow}
-                </p>
-                <div className="game-hero__heading">
-                  <h1 className="page-title">{title}</h1>
-                  {badge}
-                </div>
-              </div>
+        <>
+          <div className="modal-backdrop game-help-modal-backdrop" onClick={closeIntro} />
 
-              <p className="lede" style={{ maxWidth: '56ch' }}>
-                {description}
-              </p>
+          <div className="modal-wrap game-help-modal-wrap">
+            <section className="surface-panel game-hero game-help-modal">
+              <button
+                type="button"
+                onClick={closeIntro}
+                className="game-help-modal__close"
+                aria-label="Fechar ajuda do jogo"
+                title="Fechar"
+              >
+                ×
+              </button>
 
-              {meta && meta.length > 0 && (
-                <div className="game-hero__meta">
-                  {meta.map((item) => (
-                    <span key={item} className="game-meta-chip">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              )}
-
-              {stats && stats.length > 0 && (
-                <div className="game-stat-grid">
-                  {stats.map((stat) => (
-                    <div key={stat.label} className={`game-stat-card${STAT_TONE_CLASS[stat.tone ?? 'default']}`}>
-                      <div className="game-stat-card__value">{stat.value}</div>
-                      <div className="game-stat-card__label">{stat.label}</div>
-                      {stat.helper ? <div className="game-stat-card__helper">{stat.helper}</div> : null}
+              <div className="surface-panel__inner game-hero__inner">
+                <div className="game-hero__copy">
+                  <div>
+                    <p className="section-label" style={{ marginBottom: 14 }}>
+                      {eyebrow}
+                    </p>
+                    <div className="game-hero__heading">
+                      <h1 className="page-title">{title}</h1>
+                      {badge}
                     </div>
-                  ))}
-                </div>
-              )}
+                  </div>
 
-              <div className="game-actions">
-                <button type="button" onClick={closeIntro} className="btn-primary">
-                  Comecar jogo
-                </button>
-              </div>
-            </div>
+                  <p className="lede" style={{ maxWidth: '56ch' }}>
+                    {description}
+                  </p>
 
-            <aside className="game-hero__aside">
-              <div>
-                <p className="eyebrow" style={{ marginBottom: 12 }}>
-                  {asideTitle}
-                </p>
-                {asideDescription ? <p className="muted">{asideDescription}</p> : null}
-              </div>
-
-              {asideNotes && asideNotes.length > 0 && (
-                <div className="game-note-list">
-                  {asideNotes.map((note) => (
-                    <div key={note.title} className="game-note">
-                      <p className="game-note__title">{note.title}</p>
-                      <p className="muted" style={{ fontSize: '0.9rem', lineHeight: 1.7 }}>
-                        {note.text}
-                      </p>
+                  {meta && meta.length > 0 && (
+                    <div className="game-hero__meta">
+                      {meta.map((item) => (
+                        <span key={item} className="game-meta-chip">
+                          {item}
+                        </span>
+                      ))}
                     </div>
-                  ))}
+                  )}
+
+                  {stats && stats.length > 0 && (
+                    <div className="game-stat-grid">
+                      {stats.map((stat) => (
+                        <div key={stat.label} className={`game-stat-card${STAT_TONE_CLASS[stat.tone ?? 'default']}`}>
+                          <div className="game-stat-card__value">{stat.value}</div>
+                          <div className="game-stat-card__label">{stat.label}</div>
+                          {stat.helper ? <div className="game-stat-card__helper">{stat.helper}</div> : null}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="game-actions">
+                    <button type="button" onClick={closeIntro} className="btn-primary">
+                      Entendi
+                    </button>
+                  </div>
                 </div>
-              )}
-            </aside>
+
+                <aside className="game-hero__aside">
+                  <div>
+                    <p className="eyebrow" style={{ marginBottom: 12 }}>
+                      {asideTitle}
+                    </p>
+                    {asideDescription ? <p className="muted">{asideDescription}</p> : null}
+                  </div>
+
+                  {asideNotes && asideNotes.length > 0 && (
+                    <div className="game-note-list">
+                      {asideNotes.map((note) => (
+                        <div key={note.title} className="game-note">
+                          <p className="game-note__title">{note.title}</p>
+                          <p className="muted" style={{ fontSize: '0.9rem', lineHeight: 1.7 }}>
+                            {note.text}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </aside>
+              </div>
+            </section>
           </div>
-        </section>
+        </>
       ) : null}
 
       {children}
