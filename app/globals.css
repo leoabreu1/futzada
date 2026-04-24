@@ -176,6 +176,19 @@ main {
   top: 0;
   z-index: 50;
   padding: 10px 12px 0;
+  transition:
+    transform 0.26s ease,
+    opacity 0.22s ease;
+}
+
+.site-header--game {
+  will-change: transform, opacity;
+}
+
+.site-header--hidden {
+  transform: translateY(calc(-100% - 18px));
+  opacity: 0;
+  pointer-events: none;
 }
 
 .site-header__bar {
