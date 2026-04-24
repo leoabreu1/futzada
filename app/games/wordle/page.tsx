@@ -27,7 +27,8 @@ export default function WordlePage() {
   const hiddenInputRef = useRef<HTMLInputElement>(null)
 
   const [guesses, setGuesses] = useState<GuessRow[]>([])
-  const [current, setCurrent] = useState('')
+  const [currentLetters, setCurrentLetters] = useState<string[]>(() => Array(WORD_LENGTH).fill(''))
+  const [activeIndex, setActiveIndex] = useState(0)
   const [gameOver, setGameOver] = useState(false)
   const [won, setWon] = useState(false)
   const [shake, setShake] = useState(false)
@@ -58,15 +59,59 @@ export default function WordlePage() {
     return acc
   }, {})
 
+  const currentWord = currentLetters.join('')
+
+  function focusCell(index: number) {
+    if (gameOver) return
+    setActiveIndex(index)
+    hiddenInputRef.current?.focus()
+  }
+
+  function insertLetter(letter: string) {
+    if (gameOver) return
+    setCurrentLetters((previous) => {
+      const next = [...previous]
+      next[activeIndex] = letter
+      return next
+    })
+    setActiveIndex((previous) => Math.min(previous + 1, WORD_LENGTH - 1))
+  }
+
+  function deleteLetter() {
+    if (gameOver) return
+
+    setCurrentLetters((previous) => {
+      const next = [...previous]
+
+      if (next[activeIndex]) {
+        next[activeIndex] = ''
+        return next
+      }
+
+      const previousFilledIndex = [...next]
+        .slice(0, activeIndex)
+        .map((value, index) => ({ value, index }))
+        .reverse()
+        .find((entry) => entry.value)
+
+      if (previousFilledIndex) {
+        next[previousFilledIndex.index] = ''
+        setActiveIndex(previousFilledIndex.index)
+      }
+
+      return next
+    })
+  }
+
   const submit = useCallback(() => {
-    if (current.length !== WORD_LENGTH) {
+    if (currentLetters.some((letter) => !letter)) {
       setError(`A palavra deve ter ${WORD_LENGTH} letras.`)
       setShake(true)
       setTimeout(() => setShake(false), 500)
       return
     }
 
-    if (!WORD_LIST.includes(current)) {
+    if (!WORD_LIST.includes(currentWord)) {
       setError('Jogador nao encontrado na lista.')
       setShake(true)
       setTimeout(() => setShake(false), 500)
@@ -75,37 +120,23 @@ export default function WordlePage() {
     }
 
     setError('')
-    const states = evaluateGuess(current, DAILY_WORD)
-    const newGuesses = [...guesses, { letters: current.split(''), states }]
-    const newWon = current === DAILY_WORD
+    const states = evaluateGuess(currentWord, DAILY_WORD)
+    const newGuesses = [...guesses, { letters: [...currentLetters], states }]
+    const newWon = currentWord === DAILY_WORD
     const newGameOver = newWon || newGuesses.length >= MAX_GUESSES
 
     setGuesses(newGuesses)
-    setCurrent('')
+    setCurrentLetters(Array(WORD_LENGTH).fill(''))
+    setActiveIndex(0)
     setWon(newWon)
     setGameOver(newGameOver)
     save({ guesses: newGuesses, gameOver: newGameOver, won: newWon })
-  }, [current, guesses, save])
+  }, [currentLetters, currentWord, guesses, save])
 
   useEffect(() => {
-    const handler = (event: KeyboardEvent) => {
-      if (gameOver) return
-      if (event.key === 'Enter') {
-        submit()
-        return
-      }
-      if (event.key === 'Backspace') {
-        setCurrent((value) => value.slice(0, -1))
-        return
-      }
-      if (/^[A-Za-z]$/.test(event.key) && current.length < WORD_LENGTH) {
-        setCurrent((value) => value + event.key.toUpperCase())
-      }
-    }
-
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [gameOver, current.length, submit])
+    if (gameOver) return
+    hiddenInputRef.current?.focus()
+  }, [gameOver])
 
   /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
@@ -119,16 +150,14 @@ export default function WordlePage() {
   function pressKey(key: string) {
     if (gameOver) return
     if (key === 'DEL') {
-      setCurrent((value) => value.slice(0, -1))
+      deleteLetter()
       return
     }
     if (key === 'ENT') {
       submit()
       return
     }
-    if (current.length < WORD_LENGTH) {
-      setCurrent((value) => value + key)
-    }
+    insertLetter(key)
   }
 
   async function shareResult() {
@@ -155,9 +184,8 @@ export default function WordlePage() {
   const rows = Array.from({ length: MAX_GUESSES }, (_, index) => {
     if (index < guesses.length) return { ...guesses[index], isActive: false, isShaking: false }
     if (index === guesses.length && !gameOver) {
-      const letters = [...current.split(''), ...Array(WORD_LENGTH - current.length).fill('')]
       return {
-        letters,
+        letters: currentLetters,
         states: Array(WORD_LENGTH).fill('empty') as LetterState[],
         isActive: true,
         isShaking: shake,
@@ -233,8 +261,13 @@ export default function WordlePage() {
                   }}
                 >
                   {row.letters.map((letter, letterIndex) => (
-                    <div
+                    <button
                       key={`${rowIndex}-${letterIndex}`}
+                      type="button"
+                      onClick={() => {
+                        if (row.isActive) focusCell(letterIndex)
+                      }}
+                      disabled={!row.isActive}
                       style={{
                         width: cellSize,
                         height: cellSize,
@@ -246,12 +279,20 @@ export default function WordlePage() {
                         fontSize: 'clamp(1rem, 2vw, 1.35rem)',
                         letterSpacing: '0.05em',
                         transition: 'transform 0.18s ease, border-color 0.18s ease',
+                        cursor: row.isActive ? 'pointer' : 'default',
                         ...CELL_STYLE[row.states[letterIndex]],
                         ...(row.isActive && letter ? { transform: 'translateY(-2px)', borderColor: 'rgba(248,244,235,0.28)' } : {}),
+                        ...(row.isActive && letterIndex === activeIndex
+                          ? {
+                              borderColor: 'rgba(108,255,147,0.52)',
+                              boxShadow: '0 0 0 3px rgba(108,255,147,0.12)',
+                              transform: letter ? 'translateY(-2px)' : 'translateY(0)',
+                            }
+                          : {}),
                       }}
                     >
                       {letter}
-                    </div>
+                    </button>
                   ))}
                 </div>
               ))}
@@ -342,13 +383,21 @@ export default function WordlePage() {
 
       <input
         ref={hiddenInputRef}
-        value={current}
         onChange={(event) => {
           const value = event.target.value.toUpperCase().replace(/[^A-Z]/g, '')
-          if (value.length <= WORD_LENGTH) setCurrent(value)
+          const nextLetter = value.at(-1)
+          if (nextLetter) insertLetter(nextLetter)
+          event.target.value = ''
         }}
         onKeyDown={(event) => {
-          if (event.key === 'Enter') submit()
+          if (event.key === 'Enter') {
+            event.preventDefault()
+            submit()
+          }
+          if (event.key === 'Backspace') {
+            event.preventDefault()
+            deleteLetter()
+          }
         }}
         style={{
           position: 'fixed',
