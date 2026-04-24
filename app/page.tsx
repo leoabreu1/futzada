@@ -71,15 +71,15 @@ const GAMES = [
 const HIGHLIGHTS = [
   {
     title: 'Desafios diarios',
-    copy: 'Todo dia entra uma rodada nova com partidas curtas e objetivas.',
+    copy: 'Abra a rodada do dia, resolva rapido e veja se voce fecha tudo melhor que ontem.',
   },
   {
     title: 'Ranking vivo',
-    copy: 'Entre na conta, salve seu resultado e acompanhe quem sobe no dia.',
+    copy: 'Entre com seu nick, salve sua pontuacao e acompanhe quem esta na frente hoje.',
   },
   {
-    title: 'Leitura rapida',
-    copy: 'Tudo foi organizado para destacar o jogo antes de qualquer texto de apoio.',
+    title: 'Cinco modos no ar',
+    copy: 'Wordle, Conexoes, Jogo da Velha, Linha do Tempo e Quem e o Craque ja estao valendo.',
   },
 ]
 
@@ -138,10 +138,10 @@ export default function Home() {
             <div>
               <p className="eyebrow hero-context-panel__eyebrow">Jogue com contexto</p>
               <h2 className="section-title hero-context-panel__title">
-                Cinco jogos no ar, uma leitura so.
+                Escolha um jogo e entre na rodada.
               </h2>
               <p className="muted hero-context-panel__copy">
-                A home agora apresenta o produto de forma mais direta: o que jogar, quanto tem no ar e por que vale voltar amanha.
+                Aqui voce encontra o que esta valendo hoje, acompanha seu desempenho e volta amanha para uma rodada nova.
               </p>
             </div>
 
@@ -164,7 +164,7 @@ export default function Home() {
             <h2 className="section-title" style={{ marginBottom: 10 }}>
               Jogos para entrar agora
             </h2>
-            <p>Os modos ativos ja estao no novo visual e prontos para jogar.</p>
+            <p>Escolha um modo, jogue a rodada de hoje e tente subir no ranking.</p>
           </div>
         </div>
 
@@ -180,10 +180,10 @@ export default function Home() {
           <div className="surface-panel__inner">
             <p className="section-label">Ritmo do produto</p>
             <h3 className="section-title" style={{ marginBottom: 12 }}>
-              Sessao curta, retorno alto
+              Partidas curtas, disputa diaria
             </h3>
             <p className="muted" style={{ marginBottom: 18 }}>
-              Cada rodada cabe em poucos minutos e ainda deixa motivo para voltar no dia seguinte.
+              Cada jogo foi feito para caber em poucos minutos e ainda deixar vontade de voltar no dia seguinte.
             </p>
             <Link href="/login" className="btn-ghost">
               Entrar para salvar scores
@@ -195,10 +195,10 @@ export default function Home() {
           <div className="surface-panel__inner">
             <p className="section-label section-label-muted">Competicao</p>
             <h3 className="section-title" style={{ marginBottom: 12 }}>
-              Sua torcida agora aparece no ranking
+              Seu resultado entra no ranking
             </h3>
             <p className="muted" style={{ marginBottom: 18 }}>
-              Crie seu nick, acumule pontos e acompanhe quem foi melhor na rodada do dia.
+              Crie seu nick, some pontos e acompanhe quem teve o melhor dia.
             </p>
             <Link href="/ranking" className="btn-primary">
               Abrir ranking
@@ -214,7 +214,7 @@ export default function Home() {
             <h2 className="section-title" style={{ marginBottom: 10 }}>
               Proximos modos em construcao
             </h2>
-            <p>Os proximos jogos ja seguem a mesma identidade para manter o produto coeso.</p>
+            <p>Mais modos estao chegando para aumentar a rodada sem perder o ritmo do site.</p>
           </div>
         </div>
 
