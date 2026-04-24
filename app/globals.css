@@ -556,8 +556,8 @@ main {
 
 .game-stage {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.36fr);
-  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.44fr);
+  gap: 20px;
   align-items: start;
 }
 
@@ -723,6 +723,33 @@ main {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.wordle-keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.wordle-keyboard__row {
+  display: flex;
+  gap: 6px;
+  width: 100%;
+}
+
+.wordle-keyboard__key {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 54px;
+  border-radius: 16px;
+  font-family: var(--font-display);
+  font-size: clamp(0.86rem, 1vw, 1.02rem);
+}
+
+.wordle-keyboard__action {
+  flex: 1;
+  min-height: 50px;
 }
 
 .game-empty {
@@ -1403,6 +1430,11 @@ main {
     grid-template-columns: 1fr;
   }
 
+  .wordle-keyboard__key {
+    min-height: 50px;
+    font-size: 0.92rem;
+  }
+
   .velha-grid {
     grid-template-columns: minmax(78px, 0.78fr) repeat(3, minmax(0, 1fr));
     gap: 6px;
@@ -1438,6 +1470,20 @@ main {
   .connections-grid__tile {
     min-height: 74px;
     font-size: 0.72rem;
+  }
+
+  .wordle-keyboard__row {
+    gap: 5px;
+  }
+
+  .wordle-keyboard__key {
+    min-height: 46px;
+    border-radius: 14px;
+    font-size: 0.82rem;
+  }
+
+  .wordle-keyboard__action {
+    min-height: 46px;
   }
 
   .btn-primary,

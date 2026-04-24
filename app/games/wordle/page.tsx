@@ -280,9 +280,9 @@ export default function WordlePage() {
         <aside className="game-stage__aside">
           <section className="game-panel game-panel--soft">
             <p className="game-panel__eyebrow">Teclado</p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'center' }} onClick={() => hiddenInputRef.current?.focus()}>
+            <div className="wordle-keyboard" onClick={() => hiddenInputRef.current?.focus()}>
               {KEY_ROWS.map((row) => (
-                <div key={row} style={{ display: 'flex', gap: 6 }}>
+                <div key={row} className="wordle-keyboard__row">
                   {row.split('').map((key) => (
                     <button
                       key={key}
@@ -290,12 +290,8 @@ export default function WordlePage() {
                         event.stopPropagation()
                         pressKey(key)
                       }}
+                      className="wordle-keyboard__key"
                       style={{
-                        width: 'clamp(28px, 7vw, 38px)',
-                        height: 46,
-                        borderRadius: 14,
-                        fontFamily: 'var(--font-display)',
-                        fontSize: 'clamp(0.75rem, 2vw, 0.92rem)',
                         cursor: 'pointer',
                         transition: 'transform 0.15s ease, opacity 0.15s ease',
                         ...keyStyle(key),
@@ -313,8 +309,7 @@ export default function WordlePage() {
                     event.stopPropagation()
                     pressKey('DEL')
                   }}
-                  className="btn-ghost"
-                  style={{ flex: 1, minHeight: 46 }}
+                  className="btn-ghost wordle-keyboard__action"
                 >
                   Apagar
                 </button>
@@ -323,8 +318,7 @@ export default function WordlePage() {
                     event.stopPropagation()
                     pressKey('ENT')
                   }}
-                  className="btn-primary"
-                  style={{ flex: 1, minHeight: 46 }}
+                  className="btn-primary wordle-keyboard__action"
                 >
                   Enter
                 </button>
