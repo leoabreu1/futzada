@@ -4,6 +4,7 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import type { ChangeEvent } from 'react'
 
 type PlayerRow = {
   userId: string
@@ -21,9 +22,13 @@ const GAME_BREAKDOWN = [
 ]
 
 export default function ProfilePage() {
-  const { data: session, status } = useSession()
+  const { data: session, status, update } = useSession()
   const [myStats, setMyStats] = useState<PlayerRow | null>(null)
   const [myPosition, setMyPosition] = useState<number | null>(null)
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null)
+  const [avatarSaved, setAvatarSaved] = useState(false)
+  const [avatarError, setAvatarError] = useState('')
+  const [avatarLoading, setAvatarLoading] = useState(false)
   const [nickname, setNickname] = useState('')
   const [nickSaved, setNickSaved] = useState(false)
   const [nickError, setNickError] = useState('')
@@ -36,6 +41,7 @@ export default function ProfilePage() {
     fetch('/api/user')
       .then((response) => response.json())
       .then((data) => {
+        setAvatarUrl(data.user?.image ?? null)
         if (data.user?.nickname) setNickname(data.user.nickname)
         if (data.user?.nicknameUpdatedAt && data.user?.nickname) {
           const msPerDay = 1000 * 60 * 60 * 24
@@ -57,6 +63,57 @@ export default function ProfilePage() {
       })
       .catch(console.error)
   }, [session?.user?.id])
+
+  useEffect(() => {
+    setAvatarUrl(session?.user?.image ?? null)
+  }, [session?.user?.image])
+
+  const handleAvatarChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    event.target.value = ''
+
+    if (!file) return
+
+    setAvatarError('')
+    setAvatarSaved(false)
+
+    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+      setAvatarError('Use uma imagem JPG, PNG ou WebP')
+      return
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+      setAvatarError('A imagem deve ter no maximo 2 MB')
+      return
+    }
+
+    setAvatarLoading(true)
+
+    try {
+      const formData = new FormData()
+      formData.append('avatar', file)
+
+      const response = await fetch('/api/user/avatar', {
+        method: 'POST',
+        body: formData,
+      })
+      const data = await response.json()
+
+      if (!response.ok) {
+        setAvatarError(data.error ?? 'Erro ao enviar avatar')
+        return
+      }
+
+      setAvatarUrl(data.user?.image ?? null)
+      setAvatarSaved(true)
+      await update()
+      setTimeout(() => setAvatarSaved(false), 2500)
+    } catch {
+      setAvatarError('Erro de conexao')
+    } finally {
+      setAvatarLoading(false)
+    }
+  }
 
   const handleSaveNick = async () => {
     setNickError('')
@@ -126,9 +183,9 @@ export default function ProfilePage() {
         <div className="surface-panel surface-panel--accent animate-fade-up delay-1" style={{ padding: 28, opacity: 0, animationFillMode: 'forwards' }}>
           <div className="surface-panel__inner stack">
             <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-              {session.user.image ? (
+              {avatarUrl ? (
                 <Image
-                  src={session.user.image}
+                  src={avatarUrl}
                   alt={session.user.name ?? 'Avatar'}
                   width={84}
                   height={84}
@@ -151,6 +208,41 @@ export default function ProfilePage() {
                 </h1>
                 <p className="muted">{session.user.email}</p>
               </div>
+            </div>
+
+            <div className="stack" style={{ gap: 10 }}>
+              <label
+                className="btn-ghost"
+                style={{
+                  width: 'fit-content',
+                  minHeight: 44,
+                  cursor: avatarLoading ? 'wait' : 'pointer',
+                  opacity: avatarLoading ? 0.62 : 1,
+                }}
+              >
+                {avatarLoading ? 'Enviando avatar...' : 'Trocar avatar'}
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  onChange={handleAvatarChange}
+                  disabled={avatarLoading}
+                  style={{ display: 'none' }}
+                />
+              </label>
+
+              <p className="muted-2" style={{ fontSize: '0.82rem' }}>
+                JPG, PNG ou WebP ate 2 MB.
+              </p>
+
+              {avatarSaved && (
+                <p style={{ color: 'var(--color-brand-green)', fontSize: '0.84rem', fontWeight: 700 }}>
+                  Avatar atualizado
+                </p>
+              )}
+
+              {avatarError && (
+                <p style={{ color: '#FF9F81', fontSize: '0.84rem', fontWeight: 700 }}>{avatarError}</p>
+              )}
             </div>
 
             <div className="stats-grid">
