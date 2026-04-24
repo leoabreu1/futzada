@@ -152,7 +152,7 @@ export default function Home() {
         </aside>
       </section>
 
-      <section id="jogos" style={{ paddingTop: 0, marginBottom: 48 }}>
+      <section id="jogos" className="home-games-section" style={{ marginBottom: 48 }}>
         <div className="section-header">
           <div>
             <p className="section-label">Escalação titular</p>
