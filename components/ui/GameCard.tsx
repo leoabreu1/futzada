@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import PlayedTodayBadge from './PlayedTodayBadge'
 
 // Ícones SVG por jogo (Lucide-style, 20x20 viewBox)
 const ICONS: Record<string, React.ReactNode> = {
@@ -145,10 +146,11 @@ export default function GameCard({ title, description, href, tag, isNew = false,
           }}>
             {icon}
           </div>
-          <div style={{ display: 'flex', gap: 6 }}>
+          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
             {isNew && <span className="badge badge-yellow badge-pulse">NOVO</span>}
             {tag && isAvailable && <span className="badge badge-green">{tag}</span>}
             {!isAvailable && <span className="badge badge-muted">EM BREVE</span>}
+            {isAvailable && <PlayedTodayBadge hrefSlug={href.split('/').pop() ?? ''} />}
           </div>
         </div>
 
