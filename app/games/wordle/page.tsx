@@ -14,11 +14,11 @@ const KEY_ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM']
 type GuessRow = { letters: string[]; states: LetterState[] }
 type WordleState = { guesses: GuessRow[]; gameOver: boolean; won: boolean }
 
-const CELL_STYLE: Record<LetterState, React.CSSProperties> = {
-  correct: { background: 'rgba(16,185,129,0.16)', border: '1px solid rgba(16,185,129,0.4)', color: '#6cff93' },
-  present: { background: 'rgba(255,194,71,0.14)', border: '1px solid rgba(255,194,71,0.34)', color: '#ffc247' },
-  absent: { background: 'rgba(8,20,29,0.82)', border: '1px solid rgba(154,176,190,0.12)', color: 'var(--color-muted-2)' },
-  empty: { background: 'transparent', border: '1px solid rgba(154,176,190,0.18)', color: 'var(--color-text)' },
+const CELL_STYLE: Record<LetterState, { background: string; borderColor: string; color: string }> = {
+  correct: { background: 'rgba(16,185,129,0.16)', borderColor: 'rgba(16,185,129,0.4)', color: '#6cff93' },
+  present: { background: 'rgba(255,194,71,0.14)', borderColor: 'rgba(255,194,71,0.34)', color: '#ffc247' },
+  absent: { background: 'rgba(8,20,29,0.82)', borderColor: 'rgba(154,176,190,0.12)', color: 'var(--color-muted-2)' },
+  empty: { background: 'transparent', borderColor: 'rgba(154,176,190,0.18)', color: 'var(--color-text)' },
 }
 
 export default function WordlePage() {
@@ -203,15 +203,15 @@ export default function WordlePage() {
   const keyStyle = (key: string): React.CSSProperties => {
     const state = usedLetters[key]
     if (state === 'correct') {
-      return { background: 'rgba(16,185,129,0.22)', border: '1px solid rgba(16,185,129,0.42)', color: '#6cff93' }
+      return { background: 'rgba(16,185,129,0.22)', borderColor: 'rgba(16,185,129,0.42)', color: '#6cff93' }
     }
     if (state === 'present') {
-      return { background: 'rgba(255,194,71,0.18)', border: '1px solid rgba(255,194,71,0.34)', color: '#ffc247' }
+      return { background: 'rgba(255,194,71,0.18)', borderColor: 'rgba(255,194,71,0.34)', color: '#ffc247' }
     }
     if (state === 'absent') {
-      return { background: 'rgba(8,20,29,0.82)', border: '1px solid rgba(154,176,190,0.12)', color: 'var(--color-muted-2)' }
+      return { background: 'rgba(8,20,29,0.82)', borderColor: 'rgba(154,176,190,0.12)', color: 'var(--color-muted-2)' }
     }
-    return { background: 'rgba(9,24,36,0.76)', border: '1px solid rgba(154,176,190,0.16)', color: 'var(--color-text)' }
+    return { background: 'rgba(9,24,36,0.76)', borderColor: 'rgba(154,176,190,0.16)', color: 'var(--color-text)' }
   }
 
   const cellSize = Math.max(42, Math.min(58, Math.floor(392 / WORD_LENGTH) - 8))
@@ -240,12 +240,15 @@ export default function WordlePage() {
     >
       {error ? <div className="game-status-banner game-status-banner--danger" style={{ marginBottom: 18 }}>{error}</div> : null}
 
-      <div className="game-stage game-stage--single">
+        <div className="game-stage game-stage--single">
         <div className="game-stage__main">
-          <section className="game-panel">
+          <section className="game-panel game-panel--primary">
             <p className="game-panel__eyebrow">Tabuleiro</p>
+            <div className="game-status-banner" style={{ marginBottom: 18 }}>
+              Clique em qualquer casa da linha ativa para posicionar a letra onde quiser. O envio so libera quando a palavra estiver completa.
+            </div>
             <div
-              className="game-board-wrap"
+              className="game-board-wrap wordle-board"
               style={{ alignItems: 'center', cursor: 'text' }}
               onClick={() => {
                 if (!gameOver) hiddenInputRef.current?.focus()
@@ -254,9 +257,8 @@ export default function WordlePage() {
               {rows.map((row, rowIndex) => (
                 <div
                   key={rowIndex}
+                  className="wordle-board__row"
                   style={{
-                    display: 'flex',
-                    gap: 8,
                     animation: row.isShaking ? 'shake 0.4s ease' : undefined,
                   }}
                 >
@@ -268,6 +270,7 @@ export default function WordlePage() {
                         if (row.isActive) focusCell(letterIndex)
                       }}
                       disabled={!row.isActive}
+                      className={`wordle-board__cell${row.isActive && letter ? ' wordle-board__cell--filled' : ''}${row.isActive && letterIndex === activeIndex ? ' wordle-board__cell--active' : ''}`}
                       style={{
                         width: cellSize,
                         height: cellSize,
@@ -281,12 +284,10 @@ export default function WordlePage() {
                         transition: 'transform 0.18s ease, border-color 0.18s ease',
                         cursor: row.isActive ? 'pointer' : 'default',
                         ...CELL_STYLE[row.states[letterIndex]],
-                        ...(row.isActive && letter ? { transform: 'translateY(-2px)', borderColor: 'rgba(248,244,235,0.28)' } : {}),
+                        ...(row.isActive && letter ? { borderColor: 'rgba(248,244,235,0.28)' } : {}),
                         ...(row.isActive && letterIndex === activeIndex
                           ? {
                               borderColor: 'rgba(108,255,147,0.52)',
-                              boxShadow: '0 0 0 3px rgba(108,255,147,0.12)',
-                              transform: letter ? 'translateY(-2px)' : 'translateY(0)',
                             }
                           : {}),
                       }}
@@ -299,7 +300,7 @@ export default function WordlePage() {
             </div>
           </section>
 
-          <section className="game-panel game-panel--soft">
+          <section className="game-panel game-panel--primary game-panel--soft">
             <p className="game-panel__eyebrow">Teclado</p>
             <div className="wordle-keyboard wordle-keyboard--stacked" onClick={() => hiddenInputRef.current?.focus()}>
               {KEY_ROWS.map((row) => (
@@ -307,6 +308,7 @@ export default function WordlePage() {
                   {row.split('').map((key) => (
                     <button
                       key={key}
+                      type="button"
                       onClick={(event) => {
                         event.stopPropagation()
                         pressKey(key)
@@ -326,6 +328,7 @@ export default function WordlePage() {
 
               <div className="game-actions wordle-keyboard__actions">
                 <button
+                  type="button"
                   onClick={(event) => {
                     event.stopPropagation()
                     pressKey('DEL')
@@ -335,6 +338,7 @@ export default function WordlePage() {
                   Apagar
                 </button>
                 <button
+                  type="button"
                   onClick={(event) => {
                     event.stopPropagation()
                     pressKey('ENT')
@@ -347,19 +351,35 @@ export default function WordlePage() {
             </div>
           </section>
 
-          <section className="game-panel game-panel--soft">
-            <p className="game-panel__eyebrow">Ritmo do jogo</p>
-            <div className="game-legend-list">
-              <div className="game-legend-item">
-                <span className="game-legend-swatch" style={{ background: 'rgba(108,255,147,0.82)' }} />
-                Trabalhe letra por letra e use as cores para cortar opcoes rapidamente.
+          <div className="game-support-grid">
+            <section className="game-panel game-panel--soft">
+              <p className="game-panel__eyebrow">Ritmo do jogo</p>
+              <div className="game-legend-list">
+                <div className="game-legend-item">
+                  <span className="game-legend-swatch" style={{ background: 'rgba(108,255,147,0.82)' }} />
+                  Use o destaque verde da casa ativa para testar letras fora de ordem sem perder o fluxo.
+                </div>
+                <div className="game-legend-item">
+                  <span className="game-legend-swatch" style={{ background: 'rgba(255,194,71,0.82)' }} />
+                  O teclado embaixo fica sempre no campo de visao e acelera a rodada.
+                </div>
               </div>
-              <div className="game-legend-item">
-                <span className="game-legend-swatch" style={{ background: 'rgba(255,194,71,0.82)' }} />
-                O teclado embaixo fica sempre no campo de visao e acelera a rodada.
+            </section>
+
+            <section className="game-panel game-panel--soft">
+              <p className="game-panel__eyebrow">Leitura rapida</p>
+              <div className="game-legend-list">
+                <div className="game-legend-item">
+                  <span className="game-legend-swatch" style={{ background: '#6cff93' }} />
+                  Verde confirma letra e posicao corretas.
+                </div>
+                <div className="game-legend-item">
+                  <span className="game-legend-swatch" style={{ background: '#ffc247' }} />
+                  Amarelo mostra letra presente em outra casa.
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </div>
 
           {gameOver ? (
             <section className={`game-panel ${won ? 'game-panel--success' : 'game-panel--danger'}`}>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { getDailyCraque, CRAQUE_PLAYERS } from '@/lib/games/quem-e-o-craque-data'
 import { useGameScore } from '@/lib/hooks/useGameScore'
 import { useGameDailyStorage } from '@/lib/hooks/useGameDailyStorage'
@@ -131,105 +131,192 @@ export default function QuemEOCraquePage() {
         { title: 'Dicas por camada', text: 'As pistas entram no mesmo compasso da revelacao da imagem.' },
       ]}
     >
-      <div className="game-stage">
+      <div className="game-stage game-stage--single">
         <div className="game-stage__main">
-          <section className="game-panel">
+          <section className="game-panel game-panel--primary">
             <p className="game-panel__eyebrow">Foto do dia</p>
-            <div
-              style={{
-                position: 'relative',
-                borderRadius: 24,
-                overflow: 'hidden',
-                aspectRatio: '1 / 1',
-                background: 'rgba(8,20,29,0.82)',
-                border: '1px solid rgba(154,176,190,0.14)',
-              }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={PLAYER.imageUrl}
-                alt="Jogador misterioso"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'top',
-                  transform: 'scale(1.08)',
-                  filter: filterStyle,
-                  transition: 'filter 0.8s ease',
-                }}
-              />
+            <div className="craque-main-grid">
+              <div>
+                <div className="game-status-banner" style={{ marginBottom: 16 }}>
+                  A imagem precisa mandar no jogo. As pistas e o campo de busca ficam ao lado para apoiar o chute, nao para competir com ele.
+                </div>
 
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 14,
-                  right: 14,
-                  minHeight: 36,
-                  padding: '0 14px',
-                  borderRadius: 999,
-                  border: '1px solid rgba(248,244,235,0.12)',
-                  background: 'rgba(5,16,25,0.72)',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  color: remainingAttempts <= 1 && !gameOver ? 'var(--color-brand-yellow)' : 'var(--color-text)',
-                  fontSize: '0.72rem',
-                  fontWeight: 800,
-                  letterSpacing: '0.14em',
-                  textTransform: 'uppercase',
-                }}
-              >
-                {gameOver ? (won ? 'Acertou' : 'Revelado') : `${remainingAttempts} restante${remainingAttempts !== 1 ? 's' : ''}`}
+                <div className="craque-reveal">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={PLAYER.imageUrl}
+                    alt="Jogador misterioso"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: 'top',
+                      transform: 'scale(1.08)',
+                      filter: filterStyle,
+                      transition: 'filter 0.8s ease',
+                    }}
+                  />
+
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: 14,
+                      right: 14,
+                      minHeight: 36,
+                      padding: '0 14px',
+                      borderRadius: 999,
+                      border: '1px solid rgba(248,244,235,0.12)',
+                      background: 'rgba(5,16,25,0.72)',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      color: remainingAttempts <= 1 && !gameOver ? 'var(--color-brand-yellow)' : 'var(--color-text)',
+                      fontSize: '0.72rem',
+                      fontWeight: 800,
+                      letterSpacing: '0.14em',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    {gameOver ? (won ? 'Acertou' : 'Revelado') : `${remainingAttempts} restante${remainingAttempts !== 1 ? 's' : ''}`}
+                  </div>
+
+                  {gameOver ? (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'flex-end',
+                        padding: 20,
+                        background: 'linear-gradient(180deg, rgba(5,16,25,0.04) 0%, rgba(5,16,25,0.9) 100%)',
+                      }}
+                    >
+                      <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 5vw, 3rem)', lineHeight: 0.92 }}>
+                        {PLAYER.name}
+                      </p>
+                      <p style={{ color: 'var(--color-muted)', marginTop: 8 }}>
+                        {PLAYER.club} · {PLAYER.position} · {PLAYER.nationality}
+                      </p>
+                    </div>
+                  ) : null}
+                </div>
               </div>
 
-              {gameOver ? (
-                <div
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'flex-end',
-                    padding: 20,
-                    background: 'linear-gradient(180deg, rgba(5,16,25,0.04) 0%, rgba(5,16,25,0.9) 100%)',
-                  }}
-                >
-                  <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 5vw, 3rem)', lineHeight: 0.92 }}>
-                    {PLAYER.name}
-                  </p>
-                  <p style={{ color: 'var(--color-muted)', marginTop: 8 }}>
-                    {PLAYER.club} · {PLAYER.position} · {PLAYER.nationality}
-                  </p>
-                </div>
-              ) : null}
+              <div className="game-stack">
+                <section className="game-panel game-panel--soft">
+                  <p className="game-panel__eyebrow">Barra de progresso</p>
+                  <div className="craque-progress">
+                    {Array.from({ length: MAX_ATTEMPTS }).map((_, index) => {
+                      const isUsed = index < attempt
+                      const isWinSlot = won && index === attempt - 1
+                      return (
+                        <span
+                          key={index}
+                          className="craque-progress__bar"
+                          style={{
+                            background: isWinSlot
+                              ? 'var(--color-brand-green)'
+                              : isUsed
+                                ? 'rgba(239,68,68,0.58)'
+                                : 'rgba(154,176,190,0.22)',
+                          }}
+                        />
+                      )
+                    })}
+                  </div>
+                </section>
+
+                {gameOver ? (
+                  <section className="game-panel game-panel--soft">
+                    <p className="game-panel__eyebrow">Ficha revelada</p>
+                    <div className="game-status-banner">
+                      {PLAYER.nationality} · {PLAYER.position} · {PLAYER.club}
+                    </div>
+                  </section>
+                ) : (
+                  <section className="game-panel game-panel--soft">
+                    <p className="game-panel__eyebrow">Buscar nome</p>
+                    <input
+                      ref={inputRef}
+                      value={query}
+                      onChange={(event) => setQuery(event.target.value)}
+                      onKeyDown={(event) => {
+                        if (event.key === 'Enter' && suggestions.length > 0) guess(suggestions[0].name)
+                      }}
+                      placeholder="Nome do jogador..."
+                      className="input"
+                    />
+                    {suggestions.length > 0 ? (
+                      <div className="game-suggestion-list" style={{ marginTop: 10 }}>
+                        {suggestions.map((player) => (
+                          <button key={player.id} type="button" onClick={() => guess(player.name)} className="game-suggestion-item">
+                            <span style={{ fontSize: '0.9rem' }}>{player.name}</span>
+                            <span style={{ color: 'var(--color-muted)', fontSize: '0.74rem' }}>
+                              {player.nationality} · {player.position}
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    ) : query.length >= 2 ? (
+                      <div className="game-empty" style={{ marginTop: 10 }}>Nenhum jogador encontrado nessa busca.</div>
+                    ) : null}
+                  </section>
+                )}
+              </div>
             </div>
           </section>
 
-          {attempt > 0 && !won ? (
-            <section className="game-panel game-panel--soft">
-              <p className="game-panel__eyebrow">Dicas liberadas</p>
-              <div className="game-stack">
-                {PLAYER.hints.slice(0, attempt).map((hint, index) => (
-                  <div key={index} className="game-status-banner">
-                    {hint}
+          <div className="game-support-grid">
+            {attempt > 0 && !won ? (
+              <section className="game-panel game-panel--soft">
+                <p className="game-panel__eyebrow">Dicas liberadas</p>
+                <div className="game-stack">
+                  {PLAYER.hints.slice(0, attempt).map((hint, index) => (
+                    <div key={index} className="game-status-banner">
+                      {hint}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            ) : (
+              <section className="game-panel game-panel--soft">
+                <p className="game-panel__eyebrow">Ritmo da rodada</p>
+                <div className="game-legend-list">
+                  <div className="game-legend-item">
+                    <span className="game-legend-swatch" style={{ background: 'var(--color-brand-green)' }} />
+                    Cada erro abre mais da foto e te aproxima da resposta.
                   </div>
-                ))}
-              </div>
-            </section>
-          ) : null}
+                  <div className="game-legend-item">
+                    <span className="game-legend-swatch" style={{ background: 'var(--color-brand-yellow)' }} />
+                    Use a busca quando o rosto ja tiver dado uma pista forte.
+                  </div>
+                </div>
+              </section>
+            )}
 
-          {wrongGuesses.length > 0 ? (
-            <section className="game-panel game-panel--soft">
-              <p className="game-panel__eyebrow">Palpites que ja sairam</p>
-              <div className="game-stack">
-                {wrongGuesses.map((guessItem, index) => (
-                  <div key={`${guessItem.name}-${index}`} className="game-status-banner game-status-banner--danger">
-                    {guessItem.name}
+            {wrongGuesses.length > 0 ? (
+              <section className="game-panel game-panel--soft">
+                <p className="game-panel__eyebrow">Palpites que ja sairam</p>
+                <div className="game-stack">
+                  {wrongGuesses.map((guessItem, index) => (
+                    <div key={`${guessItem.name}-${index}`} className="game-status-banner game-status-banner--danger">
+                      {guessItem.name}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            ) : (
+              <section className="game-panel game-panel--soft">
+                <p className="game-panel__eyebrow">Leitura rapida</p>
+                <div className="game-legend-list">
+                  <div className="game-legend-item">
+                    <span className="game-legend-swatch" style={{ background: '#f87171' }} />
+                    Chutes errados vao ficando registrados para cortar repeticao.
                   </div>
-                ))}
-              </div>
-            </section>
-          ) : null}
+                </div>
+              </section>
+            )}
+          </div>
 
           {gameOver ? (
             <section className={`game-panel ${won ? 'game-panel--success' : 'game-panel--danger'}`}>
@@ -242,70 +329,13 @@ export default function QuemEOCraquePage() {
                 {PLAYER.nationality} · {PLAYER.position} · {PLAYER.club}. O proximo craque chega amanha.
               </p>
               <div className="game-actions" style={{ marginTop: 18 }}>
-                <button onClick={shareResult} className="btn-ghost">
+                <button type="button" onClick={shareResult} className="btn-ghost">
                   {shared ? 'Copiado' : 'Compartilhar resultado'}
                 </button>
               </div>
             </section>
           ) : null}
         </div>
-
-        <aside className="game-stage__aside">
-          <section className="game-panel game-panel--soft">
-            <p className="game-panel__eyebrow">Barra de progresso</p>
-            <div style={{ display: 'flex', gap: 6 }}>
-              {Array.from({ length: MAX_ATTEMPTS }).map((_, index) => {
-                const isUsed = index < attempt
-                const isWinSlot = won && index === attempt - 1
-                return (
-                  <span
-                    key={index}
-                    style={{
-                      flex: 1,
-                      height: 8,
-                      borderRadius: 999,
-                      background: isWinSlot
-                        ? 'var(--color-brand-green)'
-                        : isUsed
-                          ? 'rgba(239,68,68,0.58)'
-                          : 'rgba(154,176,190,0.22)',
-                    }}
-                  />
-                )
-              })}
-            </div>
-          </section>
-
-          {gameOver ? null : (
-            <section className="game-panel game-panel--soft">
-              <p className="game-panel__eyebrow">Buscar nome</p>
-              <input
-                ref={inputRef}
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter' && suggestions.length > 0) guess(suggestions[0].name)
-                }}
-                placeholder="Nome do jogador..."
-                className="input"
-              />
-              {suggestions.length > 0 ? (
-                <div className="game-suggestion-list" style={{ marginTop: 10 }}>
-                  {suggestions.map((player) => (
-                    <button key={player.id} onClick={() => guess(player.name)} className="game-suggestion-item">
-                      <span style={{ fontSize: '0.9rem' }}>{player.name}</span>
-                      <span style={{ color: 'var(--color-muted)', fontSize: '0.74rem' }}>
-                        {player.nationality} · {player.position}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              ) : query.length >= 2 ? (
-                <div className="game-empty" style={{ marginTop: 10 }}>Nenhum jogador encontrado nessa busca.</div>
-              ) : null}
-            </section>
-          )}
-        </aside>
       </div>
     </GamePageShell>
   )

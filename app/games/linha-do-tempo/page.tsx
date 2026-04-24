@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useGameScore } from '@/lib/hooks/useGameScore'
 import { useGameDailyStorage } from '@/lib/hooks/useGameDailyStorage'
 import { getDailyTimelineEvents, getCorrectOrder, calculateTimelinePoints, type TimelineEvent } from '@/lib/games/linha-do-tempo-data'
@@ -85,6 +85,9 @@ export default function LinhaDoTempoPage() {
   /* eslint-enable react-hooks/set-state-in-effect */
 
   const correctOrder = getCorrectOrder(events)
+  const isChecking = gameState === 'checking'
+  const isPlaying = gameState === 'playing'
+  const canSubmit = userOrder.length === events.length && isPlaying
 
   const handleAddEvent = (event: TimelineEvent) => {
     if (gameState !== 'playing') return
@@ -138,10 +141,6 @@ export default function LinhaDoTempoPage() {
     setTimeout(() => setShared(false), 2000)
   }
 
-  const isChecking = gameState === 'checking'
-  const isPlaying = gameState === 'playing'
-  const canSubmit = userOrder.length === events.length && isPlaying
-
   return (
     <>
       <style>{`
@@ -172,7 +171,7 @@ export default function LinhaDoTempoPage() {
         asideTitle="Como funciona"
         asideDescription="Escolha os quatro blocos na ordem que voce acredita ser correta. O painel de validacao mostra na hora o que esta certo e o que ainda precisa de ajuste."
         asideNotes={[
-          { title: 'Toque para montar', text: 'Clique em um evento disponivel para levá-lo para sua ordem.' },
+          { title: 'Toque para montar', text: 'Clique em um evento disponivel para leva-lo para sua ordem.' },
           { title: 'Toque para remover', text: 'Enquanto estiver jogando, clique no item da sua ordem para tirar dali.' },
           { title: 'Tres janelas', text: 'Errou duas vezes? A terceira e a ultima tentativa da rodada.' },
         ]}
@@ -180,125 +179,157 @@ export default function LinhaDoTempoPage() {
         {!loaded ? (
           <div className="game-empty">Preparando a linha do tempo de hoje...</div>
         ) : (
-          <div className="game-stage">
+          <div className="game-stage game-stage--single">
             <div className="game-stage__main">
               {(isPlaying || isChecking) ? (
                 <>
-                  <section className="game-panel">
-                    <p className="game-panel__eyebrow">Sua ordem</p>
-                    <div
-                      style={{
-                        overflow: 'hidden',
-                        borderRadius: 20,
-                        border: `1px solid ${
-                          isChecking
-                            ? checkResults.every((result) => result === 'correct')
-                              ? 'rgba(108,255,147,0.28)'
-                              : 'rgba(239,68,68,0.22)'
-                            : 'rgba(154,176,190,0.14)'
-                        }`,
-                        background: 'rgba(8,20,29,0.78)',
-                      }}
-                    >
-                      {userOrder.length === 0 ? (
-                        <div className="game-empty" style={{ minHeight: 120, border: 'none', borderRadius: 0 }}>
-                          Selecione os eventos abaixo na ordem do mais antigo ao mais recente.
-                        </div>
-                      ) : (
-                        userOrder.map((event, index) => {
-                          const result = checkResults[index] ?? null
+                  <section className="game-panel game-panel--primary">
+                    <p className="game-panel__eyebrow">Montagem da ordem</p>
+                    <div className="game-status-banner" style={{ marginBottom: 18 }}>
+                      Primeiro monte sua linha com os quatro eventos. Depois confirme. A verificacao colore cada posicao sem esconder o eixo principal do jogo.
+                    </div>
+
+                    <div className="timeline-columns">
+                      <div className="game-stack">
+                        <p className="game-panel__eyebrow" style={{ marginBottom: 0 }}>Sua ordem</p>
+                        {userOrder.length === 0 ? (
+                          <div className="game-empty" style={{ minHeight: 160 }}>
+                            Selecione os eventos abaixo na ordem do mais antigo ao mais recente.
+                          </div>
+                        ) : (
+                          userOrder.map((event, index) => {
+                            const result = checkResults[index] ?? null
+                            return (
+                              <button
+                                key={`${event.id}-${index}`}
+                                type="button"
+                                onClick={() => handleRemoveEvent(index)}
+                                disabled={!isPlaying}
+                                className="timeline-card timeline-row-in"
+                                style={{
+                                  borderColor:
+                                    result === 'correct'
+                                      ? 'rgba(108,255,147,0.32)'
+                                      : result === 'wrong'
+                                        ? 'rgba(239,68,68,0.28)'
+                                        : 'rgba(154,176,190,0.14)',
+                                  borderLeftWidth: 4,
+                                  borderLeftColor:
+                                    result === 'correct'
+                                      ? 'var(--color-brand-green)'
+                                      : result === 'wrong'
+                                        ? '#f87171'
+                                        : 'transparent',
+                                  background:
+                                    result === 'correct'
+                                      ? 'rgba(108,255,147,0.08)'
+                                      : result === 'wrong'
+                                        ? 'rgba(239,68,68,0.08)'
+                                        : 'rgba(6,18,28,0.78)',
+                                  cursor: isPlaying ? 'pointer' : 'default',
+                                }}
+                              >
+                                <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', minWidth: 22, color: result === 'wrong' ? '#fca5a5' : result === 'correct' ? 'var(--color-brand-green)' : 'var(--color-muted)' }}>
+                                  {index + 1}
+                                </span>
+                                <span style={{ fontSize: '1.2rem', minWidth: 24 }}>{event.emoji}</span>
+                                <div style={{ flex: 1 }}>
+                                  <div style={{ fontWeight: 700, lineHeight: 1.35 }}>{event.title}</div>
+                                  <div style={{ color: 'var(--color-muted)', fontSize: '0.8rem', marginTop: 4 }}>{event.description}</div>
+                                </div>
+                                {result === null && isPlaying ? (
+                                  <span style={{ color: 'var(--color-muted)', fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Remover</span>
+                                ) : null}
+                                {result === 'correct' ? <span style={{ color: 'var(--color-brand-green)' }}>✓</span> : null}
+                                {result === 'wrong' ? <span style={{ color: '#f87171' }}>×</span> : null}
+                              </button>
+                            )
+                          })
+                        )}
+                      </div>
+
+                      <div className="game-stack">
+                        <p className="game-panel__eyebrow" style={{ marginBottom: 0 }}>Eventos disponiveis</p>
+                        {shuffled.map((event) => {
+                          const isSelected = userOrder.some((item) => item.id === event.id)
                           return (
                             <button
-                              key={`${event.id}-${index}`}
-                              onClick={() => handleRemoveEvent(index)}
-                              disabled={!isPlaying}
-                              className="timeline-row-in"
+                              key={event.id}
+                              type="button"
+                              onClick={() => handleAddEvent(event)}
+                              disabled={isSelected || isChecking}
+                              className="timeline-card timeline-card--available"
                               style={{
-                                width: '100%',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: 14,
-                                padding: '14px 16px',
-                                border: 'none',
-                                borderBottom: index < userOrder.length - 1 ? '1px solid rgba(154,176,190,0.12)' : 'none',
-                                borderLeft: `3px solid ${
-                                  result === 'correct' ? 'var(--color-brand-green)' : result === 'wrong' ? '#f87171' : 'transparent'
-                                }`,
-                                background:
-                                  result === 'correct'
-                                    ? 'rgba(108,255,147,0.08)'
-                                    : result === 'wrong'
-                                      ? 'rgba(239,68,68,0.08)'
-                                      : 'transparent',
-                                color: 'var(--color-text)',
-                                textAlign: 'left',
-                                cursor: isPlaying ? 'pointer' : 'default',
+                                background: isSelected ? 'rgba(255,255,255,0.02)' : 'rgba(6,18,28,0.78)',
+                                color: isSelected ? 'var(--color-muted)' : 'var(--color-text)',
+                                opacity: isSelected ? 0.38 : 1,
+                                cursor: isSelected || isChecking ? 'default' : 'pointer',
                               }}
                             >
-                              <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', minWidth: 22, color: result === 'wrong' ? '#fca5a5' : result === 'correct' ? 'var(--color-brand-green)' : 'var(--color-muted)' }}>
-                                {index + 1}
-                              </span>
                               <span style={{ fontSize: '1.2rem', minWidth: 24 }}>{event.emoji}</span>
                               <div style={{ flex: 1 }}>
                                 <div style={{ fontWeight: 700, lineHeight: 1.35 }}>{event.title}</div>
-                                <div style={{ color: 'var(--color-muted)', fontSize: '0.78rem', marginTop: 4 }}>{event.description}</div>
+                                <div style={{ color: 'var(--color-muted)', fontSize: '0.8rem', marginTop: 4 }}>{event.description}</div>
                               </div>
-                              {result === null && isPlaying ? (
-                                <span style={{ color: 'var(--color-muted)', fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Remover</span>
-                              ) : null}
-                              {result === 'correct' ? <span style={{ color: 'var(--color-brand-green)' }}>✓</span> : null}
-                              {result === 'wrong' ? <span style={{ color: '#f87171' }}>×</span> : null}
+                              {isSelected ? <span style={{ color: 'var(--color-muted)' }}>✓</span> : null}
                             </button>
                           )
-                        })
-                      )}
+                        })}
+                      </div>
                     </div>
-                  </section>
 
-                  <section className="game-panel game-panel--soft">
-                    <p className="game-panel__eyebrow">Eventos disponiveis</p>
-                    <div className="game-stack">
-                      {shuffled.map((event) => {
-                        const isSelected = userOrder.some((item) => item.id === event.id)
-                        return (
-                          <button
-                            key={event.id}
-                            onClick={() => handleAddEvent(event)}
-                            disabled={isSelected || isChecking}
-                            style={{
-                              width: '100%',
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: 14,
-                              padding: '14px 16px',
-                              borderRadius: 18,
-                              border: '1px solid rgba(154,176,190,0.14)',
-                              background: isSelected ? 'rgba(255,255,255,0.02)' : 'rgba(6,18,28,0.78)',
-                              color: isSelected ? 'var(--color-muted)' : 'var(--color-text)',
-                              opacity: isSelected ? 0.38 : 1,
-                              cursor: isSelected || isChecking ? 'default' : 'pointer',
-                              textAlign: 'left',
-                            }}
-                          >
-                            <span style={{ fontSize: '1.2rem', minWidth: 24 }}>{event.emoji}</span>
-                            <div style={{ flex: 1 }}>
-                              <div style={{ fontWeight: 700, lineHeight: 1.35 }}>{event.title}</div>
-                              <div style={{ color: 'var(--color-muted)', fontSize: '0.78rem', marginTop: 4 }}>{event.description}</div>
-                            </div>
-                            {isSelected ? <span style={{ color: 'var(--color-muted)' }}>✓</span> : null}
-                          </button>
-                        )
-                      })}
-                    </div>
-                  </section>
-
-                  <section className="game-panel game-panel--soft">
-                    <div className="game-actions">
-                      <button onClick={handleSubmit} disabled={!canSubmit} className="btn-primary" style={{ flex: 1, opacity: canSubmit ? 1 : 0.55 }}>
+                    <div className="game-actions" style={{ marginTop: 18 }}>
+                      <button type="button" onClick={handleSubmit} disabled={!canSubmit} className="btn-primary" style={{ flex: 1, opacity: canSubmit ? 1 : 0.55 }}>
                         {isChecking ? 'Verificando...' : canSubmit ? 'Confirmar ordem' : `Faltam ${events.length - userOrder.length}`}
                       </button>
                     </div>
                   </section>
+
+                  <div className="game-support-grid">
+                    <section className="game-panel game-panel--soft">
+                      <p className="game-panel__eyebrow">Estado da tentativa</p>
+                      <div className={`game-status-banner ${attempts >= 3 && isPlaying ? 'game-status-banner--danger' : 'game-status-banner--success'}`}>
+                        {isChecking
+                          ? 'Conferindo a ordem escolhida...'
+                          : isPlaying
+                            ? `Tentativa ${attempts}/3 em andamento.`
+                            : gameState === 'won'
+                              ? 'Ordem resolvida.'
+                              : 'Limite de tentativas atingido.'}
+                      </div>
+                      <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
+                        {[1, 2, 3].map((index) => (
+                          <span
+                            key={index}
+                            style={{
+                              flex: 1,
+                              height: 10,
+                              borderRadius: 999,
+                              background: index < attempts ? 'rgba(154,176,190,0.24)' : index === attempts ? 'var(--color-brand-green)' : 'rgba(154,176,190,0.14)',
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </section>
+
+                    <section className="game-panel game-panel--soft">
+                      <p className="game-panel__eyebrow">Leitura rapida</p>
+                      <div className="game-legend-list">
+                        <div className="game-legend-item">
+                          <span className="game-legend-swatch" style={{ background: 'var(--color-brand-green)' }} />
+                          Verde aparece quando a posicao esta correta na checagem.
+                        </div>
+                        <div className="game-legend-item">
+                          <span className="game-legend-swatch" style={{ background: '#f87171' }} />
+                          Vermelho sinaliza item fora da ordem certa.
+                        </div>
+                        <div className="game-legend-item">
+                          <span className="game-legend-swatch" style={{ background: 'var(--color-brand-yellow)' }} />
+                          Confirme so quando os quatro slots estiverem completos.
+                        </div>
+                      </div>
+                    </section>
+                  </div>
                 </>
               ) : null}
 
@@ -309,13 +340,12 @@ export default function LinhaDoTempoPage() {
                     {correctOrder.map((event, index) => (
                       <div
                         key={event.id}
+                        className="timeline-card"
                         style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: 14,
+                          borderColor: 'rgba(108,255,147,0.18)',
+                          background: 'rgba(11,31,24,0.46)',
                           paddingBottom: 14,
                           marginBottom: index < correctOrder.length - 1 ? 14 : 0,
-                          borderBottom: index < correctOrder.length - 1 ? '1px solid rgba(154,176,190,0.12)' : 'none',
                         }}
                       >
                         <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', minWidth: 22, color: 'var(--color-brand-green)' }}>
@@ -324,7 +354,7 @@ export default function LinhaDoTempoPage() {
                         <span style={{ fontSize: '1.2rem', minWidth: 24 }}>{event.emoji}</span>
                         <div style={{ flex: 1 }}>
                           <div style={{ fontWeight: 700, lineHeight: 1.35 }}>{event.title}</div>
-                          <div style={{ color: 'var(--color-muted)', fontSize: '0.78rem', marginTop: 4 }}>{event.description}</div>
+                          <div style={{ color: 'var(--color-muted)', fontSize: '0.8rem', marginTop: 4 }}>{event.description}</div>
                         </div>
                         <span className="timeline-year-in" style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: 'var(--color-brand-green)' }}>
                           {event.year}
@@ -337,7 +367,7 @@ export default function LinhaDoTempoPage() {
                     <div className="game-status-banner game-status-banner--success" style={{ flex: 1 }}>
                       +{calculateTimelinePoints(attempts, true)} pontos · {attempts}/3 tentativa{attempts > 1 ? 's' : ''}
                     </div>
-                    <button onClick={handleShare} className="btn-ghost">
+                    <button type="button" onClick={handleShare} className="btn-ghost">
                       {shared ? 'Copiado' : 'Compartilhar resultado'}
                     </button>
                   </div>
@@ -351,13 +381,12 @@ export default function LinhaDoTempoPage() {
                     {correctOrder.map((event, index) => (
                       <div
                         key={event.id}
+                        className="timeline-card"
                         style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: 14,
+                          borderColor: 'rgba(239,68,68,0.16)',
+                          background: 'rgba(34,13,16,0.4)',
                           paddingBottom: 14,
                           marginBottom: index < correctOrder.length - 1 ? 14 : 0,
-                          borderBottom: index < correctOrder.length - 1 ? '1px solid rgba(154,176,190,0.12)' : 'none',
                         }}
                       >
                         <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', minWidth: 22, color: 'var(--color-muted)' }}>
@@ -366,7 +395,7 @@ export default function LinhaDoTempoPage() {
                         <span style={{ fontSize: '1.2rem', minWidth: 24 }}>{event.emoji}</span>
                         <div style={{ flex: 1 }}>
                           <div style={{ fontWeight: 700, lineHeight: 1.35 }}>{event.title}</div>
-                          <div style={{ color: 'var(--color-muted)', fontSize: '0.78rem', marginTop: 4 }}>{event.description}</div>
+                          <div style={{ color: 'var(--color-muted)', fontSize: '0.8rem', marginTop: 4 }}>{event.description}</div>
                         </div>
                         <span className="timeline-year-in" style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: 'var(--color-muted)' }}>
                           {event.year}
@@ -379,59 +408,13 @@ export default function LinhaDoTempoPage() {
                     <div className="game-status-banner game-status-banner--danger" style={{ flex: 1 }}>
                       Rodada encerrada. {scoreRegistered ? 'Pontuacao registrada. ' : ''}Amanha tem nova sequencia.
                     </div>
-                    <button onClick={handleShare} className="btn-ghost">
+                    <button type="button" onClick={handleShare} className="btn-ghost">
                       {shared ? 'Copiado' : 'Compartilhar resultado'}
                     </button>
                   </div>
                 </section>
               ) : null}
             </div>
-
-            <aside className="game-stage__aside">
-              <section className="game-panel game-panel--soft">
-                <p className="game-panel__eyebrow">Estado da tentativa</p>
-                <div className={`game-status-banner ${attempts >= 3 && isPlaying ? 'game-status-banner--danger' : 'game-status-banner--success'}`}>
-                  {isChecking
-                    ? 'Conferindo a ordem escolhida...'
-                    : isPlaying
-                      ? `Tentativa ${attempts}/3 em andamento.`
-                      : gameState === 'won'
-                        ? 'Ordem resolvida.'
-                        : 'Limite de tentativas atingido.'}
-                </div>
-                <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
-                  {[1, 2, 3].map((index) => (
-                    <span
-                      key={index}
-                      style={{
-                        flex: 1,
-                        height: 10,
-                        borderRadius: 999,
-                        background: index < attempts ? 'rgba(154,176,190,0.24)' : index === attempts ? 'var(--color-brand-green)' : 'rgba(154,176,190,0.14)',
-                      }}
-                    />
-                  ))}
-                </div>
-              </section>
-
-              <section className="game-panel game-panel--soft">
-                <p className="game-panel__eyebrow">Leitura rapida</p>
-                <div className="game-legend-list">
-                  <div className="game-legend-item">
-                    <span className="game-legend-swatch" style={{ background: 'var(--color-brand-green)' }} />
-                    Verde aparece quando a posicao esta correta na checagem.
-                  </div>
-                  <div className="game-legend-item">
-                    <span className="game-legend-swatch" style={{ background: '#f87171' }} />
-                    Vermelho sinaliza item fora da ordem certa.
-                  </div>
-                  <div className="game-legend-item">
-                    <span className="game-legend-swatch" style={{ background: 'var(--color-brand-yellow)' }} />
-                    Confirme so quando os quatro slots estiverem completos.
-                  </div>
-                </div>
-              </section>
-            </aside>
           </div>
         )}
       </GamePageShell>

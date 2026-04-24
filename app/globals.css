@@ -608,6 +608,17 @@ main {
   background: rgba(9, 24, 36, 0.58);
 }
 
+.game-panel--primary {
+  padding: clamp(22px, 2vw, 30px);
+  border-color: rgba(108, 255, 147, 0.18);
+  background:
+    linear-gradient(180deg, rgba(12, 30, 43, 0.92), rgba(6, 18, 28, 0.96)),
+    rgba(6, 18, 28, 0.9);
+  box-shadow:
+    0 22px 48px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
 .game-panel--success {
   border-color: rgba(108, 255, 147, 0.24);
   background: rgba(11, 31, 24, 0.72);
@@ -674,6 +685,7 @@ main {
 
 .game-suggestion-item {
   width: 100%;
+  min-height: 58px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -723,6 +735,48 @@ main {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.game-primary-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.74fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.game-support-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.game-support-grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.wordle-board {
+  width: min(100%, 540px);
+  margin: 0 auto;
+}
+
+.wordle-board__row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.wordle-board__cell {
+  border-width: 1px;
+  border-style: solid;
+  outline: none;
+}
+
+.wordle-board__cell--filled {
+  transform: translateY(-2px);
+}
+
+.wordle-board__cell--active {
+  box-shadow: 0 0 0 3px rgba(108, 255, 147, 0.12);
 }
 
 .wordle-keyboard {
@@ -800,7 +854,7 @@ main {
 }
 
 .velha-grid__cell {
-  min-height: 110px;
+  min-height: clamp(110px, 12vw, 138px);
   padding: 12px;
   border-radius: 22px;
   display: flex;
@@ -823,12 +877,62 @@ main {
 }
 
 .connections-grid__tile {
-  min-height: 82px;
-  padding: 12px 8px;
+  min-height: clamp(82px, 10vw, 110px);
+  padding: 14px 10px;
   border-radius: 18px;
   text-align: center;
   line-height: 1.35;
-  font-size: 0.78rem;
+  font-size: clamp(0.78rem, 1vw, 0.92rem);
+}
+
+.timeline-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+  gap: 18px;
+}
+
+.timeline-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(154, 176, 190, 0.14);
+  background: rgba(6, 18, 28, 0.78);
+  color: var(--color-text);
+  text-align: left;
+}
+
+.timeline-card--available {
+  min-height: 96px;
+}
+
+.craque-main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.76fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.craque-reveal {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: rgba(8, 20, 29, 0.82);
+  border: 1px solid rgba(154, 176, 190, 0.14);
+}
+
+.craque-progress {
+  display: flex;
+  gap: 6px;
+}
+
+.craque-progress__bar {
+  flex: 1;
+  height: 10px;
+  border-radius: 999px;
 }
 
 .card {
@@ -1368,7 +1472,12 @@ main {
 
   .game-hero__inner,
   .game-stage,
-  .game-stage--single {
+  .game-stage--single,
+  .game-primary-split,
+  .game-support-grid,
+  .game-support-grid--three,
+  .timeline-columns,
+  .craque-main-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -1479,6 +1588,11 @@ main {
   .connections-grid__tile {
     min-height: 74px;
     font-size: 0.72rem;
+  }
+
+  .timeline-card {
+    padding: 14px 15px;
+    border-radius: 18px;
   }
 
   .wordle-keyboard__row {

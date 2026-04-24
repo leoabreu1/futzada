@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getDailyConexoes, type ConexoesGroup } from '@/lib/games/conexoes-data'
 import { useGameScore } from '@/lib/hooks/useGameScore'
 import { useGameDailyStorage } from '@/lib/hooks/useGameDailyStorage'
@@ -122,6 +122,9 @@ export default function ConexoesPage() {
     save({ foundGroups, errors: newErrors, shuffledPlayers, gameState: newState })
   }
 
+  const unfoundGroups = PUZZLE.groups.filter((group) => !foundGroups.some((found) => found.category === group.category))
+  const remainingLives = Math.max(4 - errors, 0)
+
   async function shareResult() {
     const rows = [
       ...foundGroups.map((group) => DIFF_EMOJI[group.difficulty].repeat(4)),
@@ -147,9 +150,6 @@ export default function ConexoesPage() {
     setTimeout(() => setShared(false), 2000)
   }
 
-  const unfoundGroups = PUZZLE.groups.filter((group) => !foundGroups.some((found) => found.category === group.category))
-  const remainingLives = Math.max(4 - errors, 0)
-
   return (
     <GamePageShell
       storageKey="conexoes"
@@ -171,20 +171,20 @@ export default function ConexoesPage() {
         { title: 'Quatro exatos', text: 'So vale confirmar quando tiver exatamente quatro nomes selecionados.' },
       ]}
     >
-      <div className="game-stage">
+      <div className="game-stage game-stage--single">
         <div className="game-stage__main">
           {foundGroups.length > 0 ? (
             <section className="game-panel game-panel--soft">
               <p className="game-panel__eyebrow">Grupos encontrados</p>
-              <div className="game-stack">
+              <div className="game-support-grid">
                 {foundGroups.map((group) => {
                   const style = DIFF_STYLE[group.difficulty]
                   return (
                     <div
                       key={group.category}
                       style={{
-                        padding: '14px 16px',
-                        borderRadius: 18,
+                        padding: '16px 18px',
+                        borderRadius: 20,
                         background: style.bg,
                         border: `1px solid ${style.border}`,
                       }}
@@ -202,8 +202,12 @@ export default function ConexoesPage() {
             </section>
           ) : null}
 
-          <section className="game-panel">
+          <section className="game-panel game-panel--primary">
             <p className="game-panel__eyebrow">Tabuleiro de nomes</p>
+            <div className="game-status-banner" style={{ marginBottom: 18 }}>
+              O tabuleiro precisa mandar na tela: selecione quatro nomes, confira a combinacao e confirme quando a leitura fizer sentido.
+            </div>
+
             {gameState !== 'lost' && shuffledPlayers.length > 0 ? (
               <div className="connections-grid" style={{ animation: shaking ? 'shake 0.45s ease' : undefined }}>
                 {shuffledPlayers.map((player) => {
@@ -211,6 +215,7 @@ export default function ConexoesPage() {
                   return (
                     <button
                       key={player}
+                      type="button"
                       onClick={() => toggleSelect(player)}
                       className="connections-grid__tile"
                       style={{
@@ -231,24 +236,63 @@ export default function ConexoesPage() {
 
             {gameState === 'playing' ? (
               <div className="game-actions" style={{ marginTop: 18 }}>
-                <button onClick={() => setSelected([])} disabled={selected.length === 0} className="btn-ghost" style={{ flex: 1, opacity: selected.length === 0 ? 0.45 : 1 }}>
+                <button type="button" onClick={() => setSelected([])} disabled={selected.length === 0} className="btn-ghost" style={{ flex: 1, opacity: selected.length === 0 ? 0.45 : 1 }}>
                   Limpar
                 </button>
-                <button onClick={submit} disabled={selected.length !== 4} className="btn-primary" style={{ flex: 1.4, opacity: selected.length !== 4 ? 0.55 : 1 }}>
+                <button type="button" onClick={submit} disabled={selected.length !== 4} className="btn-primary" style={{ flex: 1.4, opacity: selected.length !== 4 ? 0.55 : 1 }}>
                   Confirmar {selected.length}/4
                 </button>
               </div>
             ) : null}
           </section>
 
+          <div className="game-support-grid">
+            <section className="game-panel game-panel--soft">
+              <p className="game-panel__eyebrow">Pressao da rodada</p>
+              <div className={`game-status-banner ${remainingLives <= 1 && gameState === 'playing' ? 'game-status-banner--danger' : 'game-status-banner--success'}`}>
+                {remainingLives > 0
+                  ? `${remainingLives} margem${remainingLives !== 1 ? 'ens' : ''} antes de revelar tudo.`
+                  : 'Sem margem restante.'}
+              </div>
+              <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 12 }}>
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <span
+                    key={index}
+                    style={{
+                      width: 12,
+                      height: 12,
+                      borderRadius: 999,
+                      background: index < errors ? '#f87171' : 'rgba(154,176,190,0.22)',
+                      border: `1px solid ${index < errors ? 'rgba(239,68,68,0.5)' : 'rgba(154,176,190,0.18)'}`,
+                    }}
+                  />
+                ))}
+              </div>
+            </section>
+
+            <section className="game-panel game-panel--soft">
+              <p className="game-panel__eyebrow">Escala de cores</p>
+              <div className="game-legend-list">
+                {Object.entries(DIFF_STYLE).map(([difficulty, style]) => (
+                  <div key={difficulty} className="game-legend-item">
+                    <span className="game-legend-swatch" style={{ background: style.text }} />
+                    <span>
+                      <strong style={{ color: 'var(--color-text)' }}>{difficulty}</strong> · {style.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
+
           {gameState === 'lost' && unfoundGroups.length > 0 ? (
             <section className="game-panel game-panel--danger">
               <p className="game-panel__eyebrow">Grupos que faltaram</p>
-              <div className="game-stack">
+              <div className="game-support-grid">
                 {unfoundGroups.map((group) => {
                   const style = DIFF_STYLE[group.difficulty]
                   return (
-                    <div key={group.category} style={{ padding: '14px 16px', borderRadius: 18, background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.16)' }}>
+                    <div key={group.category} style={{ padding: '16px 18px', borderRadius: 20, background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.16)' }}>
                       <p style={{ color: style.text, fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: 6 }}>
                         {group.category}
                       </p>
@@ -280,54 +324,13 @@ export default function ConexoesPage() {
                   : `${foundGroups.length}/4 grupos encontrados. ${scoreRegistered ? 'Pontuacao registrada. ' : ''}Volta no proximo desafio.`}
               </p>
               <div className="game-actions" style={{ marginTop: 18 }}>
-                <button onClick={shareResult} className="btn-ghost">
+                <button type="button" onClick={shareResult} className="btn-ghost">
                   {shared ? 'Copiado' : 'Compartilhar resultado'}
                 </button>
               </div>
             </section>
           ) : null}
         </div>
-
-        <aside className="game-stage__aside">
-          <section className="game-panel game-panel--soft">
-            <p className="game-panel__eyebrow">Pressao da rodada</p>
-            <div className="game-stack">
-              <div className={`game-status-banner ${remainingLives <= 1 && gameState === 'playing' ? 'game-status-banner--danger' : 'game-status-banner--success'}`}>
-                {remainingLives > 0
-                  ? `${remainingLives} margem${remainingLives !== 1 ? 'ens' : ''} antes de revelar tudo.`
-                  : 'Sem margem restante.'}
-              </div>
-              <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                {Array.from({ length: 4 }).map((_, index) => (
-                  <span
-                    key={index}
-                    style={{
-                      width: 12,
-                      height: 12,
-                      borderRadius: 999,
-                      background: index < errors ? '#f87171' : 'rgba(154,176,190,0.22)',
-                      border: `1px solid ${index < errors ? 'rgba(239,68,68,0.5)' : 'rgba(154,176,190,0.18)'}`,
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section className="game-panel game-panel--soft">
-            <p className="game-panel__eyebrow">Escala de cores</p>
-            <div className="game-legend-list">
-              {Object.entries(DIFF_STYLE).map(([difficulty, style]) => (
-                <div key={difficulty} className="game-legend-item">
-                  <span className="game-legend-swatch" style={{ background: style.text }} />
-                  <span>
-                    <strong style={{ color: 'var(--color-text)' }}>{difficulty}</strong> · {style.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </section>
-        </aside>
       </div>
     </GamePageShell>
   )

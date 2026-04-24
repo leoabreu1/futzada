@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect, Fragment } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { PLAYERS, getDailyGrid, getValidPlayers, type Player } from '@/lib/games/jogo-da-velha-data'
 import { useGameScore } from '@/lib/hooks/useGameScore'
 import { useGameDailyStorage } from '@/lib/hooks/useGameDailyStorage'
@@ -41,8 +41,8 @@ export default function JogoDaVelhaPage() {
 
   const score = cells.filter((cell) => cell.locked).length
   const allCellsLocked = cells.every((cell) => cell.locked)
-
   const usedPlayerIds = new Set(cells.filter((cell) => cell.locked && cell.player).map((cell) => cell.player!.id))
+
   const suggestions =
     query.length >= 2
       ? PLAYERS.filter(
@@ -129,7 +129,7 @@ export default function JogoDaVelhaPage() {
       eyebrow="Cruzamento diario"
       title="Jogo da Velha Futebol"
       badge={<span className="badge badge-green">Diario</span>}
-      description="Cruze categorias, encontre o nome certo e complete o tabuleiro sem desperdiçar tentativas. Cada casa aceita um unico jogador valido."
+      description="Cruze categorias, encontre o nome certo e complete o tabuleiro sem desperdicar tentativas. Cada casa aceita um unico jogador valido."
       meta={['3x3 categorias', 'Sem repetir jogador', `${MAX_GUESSES} tentativas totais`]}
       stats={[
         { label: 'Acertos', value: score, tone: score >= 6 ? 'green' : 'default' },
@@ -146,89 +146,169 @@ export default function JogoDaVelhaPage() {
     >
       {errorMessage ? <div className="game-status-banner game-status-banner--danger" style={{ marginBottom: 18 }}>{errorMessage}</div> : null}
 
-      <div className="game-stage">
+      <div className="game-stage game-stage--single">
         <div className="game-stage__main">
-          <section className="game-panel">
+          <section className="game-panel game-panel--primary">
             <p className="game-panel__eyebrow">Tabuleiro</p>
-            <div className="velha-grid">
-              <div />
-              {cols.map((category) => (
-                <div key={category.id} className="velha-grid__label">
-                  {category.label}
+            <div className="game-primary-split">
+              <div>
+                <div className="game-status-banner" style={{ marginBottom: 16 }}>
+                  Toque numa casa para abrir a busca contextual. O tabuleiro continua protagonista, mas a decisao da jogada fica colada nele.
                 </div>
-              ))}
 
-              {rows.map((rowCategory, rowIndex) => (
-                <Fragment key={rowCategory.id}>
-                  <div className="velha-grid__label velha-grid__label--row">
-                    {rowCategory.label}
+                <div className="velha-grid">
+                  <div />
+                  {cols.map((category) => (
+                    <div key={category.id} className="velha-grid__label">
+                      {category.label}
+                    </div>
+                  ))}
+
+                  {rows.map((rowCategory, rowIndex) => (
+                    <Fragment key={rowCategory.id}>
+                      <div className="velha-grid__label velha-grid__label--row">
+                        {rowCategory.label}
+                      </div>
+
+                      {cols.map((_, colIndex) => {
+                        const index = rowIndex * 3 + colIndex
+                        const cell = cells[index]
+                        const isActive = activeCell === index
+                        const isError = errorCell === index
+
+                        return (
+                          <button
+                            key={index}
+                            type="button"
+                            onClick={() => openCell(index)}
+                            className="velha-grid__cell"
+                            style={{
+                              aspectRatio: '1',
+                              border: `1px solid ${
+                                isError
+                                  ? 'rgba(239,68,68,0.5)'
+                                  : cell.locked
+                                    ? 'rgba(108,255,147,0.35)'
+                                    : isActive
+                                      ? 'rgba(255,194,71,0.55)'
+                                      : 'rgba(154,176,190,0.16)'
+                              }`,
+                              background: isError
+                                ? 'rgba(239,68,68,0.1)'
+                                : cell.locked
+                                  ? 'rgba(108,255,147,0.08)'
+                                  : isActive
+                                    ? 'rgba(255,194,71,0.08)'
+                                    : 'rgba(6,18,28,0.78)',
+                              cursor: cell.locked || gameOver ? 'default' : 'pointer',
+                              opacity: gameOver && !cell.locked ? 0.35 : 1,
+                              animation: isError ? 'shake 0.4s ease' : undefined,
+                            }}
+                          >
+                            {cell.locked && cell.player ? (
+                              <>
+                                <span style={{ fontSize: '1rem', color: 'var(--color-brand-green)' }}>✓</span>
+                                <span className="velha-grid__cell-name" style={{ color: 'var(--color-text)' }}>
+                                  {cell.player.name}
+                                </span>
+                              </>
+                            ) : cell.player && !cell.locked ? (
+                              <>
+                                <span style={{ fontSize: '1rem', color: '#f87171' }}>×</span>
+                                <span className="velha-grid__cell-name" style={{ color: '#fca5a5' }}>
+                                  {cell.player.name}
+                                </span>
+                              </>
+                            ) : (
+                              <>
+                                <span
+                                  style={{
+                                    fontFamily: 'var(--font-display)',
+                                    fontSize: '2.1rem',
+                                    lineHeight: 0.9,
+                                    color: isActive ? 'var(--color-brand-yellow)' : 'var(--color-muted-2)',
+                                  }}
+                                >
+                                  +
+                                </span>
+                                <span style={{ color: 'var(--color-muted)', fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                                  Escolher
+                                </span>
+                              </>
+                            )}
+                          </button>
+                        )
+                      })}
+                    </Fragment>
+                  ))}
+                </div>
+              </div>
+
+              <section className="game-panel game-panel--soft">
+                <p className="game-panel__eyebrow">Casa ativa</p>
+                {activeCategory ? (
+                  <div className="game-stack">
+                    <div className="game-status-banner game-status-banner--success">
+                      Procure um jogador que seja <strong style={{ color: 'var(--color-brand-yellow)' }}>{activeCategory.row.label}</strong> e{' '}
+                      <strong style={{ color: 'var(--color-brand-yellow)' }}>{activeCategory.col.label}</strong>.
+                    </div>
+                    <input
+                      ref={inputRef}
+                      value={query}
+                      onChange={(event) => setQuery(event.target.value)}
+                      placeholder="Nome do jogador..."
+                      className="input"
+                    />
+                    {suggestions.length > 0 ? (
+                      <div className="game-suggestion-list">
+                        {suggestions.map((player) => (
+                          <button key={player.id} type="button" onClick={() => selectPlayer(player)} className="game-suggestion-item">
+                            <span style={{ fontSize: '0.9rem' }}>{player.name}</span>
+                            <span style={{ color: 'var(--color-muted)', fontSize: '0.74rem' }}>
+                              {player.nationality} · {player.position}
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    ) : query.length >= 2 ? (
+                      <div className="game-empty">Nenhum jogador encontrado para esta busca.</div>
+                    ) : null}
                   </div>
-
-                  {cols.map((_, colIndex) => {
-                    const index = rowIndex * 3 + colIndex
-                    const cell = cells[index]
-                    const isActive = activeCell === index
-                    const isError = errorCell === index
-
-                    return (
-                      <button
-                        key={index}
-                        onClick={() => openCell(index)}
-                        className="velha-grid__cell"
-                        style={{
-                          aspectRatio: '1',
-                          border: `1px solid ${
-                            isError
-                              ? 'rgba(239,68,68,0.5)'
-                              : cell.locked
-                                ? 'rgba(108,255,147,0.35)'
-                                : isActive
-                                  ? 'rgba(255,194,71,0.55)'
-                                  : 'rgba(154,176,190,0.16)'
-                          }`,
-                          background: isError
-                            ? 'rgba(239,68,68,0.1)'
-                            : cell.locked
-                              ? 'rgba(108,255,147,0.08)'
-                              : isActive
-                                ? 'rgba(255,194,71,0.08)'
-                                : 'rgba(6,18,28,0.78)',
-                          cursor: cell.locked || gameOver ? 'default' : 'pointer',
-                          opacity: gameOver && !cell.locked ? 0.35 : 1,
-                          animation: isError ? 'shake 0.4s ease' : undefined,
-                        }}
-                      >
-                        {cell.locked && cell.player ? (
-                          <>
-                            <span style={{ fontSize: '1rem', color: 'var(--color-brand-green)' }}>✓</span>
-                            <span className="velha-grid__cell-name" style={{ color: 'var(--color-text)' }}>
-                              {cell.player.name}
-                            </span>
-                          </>
-                        ) : cell.player && !cell.locked ? (
-                          <>
-                            <span style={{ fontSize: '1rem', color: '#f87171' }}>×</span>
-                            <span className="velha-grid__cell-name" style={{ color: '#fca5a5' }}>
-                              {cell.player.name}
-                            </span>
-                          </>
-                        ) : (
-                          <>
-                            <span style={{ fontFamily: 'var(--font-display)', fontSize: '2.1rem', lineHeight: 0.9, color: isActive ? 'var(--color-brand-yellow)' : 'var(--color-muted-2)' }}>
-                              +
-                            </span>
-                            <span style={{ color: 'var(--color-muted)', fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-                              Escolher
-                            </span>
-                          </>
-                        )}
-                      </button>
-                    )
-                  })}
-                </Fragment>
-              ))}
+                ) : (
+                  <div className="game-empty">Clique em uma casa vazia para abrir a busca contextual.</div>
+                )}
+              </section>
             </div>
           </section>
+
+          <div className="game-support-grid">
+            <section className="game-panel game-panel--soft">
+              <p className="game-panel__eyebrow">Leitura de estado</p>
+              <div className="game-legend-list">
+                <div className="game-legend-item">
+                  <span className="game-legend-swatch" style={{ background: 'rgba(108,255,147,0.9)' }} />
+                  Verde significa casa travada com jogador valido.
+                </div>
+                <div className="game-legend-item">
+                  <span className="game-legend-swatch" style={{ background: 'rgba(255,194,71,0.9)' }} />
+                  Dourado mostra a casa selecionada para a jogada atual.
+                </div>
+                <div className="game-legend-item">
+                  <span className="game-legend-swatch" style={{ background: 'rgba(239,68,68,0.9)' }} />
+                  Vermelho indica tentativa errada e gasta uma chance.
+                </div>
+              </div>
+            </section>
+
+            <section className="game-panel game-panel--soft">
+              <p className="game-panel__eyebrow">Pressao da rodada</p>
+              <div className={`game-status-banner ${guesses <= 3 && !gameOver ? 'game-status-banner--danger' : 'game-status-banner--success'}`}>
+                {gameOver
+                  ? 'Rodada encerrada.'
+                  : `${guesses} tentativa${guesses !== 1 ? 's' : ''} restante${guesses !== 1 ? 's' : ''} para fechar as intersecoes.`}
+              </div>
+            </section>
+          </div>
 
           {gameOver ? (
             <section className={`game-panel ${allCellsLocked ? 'game-panel--success' : 'game-panel--danger'}`}>
@@ -240,67 +320,13 @@ export default function JogoDaVelhaPage() {
                 {score}/9 casas travadas. {scoreRegistered ? 'Pontuacao registrada. ' : ''}A proxima combinacao entra amanha.
               </p>
               <div className="game-actions" style={{ marginTop: 18 }}>
-                <button onClick={shareResult} className="btn-ghost">
+                <button type="button" onClick={shareResult} className="btn-ghost">
                   {shared ? 'Copiado' : 'Compartilhar resultado'}
                 </button>
               </div>
             </section>
           ) : null}
         </div>
-
-        <aside className="game-stage__aside">
-          <section className="game-panel game-panel--soft">
-            <p className="game-panel__eyebrow">Casa ativa</p>
-            {activeCategory ? (
-              <div className="game-stack">
-                <div className="game-status-banner game-status-banner--success">
-                  Procure um jogador que seja <strong style={{ color: 'var(--color-brand-yellow)' }}>{activeCategory.row.label}</strong> e <strong style={{ color: 'var(--color-brand-yellow)' }}>{activeCategory.col.label}</strong>.
-                </div>
-                <input
-                  ref={inputRef}
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  placeholder="Nome do jogador..."
-                  className="input"
-                />
-                {suggestions.length > 0 ? (
-                  <div className="game-suggestion-list">
-                    {suggestions.map((player) => (
-                      <button key={player.id} onClick={() => selectPlayer(player)} className="game-suggestion-item">
-                        <span style={{ fontSize: '0.9rem' }}>{player.name}</span>
-                        <span style={{ color: 'var(--color-muted)', fontSize: '0.74rem' }}>
-                          {player.nationality} · {player.position}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                ) : query.length >= 2 ? (
-                  <div className="game-empty">Nenhum jogador encontrado para esta busca.</div>
-                ) : null}
-              </div>
-            ) : (
-              <div className="game-empty">Clique em uma casa vazia para abrir a busca contextual.</div>
-            )}
-          </section>
-
-          <section className="game-panel game-panel--soft">
-            <p className="game-panel__eyebrow">Leitura de estado</p>
-            <div className="game-legend-list">
-              <div className="game-legend-item">
-                <span className="game-legend-swatch" style={{ background: 'rgba(108,255,147,0.9)' }} />
-                Verde significa casa travada com jogador valido.
-              </div>
-              <div className="game-legend-item">
-                <span className="game-legend-swatch" style={{ background: 'rgba(255,194,71,0.9)' }} />
-                Dourado mostra a casa selecionada para a jogada atual.
-              </div>
-              <div className="game-legend-item">
-                <span className="game-legend-swatch" style={{ background: 'rgba(239,68,68,0.9)' }} />
-                Vermelho indica tentativa errada e gasta uma chance.
-              </div>
-            </div>
-          </section>
-        </aside>
       </div>
     </GamePageShell>
   )
