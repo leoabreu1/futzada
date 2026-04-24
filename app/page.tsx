@@ -155,7 +155,6 @@ export default function Home() {
       <section id="jogos" className="home-games-section" style={{ marginBottom: 48 }}>
         <div className="section-header">
           <div>
-            <p className="section-label">Escalação titular</p>
             <h2 className="section-title" style={{ marginBottom: 10 }}>
               Jogos para entrar agora
             </h2>
