@@ -212,7 +212,7 @@ export default function WordlePage() {
     >
       {error ? <div className="game-status-banner game-status-banner--danger" style={{ marginBottom: 18 }}>{error}</div> : null}
 
-      <div className="game-stage">
+      <div className="game-stage game-stage--single">
         <div className="game-stage__main">
           <section className="game-panel">
             <p className="game-panel__eyebrow">Tabuleiro</p>
@@ -258,29 +258,9 @@ export default function WordlePage() {
             </div>
           </section>
 
-          {gameOver ? (
-            <section className={`game-panel ${won ? 'game-panel--success' : 'game-panel--danger'}`}>
-              <p className="game-panel__eyebrow">{won ? 'Resultado' : 'Encerrado'}</p>
-              <h2 className="game-panel__title">
-                {won ? `Acertou em ${guesses.length} tentativa${guesses.length > 1 ? 's' : ''}.` : `A resposta era ${DAILY_WORD}.`}
-              </h2>
-              <p className="game-panel__copy">
-                {scoreRegistered ? 'Pontuacao registrada. ' : ''}
-                O proximo desafio entra amanha com um novo sobrenome.
-              </p>
-              <div className="game-actions" style={{ marginTop: 18 }}>
-                <button onClick={shareResult} className="btn-ghost">
-                  {shared ? 'Copiado' : 'Compartilhar resultado'}
-                </button>
-              </div>
-            </section>
-          ) : null}
-        </div>
-
-        <aside className="game-stage__aside">
           <section className="game-panel game-panel--soft">
             <p className="game-panel__eyebrow">Teclado</p>
-            <div className="wordle-keyboard" onClick={() => hiddenInputRef.current?.focus()}>
+            <div className="wordle-keyboard wordle-keyboard--stacked" onClick={() => hiddenInputRef.current?.focus()}>
               {KEY_ROWS.map((row) => (
                 <div key={row} className="wordle-keyboard__row">
                   {row.split('').map((key) => (
@@ -303,7 +283,7 @@ export default function WordlePage() {
                 </div>
               ))}
 
-              <div className="game-actions" style={{ width: '100%' }}>
+              <div className="game-actions wordle-keyboard__actions">
                 <button
                   onClick={(event) => {
                     event.stopPropagation()
@@ -335,11 +315,29 @@ export default function WordlePage() {
               </div>
               <div className="game-legend-item">
                 <span className="game-legend-swatch" style={{ background: 'rgba(255,194,71,0.82)' }} />
-                O teclado lateral concentra o historico para voce nao perder informacao.
+                O teclado embaixo fica sempre no campo de visao e acelera a rodada.
               </div>
             </div>
           </section>
-        </aside>
+
+          {gameOver ? (
+            <section className={`game-panel ${won ? 'game-panel--success' : 'game-panel--danger'}`}>
+              <p className="game-panel__eyebrow">{won ? 'Resultado' : 'Encerrado'}</p>
+              <h2 className="game-panel__title">
+                {won ? `Acertou em ${guesses.length} tentativa${guesses.length > 1 ? 's' : ''}.` : `A resposta era ${DAILY_WORD}.`}
+              </h2>
+              <p className="game-panel__copy">
+                {scoreRegistered ? 'Pontuacao registrada. ' : ''}
+                O proximo desafio entra amanha com um novo sobrenome.
+              </p>
+              <div className="game-actions" style={{ marginTop: 18 }}>
+                <button onClick={shareResult} className="btn-ghost">
+                  {shared ? 'Copiado' : 'Compartilhar resultado'}
+                </button>
+              </div>
+            </section>
+          ) : null}
+        </div>
       </div>
 
       <input

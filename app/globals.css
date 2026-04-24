@@ -732,24 +732,33 @@ main {
   width: 100%;
 }
 
+.wordle-keyboard--stacked {
+  width: min(100%, 760px);
+  margin: 0 auto;
+}
+
 .wordle-keyboard__row {
   display: flex;
-  gap: 6px;
+  gap: 10px;
   width: 100%;
 }
 
 .wordle-keyboard__key {
   flex: 1 1 0;
   min-width: 0;
-  min-height: 54px;
-  border-radius: 16px;
+  min-height: 64px;
+  border-radius: 18px;
   font-family: var(--font-display);
-  font-size: clamp(0.86rem, 1vw, 1.02rem);
+  font-size: clamp(1rem, 1.2vw, 1.18rem);
+}
+
+.wordle-keyboard__actions {
+  width: 100%;
 }
 
 .wordle-keyboard__action {
   flex: 1;
-  min-height: 50px;
+  min-height: 58px;
 }
 
 .game-empty {
@@ -1477,13 +1486,13 @@ main {
   }
 
   .wordle-keyboard__key {
-    min-height: 46px;
+    min-height: 50px;
     border-radius: 14px;
-    font-size: 0.82rem;
+    font-size: 0.9rem;
   }
 
   .wordle-keyboard__action {
-    min-height: 46px;
+    min-height: 50px;
   }
 
   .btn-primary,
