@@ -172,6 +172,10 @@ main {
   width: min(980px, calc(100vw - 32px));
 }
 
+.page-shell--home {
+  padding-top: 24px;
+}
+
 .page-back {
   display: inline-flex;
   align-items: center;
@@ -253,10 +257,31 @@ main {
   padding: clamp(42px, 8vw, 72px) 0 36px;
 }
 
+.hero-layout--home {
+  gap: 22px;
+  align-items: start;
+  padding: clamp(20px, 4vw, 38px) 0 24px;
+}
+
 .hero-copy {
   display: flex;
   flex-direction: column;
   gap: 22px;
+}
+
+.hero-display-title {
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.88;
+}
+
+.hero-eyebrow {
+  margin-bottom: 10px;
+}
+
+.hero-lede {
+  max-width: 54ch;
+  font-size: clamp(0.96rem, 1vw, 1.05rem);
+  line-height: 1.72;
 }
 
 .hero-actions {
@@ -292,6 +317,46 @@ main {
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+}
+
+.hero-context-panel {
+  padding: 22px;
+}
+
+.hero-context-panel__eyebrow {
+  margin-bottom: 10px;
+}
+
+.hero-context-panel__title {
+  margin-bottom: 10px;
+  font-size: clamp(2rem, 3.1vw, 3rem);
+}
+
+.hero-context-panel__copy {
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.hero-highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.hero-highlight-card {
+  padding: 14px 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(154, 176, 190, 0.12);
+}
+
+.hero-highlight-card__eyebrow {
+  margin-bottom: 6px;
+}
+
+.hero-highlight-card__copy {
+  font-size: 0.88rem;
+  line-height: 1.62;
 }
 
 .surface-panel,
@@ -1456,6 +1521,10 @@ main {
     grid-template-columns: 1fr;
   }
 
+  .hero-highlight-grid {
+    grid-template-columns: 1fr;
+  }
+
   .hero-metrics,
   .stats-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1494,6 +1563,10 @@ main {
     padding-bottom: 80px;
   }
 
+  .page-shell--home {
+    padding-top: 18px;
+  }
+
   .display-title {
     font-size: clamp(2.8rem, 14vw, 4.8rem);
   }
@@ -1505,6 +1578,18 @@ main {
   .hero-copy,
   .auth-card {
     gap: 18px;
+  }
+
+  .hero-layout--home {
+    padding-top: 12px;
+  }
+
+  .hero-display-title {
+    font-size: clamp(2.9rem, 13vw, 4.9rem);
+  }
+
+  .hero-context-panel {
+    padding: 20px;
   }
 
   .hero-metrics,

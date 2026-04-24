@@ -88,25 +88,25 @@ export default function Home() {
   const comingSoon = GAMES.filter((game) => !game.isAvailable)
 
   return (
-    <div className="page-shell">
-      <section className="hero-layout">
+    <div className="page-shell page-shell--home">
+      <section className="hero-layout hero-layout--home">
         <div className="hero-copy">
           <div className="animate-fade-up delay-1">
             <span className="kicker">Nova temporada visual</span>
           </div>
 
           <div className="animate-fade-up delay-2">
-            <p className="eyebrow" style={{ marginBottom: 14 }}>
+            <p className="eyebrow hero-eyebrow">
               Arcade diario de futebol
             </p>
-            <h1 className="display-title text-glow">
+            <h1 className="display-title hero-display-title text-glow">
               Futebol em
               <br />
               formato de <span className="text-gradient">desafio</span>
             </h1>
           </div>
 
-          <p className="lede animate-fade-up delay-3">
+          <p className="lede hero-lede animate-fade-up delay-3">
             O FUTLE virou uma arena de minijogos com mais presença, mais ritmo e uma cara propria.
             Jogue partidas rapidas, acompanhe o ranking e volte todo dia para uma rodada nova.
           </p>
@@ -136,27 +136,27 @@ export default function Home() {
           </div>
         </div>
 
-        <aside className="surface-panel surface-panel--accent animate-scale-in delay-3" style={{ padding: 26, opacity: 0, animationFillMode: 'forwards' }}>
+        <aside className="surface-panel surface-panel--accent hero-context-panel animate-scale-in delay-3" style={{ opacity: 0, animationFillMode: 'forwards' }}>
           <div className="surface-panel__inner stack">
             <div>
-              <p className="eyebrow" style={{ marginBottom: 12 }}>
+              <p className="eyebrow hero-context-panel__eyebrow">
                 Jogue com contexto
               </p>
-              <h2 className="section-title" style={{ marginBottom: 12 }}>
+              <h2 className="section-title hero-context-panel__title">
                 Um hub feito para quem acompanha futebol como linguagem.
               </h2>
-              <p className="muted" style={{ fontSize: '0.98rem', lineHeight: 1.8 }}>
+              <p className="muted hero-context-panel__copy">
                 Nada de tela generica. O novo layout assume uma energia mais editorial, mais esportiva e mais memoravel.
               </p>
             </div>
 
-            <div className="stack">
+            <div className="hero-highlight-grid">
               {HIGHLIGHTS.map((item) => (
-                <div key={item.title} style={{ padding: '16px 18px', borderRadius: 20, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(154,176,190,0.12)' }}>
-                  <p className="eyebrow" style={{ marginBottom: 8 }}>
+                <div key={item.title} className="hero-highlight-card">
+                  <p className="eyebrow hero-highlight-card__eyebrow">
                     {item.title}
                   </p>
-                  <p className="muted" style={{ fontSize: '0.92rem', lineHeight: 1.75 }}>
+                  <p className="muted hero-highlight-card__copy">
                     {item.copy}
                   </p>
                 </div>
