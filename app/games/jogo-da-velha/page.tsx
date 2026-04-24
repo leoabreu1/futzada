@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useRef, useEffect, Fragment } from 'react'
-import Link from 'next/link'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { PLAYERS, getDailyGrid, getValidPlayers, type Player } from '@/lib/games/jogo-da-velha-data'
 import { useGameScore } from '@/lib/hooks/useGameScore'
 import { useGameDailyStorage } from '@/lib/hooks/useGameDailyStorage'
+import GamePageShell from '@/components/games/GamePageShell'
 
 type CellState = { player: Player | null; locked: boolean }
 type VelhaState = { cells: CellState[]; guesses: number; gameOver: boolean }
@@ -13,15 +13,21 @@ const MAX_GUESSES = 9
 
 export default function JogoDaVelhaPage() {
   const { load, save, isReady } = useGameDailyStorage<VelhaState>('velha')
+  const { registerGameResult } = useGameScore()
   const { rows, cols } = getDailyGrid()
+  const inputRef = useRef<HTMLInputElement>(null)
 
-  const [cells, setCells] = useState<CellState[]>(
-    Array(9).fill(null).map(() => ({ player: null, locked: false }))
-  )
+  const [cells, setCells] = useState<CellState[]>(Array(9).fill(null).map(() => ({ player: null, locked: false })))
   const [guesses, setGuesses] = useState<number>(MAX_GUESSES)
   const [gameOver, setGameOver] = useState(false)
   const [scoreRegistered, setScoreRegistered] = useState(false)
+  const [activeCell, setActiveCell] = useState<number | null>(null)
+  const [query, setQuery] = useState('')
+  const [errorCell, setErrorCell] = useState<number | null>(null)
+  const [errorMessage, setErrorMessage] = useState('')
+  const [shared, setShared] = useState(false)
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (!isReady) return
     const saved = load()
@@ -31,49 +37,44 @@ export default function JogoDaVelhaPage() {
     setGameOver(saved.gameOver)
     if (saved.gameOver) setScoreRegistered(true)
   }, [isReady]) // eslint-disable-line react-hooks/exhaustive-deps
-  const [activeCell, setActiveCell] = useState<number | null>(null)
-  const [query, setQuery] = useState('')
-  const [errorCell, setErrorCell] = useState<number | null>(null)
-  const [errorMessage, setErrorMessage] = useState('')
-  const inputRef = useRef<HTMLInputElement>(null)
-  const { registerGameResult } = useGameScore()
+  /* eslint-enable react-hooks/set-state-in-effect */
 
-  const score = cells.filter((c) => c.locked).length
+  const score = cells.filter((cell) => cell.locked).length
+  const allCellsLocked = cells.every((cell) => cell.locked)
+  const usedPlayerIds = new Set(cells.filter((cell) => cell.locked && cell.player).map((cell) => cell.player!.id))
 
-  // Jogadores já usados em células travadas
-  const usedPlayerIds = new Set(
-    cells.filter((c) => c.locked && c.player).map((c) => c.player!.id)
-  )
+  const suggestions =
+    query.length >= 2
+      ? PLAYERS.filter(
+          (player) =>
+            player.name.toLowerCase().includes(query.toLowerCase()) &&
+            !usedPlayerIds.has(player.id),
+        ).slice(0, 6)
+      : []
 
-  const suggestions = query.length >= 2
-    ? PLAYERS.filter(
-        (p) =>
-          p.name.toLowerCase().includes(query.toLowerCase()) &&
-          !usedPlayerIds.has(p.id)
-      ).slice(0, 6)
-    : []
-
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (gameOver && !scoreRegistered) {
-      const allCellsLocked = cells.every((c) => c.locked)
       registerGameResult('jogo-da-velha', allCellsLocked, MAX_GUESSES - guesses)
       setScoreRegistered(true)
     }
-  }, [gameOver, scoreRegistered, cells, guesses, registerGameResult])
+  }, [allCellsLocked, gameOver, guesses, registerGameResult, scoreRegistered])
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   function openCell(index: number) {
     if (cells[index].locked || gameOver) return
     setActiveCell(index)
     setQuery('')
-    setTimeout(() => inputRef.current?.focus(), 50)
+    setTimeout(() => inputRef.current?.focus(), 40)
   }
 
   function selectPlayer(player: Player) {
     if (activeCell === null) return
+
     const row = Math.floor(activeCell / 3)
     const col = activeCell % 3
     const valid = getValidPlayers(rows[row], cols[col])
-    const isValid = valid.some((p) => p.id === player.id)
+    const isValid = valid.some((entry) => entry.id === player.id)
 
     const newCells = [...cells]
     newCells[activeCell] = { player, locked: isValid }
@@ -83,299 +84,250 @@ export default function JogoDaVelhaPage() {
       setTimeout(() => setErrorCell(null), 800)
       const matchesRow = rows[row].match(player)
       const matchesCol = cols[col].match(player)
-      let msg = `${player.name} não é `
-      if (!matchesRow && !matchesCol) msg += `${rows[row].label} nem ${cols[col].label}`
-      else if (!matchesRow) msg += rows[row].label
-      else msg += cols[col].label
-      setErrorMessage(msg)
-      setTimeout(() => setErrorMessage(''), 2500)
+      let message = `${player.name} não é `
+      if (!matchesRow && !matchesCol) message += `${rows[row].label} nem ${cols[col].label}`
+      else if (!matchesRow) message += rows[row].label
+      else message += cols[col].label
+      setErrorMessage(message)
+      setTimeout(() => setErrorMessage(''), 2400)
     }
 
     const remaining = guesses - 1
-    const newGameOver = remaining === 0 || newCells.every((c) => c.locked)
+    const newGameOver = remaining === 0 || newCells.every((cell) => cell.locked)
 
     setCells(newCells)
     setGuesses(remaining)
     setActiveCell(null)
     setQuery('')
-    if (newGameOver) setGameOver(true)
+    setGameOver(newGameOver)
     save({ cells: newCells, guesses: remaining, gameOver: newGameOver })
   }
 
-  const activeCat = activeCell !== null
-    ? { row: rows[Math.floor(activeCell / 3)], col: cols[activeCell % 3] }
-    : null
+  async function shareResult() {
+    const today = new Date().toISOString().split('T')[0]
+    const grid = cells.map((cell) => (cell.locked ? '🟩' : '⬛')).join('')
+    const text = `Futle Jogo da Velha ${today}\n${score}/9\n\n${grid.slice(0, 3)}\n${grid.slice(3, 6)}\n${grid.slice(6, 9)}\n\nfutle.vercel.app`
+
+    if (navigator.share) {
+      navigator.share({ text }).catch(() => {})
+      return
+    }
+
+    await navigator.clipboard.writeText(text)
+    setShared(true)
+    setTimeout(() => setShared(false), 2000)
+  }
+
+  const activeCategory =
+    activeCell !== null
+      ? { row: rows[Math.floor(activeCell / 3)], col: cols[activeCell % 3] }
+      : null
 
   return (
-    <div style={{ maxWidth: 600, margin: '0 auto', padding: '40px 16px 80px' }}>
+    <GamePageShell
+      storageKey="jogo-da-velha"
+      eyebrow="Cruzamento diário"
+      title="Jogo da Velha Futebol"
+      badge={<span className="badge badge-green">Diário</span>}
+      description="Cruze categorias, encontre o nome certo e complete o tabuleiro sem desperdiçar tentativas. Cada casa aceita um único jogador válido."
+      meta={['3x3 categorias', 'Sem repetir jogador', `${MAX_GUESSES} tentativas totais`]}
+      stats={[
+        { label: 'Acertos', value: score, tone: score >= 6 ? 'green' : 'default' },
+        { label: 'Tentativas', value: guesses, tone: guesses <= 3 && !gameOver ? 'yellow' : 'default' },
+        { label: 'Casas abertas', value: 9 - score, tone: gameOver && !allCellsLocked ? 'danger' : 'default' },
+      ]}
+      asideTitle="Como dominar"
+      asideDescription="A leitura agora ficou mais editorial: tabuleiro central, casa ativa destacada e busca sempre pronta para a próxima jogada."
+      asideNotes={[
+        { title: 'Pense por interseção', text: 'Cada casa precisa atender linha e coluna ao mesmo tempo.' },
+        { title: 'Sem repetição', text: 'Jogadores usados em casas travadas saem do pool imediatamente.' },
+        { title: 'Fez 9', text: 'Tabuleiro completo significa rodada perfeita.' },
+      ]}
+    >
+      {errorMessage ? <div className="game-status-banner game-status-banner--danger" style={{ marginBottom: 18 }}>{errorMessage}</div> : null}
 
-      <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-muted)', fontSize: '0.8rem', textDecoration: 'none', marginBottom: 32 }}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="m15 18-6-6 6-6"/></svg>
-        Voltar
-      </Link>
+      <div className="game-stage game-stage--single">
+        <div className="game-stage__main">
+          <section className="game-panel game-panel--primary">
+            <p className="game-panel__eyebrow">Tabuleiro</p>
+            <div className="game-primary-split">
+              <div>
+                <div className="game-status-banner" style={{ marginBottom: 16 }}>
+                  Toque numa casa para abrir a busca contextual. O tabuleiro continua protagonista, mas a decisão da jogada fica colada nele.
+                </div>
 
-      <div style={{ marginBottom: 32 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', letterSpacing: '-0.02em' }}>
-            Jogo da Velha Futebol
-          </h1>
-          <span className="badge badge-green">DIÁRIO</span>
-        </div>
-        <p style={{ color: 'var(--color-muted)', fontSize: '0.85rem' }}>
-          Preencha o grid com jogadores que se encaixam nas duas categorias. Sem repetir jogadores.
-        </p>
-      </div>
+                <div className="velha-grid">
+                  <div />
+                  {cols.map((category) => (
+                    <div key={category.id} className="velha-grid__label">
+                      {category.label}
+                    </div>
+                  ))}
 
-      {/* Stats */}
-      <div style={{ display: 'flex', gap: 24, marginBottom: 28 }}>
-        <div>
-          <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', color: 'var(--color-brand-green)' }}>{score}</span>
-          <span style={{ fontSize: '0.75rem', color: 'var(--color-muted)', marginLeft: 6, letterSpacing: '0.06em' }}>ACERTOS</span>
-        </div>
-        <div>
-          <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', color: guesses <= 3 ? 'var(--color-brand-yellow)' : 'var(--color-text)' }}>{guesses}</span>
-          <span style={{ fontSize: '0.75rem', color: 'var(--color-muted)', marginLeft: 6, letterSpacing: '0.06em' }}>TENTATIVAS</span>
-        </div>
-      </div>
+                  {rows.map((rowCategory, rowIndex) => (
+                    <Fragment key={rowCategory.id}>
+                      <div className="velha-grid__label velha-grid__label--row">
+                        {rowCategory.label}
+                      </div>
 
-      {/* Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr repeat(3, 1fr)', gap: 6 }}>
-        {/* Canto */}
-        <div />
+                      {cols.map((_, colIndex) => {
+                        const index = rowIndex * 3 + colIndex
+                        const cell = cells[index]
+                        const isActive = activeCell === index
+                        const isError = errorCell === index
 
-        {/* Headers colunas */}
-        {cols.map((cat) => (
-          <div key={cat.id} style={{
-            background: 'var(--color-surface)',
-            border: '1px solid var(--color-border)',
-            borderRadius: 'var(--radius-sm)',
-            padding: '8px 4px',
-            textAlign: 'center',
-            fontSize: '0.7rem',
-            color: 'var(--color-muted)',
-            lineHeight: 1.3,
-          }}>
-            {cat.label}
+                        return (
+                          <button
+                            key={index}
+                            type="button"
+                            onClick={() => openCell(index)}
+                            className="velha-grid__cell"
+                            style={{
+                              aspectRatio: '1',
+                              border: `1px solid ${
+                                isError
+                                  ? 'rgba(239,68,68,0.5)'
+                                  : cell.locked
+                                    ? 'rgba(108,255,147,0.35)'
+                                    : isActive
+                                      ? 'rgba(255,194,71,0.55)'
+                                      : 'rgba(154,176,190,0.16)'
+                              }`,
+                              background: isError
+                                ? 'rgba(239,68,68,0.1)'
+                                : cell.locked
+                                  ? 'rgba(108,255,147,0.08)'
+                                  : isActive
+                                    ? 'rgba(255,194,71,0.08)'
+                                    : 'rgba(6,18,28,0.78)',
+                              cursor: cell.locked || gameOver ? 'default' : 'pointer',
+                              opacity: gameOver && !cell.locked ? 0.35 : 1,
+                              animation: isError ? 'shake 0.4s ease' : undefined,
+                            }}
+                          >
+                            {cell.locked && cell.player ? (
+                              <>
+                                <span style={{ fontSize: '1rem', color: 'var(--color-brand-green)' }}>✓</span>
+                                <span className="velha-grid__cell-name" style={{ color: 'var(--color-text)' }}>
+                                  {cell.player.name}
+                                </span>
+                              </>
+                            ) : cell.player && !cell.locked ? (
+                              <>
+                                <span style={{ fontSize: '1rem', color: '#f87171' }}>×</span>
+                                <span className="velha-grid__cell-name" style={{ color: '#fca5a5' }}>
+                                  {cell.player.name}
+                                </span>
+                              </>
+                            ) : (
+                              <>
+                                <span
+                                  style={{
+                                    fontFamily: 'var(--font-display)',
+                                    fontSize: '2.1rem',
+                                    lineHeight: 0.9,
+                                    color: isActive ? 'var(--color-brand-yellow)' : 'var(--color-muted-2)',
+                                  }}
+                                >
+                                  +
+                                </span>
+                                <span style={{ color: 'var(--color-muted)', fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                                  Escolher
+                                </span>
+                              </>
+                            )}
+                          </button>
+                        )
+                      })}
+                    </Fragment>
+                  ))}
+                </div>
+              </div>
+
+              <section className="game-panel game-panel--soft">
+                <p className="game-panel__eyebrow">Casa ativa</p>
+                {activeCategory ? (
+                  <div className="game-stack">
+                    <div className="game-status-banner game-status-banner--success">
+                      Procure um jogador que seja <strong style={{ color: 'var(--color-brand-yellow)' }}>{activeCategory.row.label}</strong> e{' '}
+                      <strong style={{ color: 'var(--color-brand-yellow)' }}>{activeCategory.col.label}</strong>.
+                    </div>
+                    <input
+                      ref={inputRef}
+                      value={query}
+                      onChange={(event) => setQuery(event.target.value)}
+                      placeholder="Nome do jogador..."
+                      className="input"
+                    />
+                    {suggestions.length > 0 ? (
+                      <div className="game-suggestion-list">
+                        {suggestions.map((player) => (
+                          <button key={player.id} type="button" onClick={() => selectPlayer(player)} className="game-suggestion-item">
+                            <span style={{ fontSize: '0.9rem' }}>{player.name}</span>
+                            <span style={{ color: 'var(--color-muted)', fontSize: '0.74rem' }}>
+                              {player.nationality} · {player.position}
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    ) : query.length >= 2 ? (
+                      <div className="game-empty">Nenhum jogador encontrado para esta busca.</div>
+                    ) : null}
+                  </div>
+                ) : (
+                  <div className="game-empty">Clique em uma casa vazia para abrir a busca contextual.</div>
+                )}
+              </section>
+            </div>
+          </section>
+
+          <div className="game-support-grid">
+            <section className="game-panel game-panel--soft">
+              <p className="game-panel__eyebrow">Leitura de estado</p>
+              <div className="game-legend-list">
+                <div className="game-legend-item">
+                  <span className="game-legend-swatch" style={{ background: 'rgba(108,255,147,0.9)' }} />
+                  Verde significa casa travada com jogador válido.
+                </div>
+                <div className="game-legend-item">
+                  <span className="game-legend-swatch" style={{ background: 'rgba(255,194,71,0.9)' }} />
+                  Dourado mostra a casa selecionada para a jogada atual.
+                </div>
+                <div className="game-legend-item">
+                  <span className="game-legend-swatch" style={{ background: 'rgba(239,68,68,0.9)' }} />
+                  Vermelho indica tentativa errada e gasta uma chance.
+                </div>
+              </div>
+            </section>
+
+            <section className="game-panel game-panel--soft">
+              <p className="game-panel__eyebrow">Pressao da rodada</p>
+              <div className={`game-status-banner ${guesses <= 3 && !gameOver ? 'game-status-banner--danger' : 'game-status-banner--success'}`}>
+                {gameOver
+                  ? 'Rodada encerrada.'
+                  : `${guesses} tentativa${guesses !== 1 ? 's' : ''} restante${guesses !== 1 ? 's' : ''} para fechar as intersecoes.`}
+              </div>
+            </section>
           </div>
-        ))}
 
-        {/* Rows */}
-        {rows.map((rowCat, rowIdx) => (
-          <Fragment key={rowCat.id}>
-            <div style={{
-              background: 'var(--color-surface)',
-              border: '1px solid var(--color-border)',
-              borderRadius: 'var(--radius-sm)',
-              padding: '8px 4px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '0.7rem',
-              color: 'var(--color-muted)',
-              lineHeight: 1.3,
-              textAlign: 'center',
-            }}>
-              {rowCat.label}
-            </div>
-
-            {cols.map((_, colIdx) => {
-              const index = rowIdx * 3 + colIdx
-              const cell = cells[index]
-              const isActive = activeCell === index
-              const isError = errorCell === index
-
-              return (
-                <button
-                  key={index}
-                  onClick={() => openCell(index)}
-                  style={{
-                    aspectRatio: '1',
-                    borderRadius: 'var(--radius-sm)',
-                    border: `1px solid ${
-                      isError ? 'rgba(239,68,68,0.5)' :
-                      cell.locked ? 'rgba(16,185,129,0.35)' :
-                      isActive ? 'rgba(245,158,11,0.6)' :
-                      'var(--color-border)'
-                    }`,
-                    background:
-                      isError ? 'rgba(239,68,68,0.08)' :
-                      cell.locked ? 'rgba(16,185,129,0.08)' :
-                      isActive ? 'rgba(245,158,11,0.06)' :
-                      'var(--color-surface)',
-                    cursor: cell.locked || gameOver ? 'default' : 'pointer',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    padding: 6,
-                    gap: 4,
-                    transition: 'border-color 0.15s, background 0.15s',
-                    opacity: gameOver && !cell.locked ? 0.3 : 1,
-                    animation: isError ? 'shake 0.4s ease' : undefined,
-                  }}
-                >
-                  {cell.locked && cell.player ? (
-                    <>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                      <span style={{ fontSize: '0.65rem', color: 'var(--color-brand-green)', lineHeight: 1.2, textAlign: 'center' }}>
-                        {cell.player.name}
-                      </span>
-                    </>
-                  ) : cell.player && !cell.locked ? (
-                    <>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(239,68,68,0.7)" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                      <span style={{ fontSize: '0.65rem', color: 'rgba(239,68,68,0.6)', lineHeight: 1.2, textAlign: 'center' }}>
-                        {cell.player.name}
-                      </span>
-                    </>
-                  ) : (
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" style={{ color: isActive ? 'var(--color-brand-yellow)' : 'var(--color-muted-2)' }}>
-                      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-                    </svg>
-                  )}
+          {gameOver ? (
+            <section className={`game-panel ${allCellsLocked ? 'game-panel--success' : 'game-panel--danger'}`}>
+              <p className="game-panel__eyebrow">Resultado final</p>
+              <h2 className="game-panel__title">
+                {score === 9 ? 'Tabuleiro perfeito.' : score >= 7 ? 'Quase impecavel.' : score >= 4 ? 'Boa leitura.' : 'Tem margem para subir.'}
+              </h2>
+              <p className="game-panel__copy">
+                {score}/9 casas travadas. {scoreRegistered ? 'Pontuação registrada. ' : ''}A próxima combinação entra amanhã.
+              </p>
+              <div className="game-actions" style={{ marginTop: 18 }}>
+                <button type="button" onClick={shareResult} className="btn-ghost">
+                  {shared ? 'Copiado' : 'Compartilhar resultado'}
                 </button>
-              )
-            })}
-          </Fragment>
-        ))}
+              </div>
+            </section>
+          ) : null}
+        </div>
       </div>
-
-      {/* Busca */}
-      {activeCell !== null && !gameOver && activeCat && (
-        <div style={{ marginTop: 24 }}>
-          <p style={{ fontSize: '0.8rem', color: 'var(--color-muted)', marginBottom: 10 }}>
-            Jogador que é{' '}
-            <span style={{ color: 'var(--color-brand-yellow)', fontFamily: 'var(--font-display)' }}>{activeCat.row.label}</span>
-            {' '}e{' '}
-            <span style={{ color: 'var(--color-brand-yellow)', fontFamily: 'var(--font-display)' }}>{activeCat.col.label}</span>
-          </p>
-          <input
-            ref={inputRef}
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Nome do jogador..."
-            className="input"
-          />
-          {suggestions.length > 0 && (
-            <div style={{
-              marginTop: 4,
-              background: 'var(--color-surface-2)',
-              border: '1px solid var(--color-border)',
-              borderRadius: 'var(--radius-sm)',
-              overflow: 'hidden',
-            }}>
-              {suggestions.map((p) => (
-                <button
-                  key={p.id}
-                  onClick={() => selectPlayer(p)}
-                  style={{
-                    width: '100%',
-                    textAlign: 'left',
-                    padding: '10px 14px',
-                    background: 'transparent',
-                    border: 'none',
-                    borderBottom: '1px solid var(--color-border)',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    transition: 'background 0.1s',
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.04)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
-                >
-                  <span style={{ color: 'var(--color-text)', fontSize: '0.875rem' }}>{p.name}</span>
-                  <span style={{ color: 'var(--color-muted)', fontSize: '0.75rem' }}>{p.nationality} · {p.position}</span>
-                </button>
-              ))}
-            </div>
-          )}
-          {query.length >= 2 && suggestions.length === 0 && (
-            <p style={{ fontSize: '0.8rem', color: 'var(--color-muted-2)', marginTop: 8 }}>
-              Nenhum jogador encontrado
-            </p>
-          )}
-        </div>
-      )}
-
-      {/* Feedback de resposta errada */}
-      {errorMessage && (
-        <div style={{
-          marginTop: 12,
-          padding: '10px 14px',
-          borderRadius: 'var(--radius-sm)',
-          background: 'rgba(239,68,68,0.07)',
-          border: '1px solid rgba(239,68,68,0.2)',
-          fontSize: '0.82rem',
-          color: 'rgba(239,68,68,0.85)',
-          animation: 'fadeIn 0.2s ease',
-        }}>
-          ✗ {errorMessage}
-        </div>
-      )}
-
-      {/* Game Over */}
-      {gameOver && (
-        <div style={{
-          marginTop: 28,
-          padding: '20px 24px',
-          background: 'var(--color-surface)',
-          border: '1px solid var(--color-border)',
-          borderRadius: 'var(--radius)',
-          textAlign: 'center',
-        }}>
-          <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', marginBottom: 6 }}>
-            {score === 9 ? 'Perfeito!' : score >= 7 ? 'Craque!' : score >= 4 ? 'Bom jogo!' : 'Quase lá!'}
-          </p>
-          {scoreRegistered && (
-            <p style={{ fontSize: '0.78rem', color: 'var(--color-brand-green)', marginBottom: 8 }}>
-              ✓ Pontuação registrada!
-            </p>
-          )}
-          <p style={{ color: 'var(--color-muted)', fontSize: '0.85rem', marginBottom: 16 }}>
-            {score}/9 acertos · Novo desafio amanhã
-          </p>
-          <button
-            onClick={() => {
-              const today = new Date().toISOString().split('T')[0]
-              const grid = cells.map((c) => c.locked ? '🟩' : '⬛').join('')
-              const gridStr = `${grid.slice(0,3)}\n${grid.slice(3,6)}\n${grid.slice(6,9)}`
-              const text = `Futle Jogo da Velha ${today}\n${score}/9\n\n${gridStr}\n\nfutle.vercel.app`
-              if (navigator.share) {
-                navigator.share({ text }).catch(() => {})
-              } else {
-                navigator.clipboard.writeText(text).then(() => alert('Copiado!'))
-              }
-            }}
-            style={{
-              padding: '8px 20px',
-              borderRadius: 'var(--radius-sm)',
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid var(--color-border)',
-              color: 'var(--color-text)',
-              fontSize: '0.8rem',
-              cursor: 'pointer',
-              fontFamily: 'var(--font-sans)',
-            }}
-          >
-            Compartilhar resultado
-          </button>
-        </div>
-      )}
-
-      <style>{`
-        @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          20% { transform: translateX(-6px); }
-          40% { transform: translateX(6px); }
-          60% { transform: translateX(-4px); }
-          80% { transform: translateX(4px); }
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-4px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
-    </div>
+    </GamePageShell>
   )
 }

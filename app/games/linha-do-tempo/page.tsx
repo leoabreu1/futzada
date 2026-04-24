@@ -1,18 +1,18 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
-import Link from 'next/link'
+import { useCallback, useEffect, useState } from 'react'
 import { useGameScore } from '@/lib/hooks/useGameScore'
 import { useGameDailyStorage } from '@/lib/hooks/useGameDailyStorage'
 import { getDailyTimelineEvents, getCorrectOrder, calculateTimelinePoints, type TimelineEvent } from '@/lib/games/linha-do-tempo-data'
+import GamePageShell from '@/components/games/GamePageShell'
 
 function fisherYates<T>(arr: T[], seed: number): T[] {
   const result = [...arr]
-  let s = seed
-  for (let i = result.length - 1; i > 0; i--) {
-    s = (s * 16807) % 2147483647
-    const j = s % (i + 1)
-    ;[result[i], result[j]] = [result[j], result[i]]
+  let state = seed
+  for (let index = result.length - 1; index > 0; index--) {
+    state = (state * 16807) % 2147483647
+    const otherIndex = state % (index + 1)
+    ;[result[index], result[otherIndex]] = [result[otherIndex], result[index]]
   }
   return result
 }
@@ -29,6 +29,7 @@ interface SavedState {
 export default function LinhaDoTempoPage() {
   const { registerGameResult } = useGameScore()
   const { load, save, today, isReady } = useGameDailyStorage<SavedState>('timeline')
+
   const [events, setEvents] = useState<TimelineEvent[]>([])
   const [shuffled, setShuffled] = useState<TimelineEvent[]>([])
   const [userOrder, setUserOrder] = useState<TimelineEvent[]>([])
@@ -39,10 +40,11 @@ export default function LinhaDoTempoPage() {
   const [loaded, setLoaded] = useState(false)
   const [shared, setShared] = useState(false)
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (!isReady) return
     const dailyEvents = getDailyTimelineEvents()
-    const seed = today.split('-').reduce((acc, val) => acc + parseInt(val, 10), 0)
+    const seed = today.split('-').reduce((accumulator, value) => accumulator + parseInt(value, 10), 0)
     const shuffledEvents = fisherYates(dailyEvents, seed)
 
     const saved = load()
@@ -61,6 +63,7 @@ export default function LinhaDoTempoPage() {
     setShuffled(shuffledEvents)
     setLoaded(true)
   }, [isReady]) // eslint-disable-line react-hooks/exhaustive-deps
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
     if (!loaded || gameState === 'checking') return
@@ -70,34 +73,39 @@ export default function LinhaDoTempoPage() {
       userOrder,
       shuffled,
     })
-  }, [gameState, attempts, userOrder, loaded])
+  }, [attempts, gameState, loaded, save, shuffled, userOrder])
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if ((gameState === 'won' || gameState === 'lost') && !scoreRegistered) {
       registerGameResult('linha-do-tempo', gameState === 'won', attempts)
       setScoreRegistered(true)
     }
-  }, [gameState, attempts, scoreRegistered, registerGameResult])
+  }, [attempts, gameState, registerGameResult, scoreRegistered])
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const correctOrder = getCorrectOrder(events)
+  const isChecking = gameState === 'checking'
+  const isPlaying = gameState === 'playing'
+  const canSubmit = userOrder.length === events.length && isPlaying
 
   const handleAddEvent = (event: TimelineEvent) => {
     if (gameState !== 'playing') return
-    setUserOrder(prev => [...prev, event])
+    setUserOrder((previous) => [...previous, event])
   }
 
   const handleRemoveEvent = (index: number) => {
     if (gameState !== 'playing') return
-    setUserOrder(prev => prev.filter((_, i) => i !== index))
+    setUserOrder((previous) => previous.filter((_, itemIndex) => itemIndex !== index))
   }
 
   const handleSubmit = useCallback(() => {
     if (userOrder.length !== events.length || gameState !== 'playing') return
 
-    const results: CheckResult[] = userOrder.map((event, i) =>
-      event.id === correctOrder[i].id ? 'correct' : 'wrong'
+    const results: CheckResult[] = userOrder.map((event, index) =>
+      event.id === correctOrder[index].id ? 'correct' : 'wrong',
     )
-    const allCorrect = results.every(r => r === 'correct')
+    const allCorrect = results.every((result) => result === 'correct')
 
     setCheckResults(results)
     setGameState('checking')
@@ -108,475 +116,308 @@ export default function LinhaDoTempoPage() {
       } else if (attempts >= 3) {
         setGameState('lost')
       } else {
-        setAttempts(prev => prev + 1)
+        setAttempts((value) => value + 1)
         setUserOrder([])
         setCheckResults([])
         setGameState('playing')
       }
     }, 1800)
-  }, [userOrder, events, correctOrder, attempts, gameState, registerGameResult])
+  }, [attempts, correctOrder, events.length, gameState, userOrder])
 
-  const handleShare = () => {
+  async function handleShare() {
     const date = new Date().toLocaleDateString('pt-BR')
-    const lines =
+    const text =
       gameState === 'won'
-        ? `⏳ Futle Linha do Tempo — ${date}\nResolvi em ${attempts}/3 tentativa${attempts > 1 ? 's' : ''}!\n\nfutle.vercel.app`
-        : `⏳ Futle Linha do Tempo — ${date}\nNão consegui hoje 😅\n\nfutle.vercel.app`
+        ? `Futle Linha do Tempo ${date}\nResolvido em ${attempts}/3 tentativa${attempts > 1 ? 's' : ''}\n\nfutle.vercel.app`
+        : `Futle Linha do Tempo ${date}\nNão consegui hoje\n\nfutle.vercel.app`
 
     if (navigator.share) {
-      navigator.share({ text: lines })
-    } else {
-      navigator.clipboard.writeText(lines)
-      setShared(true)
-      setTimeout(() => setShared(false), 2000)
+      navigator.share({ text }).catch(() => {})
+      return
     }
-  }
 
-  if (!loaded) {
-    return (
-      <div style={{ maxWidth: 600, margin: '0 auto', padding: '80px 24px' }}>
-        <p style={{ textAlign: 'center', color: 'var(--color-muted)', fontSize: '0.85rem' }}>
-          Preparando desafio...
-        </p>
-      </div>
-    )
+    await navigator.clipboard.writeText(text)
+    setShared(true)
+    setTimeout(() => setShared(false), 2000)
   }
-
-  const isChecking = gameState === 'checking'
-  const isPlaying = gameState === 'playing'
-  const canSubmit = userOrder.length === events.length && isPlaying
 
   return (
     <>
       <style>{`
-        @keyframes shake {
-          0%,100% { transform: translateX(0); }
-          20%      { transform: translateX(-7px); }
-          40%      { transform: translateX(7px); }
-          60%      { transform: translateX(-4px); }
-          80%      { transform: translateX(4px); }
-        }
         @keyframes slideDown {
-          from { opacity: 0; transform: translateY(6px); }
-          to   { opacity: 1; transform: translateY(0); }
+          from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         @keyframes revealYear {
           from { opacity: 0; transform: translateX(-6px); }
-          to   { opacity: 1; transform: translateX(0); }
+          to { opacity: 1; transform: translateX(0); }
         }
-        .tl-shake     { animation: shake 0.45s ease; }
-        .tl-slide-in  { animation: slideDown 0.2s ease forwards; }
-        .tl-year-in   { animation: revealYear 0.35s ease 0.4s both; }
-        .tl-btn { transition: background 0.12s ease, opacity 0.12s ease, border-color 0.12s ease; }
-        .tl-btn:hover:not(:disabled) { background: rgba(16,185,129,0.08) !important; }
-        @media (prefers-reduced-motion: reduce) {
-          .tl-shake, .tl-slide-in, .tl-year-in { animation: none !important; opacity: 1 !important; }
-        }
+        .timeline-row-in { animation: slideDown 0.22s ease forwards; }
+        .timeline-year-in { animation: revealYear 0.35s ease 0.3s both; }
       `}</style>
 
-      <div style={{ maxWidth: 600, margin: '0 auto', padding: '40px 24px 80px' }}>
+      <GamePageShell
+        storageKey="linha-do-tempo"
+        eyebrow="Ordem histórica"
+        title="Linha do Tempo"
+        badge={<span className="badge badge-green">Diário</span>}
+        description="Organize quatro eventos do futebol do mais antigo ao mais recente. O novo layout destaca sua ordem, o banco de eventos e o momento de checagem sem confundir o fluxo."
+        meta={['4 eventos', 'Até 3 tentativas', 'Clique para ordenar']}
+        stats={[
+          { label: 'Tentativa atual', value: loaded ? `${attempts}/3` : '--' },
+          { label: 'Eventos no slot', value: loaded ? userOrder.length : '--', tone: loaded && canSubmit ? 'green' : 'default' },
+          { label: 'Pontuação máxima', value: 120, helper: 'Sem errar a ordem', tone: 'yellow' },
+        ]}
+        asideTitle="Como funciona"
+        asideDescription="Escolha os quatro blocos na ordem que você acredita ser correta. O painel de validação mostra na hora o que está certo e o que ainda precisa de ajuste."
+        asideNotes={[
+          { title: 'Toque para montar', text: 'Clique em um evento disponível para levá-lo para sua ordem.' },
+          { title: 'Toque para remover', text: 'Enquanto estiver jogando, clique no item da sua ordem para tirar dali.' },
+          { title: 'Três janelas', text: 'Errou duas vezes? A terceira é a última tentativa da rodada.' },
+        ]}
+      >
+        {!loaded ? (
+          <div className="game-empty">Preparando a linha do tempo de hoje...</div>
+        ) : (
+          <div className="game-stage game-stage--single">
+            <div className="game-stage__main">
+              {(isPlaying || isChecking) ? (
+                <>
+                  <section className="game-panel game-panel--primary">
+                    <p className="game-panel__eyebrow">Montagem da ordem</p>
+                    <div className="game-status-banner" style={{ marginBottom: 18 }}>
+                      Primeiro monte sua linha com os quatro eventos. Depois confirme. A verificação colore cada posição sem esconder o eixo principal do jogo.
+                    </div>
 
-        {/* Back */}
-        <Link
-          href="/"
-          style={{
-            display: 'inline-flex', alignItems: 'center', gap: 6,
-            color: 'var(--color-muted)', fontSize: '0.8rem',
-            textDecoration: 'none', marginBottom: 40,
-            transition: 'color 0.15s ease',
-          }}
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-            <path d="m15 18-6-6 6-6" />
-          </svg>
-          Voltar
-        </Link>
+                    <div className="timeline-columns">
+                      <div className="game-stack">
+                        <p className="game-panel__eyebrow" style={{ marginBottom: 0 }}>Sua ordem</p>
+                        {userOrder.length === 0 ? (
+                          <div className="game-empty" style={{ minHeight: 160 }}>
+                            Selecione os eventos abaixo na ordem do mais antigo ao mais recente.
+                          </div>
+                        ) : (
+                          userOrder.map((event, index) => {
+                            const result = checkResults[index] ?? null
+                            return (
+                              <button
+                                key={`${event.id}-${index}`}
+                                type="button"
+                                onClick={() => handleRemoveEvent(index)}
+                                disabled={!isPlaying}
+                                className="timeline-card timeline-row-in"
+                                style={{
+                                  borderColor:
+                                    result === 'correct'
+                                      ? 'rgba(108,255,147,0.32)'
+                                      : result === 'wrong'
+                                        ? 'rgba(239,68,68,0.28)'
+                                        : 'rgba(154,176,190,0.14)',
+                                  borderLeftWidth: 4,
+                                  borderLeftColor:
+                                    result === 'correct'
+                                      ? 'var(--color-brand-green)'
+                                      : result === 'wrong'
+                                        ? '#f87171'
+                                        : 'transparent',
+                                  background:
+                                    result === 'correct'
+                                      ? 'rgba(108,255,147,0.08)'
+                                      : result === 'wrong'
+                                        ? 'rgba(239,68,68,0.08)'
+                                        : 'rgba(6,18,28,0.78)',
+                                  cursor: isPlaying ? 'pointer' : 'default',
+                                }}
+                              >
+                                <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', minWidth: 22, color: result === 'wrong' ? '#fca5a5' : result === 'correct' ? 'var(--color-brand-green)' : 'var(--color-muted)' }}>
+                                  {index + 1}
+                                </span>
+                                <span style={{ fontSize: '1.2rem', minWidth: 24 }}>{event.emoji}</span>
+                                <div style={{ flex: 1 }}>
+                                  <div style={{ fontWeight: 700, lineHeight: 1.35 }}>{event.title}</div>
+                                  <div style={{ color: 'var(--color-muted)', fontSize: '0.8rem', marginTop: 4 }}>{event.description}</div>
+                                </div>
+                                {result === null && isPlaying ? (
+                                  <span style={{ color: 'var(--color-muted)', fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Remover</span>
+                                ) : null}
+                                {result === 'correct' ? <span style={{ color: 'var(--color-brand-green)' }}>✓</span> : null}
+                                {result === 'wrong' ? <span style={{ color: '#f87171' }}>×</span> : null}
+                              </button>
+                            )
+                          })
+                        )}
+                      </div>
 
-        {/* Header */}
-        <div style={{ marginBottom: 36 }}>
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16, marginBottom: 10 }}>
-            <h1 style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
-              letterSpacing: '-0.04em',
-              lineHeight: 1.0,
-            }}>
-              Linha do Tempo
-            </h1>
-            {/* Dots de tentativa */}
-            <div style={{ display: 'flex', gap: 5, paddingTop: 6, flexShrink: 0 }}>
-              {[1, 2, 3].map(i => (
-                <div
-                  key={i}
-                  style={{
-                    width: 7, height: 7, borderRadius: '50%',
-                    background: i < attempts
-                      ? 'var(--color-border)'
-                      : i === attempts
-                        ? '#10b981'
-                        : 'var(--color-border)',
-                    opacity: i < attempts ? 0.3 : 1,
-                    transition: 'background 0.3s, opacity 0.3s',
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-          <p style={{ color: 'var(--color-muted)', fontSize: '0.875rem', lineHeight: 1.6, maxWidth: 480 }}>
-            Ordene os 4 eventos do mais antigo ao mais recente.{' '}
-            <span style={{ color: 'var(--color-text)', opacity: 0.4 }}>Tentativa {attempts}/3.</span>
-          </p>
-        </div>
+                      <div className="game-stack">
+                        <p className="game-panel__eyebrow" style={{ marginBottom: 0 }}>Eventos disponiveis</p>
+                        {shuffled.map((event) => {
+                          const isSelected = userOrder.some((item) => item.id === event.id)
+                          return (
+                            <button
+                              key={event.id}
+                              type="button"
+                              onClick={() => handleAddEvent(event)}
+                              disabled={isSelected || isChecking}
+                              className="timeline-card timeline-card--available"
+                              style={{
+                                background: isSelected ? 'rgba(255,255,255,0.02)' : 'rgba(6,18,28,0.78)',
+                                color: isSelected ? 'var(--color-muted)' : 'var(--color-text)',
+                                opacity: isSelected ? 0.38 : 1,
+                                cursor: isSelected || isChecking ? 'default' : 'pointer',
+                              }}
+                            >
+                              <span style={{ fontSize: '1.2rem', minWidth: 24 }}>{event.emoji}</span>
+                              <div style={{ flex: 1 }}>
+                                <div style={{ fontWeight: 700, lineHeight: 1.35 }}>{event.title}</div>
+                                <div style={{ color: 'var(--color-muted)', fontSize: '0.8rem', marginTop: 4 }}>{event.description}</div>
+                              </div>
+                              {isSelected ? <span style={{ color: 'var(--color-muted)' }}>✓</span> : null}
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
 
-        {/* ── ESTADO PLAYING / CHECKING ── */}
-        {(isPlaying || isChecking) && (
-          <>
-            {/* Zona de ordenação */}
-            <div style={{ marginBottom: 20 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-                <span style={{
-                  fontSize: '0.7rem', letterSpacing: '0.09em',
-                  textTransform: 'uppercase', color: 'var(--color-muted)',
-                }}>
-                  Sua ordem
-                </span>
-                <span style={{
-                  fontSize: '0.68rem', color: 'var(--color-muted)',
-                  background: 'var(--color-surface)',
-                  border: '1px solid var(--color-border)',
-                  borderRadius: 'var(--radius-sm)',
-                  padding: '1px 7px',
-                }}>
-                  {userOrder.length}/{events.length}
-                </span>
-              </div>
+                    <div className="game-actions" style={{ marginTop: 18 }}>
+                      <button type="button" onClick={handleSubmit} disabled={!canSubmit} className="btn-primary" style={{ flex: 1, opacity: canSubmit ? 1 : 0.55 }}>
+                        {isChecking ? 'Verificando...' : canSubmit ? 'Confirmar ordem' : `Faltam ${events.length - userOrder.length}`}
+                      </button>
+                    </div>
+                  </section>
 
-              <div
-                className={isChecking && checkResults.some(r => r === 'wrong') ? 'tl-shake' : ''}
-                style={{
-                  borderRadius: 'var(--radius)',
-                  border: `1px solid ${
-                    isChecking
-                      ? checkResults.every(r => r === 'correct')
-                        ? 'rgba(16,185,129,0.35)'
-                        : 'rgba(239,68,68,0.25)'
-                      : 'var(--color-border)'
-                  }`,
-                  background: 'var(--color-surface)',
-                  minHeight: 60,
-                  overflow: 'hidden',
-                  transition: 'border-color 0.2s ease',
-                }}
-              >
-                {userOrder.length === 0 ? (
-                  <div style={{
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    height: 60, color: 'var(--color-muted)', fontSize: '0.82rem',
-                  }}>
-                    Selecione os eventos na ordem abaixo
+                  <div className="game-support-grid">
+                    <section className="game-panel game-panel--soft">
+                      <p className="game-panel__eyebrow">Estado da tentativa</p>
+                      <div className={`game-status-banner ${attempts >= 3 && isPlaying ? 'game-status-banner--danger' : 'game-status-banner--success'}`}>
+                        {isChecking
+                          ? 'Conferindo a ordem escolhida...'
+                          : isPlaying
+                            ? `Tentativa ${attempts}/3 em andamento.`
+                            : gameState === 'won'
+                              ? 'Ordem resolvida.'
+                              : 'Limite de tentativas atingido.'}
+                      </div>
+                      <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
+                        {[1, 2, 3].map((index) => (
+                          <span
+                            key={index}
+                            style={{
+                              flex: 1,
+                              height: 10,
+                              borderRadius: 999,
+                              background: index < attempts ? 'rgba(154,176,190,0.24)' : index === attempts ? 'var(--color-brand-green)' : 'rgba(154,176,190,0.14)',
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </section>
+
+                    <section className="game-panel game-panel--soft">
+                      <p className="game-panel__eyebrow">Leitura rapida</p>
+                      <div className="game-legend-list">
+                        <div className="game-legend-item">
+                          <span className="game-legend-swatch" style={{ background: 'var(--color-brand-green)' }} />
+                          Verde aparece quando a posição está correta na checagem.
+                        </div>
+                        <div className="game-legend-item">
+                          <span className="game-legend-swatch" style={{ background: '#f87171' }} />
+                          Vermelho sinaliza item fora da ordem certa.
+                        </div>
+                        <div className="game-legend-item">
+                          <span className="game-legend-swatch" style={{ background: 'var(--color-brand-yellow)' }} />
+                          Confirme só quando os quatro slots estiverem completos.
+                        </div>
+                      </div>
+                    </section>
                   </div>
-                ) : (
-                  userOrder.map((event, idx) => {
-                    const result = checkResults[idx] ?? null
-                    return (
+                </>
+              ) : null}
+
+              {gameState === 'won' ? (
+                <section className="game-panel game-panel--success">
+                  <p className="game-panel__eyebrow">Ordem correta</p>
+                  <div className="game-stack">
+                    {correctOrder.map((event, index) => (
                       <div
-                        key={`order-${event.id}-${idx}`}
-                        className="tl-slide-in"
-                        onClick={() => handleRemoveEvent(idx)}
+                        key={event.id}
+                        className="timeline-card"
                         style={{
-                          padding: '11px 16px',
-                          display: 'flex', gap: 12, alignItems: 'center',
-                          cursor: isPlaying ? 'pointer' : 'default',
-                          borderBottom: idx < userOrder.length - 1 ? '1px solid var(--color-border)' : 'none',
-                          borderLeft: `3px solid ${
-                            result === 'correct' ? '#10b981'
-                            : result === 'wrong'  ? '#ef4444'
-                            : 'transparent'
-                          }`,
-                          background: result === 'correct'
-                            ? 'rgba(16,185,129,0.05)'
-                            : result === 'wrong'
-                              ? 'rgba(239,68,68,0.05)'
-                              : 'transparent',
-                          transition: 'border-color 0.25s ease, background 0.25s ease',
+                          borderColor: 'rgba(108,255,147,0.18)',
+                          background: 'rgba(11,31,24,0.46)',
+                          paddingBottom: 14,
+                          marginBottom: index < correctOrder.length - 1 ? 14 : 0,
                         }}
                       >
-                        <span style={{
-                          fontFamily: 'var(--font-display)',
-                          fontSize: '1.05rem', fontWeight: 800,
-                          letterSpacing: '-0.03em', minWidth: 18,
-                          color: result === 'correct' ? '#10b981'
-                               : result === 'wrong'  ? '#ef4444'
-                               : 'var(--color-muted)',
-                          transition: 'color 0.25s ease',
-                        }}>
-                          {idx + 1}
+                        <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', minWidth: 22, color: 'var(--color-brand-green)' }}>
+                          {index + 1}
                         </span>
-                        <span style={{ fontSize: '1.15rem', minWidth: 22 }}>{event.emoji}</span>
+                        <span style={{ fontSize: '1.2rem', minWidth: 24 }}>{event.emoji}</span>
                         <div style={{ flex: 1 }}>
-                          <div style={{ fontWeight: 600, fontSize: '0.875rem', lineHeight: 1.3 }}>{event.title}</div>
-                          <div style={{ fontSize: '0.72rem', color: 'var(--color-muted)', marginTop: 2 }}>{event.description}</div>
+                          <div style={{ fontWeight: 700, lineHeight: 1.35 }}>{event.title}</div>
+                          <div style={{ color: 'var(--color-muted)', fontSize: '0.8rem', marginTop: 4 }}>{event.description}</div>
                         </div>
-                        {result === 'correct' && (
-                          <span style={{ fontSize: '0.8rem', color: '#10b981', flexShrink: 0 }}>✓</span>
-                        )}
-                        {result === 'wrong' && (
-                          <span style={{ fontSize: '0.8rem', color: '#ef4444', flexShrink: 0 }}>✗</span>
-                        )}
-                        {result === null && isPlaying && (
-                          <span style={{ fontSize: '0.68rem', color: 'var(--color-muted)', opacity: 0.45, flexShrink: 0 }}>remover</span>
-                        )}
+                        <span className="timeline-year-in" style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: 'var(--color-brand-green)' }}>
+                          {event.year}
+                        </span>
                       </div>
-                    )
-                  })
-                )}
-              </div>
-            </div>
+                    ))}
+                  </div>
 
-            {/* Eventos disponíveis */}
-            <div style={{ marginBottom: 20 }}>
-              <span style={{
-                display: 'block', marginBottom: 10,
-                fontSize: '0.7rem', letterSpacing: '0.09em',
-                textTransform: 'uppercase', color: 'var(--color-muted)',
-              }}>
-                Eventos
-              </span>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-                {shuffled.map((event) => {
-                  const isSelected = userOrder.some(e => e.id === event.id)
-                  return (
-                    <button
-                      key={event.id}
-                      onClick={() => handleAddEvent(event)}
-                      disabled={isSelected || isChecking}
-                      className="tl-btn"
-                      style={{
-                        padding: '11px 14px',
-                        borderRadius: 'var(--radius-sm)',
-                        border: '1px solid var(--color-border)',
-                        background: isSelected ? 'transparent' : 'var(--color-surface)',
-                        color: isSelected ? 'var(--color-muted)' : 'var(--color-text)',
-                        cursor: isSelected || isChecking ? 'default' : 'pointer',
-                        opacity: isSelected ? 0.3 : 1,
-                        display: 'flex', gap: 12, alignItems: 'center',
-                        textAlign: 'left',
-                        fontFamily: 'var(--font-sans)',
-                        width: '100%',
-                      }}
-                    >
-                      <span style={{ fontSize: '1.15rem', minWidth: 22 }}>{event.emoji}</span>
-                      <div style={{ flex: 1 }}>
-                        <div style={{ fontWeight: 600, fontSize: '0.875rem', lineHeight: 1.3 }}>{event.title}</div>
-                        <div style={{ fontSize: '0.72rem', color: 'var(--color-muted)', marginTop: 2, lineHeight: 1.4 }}>
-                          {event.description}
-                        </div>
-                      </div>
-                      {isSelected && (
-                        <span style={{ fontSize: '0.72rem', color: 'var(--color-muted)', flexShrink: 0 }}>✓</span>
-                      )}
+                  <div className="game-actions" style={{ marginTop: 18 }}>
+                    <div className="game-status-banner game-status-banner--success" style={{ flex: 1 }}>
+                      +{calculateTimelinePoints(attempts, true)} pontos · {attempts}/3 tentativa{attempts > 1 ? 's' : ''}
+                    </div>
+                    <button type="button" onClick={handleShare} className="btn-ghost">
+                      {shared ? 'Copiado' : 'Compartilhar resultado'}
                     </button>
-                  )
-                })}
-              </div>
+                  </div>
+                </section>
+              ) : null}
+
+              {gameState === 'lost' ? (
+                <section className="game-panel game-panel--danger">
+                  <p className="game-panel__eyebrow">Ordem correta</p>
+                  <div className="game-stack">
+                    {correctOrder.map((event, index) => (
+                      <div
+                        key={event.id}
+                        className="timeline-card"
+                        style={{
+                          borderColor: 'rgba(239,68,68,0.16)',
+                          background: 'rgba(34,13,16,0.4)',
+                          paddingBottom: 14,
+                          marginBottom: index < correctOrder.length - 1 ? 14 : 0,
+                        }}
+                      >
+                        <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', minWidth: 22, color: 'var(--color-muted)' }}>
+                          {index + 1}
+                        </span>
+                        <span style={{ fontSize: '1.2rem', minWidth: 24 }}>{event.emoji}</span>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontWeight: 700, lineHeight: 1.35 }}>{event.title}</div>
+                          <div style={{ color: 'var(--color-muted)', fontSize: '0.8rem', marginTop: 4 }}>{event.description}</div>
+                        </div>
+                        <span className="timeline-year-in" style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: 'var(--color-muted)' }}>
+                          {event.year}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="game-actions" style={{ marginTop: 18 }}>
+                    <div className="game-status-banner game-status-banner--danger" style={{ flex: 1 }}>
+                      Rodada encerrada. {scoreRegistered ? 'Pontuação registrada. ' : ''}Amanhã tem nova sequência.
+                    </div>
+                    <button type="button" onClick={handleShare} className="btn-ghost">
+                      {shared ? 'Copiado' : 'Compartilhar resultado'}
+                    </button>
+                  </div>
+                </section>
+              ) : null}
             </div>
-
-            {/* Botão confirmar */}
-            <button
-              onClick={handleSubmit}
-              disabled={!canSubmit}
-              className="tl-btn"
-              style={{
-                width: '100%',
-                padding: '13px 20px',
-                borderRadius: 'var(--radius-sm)',
-                background: canSubmit
-                  ? 'linear-gradient(90deg, #10B981 0%, #F59E0B 100%)'
-                  : 'var(--color-surface)',
-                border: canSubmit ? 'none' : '1px solid var(--color-border)',
-                color: canSubmit ? '#0a0a0b' : 'var(--color-muted)',
-                fontSize: '0.875rem',
-                fontFamily: 'var(--font-display)',
-                fontWeight: 700,
-                letterSpacing: '-0.01em',
-                cursor: canSubmit ? 'pointer' : 'not-allowed',
-              }}
-            >
-              {isChecking
-                ? 'Verificando...'
-                : canSubmit
-                  ? 'Confirmar ordem'
-                  : `Selecione mais ${events.length - userOrder.length} evento${events.length - userOrder.length > 1 ? 's' : ''}`}
-            </button>
-          </>
-        )}
-
-        {/* ── VITÓRIA ── */}
-        {gameState === 'won' && (
-          <div>
-            <div style={{
-              borderRadius: 'var(--radius)',
-              border: '1px solid rgba(16,185,129,0.2)',
-              background: 'rgba(16,185,129,0.04)',
-              padding: '24px',
-              marginBottom: 12,
-            }}>
-              <div style={{
-                fontSize: '0.7rem', letterSpacing: '0.09em',
-                textTransform: 'uppercase', color: '#10b981', marginBottom: 16,
-              }}>
-                Ordem correta
-              </div>
-
-              {correctOrder.map((event, idx) => (
-                <div
-                  key={event.id}
-                  style={{
-                    padding: '11px 0',
-                    display: 'flex', gap: 12, alignItems: 'center',
-                    borderBottom: idx < correctOrder.length - 1 ? '1px solid var(--color-border)' : 'none',
-                  }}
-                >
-                  <span style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '1.05rem', fontWeight: 800,
-                    letterSpacing: '-0.03em',
-                    color: '#10b981', minWidth: 18,
-                  }}>
-                    {idx + 1}
-                  </span>
-                  <span style={{ fontSize: '1.15rem', minWidth: 22 }}>{event.emoji}</span>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: 600, fontSize: '0.875rem', lineHeight: 1.3 }}>{event.title}</div>
-                    <div style={{ fontSize: '0.72rem', color: 'var(--color-muted)', marginTop: 2 }}>{event.description}</div>
-                  </div>
-                  <span className="tl-year-in" style={{
-                    fontFamily: 'var(--font-display)',
-                    fontWeight: 800, fontSize: '0.95rem',
-                    letterSpacing: '-0.02em',
-                    color: '#10b981', flexShrink: 0,
-                  }}>
-                    {event.year}
-                  </span>
-                </div>
-              ))}
-
-              <div style={{
-                display: 'flex', justifyContent: 'space-between',
-                alignItems: 'flex-end', marginTop: 20,
-                paddingTop: 16, borderTop: '1px solid var(--color-border)',
-              }}>
-                <div>
-                  <div style={{ fontSize: '0.7rem', color: 'var(--color-muted)', marginBottom: 3 }}>Pontos ganhos</div>
-                  <div style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '2.2rem', fontWeight: 800,
-                    letterSpacing: '-0.04em', color: '#10b981',
-                  }}>
-                    +{calculateTimelinePoints(attempts, true)}
-                  </div>
-                </div>
-                <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: '0.7rem', color: 'var(--color-muted)', marginBottom: 3 }}>Tentativas</div>
-                  <div style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '2.2rem', fontWeight: 800,
-                    letterSpacing: '-0.04em',
-                  }}>
-                    {attempts}
-                    <span style={{ fontSize: '1rem', color: 'var(--color-muted)', fontWeight: 400 }}>/3</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <button
-              onClick={handleShare}
-              className="tl-btn"
-              style={{
-                width: '100%', padding: '12px 20px',
-                borderRadius: 'var(--radius-sm)',
-                border: '1px solid var(--color-border)',
-                background: 'var(--color-surface)',
-                color: shared ? '#10b981' : 'var(--color-text)',
-                fontSize: '0.875rem', fontFamily: 'var(--font-sans)',
-                cursor: 'pointer',
-              }}
-            >
-              {shared ? '✓ Copiado!' : 'Compartilhar resultado'}
-            </button>
           </div>
         )}
-
-        {/* ── DERROTA ── */}
-        {gameState === 'lost' && (
-          <div>
-            <div style={{
-              borderRadius: 'var(--radius)',
-              border: '1px solid var(--color-border)',
-              background: 'var(--color-surface)',
-              padding: '24px',
-              marginBottom: 12,
-            }}>
-              <div style={{
-                fontSize: '0.7rem', letterSpacing: '0.09em',
-                textTransform: 'uppercase', color: 'var(--color-muted)', marginBottom: 16,
-              }}>
-                Ordem correta
-              </div>
-
-              {correctOrder.map((event, idx) => (
-                <div
-                  key={event.id}
-                  style={{
-                    padding: '11px 0',
-                    display: 'flex', gap: 12, alignItems: 'center',
-                    borderBottom: idx < correctOrder.length - 1 ? '1px solid var(--color-border)' : 'none',
-                  }}
-                >
-                  <span style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '1.05rem', fontWeight: 800,
-                    letterSpacing: '-0.03em',
-                    color: 'var(--color-muted)', minWidth: 18,
-                  }}>
-                    {idx + 1}
-                  </span>
-                  <span style={{ fontSize: '1.15rem', minWidth: 22 }}>{event.emoji}</span>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontWeight: 600, fontSize: '0.875rem', lineHeight: 1.3 }}>{event.title}</div>
-                    <div style={{ fontSize: '0.72rem', color: 'var(--color-muted)', marginTop: 2 }}>{event.description}</div>
-                  </div>
-                  <span className="tl-year-in" style={{
-                    fontFamily: 'var(--font-display)',
-                    fontWeight: 800, fontSize: '0.95rem',
-                    letterSpacing: '-0.02em',
-                    color: 'var(--color-muted)', flexShrink: 0,
-                  }}>
-                    {event.year}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <button
-              onClick={handleShare}
-              className="tl-btn"
-              style={{
-                width: '100%', padding: '12px 20px',
-                borderRadius: 'var(--radius-sm)',
-                border: '1px solid var(--color-border)',
-                background: 'var(--color-surface)',
-                color: shared ? '#10b981' : 'var(--color-text)',
-                fontSize: '0.875rem', fontFamily: 'var(--font-sans)',
-                cursor: 'pointer',
-              }}
-            >
-              {shared ? '✓ Copiado!' : 'Compartilhar resultado'}
-            </button>
-          </div>
-        )}
-      </div>
+      </GamePageShell>
     </>
   )
 }

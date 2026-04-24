@@ -1,38 +1,42 @@
 'use client'
 
 import { useState, useEffect, useCallback, useRef } from 'react'
-import Link from 'next/link'
 import { getDailyWord, evaluateGuess, WORD_LIST, type LetterState } from '@/lib/games/wordle-data'
 import { useGameScore } from '@/lib/hooks/useGameScore'
 import { useGameDailyStorage } from '@/lib/hooks/useGameDailyStorage'
+import GamePageShell from '@/components/games/GamePageShell'
 
 const MAX_GUESSES = 6
 const DAILY_WORD = getDailyWord()
 const WORD_LENGTH = DAILY_WORD.length
+const KEY_ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM']
 
 type GuessRow = { letters: string[]; states: LetterState[] }
 type WordleState = { guesses: GuessRow[]; gameOver: boolean; won: boolean }
 
-const CELL_STYLE: Record<LetterState, React.CSSProperties> = {
-  correct: { background: 'rgba(16,185,129,0.2)', border: '1px solid rgba(16,185,129,0.5)', color: '#10b981' },
-  present: { background: 'rgba(245,158,11,0.15)', border: '1px solid rgba(245,158,11,0.4)', color: '#f59e0b' },
-  absent: { background: 'var(--color-surface-2)', border: '1px solid var(--color-border)', color: 'var(--color-muted-2)' },
-  empty: { background: 'transparent', border: '1px solid var(--color-border)', color: 'var(--color-text)' },
+const CELL_STYLE: Record<LetterState, { background: string; borderColor: string; color: string }> = {
+  correct: { background: 'rgba(16,185,129,0.16)', borderColor: 'rgba(16,185,129,0.4)', color: '#6cff93' },
+  present: { background: 'rgba(255,194,71,0.14)', borderColor: 'rgba(255,194,71,0.34)', color: '#ffc247' },
+  absent: { background: 'rgba(8,20,29,0.82)', borderColor: 'rgba(154,176,190,0.12)', color: 'var(--color-muted-2)' },
+  empty: { background: 'transparent', borderColor: 'rgba(154,176,190,0.18)', color: 'var(--color-text)' },
 }
-
-const KEY_ROWS = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM']
 
 export default function WordlePage() {
   const { load, save, isReady } = useGameDailyStorage<WordleState>('wordle')
+  const { registerGameResult } = useGameScore()
+  const hiddenInputRef = useRef<HTMLInputElement>(null)
+
   const [guesses, setGuesses] = useState<GuessRow[]>([])
-  const [current, setCurrent] = useState('')
+  const [currentLetters, setCurrentLetters] = useState<string[]>(() => Array(WORD_LENGTH).fill(''))
+  const [activeIndex, setActiveIndex] = useState(0)
   const [gameOver, setGameOver] = useState(false)
   const [won, setWon] = useState(false)
   const [shake, setShake] = useState(false)
   const [error, setError] = useState('')
   const [scoreRegistered, setScoreRegistered] = useState(false)
+  const [shared, setShared] = useState(false)
 
-  // Restaura estado salvo quando o userId estiver resolvido
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (!isReady) return
     const saved = load()
@@ -42,219 +46,378 @@ export default function WordlePage() {
     setWon(saved.won)
     if (saved.gameOver) setScoreRegistered(true)
   }, [isReady]) // eslint-disable-line react-hooks/exhaustive-deps
-  const hiddenInputRef = useRef<HTMLInputElement>(null)
-  const { registerGameResult } = useGameScore()
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const usedLetters = guesses.reduce<Record<string, LetterState>>((acc, row) => {
-    row.letters.forEach((l, i) => {
-      const prev = acc[l], next = row.states[i]
-      if (!prev || next === 'correct' || (next === 'present' && prev === 'absent')) acc[l] = next
+    row.letters.forEach((letter, index) => {
+      const previous = acc[letter]
+      const next = row.states[index]
+      if (!previous || next === 'correct' || (next === 'present' && previous === 'absent')) {
+        acc[letter] = next
+      }
     })
     return acc
   }, {})
 
+  const currentWord = currentLetters.join('')
+
+  function focusCell(index: number) {
+    if (gameOver) return
+    setActiveIndex(index)
+    hiddenInputRef.current?.focus()
+  }
+
+  function insertLetter(letter: string) {
+    if (gameOver) return
+    setCurrentLetters((previous) => {
+      const next = [...previous]
+      next[activeIndex] = letter
+      return next
+    })
+    setActiveIndex((previous) => Math.min(previous + 1, WORD_LENGTH - 1))
+  }
+
+  function deleteLetter() {
+    if (gameOver) return
+
+    setCurrentLetters((previous) => {
+      const next = [...previous]
+
+      if (next[activeIndex]) {
+        next[activeIndex] = ''
+        return next
+      }
+
+      const previousFilledIndex = [...next]
+        .slice(0, activeIndex)
+        .map((value, index) => ({ value, index }))
+        .reverse()
+        .find((entry) => entry.value)
+
+      if (previousFilledIndex) {
+        next[previousFilledIndex.index] = ''
+        setActiveIndex(previousFilledIndex.index)
+      }
+
+      return next
+    })
+  }
+
   const submit = useCallback(() => {
-    if (current.length !== WORD_LENGTH) {
-      setError(`A palavra deve ter ${WORD_LENGTH} letras`)
+    if (currentLetters.some((letter) => !letter)) {
+      setError(`A palavra deve ter ${WORD_LENGTH} letras.`)
       setShake(true)
       setTimeout(() => setShake(false), 500)
       return
     }
-    if (!WORD_LIST.includes(current)) {
-      setError('Jogador não encontrado na lista')
+
+    if (!WORD_LIST.includes(currentWord)) {
+      setError('Jogador não encontrado na lista.')
       setShake(true)
       setTimeout(() => setShake(false), 500)
-      setTimeout(() => setError(''), 1500)
+      setTimeout(() => setError(''), 1800)
       return
     }
+
     setError('')
-    const states = evaluateGuess(current, DAILY_WORD)
-    const newGuesses = [...guesses, { letters: current.split(''), states }]
-    const newWon = current === DAILY_WORD
+    const states = evaluateGuess(currentWord, DAILY_WORD)
+    const newGuesses = [...guesses, { letters: [...currentLetters], states }]
+    const newWon = currentWord === DAILY_WORD
     const newGameOver = newWon || newGuesses.length >= MAX_GUESSES
+
     setGuesses(newGuesses)
-    setCurrent('')
-    if (newWon) setWon(true)
-    if (newGameOver) setGameOver(true)
+    setCurrentLetters(Array(WORD_LENGTH).fill(''))
+    setActiveIndex(0)
+    setWon(newWon)
+    setGameOver(newGameOver)
     save({ guesses: newGuesses, gameOver: newGameOver, won: newWon })
-  }, [current, guesses])
+  }, [currentLetters, currentWord, guesses, save])
 
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (gameOver) return
-      if (e.key === 'Enter') { submit(); return }
-      if (e.key === 'Backspace') { setCurrent((c) => c.slice(0, -1)); return }
-      if (/^[A-Za-z]$/.test(e.key) && current.length < WORD_LENGTH)
-        setCurrent((c) => c + e.key.toUpperCase())
-    }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
-  }, [gameOver, current, submit])
+    if (gameOver) return
+    hiddenInputRef.current?.focus()
+  }, [gameOver])
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (gameOver && !scoreRegistered) {
       registerGameResult('wordle', won, guesses.length)
       setScoreRegistered(true)
     }
-  }, [gameOver, scoreRegistered, won, guesses.length, registerGameResult])
+  }, [gameOver, guesses.length, registerGameResult, scoreRegistered, won])
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   function pressKey(key: string) {
     if (gameOver) return
-    if (key === 'DEL') { setCurrent((c) => c.slice(0, -1)); return }
-    if (key === 'ENT') { submit(); return }
-    if (current.length < WORD_LENGTH) setCurrent((c) => c + key)
+    if (key === 'DEL') {
+      deleteLetter()
+      return
+    }
+    if (key === 'ENT') {
+      submit()
+      return
+    }
+    insertLetter(key)
   }
 
-  const rows = Array.from({ length: MAX_GUESSES }, (_, i) => {
-    if (i < guesses.length) return { ...guesses[i], isActive: false, isShaking: false }
-    if (i === guesses.length && !gameOver) {
-      const letters = [...current.split(''), ...Array(WORD_LENGTH - current.length).fill('')]
-      return { letters, states: Array(WORD_LENGTH).fill('empty') as LetterState[], isActive: true, isShaking: shake }
+  async function shareResult() {
+    const today = new Date().toISOString().split('T')[0]
+    const emoji = (state: LetterState) => {
+      if (state === 'correct') return '🟩'
+      if (state === 'present') return '🟨'
+      return '⬛'
     }
-    return { letters: Array(WORD_LENGTH).fill(''), states: Array(WORD_LENGTH).fill('empty') as LetterState[], isActive: false, isShaking: false }
+    const grid = guesses.map((guess) => guess.states.map(emoji).join('')).join('\n')
+    const result = won ? `${guesses.length}/${MAX_GUESSES}` : 'X/6'
+    const text = `Futle Wordle ${today}\n${result}\n\n${grid}\n\nfutle.vercel.app`
+
+    if (navigator.share) {
+      navigator.share({ text }).catch(() => {})
+      return
+    }
+
+    await navigator.clipboard.writeText(text)
+    setShared(true)
+    setTimeout(() => setShared(false), 2000)
+  }
+
+  const rows = Array.from({ length: MAX_GUESSES }, (_, index) => {
+    if (index < guesses.length) return { ...guesses[index], isActive: false, isShaking: false }
+    if (index === guesses.length && !gameOver) {
+      return {
+        letters: currentLetters,
+        states: Array(WORD_LENGTH).fill('empty') as LetterState[],
+        isActive: true,
+        isShaking: shake,
+      }
+    }
+
+    return {
+      letters: Array(WORD_LENGTH).fill(''),
+      states: Array(WORD_LENGTH).fill('empty') as LetterState[],
+      isActive: false,
+      isShaking: false,
+    }
   })
 
   const keyStyle = (key: string): React.CSSProperties => {
     const state = usedLetters[key]
-    if (state === 'correct') return { background: 'rgba(16,185,129,0.25)', border: '1px solid rgba(16,185,129,0.4)', color: '#10b981' }
-    if (state === 'present') return { background: 'rgba(245,158,11,0.2)', border: '1px solid rgba(245,158,11,0.35)', color: '#f59e0b' }
-    if (state === 'absent') return { background: 'var(--color-surface-2)', border: '1px solid var(--color-border)', color: 'var(--color-muted-2)' }
-    return { background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text)' }
+    if (state === 'correct') {
+      return { background: 'rgba(16,185,129,0.22)', borderColor: 'rgba(16,185,129,0.42)', color: '#6cff93' }
+    }
+    if (state === 'present') {
+      return { background: 'rgba(255,194,71,0.18)', borderColor: 'rgba(255,194,71,0.34)', color: '#ffc247' }
+    }
+    if (state === 'absent') {
+      return { background: 'rgba(8,20,29,0.82)', borderColor: 'rgba(154,176,190,0.12)', color: 'var(--color-muted-2)' }
+    }
+    return { background: 'rgba(9,24,36,0.76)', borderColor: 'rgba(154,176,190,0.16)', color: 'var(--color-text)' }
   }
 
+  const cellSize = Math.max(42, Math.min(58, Math.floor(392 / WORD_LENGTH) - 8))
+  const attemptsLeft = Math.max(MAX_GUESSES - guesses.length, 0)
+
   return (
-    <div style={{ maxWidth: 480, margin: '0 auto', padding: '40px 16px 80px' }}>
+    <GamePageShell
+      storageKey="wordle"
+      eyebrow="Rodada diária"
+      title="Wordle do Futebol"
+      badge={<span className="badge badge-green">Diário</span>}
+      description="Descubra o sobrenome escondido em até seis tentativas. Cada cor revela o quanto você está perto da resposta."
+      meta={[`${WORD_LENGTH} letras`, `${MAX_GUESSES} tentativas`, 'Sobrenome de jogador']}
+      stats={[
+        { label: 'Tentativas restantes', value: attemptsLeft, tone: attemptsLeft <= 2 && !gameOver ? 'yellow' : 'green' },
+        { label: 'Linhas preenchidas', value: `${guesses.length}/${MAX_GUESSES}` },
+        { label: 'Status', value: gameOver ? (won ? 'Acertou' : 'Fechou') : 'Ao vivo', tone: gameOver && !won ? 'danger' : 'default' },
+      ]}
+      asideTitle="Leitura rápida"
+      asideDescription="O novo layout deixa o jogo mais claro: tabuleiro no centro, legenda sempre visível e teclado com feedback forte."
+      asideNotes={[
+        { title: 'Verde', text: 'Letra no lugar certo e confirmada no nome do jogador.' },
+        { title: 'Amarelo', text: 'Letra existe, mas ainda está na casa errada.' },
+        { title: 'Escuro', text: 'Letra fora da resposta de hoje.' },
+      ]}
+    >
+      {error ? <div className="game-status-banner game-status-banner--danger" style={{ marginBottom: 18 }}>{error}</div> : null}
 
-      <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-muted)', fontSize: '0.8rem', textDecoration: 'none', marginBottom: 32 }}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="m15 18-6-6 6-6"/></svg>
-        Voltar
-      </Link>
+        <div className="game-stage game-stage--single">
+        <div className="game-stage__main">
+          <section className="game-panel game-panel--primary">
+            <p className="game-panel__eyebrow">Tabuleiro</p>
+            <div className="game-status-banner" style={{ marginBottom: 18 }}>
+              Clique em qualquer casa da linha ativa para posicionar a letra onde quiser. O envio só libera quando a palavra estiver completa.
+            </div>
+            <div
+              className="game-board-wrap wordle-board"
+              style={{ alignItems: 'center', cursor: 'text' }}
+              onClick={() => {
+                if (!gameOver) hiddenInputRef.current?.focus()
+              }}
+            >
+              {rows.map((row, rowIndex) => (
+                <div
+                  key={rowIndex}
+                  className="wordle-board__row"
+                  style={{
+                    animation: row.isShaking ? 'shake 0.4s ease' : undefined,
+                  }}
+                >
+                  {row.letters.map((letter, letterIndex) => (
+                    <button
+                      key={`${rowIndex}-${letterIndex}`}
+                      type="button"
+                      onClick={() => {
+                        if (row.isActive) focusCell(letterIndex)
+                      }}
+                      disabled={!row.isActive}
+                      className={`wordle-board__cell${row.isActive && letter ? ' wordle-board__cell--filled' : ''}${row.isActive && letterIndex === activeIndex ? ' wordle-board__cell--active' : ''}`}
+                      style={{
+                        width: cellSize,
+                        height: cellSize,
+                        borderRadius: 18,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontFamily: 'var(--font-display)',
+                        fontSize: 'clamp(1rem, 2vw, 1.35rem)',
+                        letterSpacing: '0.05em',
+                        transition: 'transform 0.18s ease, border-color 0.18s ease',
+                        cursor: row.isActive ? 'pointer' : 'default',
+                        ...CELL_STYLE[row.states[letterIndex]],
+                        ...(row.isActive && letter ? { borderColor: 'rgba(248,244,235,0.28)' } : {}),
+                        ...(row.isActive && letterIndex === activeIndex
+                          ? {
+                              borderColor: 'rgba(108,255,147,0.52)',
+                            }
+                          : {}),
+                      }}
+                    >
+                      {letter}
+                    </button>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </section>
 
-      <div style={{ marginBottom: 32 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', letterSpacing: '-0.02em' }}>
-            Wordle do Futebol
-          </h1>
-          <span className="badge badge-green">DIÁRIO</span>
-        </div>
-        <p style={{ color: 'var(--color-muted)', fontSize: '0.85rem' }}>
-          {WORD_LENGTH} letras · {MAX_GUESSES} tentativas · Sobrenome de jogador
-        </p>
-      </div>
+          <section className="game-panel game-panel--primary game-panel--soft">
+            <p className="game-panel__eyebrow">Teclado</p>
+            <div className="wordle-keyboard wordle-keyboard--stacked" onClick={() => hiddenInputRef.current?.focus()}>
+              {KEY_ROWS.map((row) => (
+                <div key={row} className="wordle-keyboard__row">
+                  {row.split('').map((key) => (
+                    <button
+                      key={key}
+                      type="button"
+                      onClick={(event) => {
+                        event.stopPropagation()
+                        pressKey(key)
+                      }}
+                      className="wordle-keyboard__key"
+                      style={{
+                        cursor: 'pointer',
+                        transition: 'transform 0.15s ease, opacity 0.15s ease',
+                        ...keyStyle(key),
+                      }}
+                    >
+                      {key}
+                    </button>
+                  ))}
+                </div>
+              ))}
 
-      {/* Erro */}
-      {error && (
-        <div style={{
-          padding: '10px 14px',
-          marginBottom: 16,
-          borderRadius: 'var(--radius-sm)',
-          background: 'rgba(239,68,68,0.08)',
-          border: '1px solid rgba(239,68,68,0.2)',
-          fontSize: '0.82rem',
-          color: 'rgba(239,68,68,0.8)',
-          textAlign: 'center',
-        }}>
-          {error}
-        </div>
-      )}
-
-      {/* Grid — clica para focar teclado no mobile */}
-      <div
-        style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 28, alignItems: 'center', cursor: 'text' }}
-        onClick={() => { if (!gameOver) hiddenInputRef.current?.focus() }}
-      >
-        {rows.map((row, ri) => (
-          <div
-            key={ri}
-            style={{
-              display: 'flex',
-              gap: 6,
-              animation: row.isShaking ? 'shake 0.4s ease' : undefined,
-            }}
-          >
-            {row.letters.map((letter, li) => (
-              <div
-                key={li}
-                style={{
-                  width: Math.min(52, Math.floor(320 / WORD_LENGTH) - 6),
-                  height: Math.min(52, Math.floor(320 / WORD_LENGTH) - 6),
-                  borderRadius: 'var(--radius-sm)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '1rem',
-                  letterSpacing: '0.02em',
-                  transition: 'all 0.2s ease',
-                  ...CELL_STYLE[row.states[li]],
-                  ...(row.isActive && letter ? { borderColor: 'rgba(255,255,255,0.25)', transform: 'scale(1.04)' } : {}),
-                }}
-              >
-                {letter}
+              <div className="game-actions wordle-keyboard__actions">
+                <button
+                  type="button"
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    pressKey('DEL')
+                  }}
+                  className="btn-ghost wordle-keyboard__action"
+                >
+                  Apagar
+                </button>
+                <button
+                  type="button"
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    pressKey('ENT')
+                  }}
+                  className="btn-primary wordle-keyboard__action"
+                >
+                  Enter
+                </button>
               </div>
-            ))}
+            </div>
+          </section>
+
+          <div className="game-support-grid">
+            <section className="game-panel game-panel--soft">
+              <p className="game-panel__eyebrow">Ritmo do jogo</p>
+              <div className="game-legend-list">
+                <div className="game-legend-item">
+                  <span className="game-legend-swatch" style={{ background: 'rgba(108,255,147,0.82)' }} />
+                  Use o destaque verde da casa ativa para testar letras fora de ordem sem perder o fluxo.
+                </div>
+                <div className="game-legend-item">
+                  <span className="game-legend-swatch" style={{ background: 'rgba(255,194,71,0.82)' }} />
+                  O teclado embaixo fica sempre no campo de visão e acelera a rodada.
+                </div>
+              </div>
+            </section>
+
+            <section className="game-panel game-panel--soft">
+              <p className="game-panel__eyebrow">Leitura rapida</p>
+              <div className="game-legend-list">
+                <div className="game-legend-item">
+                  <span className="game-legend-swatch" style={{ background: '#6cff93' }} />
+                  Verde confirma letra e posição corretas.
+                </div>
+                <div className="game-legend-item">
+                  <span className="game-legend-swatch" style={{ background: '#ffc247' }} />
+                  Amarelo mostra letra presente em outra casa.
+                </div>
+              </div>
+            </section>
           </div>
-        ))}
+
+          {gameOver ? (
+            <section className={`game-panel ${won ? 'game-panel--success' : 'game-panel--danger'}`}>
+              <p className="game-panel__eyebrow">{won ? 'Resultado' : 'Encerrado'}</p>
+              <h2 className="game-panel__title">
+                {won ? `Acertou em ${guesses.length} tentativa${guesses.length > 1 ? 's' : ''}.` : `A resposta era ${DAILY_WORD}.`}
+              </h2>
+              <p className="game-panel__copy">
+                {scoreRegistered ? 'Pontuação registrada. ' : ''}
+                O próximo desafio entra amanhã com um novo sobrenome.
+              </p>
+              <div className="game-actions" style={{ marginTop: 18 }}>
+                <button onClick={shareResult} className="btn-ghost">
+                  {shared ? 'Copiado' : 'Compartilhar resultado'}
+                </button>
+              </div>
+            </section>
+          ) : null}
+        </div>
       </div>
 
-      {/* Game Over */}
-      {gameOver && (
-        <div style={{
-          padding: '16px 20px',
-          marginBottom: 20,
-          borderRadius: 'var(--radius)',
-          border: `1px solid ${won ? 'rgba(16,185,129,0.3)' : 'rgba(239,68,68,0.25)'}`,
-          background: won ? 'rgba(16,185,129,0.06)' : 'rgba(239,68,68,0.05)',
-          textAlign: 'center',
-        }}>
-          <p style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', marginBottom: 4 }}>
-            {won ? `Acertou em ${guesses.length} tentativa${guesses.length > 1 ? 's' : ''}!` : `Era ${DAILY_WORD}`}
-          </p>
-          {scoreRegistered && (
-            <p style={{ fontSize: '0.78rem', color: 'var(--color-brand-green)', marginBottom: 8 }}>
-              ✓ Pontuação registrada!
-            </p>
-          )}
-          <p style={{ fontSize: '0.78rem', color: 'var(--color-muted)', marginBottom: 12 }}>Novo desafio amanhã</p>
-          <button
-            onClick={() => {
-              const today = new Date().toISOString().split('T')[0]
-              const emoji = (state: LetterState) => state === 'correct' ? '🟩' : state === 'present' ? '🟨' : '⬛'
-              const grid = guesses.map(g => g.states.map(emoji).join('')).join('\n')
-              const result = won ? `${guesses.length}/${MAX_GUESSES}` : 'X/6'
-              const text = `Futle Wordle ${today}\n${result}\n\n${grid}\n\nfutle.vercel.app`
-              if (navigator.share) {
-                navigator.share({ text }).catch(() => {})
-              } else {
-                navigator.clipboard.writeText(text).then(() => alert('Copiado!'))
-              }
-            }}
-            style={{
-              padding: '8px 20px',
-              borderRadius: 'var(--radius-sm)',
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid var(--color-border)',
-              color: 'var(--color-text)',
-              fontSize: '0.8rem',
-              cursor: 'pointer',
-              fontFamily: 'var(--font-sans)',
-            }}
-          >
-            Compartilhar resultado
-          </button>
-        </div>
-      )}
-
-      {/* Input invisível para capturar teclado nativo no mobile */}
       <input
         ref={hiddenInputRef}
-        value={current}
-        onChange={(e) => {
-          const val = e.target.value.toUpperCase().replace(/[^A-Z]/g, '')
-          if (val.length <= WORD_LENGTH) setCurrent(val)
+        onChange={(event) => {
+          const value = event.target.value.toUpperCase().replace(/[^A-Z]/g, '')
+          const nextLetter = value.at(-1)
+          if (nextLetter) insertLetter(nextLetter)
+          event.target.value = ''
         }}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') submit()
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
+            event.preventDefault()
+            submit()
+          }
+          if (event.key === 'Backspace') {
+            event.preventDefault()
+            deleteLetter()
+          }
         }}
         style={{
           position: 'fixed',
@@ -271,62 +434,6 @@ export default function WordlePage() {
         spellCheck={false}
         readOnly={gameOver}
       />
-
-      {/* Teclado — clicável no desktop/tablet, e ao clicar no grid foca input no mobile */}
-      <div
-        style={{ display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'center' }}
-        onClick={() => hiddenInputRef.current?.focus()}
-      >
-        {KEY_ROWS.map((row) => (
-          <div key={row} style={{ display: 'flex', gap: 'clamp(3px, 1vw, 5px)' }}>
-            {row.split('').map((key) => (
-              <button
-                key={key}
-                onClick={(e) => { e.stopPropagation(); pressKey(key) }}
-                style={{
-                  width: 'clamp(28px, 8.5vw, 36px)',
-                  height: 44,
-                  borderRadius: 'var(--radius-sm)',
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(0.65rem, 2.5vw, 0.8rem)',
-                  cursor: 'pointer',
-                  transition: 'opacity 0.15s',
-                  ...keyStyle(key),
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.75')}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
-              >
-                {key}
-              </button>
-            ))}
-          </div>
-        ))}
-        <div style={{ display: 'flex', gap: 4 }}>
-          <button
-            onClick={(e) => { e.stopPropagation(); pressKey('DEL') }}
-            style={{ padding: '0 14px', height: 44, borderRadius: 'var(--radius-sm)', background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-muted)', fontFamily: 'var(--font-sans)', fontSize: '0.8rem', cursor: 'pointer' }}
-          >
-            ⌫
-          </button>
-          <button
-            onClick={(e) => { e.stopPropagation(); pressKey('ENT') }}
-            className="btn-primary"
-            style={{ height: 44, fontSize: '0.75rem' }}
-          >
-            ENTER
-          </button>
-        </div>
-      </div>
-
-      <style>{`
-        @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          20% { transform: translateX(-6px); }
-          40% { transform: translateX(6px); }
-          60% { transform: translateX(-4px); }
-          80% { transform: translateX(4px); }
-        }
-      `}</style>
-    </div>
+    </GamePageShell>
   )
 }

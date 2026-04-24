@@ -1,157 +1,229 @@
+import Link from 'next/link'
 import GameCard from '@/components/ui/GameCard'
 
 const GAMES = [
   {
     title: 'Jogo da Velha Futebol',
-    description: 'Grid 3x3 com categorias cruzadas. Preencha com jogadores que se encaixam nas duas condições ao mesmo tempo.',
+    description: 'Cruze categorias, ache o nome certo e feche o tabuleiro sem gastar tentativa a toa.',
     href: '/games/jogo-da-velha',
-    tag: 'DIÁRIO',
+    tag: 'Diário',
     isNew: false,
     isAvailable: true,
   },
   {
     title: 'Wordle do Futebol',
-    description: 'Adivinhe o sobrenome do jogador em 6 tentativas. Verde, amarelo ou cinza a cada palpite.',
+    description: 'Descubra o sobrenome do craque em até 6 palpites e leia as pistas por cor.',
     href: '/games/wordle',
-    tag: 'DIÁRIO',
+    tag: 'Diário',
     isNew: false,
     isAvailable: true,
   },
   {
-    title: 'Quem é o Craque?',
-    description: 'Foto do jogador começa embaçada. A cada erro o blur diminui — acerte com o mínimo de dicas.',
+    title: 'Quem e o Craque?',
+    description: 'A foto começa escondida. Cada erro revela mais um pouco do jogador do dia.',
     href: '/games/quem-e-o-craque',
-    tag: 'DIÁRIO',
+    tag: 'Diário',
     isNew: true,
     isAvailable: true,
   },
   {
     title: 'Conexões Futebol',
-    description: 'Encontre 4 grupos de 4 jogadores com algo em comum. Cuidado com as pegadinhas.',
+    description: 'Forme grupos secretos de jogadores e prove que enxerga padrões antes dos outros.',
     href: '/games/conexoes',
-    tag: 'DIÁRIO',
+    tag: 'Diário',
     isNew: true,
     isAvailable: true,
   },
   {
     title: 'Caminho da Carreira',
-    description: 'Adivinhe o jogador pela sequência de clubes onde atuou ao longo da vida.',
+    description: 'Leia a trilha de clubes e tente identificar o nome escondido por trás da jornada.',
     href: '/games/carreira',
     isAvailable: false,
   },
   {
     title: 'Duelo de Stats',
-    description: 'Dois jogadores, um duelo. Quem tem mais gols, assistências ou títulos?',
+    description: 'Compare dois nomes, escolha quem domina a estatística e ganhe no reflexo.',
     href: '/games/duelo',
     isAvailable: false,
   },
   {
     title: 'Linha do Tempo',
-    description: 'Ordene os momentos mais marcantes do futebol na sequência cronológica correta.',
+    description: 'Coloque momentos e feitos do futebol na ordem certa antes do cronômetro mental apertar.',
     href: '/games/linha-do-tempo',
-    tag: 'DIÁRIO',
+    tag: 'Diário',
     isNew: true,
     isAvailable: true,
   },
   {
     title: 'Escudo Quebrado',
-    description: 'O escudo aparece fragmentado. Monte o puzzle e descubra o clube.',
+    description: 'Remonte o símbolo, conecte pistas visuais e tente reconhecer o clube antes do resto.',
     href: '/games/escudo',
     isAvailable: false,
   },
   {
     title: 'Camisa Misteriosa',
-    description: 'Só a camisa, sem escudo. Adivinhe o time e a temporada.',
+    description: 'Sem nome, sem escudo, só tecido, padrão e memória de torcedor.',
     href: '/games/camisa',
     isAvailable: false,
   },
 ]
 
+const HIGHLIGHTS = [
+  {
+    title: 'Desafios diários',
+    copy: 'Abra a rodada do dia, resolva rápido e veja se você fecha tudo melhor que ontem.',
+  },
+  {
+    title: 'Ranking vivo',
+    copy: 'Entre com seu nick, salve sua pontuação e acompanhe quem está na frente hoje.',
+  },
+  {
+    title: 'Cinco modos no ar',
+    copy: 'Wordle, Conexões, Jogo da Velha, Linha do Tempo e Quem é o Craque já estão valendo.',
+  },
+]
+
 export default function Home() {
-  const available = GAMES.filter((g) => g.isAvailable)
-  const comingSoon = GAMES.filter((g) => !g.isAvailable)
+  const available = GAMES.filter((game) => game.isAvailable)
+  const comingSoon = GAMES.filter((game) => !game.isAvailable)
 
   return (
-    <main id="jogos" style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px 80px' }}>
+    <div className="page-shell page-shell--home">
+      <section className="hero-layout hero-layout--home">
+        <div className="hero-copy">
+          <div className="animate-fade-up delay-1">
+            <span className="kicker">Nova temporada visual</span>
+          </div>
 
-      {/* Hero */}
-      <div style={{ padding: 'clamp(70px, 12vw, 120px) 0 clamp(48px, 8vw, 72px)', textAlign: 'center' }}>
-        <div className="animate-fade-up delay-1" style={{ marginBottom: 20, opacity: 0, animationFillMode: 'forwards' }}>
-          <span className="badge badge-green animate-pulse-glow" style={{ fontSize: '0.7rem', padding: '0.25rem 0.8rem' }}>
-            <span style={{ marginRight: 6, fontSize: '0.5rem' }}>&#9679;</span> 5 JOGOS DISPONÍVEIS
-          </span>
+          <div className="animate-fade-up delay-2">
+            <p className="eyebrow hero-eyebrow">Arcade diário de futebol</p>
+            <h1 className="display-title hero-display-title text-glow">
+              Futebol para
+              <br />
+              resolver em <span className="text-gradient">minutos</span>
+            </h1>
+          </div>
+
+          <p className="lede hero-lede animate-fade-up delay-3">
+            O FUTLE reúne jogos diários de futebol para quem gosta de lembrar nomes, ler pistas e subir no ranking sem perder tempo.
+          </p>
+
+          <div className="hero-actions animate-fade-up delay-4">
+            <Link href="#jogos" className="btn-primary">
+              Explorar jogos
+            </Link>
+            <Link href="/ranking" className="btn-ghost">
+              Ver ranking
+            </Link>
+          </div>
+
+          <div className="hero-metrics animate-fade-up delay-5">
+            <div className="metric-tile">
+              <div className="metric-value">{available.length}</div>
+              <div className="metric-label">Jogos no ar</div>
+            </div>
+            <div className="metric-tile">
+              <div className="metric-value">1</div>
+              <div className="metric-label">Rodada por dia</div>
+            </div>
+            <div className="metric-tile">
+              <div className="metric-value">{comingSoon.length}</div>
+              <div className="metric-label">Modos chegando</div>
+            </div>
+          </div>
         </div>
 
-        <h1 className="animate-fade-up delay-2" style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(2.6rem, 7vw, 4.5rem)',
-          letterSpacing: '-0.03em',
-          lineHeight: 1.0,
-          marginBottom: 24,
-          opacity: 0,
-          animationFillMode: 'forwards',
-        }}>
-          <span className="text-gradient text-glow">Minijogos de Futebol</span>
-          <br />
-          <span style={{ color: 'var(--color-text)' }}>com Estilo Brasileiro</span>
-        </h1>
+        <aside className="surface-panel surface-panel--accent hero-context-panel animate-scale-in delay-3" style={{ opacity: 0, animationFillMode: 'forwards' }}>
+          <div className="surface-panel__inner stack">
+            <div>
+              <p className="eyebrow hero-context-panel__eyebrow">Jogue com contexto</p>
+              <h2 className="section-title hero-context-panel__title">
+                Escolha um jogo e entre na rodada.
+              </h2>
+              <p className="muted hero-context-panel__copy">
+                Aqui você encontra o que está valendo hoje, acompanha seu desempenho e volta amanhã para uma rodada nova.
+              </p>
+            </div>
 
-        <p className="animate-fade-up delay-3" style={{
-          fontSize: '1.05rem',
-          color: 'var(--color-muted)',
-          maxWidth: 500,
-          margin: '0 auto',
-          lineHeight: 1.7,
-          opacity: 0,
-          animationFillMode: 'forwards',
-        }}>
-          Teste seu conhecimento sobre futebol — brasileirão, europeu e seleções.
-          <br />
-          <span style={{ color: 'var(--color-brand-green)' }}>Novo desafio todo dia.</span>
-        </p>
-      </div>
+            <div className="hero-highlight-grid">
+              {HIGHLIGHTS.map((item) => (
+                <div key={item.title} className="hero-highlight-card">
+                  <p className="eyebrow hero-highlight-card__eyebrow">{item.title}</p>
+                  <p className="muted hero-highlight-card__copy">{item.copy}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </aside>
+      </section>
 
-      {/* Separador com glow */}
-      <div className="animate-fade-in delay-4" style={{ opacity: 0, animationFillMode: 'forwards' }}>
-        <hr style={{
-          border: 'none',
-          height: 1,
-          background: 'linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.3), rgba(245, 158, 11, 0.2), transparent)',
-          marginBottom: 40,
-        }} />
-      </div>
+      <section id="jogos" style={{ paddingTop: 18, marginBottom: 54 }}>
+        <div className="section-header">
+          <div>
+            <p className="section-label">Escalação titular</p>
+            <h2 className="section-title" style={{ marginBottom: 10 }}>
+              Jogos para entrar agora
+            </h2>
+            <p>Escolha um modo, jogue a rodada de hoje e tente subir no ranking.</p>
+          </div>
+        </div>
 
-      {/* Jogos disponíveis */}
-      <section style={{ marginBottom: 56 }}>
-        <p className="section-label section-label-green animate-fade-up delay-4" style={{ opacity: 0, animationFillMode: 'forwards' }}>
-          JOGAR AGORA
-        </p>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: 16,
-        }}>
-          {available.map((game, i) => (
-            <GameCard key={game.href} {...game} index={i} />
+        <div className="games-grid">
+          {available.map((game, index) => (
+            <GameCard key={game.href} {...game} index={index} />
           ))}
         </div>
       </section>
 
-      {/* Em breve */}
+      <section className="panel-grid" style={{ marginBottom: 54 }}>
+        <div className="surface-panel animate-fade-up delay-2" style={{ padding: 24, opacity: 0, animationFillMode: 'forwards' }}>
+          <div className="surface-panel__inner">
+            <p className="section-label">Ritmo do produto</p>
+            <h3 className="section-title" style={{ marginBottom: 12 }}>
+              Partidas curtas, disputa diária
+            </h3>
+            <p className="muted" style={{ marginBottom: 18 }}>
+              Cada jogo foi feito para caber em poucos minutos e ainda deixar vontade de voltar no dia seguinte.
+            </p>
+            <Link href="/login" className="btn-ghost">
+              Entrar para salvar scores
+            </Link>
+          </div>
+        </div>
+
+        <div className="surface-panel surface-panel--warm animate-fade-up delay-3" style={{ padding: 24, opacity: 0, animationFillMode: 'forwards' }}>
+          <div className="surface-panel__inner">
+            <p className="section-label section-label-muted">Competição</p>
+            <h3 className="section-title" style={{ marginBottom: 12 }}>
+              Seu resultado entra no ranking
+            </h3>
+            <p className="muted" style={{ marginBottom: 18 }}>
+              Crie seu nick, some pontos e acompanhe quem teve o melhor dia.
+            </p>
+            <Link href="/ranking" className="btn-primary">
+              Abrir ranking
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section>
-        <p className="section-label section-label-muted animate-fade-up delay-5" style={{ opacity: 0, animationFillMode: 'forwards' }}>
-          EM BREVE
-        </p>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: 16,
-        }}>
-          {comingSoon.map((game, i) => (
-            <GameCard key={game.href} {...game} index={i + 4} />
+        <div className="section-header">
+          <div>
+            <p className="section-label section-label-muted">Banco de reservas</p>
+            <h2 className="section-title" style={{ marginBottom: 10 }}>
+              Próximos modos em construção
+            </h2>
+            <p>Mais modos estão chegando para aumentar a rodada sem perder o ritmo do site.</p>
+          </div>
+        </div>
+
+        <div className="games-grid">
+          {comingSoon.map((game, index) => (
+            <GameCard key={game.href} {...game} index={index + available.length} />
           ))}
         </div>
       </section>
-    </main>
+    </div>
   )
 }
