@@ -92,11 +92,6 @@ export default function Home() {
       <section className="hero-layout hero-layout--home">
         <div className="hero-copy">
           <div className="animate-fade-up delay-1">
-            <span className="kicker">Nova temporada visual</span>
-          </div>
-
-          <div className="animate-fade-up delay-2">
-            <p className="eyebrow hero-eyebrow">Arcade diário de futebol</p>
             <h1 className="display-title hero-display-title text-glow">
               Futebol para
               <br />
@@ -157,7 +152,7 @@ export default function Home() {
         </aside>
       </section>
 
-      <section id="jogos" style={{ paddingTop: 4, marginBottom: 48 }}>
+      <section id="jogos" style={{ paddingTop: 0, marginBottom: 48 }}>
         <div className="section-header">
           <div>
             <p className="section-label">Escalação titular</p>

@@ -445,29 +445,30 @@ main {
 .hero-metrics {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 2px;
+  gap: 8px;
+  margin-top: 0;
 }
 
 .metric-tile {
-  padding: 12px 14px;
+  padding: 10px 12px;
   border: 1px solid var(--color-border);
-  border-radius: 16px;
+  border-radius: 14px;
   background: rgba(7, 18, 28, 0.62);
 }
 
 .metric-value {
   font-family: var(--font-display);
-  font-size: clamp(1.3rem, 2.8vw, 1.95rem);
+  font-size: clamp(1.15rem, 2.3vw, 1.7rem);
+  line-height: 0.88;
   color: var(--color-brand-green);
 }
 
 .metric-label {
-  margin-top: 4px;
+  margin-top: 3px;
   color: var(--color-muted);
-  font-size: 0.66rem;
+  font-size: 0.6rem;
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
