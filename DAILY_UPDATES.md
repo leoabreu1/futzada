@@ -2,6 +2,16 @@
 
 ---
 
+## 2026-04-25 — Conexões: banco ampliado de 24 para 32 puzzles únicos
+
+**O que foi feito:** Adicionados 8 novos puzzles ao jogo Conexões Futebol (puzzles 24 a 31), estendendo o ciclo sem repetição de 24 para 32 dias. Os novos desafios cobrem temas variados: lendas do Galatasaray, era de ouro da Juventus (Tevez/Pogba/Higuain/Vidal), Alemanha campeã 2014, revelados pelo Benfica, jogadores do AS Roma, era Maradona no Napoli, ídolos do Flamengo e do Botafogo, jogadores do Grêmio, squads históricos de Espanha 2012 e Argentina 2021, e a categoria-armadilha "Saíram do Santos para o mundo" (Pelé, Neymar, Robinho e Diego Ribas).
+
+**Arquivos modificados:** `lib/games/conexoes-data.ts`
+
+**Por que:** O jogo tinha apenas 24 puzzles e estava prestes a começar a repetir desafios em menos de duas semanas. Com 32 puzzles únicos, os jogadores têm mais de um mês de desafios novos, e as categorias mais difíceis (como "Brasileiros campeões da Copa do Mundo E da Champions" ou "Artilheiros históricos de Copas do Mundo") oferecem traps mais elaborados para quem já conhece bem o futebol.
+
+---
+
 ## 2026-04-24 — Badge "JOGADO HOJE" nos cards da página inicial
 
 **O que foi feito:** Adicionado um indicador visual verde "✓ JOGADO" nos cards dos jogos da página inicial quando o usuário já completou aquele jogo no dia. O badge aparece automaticamente ao lado de "DIÁRIO" assim que o jogador termina o desafio e volta para a home, sem precisar recarregar. Funciona tanto para usuários logados quanto para visitantes.
