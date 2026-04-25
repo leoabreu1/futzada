@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { getDailyCraque, CRAQUE_PLAYERS } from '@/lib/games/quem-e-o-craque-data'
+import { CLUB_LOGOS } from '@/lib/games/club-logos'
 import { useGameScore } from '@/lib/hooks/useGameScore'
 import { useGameDailyStorage } from '@/lib/hooks/useGameDailyStorage'
 import GamePageShell from '@/components/games/GamePageShell'
@@ -194,7 +195,11 @@ export default function QuemEOCraquePage() {
                       <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 5vw, 3rem)', lineHeight: 0.92 }}>
                         {PLAYER.name}
                       </p>
-                      <p style={{ color: 'var(--color-muted)', marginTop: 8 }}>
+                      <p style={{ color: 'var(--color-muted)', marginTop: 8, display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+                        {CLUB_LOGOS[PLAYER.club] && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={CLUB_LOGOS[PLAYER.club]} alt="" style={{ width: 18, height: 18, objectFit: 'contain', flexShrink: 0 }} />
+                        )}
                         {PLAYER.club} · {PLAYER.position} · {PLAYER.nationality}
                       </p>
                     </div>
@@ -229,7 +234,11 @@ export default function QuemEOCraquePage() {
                 {gameOver ? (
                   <section className="game-panel game-panel--soft">
                     <p className="game-panel__eyebrow">Ficha revelada</p>
-                    <div className="game-status-banner">
+                    <div className="game-status-banner" style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                      {CLUB_LOGOS[PLAYER.club] && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={CLUB_LOGOS[PLAYER.club]} alt="" style={{ width: 20, height: 20, objectFit: 'contain', flexShrink: 0 }} />
+                      )}
                       {PLAYER.nationality} · {PLAYER.position} · {PLAYER.club}
                     </div>
                   </section>
@@ -326,6 +335,10 @@ export default function QuemEOCraquePage() {
               </h2>
               <p className="game-panel__copy">
                 {scoreRegistered ? 'Pontuação registrada. ' : ''}
+                {CLUB_LOGOS[PLAYER.club] && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={CLUB_LOGOS[PLAYER.club]} alt="" style={{ width: 16, height: 16, objectFit: 'contain', verticalAlign: 'middle', marginRight: 4 }} />
+                )}
                 {PLAYER.nationality} · {PLAYER.position} · {PLAYER.club}. O próximo craque chega amanhã.
               </p>
               <div className="game-actions" style={{ marginTop: 18 }}>

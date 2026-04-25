@@ -38,7 +38,9 @@ const GAMES = [
     title: 'Caminho da Carreira',
     description: 'Leia a trilha de clubes e tente identificar o nome escondido por trás da jornada.',
     href: '/games/carreira',
-    isAvailable: false,
+    tag: 'Diário',
+    isNew: true,
+    isAvailable: true,
   },
   {
     title: 'Duelo de Stats',
@@ -92,11 +94,6 @@ export default function Home() {
       <section className="hero-layout hero-layout--home">
         <div className="hero-copy">
           <div className="animate-fade-up delay-1">
-            <span className="kicker">Nova temporada visual</span>
-          </div>
-
-          <div className="animate-fade-up delay-2">
-            <p className="eyebrow hero-eyebrow">Arcade diário de futebol</p>
             <h1 className="display-title hero-display-title text-glow">
               Futebol para
               <br />
@@ -133,7 +130,7 @@ export default function Home() {
           </div>
         </div>
 
-        <aside className="surface-panel surface-panel--accent hero-context-panel animate-scale-in delay-3" style={{ opacity: 0, animationFillMode: 'forwards' }}>
+        <aside className="surface-panel surface-panel--accent hero-context-panel hero-context-panel--home animate-scale-in delay-3" style={{ opacity: 0, animationFillMode: 'forwards' }}>
           <div className="surface-panel__inner stack">
             <div>
               <p className="eyebrow hero-context-panel__eyebrow">Jogue com contexto</p>
@@ -157,10 +154,9 @@ export default function Home() {
         </aside>
       </section>
 
-      <section id="jogos" style={{ paddingTop: 18, marginBottom: 54 }}>
+      <section id="jogos" className="home-games-section" style={{ marginBottom: 48 }}>
         <div className="section-header">
           <div>
-            <p className="section-label">Escalação titular</p>
             <h2 className="section-title" style={{ marginBottom: 10 }}>
               Jogos para entrar agora
             </h2>

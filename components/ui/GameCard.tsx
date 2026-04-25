@@ -117,9 +117,9 @@ export default function GameCard({
           position: 'relative',
           aspectRatio: '1 / 1',
           overflow: 'hidden',
-          borderRadius: '22px 22px 18px 18px',
+          borderRadius: '20px 20px 16px 16px',
           background: '#091923',
-          margin: 10,
+          margin: 8,
           marginBottom: 0,
         }}
       >
@@ -147,18 +147,18 @@ export default function GameCard({
         <div
           style={{
             position: 'absolute',
-            left: 14,
-            bottom: 14,
+            left: 12,
+            bottom: 12,
             display: 'flex',
             alignItems: 'center',
-            gap: 10,
+            gap: 8,
           }}
         >
           <div
             style={{
-              width: 38,
-              height: 38,
-              borderRadius: 14,
+              width: 34,
+              height: 34,
+              borderRadius: 12,
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -179,19 +179,19 @@ export default function GameCard({
         </div>
       </div>
 
-      <div style={{ padding: '18px 20px 22px', display: 'flex', flexDirection: 'column', gap: 16, flex: 1 }}>
+      <div style={{ padding: '15px 16px 18px', display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}>
         <div>
           <h3
             style={{
-              marginBottom: 8,
+              marginBottom: 6,
               color: isAvailable ? 'var(--color-text)' : 'var(--color-muted)',
-              fontSize: '1.28rem',
-              lineHeight: 0.92,
+              fontSize: '1.08rem',
+              lineHeight: 0.96,
             }}
           >
             {title}
           </h3>
-          <p style={{ color: 'var(--color-muted)', fontSize: '0.92rem', lineHeight: 1.7 }}>{description}</p>
+          <p style={{ color: 'var(--color-muted)', fontSize: '0.82rem', lineHeight: 1.55 }}>{description}</p>
         </div>
 
         <div
@@ -212,9 +212,9 @@ export default function GameCard({
               alignItems: 'center',
               gap: 8,
               color: isAvailable ? 'var(--color-brand-yellow)' : 'var(--color-muted)',
-              fontSize: '0.72rem',
+              fontSize: '0.66rem',
               fontWeight: 800,
-              letterSpacing: '0.16em',
+              letterSpacing: '0.14em',
               textTransform: 'uppercase',
             }}
           >
