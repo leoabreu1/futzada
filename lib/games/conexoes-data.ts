@@ -225,6 +225,78 @@ const PUZZLES: DailyConexoes[] = [
       { difficulty: 'purple', category: 'Revelados pelo São Paulo FC', players: ['Cafu', 'Raí', 'Zetti', 'Casemiro'] },
     ],
   },
+  // Puzzle 24 — 2026-05-10
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Jogaram no Galatasaray', players: ['Didier Drogba', 'Ryan Babel', 'Radamel Falcao', 'Lukas Podolski'] },
+      { difficulty: 'green',  category: 'Jogaram na Juventus (anos 2010)', players: ['Carlos Tevez', 'Paul Pogba', 'Gonzalo Higuain', 'Arturo Vidal'] },
+      { difficulty: 'blue',   category: 'Copa 2014 com Alemanha', players: ['Toni Kroos', 'Thomas Muller', 'Manuel Neuer', 'Mesut Ozil'] },
+      { difficulty: 'purple', category: 'Revelados pelo Benfica', players: ['Eusebio', 'Rui Costa', 'Joao Felix', 'Bernardo Silva'] },
+    ],
+  },
+  // Puzzle 25 — 2026-05-11
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Jogaram no AS Roma', players: ['Francesco Totti', 'Daniele De Rossi', 'Gabriel Batistuta', 'Mohamed Salah'] },
+      { difficulty: 'green',  category: 'Jogaram no Corinthians', players: ['Ronaldo Fenomeno', 'Roberto Carlos', 'Adriano Imperador', 'Socrates'] },
+      { difficulty: 'blue',   category: 'Artilheiros históricos da Champions League', players: ['Raul Gonzalez', 'Ruud van Nistelrooy', 'Andriy Shevchenko', 'Filippo Inzaghi'] },
+      { difficulty: 'purple', category: 'Campeões da Champions 2015 com o Barcelona', players: ['Neymar Jr.', 'Luis Suarez', 'Ivan Rakitic', 'Sergio Busquets'] },
+    ],
+  },
+  // Puzzle 26 — 2026-05-12
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Ídolos históricos de Portugal', players: ['Cristiano Ronaldo', 'Luis Figo', 'Eusebio', 'Rui Costa'] },
+      { difficulty: 'green',  category: 'Jogaram no Sevilla', players: ['Frederic Kanoute', 'Jose Antonio Reyes', 'Ivan Rakitic', 'Diego Forlan'] },
+      { difficulty: 'blue',   category: 'Capitães do Brasil em Copas do Mundo', players: ['Dunga', 'Thiago Silva', 'Carlos Alberto Torres', 'Mauro Silva'] },
+      { difficulty: 'purple', category: 'Top-4 artilheiros de todos os tempos em Copas', players: ['Miroslav Klose', 'Ronaldo Fenomeno', 'Gerd Muller', 'Just Fontaine'] },
+    ],
+  },
+  // Puzzle 27 — 2026-05-13
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Ídolos históricos do São Paulo FC', players: ['Cafu', 'Raí', 'Müller', 'Zetti'] },
+      { difficulty: 'green',  category: 'Campeões Copa 2006 com Itália', players: ['Gianluigi Buffon', 'Fabio Cannavaro', 'Andrea Pirlo', 'Luca Toni'] },
+      { difficulty: 'blue',   category: 'Jogaram no Manchester United (era Ferguson)', players: ['Ryan Giggs', 'Roy Keane', 'Peter Schmeichel', 'Ole Gunnar Solskjaer'] },
+      { difficulty: 'purple', category: 'Jogaram no Napoli na era Maradona', players: ['Diego Maradona', 'Careca', 'Bruno Giordano', 'Ciro Ferrara'] },
+    ],
+  },
+  // Puzzle 28 — 2026-05-14
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Ídolos do Flamengo', players: ['Zico', 'Ronaldinho', 'Gabigol', 'Everton Ribeiro'] },
+      { difficulty: 'green',  category: 'Campeões Eurocopa 2012 com Espanha', players: ['Andres Iniesta', 'Fernando Torres', 'David Silva', 'Cesc Fabregas'] },
+      { difficulty: 'blue',   category: 'Jogaram no Borussia Dortmund', players: ['Robert Lewandowski', 'Mario Gotze', 'Marco Reus', 'Mats Hummels'] },
+      { difficulty: 'purple', category: 'Saíram do Santos FC para o mundo', players: ['Pelé', 'Neymar Jr.', 'Robinho', 'Diego Ribas'] },
+    ],
+  },
+  // Puzzle 29 — 2026-05-15
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Jogaram no Grêmio', players: ['Ronaldinho', 'Renato Gaucho', 'Lucas Barrios', 'Anderson'] },
+      { difficulty: 'green',  category: 'Copa América 2019 com Brasil', players: ['Dani Alves', 'Roberto Firmino', 'Everton Cebolinha', 'Arthur'] },
+      { difficulty: 'blue',   category: 'Capitães vencedores de Copa do Mundo', players: ['Dunga', 'Diego Maradona', 'Didier Deschamps', 'Franz Beckenbauer'] },
+      { difficulty: 'purple', category: 'Brasileiros campeões da Copa do Mundo E da Champions', players: ['Ronaldo Fenomeno', 'Roberto Carlos', 'Kaka', 'Cafu'] },
+    ],
+  },
+  // Puzzle 30 — 2026-05-16
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Lendas do Botafogo', players: ['Garrincha', 'Jairzinho', 'Nilton Santos', 'Tulio Maravilha'] },
+      { difficulty: 'green',  category: 'Jogaram no Monaco', players: ['Thierry Henry', 'Kylian Mbappe', 'Bernardo Silva', 'Dimitar Berbatov'] },
+      { difficulty: 'blue',   category: 'Jogaram no Valencia CF', players: ['David Silva', 'David Villa', 'Gaizka Mendieta', 'Juan Mata'] },
+      { difficulty: 'purple', category: 'Brasileiros que jogaram no Barcelona', players: ['Ronaldo Fenomeno', 'Ronaldinho', 'Neymar Jr.', 'Dani Alves'] },
+    ],
+  },
+  // Puzzle 31 — 2026-05-17
+  {
+    groups: [
+      { difficulty: 'yellow', category: 'Jogaram no FC Porto', players: ['Deco', 'Hulk', 'Radamel Falcao', 'Diego Ribas'] },
+      { difficulty: 'green',  category: 'Jogaram no PSG (era moderna)', players: ['Thiago Silva', 'Zlatan Ibrahimovic', 'Lucas Moura', 'Edinson Cavani'] },
+      { difficulty: 'blue',   category: 'Campeões Copa América 2021 com Argentina', players: ['Lionel Messi', 'Angel Di Maria', 'Lautaro Martinez', 'Emiliano Martinez'] },
+      { difficulty: 'purple', category: 'Campeões olímpicos no futebol pelo Brasil', players: ['Neymar Jr.', 'Dani Alves', 'Richarlison', 'Everton Cebolinha'] },
+    ],
+  },
 ]
 
 const BASE_DATE = new Date('2026-04-16').getTime()
