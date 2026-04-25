@@ -26,10 +26,11 @@ export default function Header() {
     setIsVisible(true)
     lastScrollYRef.current = window.scrollY
 
-    if (!isGameRoute) return
+    const mobileQuery = window.matchMedia('(max-width: 768px)')
 
     const handleScroll = () => {
       if (tickingRef.current) return
+      if (!isGameRoute && !mobileQuery.matches) return
 
       tickingRef.current = true
       window.requestAnimationFrame(() => {
@@ -49,10 +50,16 @@ export default function Header() {
       })
     }
 
+    const handleViewportChange = () => {
+      if (!isGameRoute && !mobileQuery.matches) setIsVisible(true)
+    }
+
     window.addEventListener('scroll', handleScroll, { passive: true })
+    mobileQuery.addEventListener('change', handleViewportChange)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
+      mobileQuery.removeEventListener('change', handleViewportChange)
       tickingRef.current = false
     }
   }, [isGameRoute, pathname])
