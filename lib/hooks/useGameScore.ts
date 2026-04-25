@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react'
 import { calculateTimelinePoints } from '@/lib/games/linha-do-tempo-data'
 import { calculateConexoesPoints } from '@/lib/games/conexoes-data'
 
-type GameType = 'wordle' | 'jogo-da-velha' | 'quem-e-o-craque' | 'linha-do-tempo' | 'conexoes'
+type GameType = 'wordle' | 'jogo-da-velha' | 'quem-e-o-craque' | 'linha-do-tempo' | 'conexoes' | 'carreira'
 
 function getTodayDate(): string {
   return new Date().toISOString().split('T')[0] // YYYY-MM-DD
@@ -20,6 +20,7 @@ function calcPoints(gameType: GameType, won: boolean, attempts: number): number 
     wordle:           { base: 100, deduction: 10 },
     'jogo-da-velha':  { base: 100, deduction: 5 },
     'quem-e-o-craque':{ base: 100, deduction: 15 },
+    carreira:         { base: 120, deduction: 20 },
   }
 
   const { base, deduction } = config[gameType]

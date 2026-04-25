@@ -750,7 +750,7 @@ main {
   gap: 14px;
 }
 
-@media (max-width: 1380px) {
+@media (max-width: 1240px) {
   .games-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -1260,8 +1260,10 @@ main {
   border: 1px solid rgba(154, 176, 190, 0.14);
   background: rgba(8, 20, 29, 0.72);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   text-align: center;
   color: var(--color-muted);
   font-size: 0.78rem;
@@ -2128,6 +2130,76 @@ main {
   .button-secondary {
     width: 100%;
   }
+}
+
+/* ─── Caminho da Carreira ─── */
+.carreira-path {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.carreira-path__entry {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.carreira-path__arrow {
+  color: var(--color-muted);
+  flex-shrink: 0;
+}
+
+.carreira-path__more {
+  font-size: 0.74rem;
+  color: var(--color-muted);
+  padding: 0 4px;
+}
+
+.carreira-club {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 13px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.carreira-club__logo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.carreira-club__logo--dim {
+  opacity: 0.45;
+}
+
+.carreira-club--visible {
+  border: 1px solid rgba(154, 176, 190, 0.35);
+  background: rgba(154, 176, 190, 0.1);
+  color: var(--color-text);
+  gap: 7px;
+}
+
+.carreira-club--hidden {
+  border: 1px dashed rgba(154, 176, 190, 0.28);
+  background: rgba(154, 176, 190, 0.04);
+  color: var(--color-muted);
+  min-width: 36px;
+  justify-content: center;
+}
+
+.carreira-club--revealed {
+  border: 1px solid rgba(154, 176, 190, 0.18);
+  background: transparent;
+  color: var(--color-muted);
+  gap: 7px;
 }
 
 @media (prefers-reduced-motion: reduce) {

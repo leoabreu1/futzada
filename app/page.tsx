@@ -38,7 +38,9 @@ const GAMES = [
     title: 'Caminho da Carreira',
     description: 'Leia a trilha de clubes e tente identificar o nome escondido por trás da jornada.',
     href: '/games/carreira',
-    isAvailable: false,
+    tag: 'Diário',
+    isNew: true,
+    isAvailable: true,
   },
   {
     title: 'Duelo de Stats',

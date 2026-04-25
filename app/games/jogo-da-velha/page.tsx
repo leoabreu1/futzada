@@ -2,9 +2,20 @@
 
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { PLAYERS, getDailyGrid, getValidPlayers, type Player } from '@/lib/games/jogo-da-velha-data'
+import { CLUB_LOGOS } from '@/lib/games/club-logos'
 import { useGameScore } from '@/lib/hooks/useGameScore'
 import { useGameDailyStorage } from '@/lib/hooks/useGameDailyStorage'
 import GamePageShell from '@/components/games/GamePageShell'
+
+const CATEGORY_LOGO: Record<string, string> = {
+  realmadrid: CLUB_LOGOS['Real Madrid'],
+  barcelona: CLUB_LOGOS['Barcelona'],
+  psg: CLUB_LOGOS['PSG'],
+  liverpool: CLUB_LOGOS['Liverpool'],
+  mancity: CLUB_LOGOS['Manchester City'],
+  bayernm: CLUB_LOGOS['Bayern Munich'],
+  juventus: CLUB_LOGOS['Juventus'],
+}
 
 type CellState = { player: Player | null; locked: boolean }
 type VelhaState = { cells: CellState[]; guesses: number; gameOver: boolean }
@@ -160,6 +171,10 @@ export default function JogoDaVelhaPage() {
                   <div />
                   {cols.map((category) => (
                     <div key={category.id} className="velha-grid__label">
+                      {CATEGORY_LOGO[category.id] && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={CATEGORY_LOGO[category.id]} alt="" style={{ width: 18, height: 18, objectFit: 'contain', flexShrink: 0 }} />
+                      )}
                       {category.label}
                     </div>
                   ))}
@@ -167,6 +182,10 @@ export default function JogoDaVelhaPage() {
                   {rows.map((rowCategory, rowIndex) => (
                     <Fragment key={rowCategory.id}>
                       <div className="velha-grid__label velha-grid__label--row">
+                        {CATEGORY_LOGO[rowCategory.id] && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={CATEGORY_LOGO[rowCategory.id]} alt="" style={{ width: 18, height: 18, objectFit: 'contain', flexShrink: 0 }} />
+                        )}
                         {rowCategory.label}
                       </div>
 

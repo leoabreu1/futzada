@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { getDailyConexoes, type ConexoesGroup } from '@/lib/games/conexoes-data'
+import { getClubLogoFromText } from '@/lib/games/club-logos'
 import { useGameScore } from '@/lib/hooks/useGameScore'
 import { useGameDailyStorage } from '@/lib/hooks/useGameDailyStorage'
 import GamePageShell from '@/components/games/GamePageShell'
@@ -189,7 +190,11 @@ export default function ConexoesPage() {
                         border: `1px solid ${style.border}`,
                       }}
                     >
-                      <p style={{ color: style.text, fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: 6 }}>
+                      <p style={{ color: style.text, fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 6 }}>
+                        {getClubLogoFromText(group.category) && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={getClubLogoFromText(group.category)!} alt="" style={{ width: 16, height: 16, objectFit: 'contain', flexShrink: 0 }} />
+                        )}
                         {group.category}
                       </p>
                       <p style={{ color: 'var(--color-text)', fontSize: '0.92rem', lineHeight: 1.6 }}>
@@ -293,7 +298,11 @@ export default function ConexoesPage() {
                   const style = DIFF_STYLE[group.difficulty]
                   return (
                     <div key={group.category} style={{ padding: '16px 18px', borderRadius: 20, background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.16)' }}>
-                      <p style={{ color: style.text, fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: 6 }}>
+                      <p style={{ color: style.text, fontSize: '0.72rem', fontWeight: 800, letterSpacing: '0.16em', textTransform: 'uppercase', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 6 }}>
+                        {getClubLogoFromText(group.category) && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={getClubLogoFromText(group.category)!} alt="" style={{ width: 16, height: 16, objectFit: 'contain', flexShrink: 0 }} />
+                        )}
                         {group.category}
                       </p>
                       <p style={{ color: 'var(--color-text)', fontSize: '0.92rem', lineHeight: 1.6 }}>
